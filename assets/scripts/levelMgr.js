@@ -33,7 +33,18 @@ cc.Class({
         directionTryto: null,
         flag: false,
 
-        walls: []
+        walls: [],
+        targetsNum: {
+            get() {
+                return this._targetsNum
+            },
+            set(value) {
+                this._targetsNum = value
+                if (value == 0) {
+                    this.onSuccess()
+                }
+            }
+        }
         
     },
 
@@ -51,6 +62,7 @@ cc.Class({
 
         var wallsNode = cc.find("Canvas/walls")
         this.walls = wallsNode.children
+        this.targetsNum = cc.find("Canvas/targets").children.length
     },
 
     // update (dt) {},
@@ -177,6 +189,10 @@ cc.Class({
         }
 
         return resultLine
+    },
+
+    onSuccess() {
+        cc.log("YOU WIN")
     }
     
 });

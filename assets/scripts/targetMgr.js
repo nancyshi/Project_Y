@@ -1,0 +1,97 @@
+// Learn cc.Class:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
+//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
+// Learn Attribute:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
+//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
+// Learn life-cycle callbacks:
+//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
+//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        // foo: {
+        //     // ATTRIBUTES:
+        //     default: null,        // The default value will be used only when the component attaching
+        //                           // to a node for the first time
+        //     type: cc.SpriteFrame, // optional, default is typeof default
+        //     serializable: true,   // optional, default is true
+        // },
+        // bar: {
+        //     get () {
+        //         return this._bar;
+        //     },
+        //     set (value) {
+        //         this._bar = value;
+        //     }
+        // },
+        fatalTolerance: 0.01,
+        bullets: null,
+        flag: false
+    },
+
+    // LIFE-CYCLE CALLBACKS:
+
+    onLoad () {
+        
+    },
+
+    start () {
+        this.bullets = cc.find("Canvas").getComponent("levelMgr").bullets
+    },
+
+    update (dt) {
+        if (this.flag == true) {
+            return
+        }
+        for (var index in this.bullets) {
+            var bullet = this.bullets[index]
+            var bulletMgr = bullet.getComponent("bulletMgr")
+            
+            if (bulletMgr.bulletType != 1) {
+                continue
+            }
+            if (bulletMgr.status != 0) {
+                continue
+            }
+            if (this.checkWhetherSatisfied(bullet) == true) {
+                this.onSatisfy(bullet)
+                break
+            }
+        }
+    },
+
+    checkWhetherSatisfied(givenBulletNode) {
+        var dis = cc.v2(givenBulletNode.x - this.node.x, givenBulletNode.y - this.node.y).mag()
+        if (dis <= this.fatalTolerance) {
+            return true
+        }
+        else {
+            return false
+        }
+    },
+
+    onSatisfy(givenBullet) {
+        this.flag = true
+        givenBullet.getComponent("bulletMgr").status = 2
+        var self = this
+        cc.tween(givenBullet)
+            .to(0.2,{opacity:0})
+            .call(function(){
+                givenBullet.destroy()
+            })
+            .start()
+        cc.tween(this.node)
+            .to(0.2,{opacity: 0})
+            .call(function(){
+                self.node.destroy()
+            })
+            .start()
+    },
+
+    onDestroy() {
+        cc.find("Canvas").getComponent("levelMgr").targetsNum -= 1
+    }
+});

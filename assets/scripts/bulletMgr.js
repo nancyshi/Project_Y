@@ -44,6 +44,7 @@ cc.Class({
 
     onLoad () {
         this.levelMgr = cc.find("Canvas").getComponent("levelMgr")
+        cc.log(this.levelMgr.walls)
         var Helper = require("helper")
         this.helper = new Helper()
     },
@@ -233,11 +234,11 @@ cc.Class({
                 }
                 if (temp <= 0) {
                     
-                    if (bullet.getComponent("bulletMgr").status == 0) {
+                    if (bullet.getComponent("bulletMgr").status != 1) {
                         var suitablePosition = this.helper.getSuitablePoint(cc.v2(tempX,tempY),dis,collidDis,movingVector)
                         return suitablePosition
                     }
-                    else if (bullet.getComponent("bulletMgr").status == 1) {
+                    else {
 
                         //simple resolve
                         var dx = tempX - this.node.x
@@ -248,7 +249,7 @@ cc.Class({
                         var result = bullet.getComponent("bulletMgr").checkWhetherWillStop(x,y)
                         if (result != false) {
                             var dir = cc.v2(-dx, -dy).normalizeSelf()
-                            var d = this.node.width + this.disFromBorder
+                            var d = this.node.width/2 + bullet.width/2 + this.disFromBorder
                             var returnX = result.x + dir.x * d
                             var returnY = result.y + dir.y * d
                             return cc.v2(returnX,returnY)
