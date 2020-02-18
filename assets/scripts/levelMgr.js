@@ -89,7 +89,9 @@ cc.Class({
         if (this.directionTryto == null) {
             this.directionTryto = direction
         }
-        if (direction != this.directionTryto) {
+        if (direction.equals(this.directionTryto) == false) {
+            cc.log(direction.x, direction.y)
+            cc.log(this.directionTryto.x, this.directionTryto.y)
             this.flag = false
             return
         }
@@ -142,11 +144,16 @@ cc.Class({
     },
     
     moveBullets(direction) {
+        for (var index in this.bullets) {
+            if (this.bullets[index].getComponent("bulletMgr").status != 0) {
+                return
+            }
+        }
         var shadows = []
         for (var index in this.bullets) {
             var bullet = this.bullets[index]
             var bulletMgr = bullet.getComponent("bulletMgr")
-            var nearestWallInfo = bulletMgr.getNearestWallInfo()
+            var nearestWallInfo = bulletMgr.getNearestWallInfo(direction)
             var shadowNode = {
                 x: nearestWallInfo.suitablePosition.x,
                 y: nearestWallInfo.suitablePosition.y,
@@ -155,15 +162,83 @@ cc.Class({
                 dis: nearestWallInfo.dis,
                 originNode: bullet
             }
-
             shadows.push(shadowNode)
         }
 
+        //resolve shadows
+        if (this.resolveShadows(shadows,direction) == false) {
+            this.resolveShadows(shadows,direction)
+        }
 
+        for (var index in shadows) {
+            var shadowNode = shadows[index]
+            var originNode = shadowNode.originNode
+            originNode.getComponent("bulletMgr").targetPosition = cc.v2(shadowNode.x, shadowNode.y)
+            originNode.getComponent("bulletMgr").movingDirection = direction
+            originNode.getComponent("bulletMgr").status = 1
+        }
     },
 
     onSuccess() {
         cc.log("YOU WIN")
+    },
+
+    resolveShadows(shadows,direction) {
+        for (var index in shadows) {
+            var oneShadow = shadows[index]
+            for(var i in shadows) {
+                var anotherShadow = shadows[i]
+                if (anotherShadow == oneShadow) {
+                    continue
+                }
+                var isCross = this.helper.isTwoNodeCross(oneShadow,anotherShadow) 
+                if (isCross == true) {
+                    // var tempShadow = anotherShadow
+                    // var staticShadow = oneShadow
+                    // if (anotherShadow.dis > oneShadow.dis) {
+                    //     tempShadow = oneShadow
+                    //     staticShadow = anotherShadow
+                    // }
+                    var tempShadow = null
+                    var staticShadow = null
+                    if (anotherShadow.dis > oneShadow.dis) {
+                        tempShadow = anotherShadow
+                        staticShadow = oneShadow
+                    }
+                    else {
+                        tempShadow = oneShadow
+                        staticShadow = anotherShadow
+                    }
+                    var staticBorderLines = this.helper.getLinesOfOneNode(staticShadow)
+                    var staticLine = null
+                    var ray = this.helper.makeRay(cc.v2(staticShadow.x,staticShadow.y),1000,cc.v2(-direction.x,-direction.y))
+
+                    for(var k in staticBorderLines) {
+                        var line = staticBorderLines[k]
+                        var dis = this.helper.rayTest(ray,line)
+                        if (dis != false) {
+                            staticLine = line
+                            break
+                        }
+                    }
+                    var newPoint2 = this.helper.makeRay(staticLine.p2,1000,cc.v2(staticLine.p2.x - staticLine.p1.x, staticLine.p2.y - staticLine.p1.y)).p2
+                    var newPoint1 = this.helper.makeRay(staticLine.p1,1000,cc.v2(staticLine.p1.x - staticLine.p2.x, staticLine.p1.y - staticLine.p2.y)).p2
+                    staticLine = {
+                        p1: newPoint1,
+                        p2: newPoint2
+                    }
+                    var ray1 = this.helper.makeRay(tempShadow.originNode.position,3000,direction)
+                    var currentDistance = this.helper.rayTest(ray1,staticLine)
+                    var targetDis = this.helper.getDisToSelfBorder(tempShadow.originNode,direction) + tempShadow.originNode.getComponent("bulletMgr").disFromBorder
+                    var suitablePosition = this.helper.getSuitablePoint(tempShadow.originNode.position,currentDistance,targetDis,direction)
+                    var updatedDis = cc.v2(suitablePosition.x - tempShadow.originNode.x, suitablePosition.y - tempShadow.originNode.y).mag()
+                    tempShadow.x = suitablePosition.x
+                    tempShadow.y = suitablePosition.y
+                    tempShadow.dis = updatedDis
+                    return false
+                }
+            }
+        }
     }
     
 });

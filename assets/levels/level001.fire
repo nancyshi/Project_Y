@@ -1092,12 +1092,12 @@
     "bulletType": 1,
     "status": 0,
     "disFromBorder": 10,
-    "moveSpeed": 3000,
+    "moveSpeed": 1000,
     "movingDirection": -1,
+    "targetPosition": null,
     "levelMgr": null,
     "helper": null,
     "_rayTestLength": 2000,
-    "faultTolerance": 0.001,
     "_id": "13ImWmB89AfYKoTMUpwbqe"
   },
   {
@@ -1141,6 +1141,7 @@
     "maxOffsetDegree": 30,
     "directionTryto": null,
     "flag": false,
+    "helper": null,
     "walls": [],
     "_id": "b0LQotvltCyK5nugQTtv5o"
   }

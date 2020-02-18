@@ -109,35 +109,98 @@ var Helper = cc.Class({
         var p7 = cc.v2(givenNode.x + givenNode.width / 2, givenNode.y + givenNode.height / 2)
         var p8 = cc.v2(p7.x, p7.y - givenNode.height)
 
-        var line1 = this.helper.rotateSegment(p1,p2,givenNode.position,-givenNode.angle)
-        var line2 = this.helper.rotateSegment(p3,p4,givenNode.position,-givenNode.angle)
-        var line3 = this.helper.rotateSegment(p5,p6,givenNode.position,-givenNode.angle)
-        var line4 = this.helper.rotateSegment(p7,p8,givenNode.position,-givenNode.angle)
+        var line1 = {p1:p1,p2:p2}
+        var line2 = {p1:p3,p2:p4}
+        var line3 = {p1:p5,p2:p6}
+        var line4 = {p1:p7,p2:p8}
+        if (givenNode.angle != null && givenNode.angle != undefined) {
+            line1 = this.rotateSegment(p1,p2,cc.v2(givenNode.x, givenNode.y),-givenNode.angle)
+            line2 = this.rotateSegment(p3,p4,cc.v2(givenNode.x, givenNode.y),-givenNode.angle)
+            line3 = this.rotateSegment(p5,p6,cc.v2(givenNode.x, givenNode.y),-givenNode.angle)
+            line4 = this.rotateSegment(p7,p8,cc.v2(givenNode.x, givenNode.y),-givenNode.angle) 
+        }
+        // var line1 = this.rotateSegment(p1,p2,cc.v2(givenNode.x, givenNode.y),-givenNode.angle)
+        // var line2 = this.rotateSegment(p3,p4,cc.v2(givenNode.x, givenNode.y),-givenNode.angle)
+        // var line3 = this.rotateSegment(p5,p6,cc.v2(givenNode.x, givenNode.y),-givenNode.angle)
+        // var line4 = this.rotateSegment(p7,p8,cc.v2(givenNode.x, givenNode.y),-givenNode.angle) 
         var obj = {
             lowerLine: line1, //lower line
             upperLine: line2, //upper line
             leftLine: line3, //left line
             rightLine: line4  //right line
         }
+        if (line1 == null || line2 == null || line3 == null || line4 == null) {
+            cc.error("NOT INVALID LINES")
+        }
         return obj
     },
 
     isTwoNodeCross(node1, node2) {
-        var bounders1 = this.getLinesOfOneNode(node1)
-        var bounders2 = this.getLinesOfOneNode(node2)
-        for (var key in bounders1) {
-            var line = bounders1[key]
-            for (var k in bounders2) {
-                var anotherLine = bounders2[k]
-                var dis = this.rayTest(line,anotherLine)
-                if (dis != false) {
-                    return true
-                }
+        
+        var info1 = this.getInfoOfOneNode(node1)
+        var info2 = this.getInfoOfOneNode(node2)
+        if (info1.minY > info2.maxY || info2.minY > info1.maxY || info1.minX > info2.maxX || info2.minX > info1.maxX) {
+            return false
+        }
+        return true
+    },
+    getInfoOfOneNode(givenNode) {
+        var leftUpPoint = cc.v2(givenNode.x - givenNode.width / 2, givenNode.y + givenNode.height / 2)
+        var rightUpPoint = cc.v2(givenNode.x + givenNode.width / 2, leftUpPoint.y)
+        var leftDownPoint = cc.v2(leftUpPoint.x, givenNode.y - givenNode.height / 2)
+        var rightDownPoint = cc.v2(rightUpPoint.x, leftDownPoint.y)
+
+        if (givenNode.angle != null && givenNode.angle != undefined) {
+            leftUpPoint = this.rotateOnePoint(leftUpPoint,cc.v2(givenNode.x,givenNode.y),-givenNode.angle)
+            rightUpPoint = this.rotateOnePoint(rightUpPoint,cc.v2(givenNode.x,givenNode.y),-givenNode.angle)
+            leftDownPoint = this.rotateOnePoint(leftDownPoint,cc.v2(givenNode.x,givenNode.y),-givenNode.angle)
+            rightDownPoint = this.rotateOnePoint(rightDownPoint,cc.v2(givenNode.x,givenNode.y),-givenNode.angle)
+        }
+
+        var minX = leftUpPoint.x
+        var maxX = rightDownPoint.x
+        var minY = leftDownPoint.y
+        var maxY = rightUpPoint.y
+        var arry = [leftUpPoint,leftDownPoint,rightUpPoint,rightDownPoint]
+        for (var index in arry) {
+            var point = arry[index]
+            if (minX > point.x) {
+                minX = point.x
+            }
+            if (maxX < point.x) {
+                maxX = point.x
+            }
+            if (minY > point.y) {
+                minY = point.y
+            }
+            if (maxY < point.y) {
+                maxY = point.y
             }
         }
 
-        return false
-    }
+        return {
+            minX: minX,
+            minY: minY,
+            maxX: maxX,
+            maxY: maxY
+        }
+    },
+
+    getDisToSelfBorder(givenNode,direction) {
+        var ray = this.makeRay(cc.v2(givenNode.x,givenNode.y),1000,direction)
+        var borderLines = this.getLinesOfOneNode(givenNode)
+
+        for (var key in borderLines) {
+            var line = borderLines[key]
+            var dis = this.rayTest(ray,line)
+
+            if (dis != false) {
+                return dis
+            }
+        }
+    },
+
+    
 });
 
 module.exports = Helper

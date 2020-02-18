@@ -18,12 +18,12 @@ cc.Class({
         disFromBorder: 10,
         moveSpeed: 500,
         movingDirection: null,
+        targetPosition: null,
 
         levelMgr: null,
         helper: null,
 
         _rayTestLength: 3000,
-        faultTolerance: 0.01
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -48,7 +48,28 @@ cc.Class({
     },
 
     moveUpdate(dt) {
+        if (this.status != 1) {
+            return
+        }
 
+        this.movingDirection.normalizeSelf()
+        var vx = this.moveSpeed * this.movingDirection.x
+        var vy = this.moveSpeed * this.movingDirection.y
+
+        var tempX = this.node.x + vx * dt
+        var tempY = this.node.y + vy * dt
+        if (cc.v2(tempX - this.node.x, tempY - this.node.y).mag() >= cc.v2(this.targetPosition.x - this.node.x, this.targetPosition.y - this.node.y).mag()) {
+            tempX = this.targetPosition.x
+            tempY = this.targetPosition.y
+
+            this.node.x = tempX
+            this.node.y = tempY
+            this.status = 0
+            return
+        }
+
+        this.node.x = tempX
+        this.node.y = tempY
     },
     getNearestWallInfo(givenDirection) {
         var result = null
