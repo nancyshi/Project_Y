@@ -32,6 +32,7 @@ cc.Class({
         maxOffsetDegree: 30,
         directionTryto: null,
         flag: false,
+        helper: null,
 
         walls: [],
         targetsNum: {
@@ -50,7 +51,10 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        var Helper = require("helper")
+        this.helper = new Helper()
+    },
 
     start () {
         this.node.on("touchstart",this.onTouchStart,this)
@@ -95,11 +99,7 @@ cc.Class({
         if (disFromStart >= this.minDis) {
             //valid move
             this.flag = false
-            for (var index in this.bullets) {
-                var bullet = this.bullets[index]
-                var mgr = bullet.getComponent("bulletMgr")
-                mgr.move(this.directionTryto)
-            }
+            this.moveBullets(this.directionTryto)
         }
     },
     onTouchEnd(event) {
@@ -114,16 +114,16 @@ cc.Class({
 
     getPossiableDirection(delta) {
         if (this.isPossiableWithGivenDirection(delta,cc.v2(1,0)) == true) {
-            return 1 //right
+            return cc.v2(1,0) //right
         }
         else if (this.isPossiableWithGivenDirection(delta,cc.v2(0,-1)) == true) {
-            return 2 //down
+            return cc.v2(0,-1) //down
         }
         else if (this.isPossiableWithGivenDirection(delta,cc.v2(-1,0)) == true) {
-            return 3 //left
+            return cc.v2(-1,0) //left
         }
         else if (this.isPossiableWithGivenDirection(delta,cc.v2(0,1)) == true) {
-            return 0 //up
+            return cc.v2(0,1) //up
         }
         else {
             return -1 //no direction match
@@ -140,55 +140,26 @@ cc.Class({
             return false
         }
     },
+    
+    moveBullets(direction) {
+        var shadows = []
+        for (var index in this.bullets) {
+            var bullet = this.bullets[index]
+            var bulletMgr = bullet.getComponent("bulletMgr")
+            var nearestWallInfo = bulletMgr.getNearestWallInfo()
+            var shadowNode = {
+                x: nearestWallInfo.suitablePosition.x,
+                y: nearestWallInfo.suitablePosition.y,
+                width: bullet.width,
+                height: bullet.height,
+                dis: nearestWallInfo.dis,
+                originNode: bullet
+            }
 
-    getWallLine(givenWallNode) {
-
-        var offset = givenWallNode.height / 2
-        var p1 = cc.v2(givenWallNode.x - givenWallNode.width/2, givenWallNode.y - offset)
-        var p2 = cc.v2(givenWallNode.x + givenWallNode.width/2, givenWallNode.y - offset)
-        var p3 = cc.v2(p1.x, p1.y + givenWallNode.height)
-        var p4 = cc.v2(p2.x, p2.y + givenWallNode.height)
-        var Helper = require("helper")
-        var helper = new Helper()
-        var line1 = helper.rotateSegment(p1,p2,givenWallNode.position,-givenWallNode.angle)
-        var line2 = helper.rotateSegment(p3,p4,givenWallNode.position,-givenWallNode.angle)
-        var obj = {
-            line1: line1,
-            line2: line2
-        }
-        return obj
-    },
-
-    getBulletLine(givenBulletNode,givenDirection) {
-        var resultLine = {
-            p1: null,
-            p2: null
-        }
-        switch(givenDirection) {
-            case 0:
-                resultLine.p1 = cc.v2(givenBulletNode.x - givenBulletNode.width / 2, givenBulletNode.y + givenBulletNode.height / 2)
-                resultLine.p2 = cc.v2(givenBulletNode.x + givenBulletNode.width / 2, givenBulletNode.y + givenBulletNode.height / 2)
-                break
-            case 1:
-                resultLine.p1 = cc.v2(givenBulletNode.x + givenBulletNode.width / 2, givenBulletNode.y + givenBulletNode.height / 2)
-                resultLine.p2 = cc.v2(resultLine.p1.x, givenBulletNode.y - givenBulletNode.height / 2)
-                break
-            case 2:
-                resultLine.p1 = cc.v2(givenBulletNode.x - givenBulletNode.width / 2, givenBulletNode.y - givenBulletNode.height / 2)
-                resultLine.p2 = cc.v2(givenBulletNode.x + givenBulletNode.height / 2, resultLine.p1.y)
-                break
-            case 3:
-                resultLine.p1 = cc.v2(givenBulletNode.x - givenBulletNode.width / 2, givenBulletNode.y + givenBulletNode.height / 2)
-                resultLine.p2 = cc.v2(resultLine.p1.x, givenBulletNode.y - givenBulletNode.height / 2)
-                break
+            shadows.push(shadowNode)
         }
 
-        if (resultLine.p1 == null || resultLine.p2 == null) {
-            cc.error("NOT INVALID DIRECTION OF " + givenDirection)
-            return false
-        }
 
-        return resultLine
     },
 
     onSuccess() {

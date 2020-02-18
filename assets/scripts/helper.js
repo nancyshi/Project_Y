@@ -79,6 +79,64 @@ var Helper = cc.Class({
         var resultY = p1.y + ratio * currentDisY
 
         return cc.v2(resultX, resultY)
+    },
+
+    makeRay(p1,dis,direction) {
+        var ray = {
+            p1: p1,
+            p2: null
+        }
+        if (direction.mag() != 1) {
+            direction.normalizeSelf()
+        }
+        var dx = direction.x * dis
+        var dy = direction.y * dis
+        var x = p1.x + dx
+        var y = p1.y + dy
+        ray.p2 = cc.v2(x,y)
+        return ray
+    },
+
+    getLinesOfOneNode(givenNode) {
+
+        var offset = givenNode.height / 2
+        var p1 = cc.v2(givenNode.x - givenNode.width/2, givenNode.y - offset)
+        var p2 = cc.v2(givenNode.x + givenNode.width/2, givenNode.y - offset)
+        var p3 = cc.v2(p1.x, p1.y + givenNode.height)
+        var p4 = cc.v2(p2.x, p2.y + givenNode.height)
+        var p5 = cc.v2(givenNode.x - givenNode.width / 2, givenNode.y + givenNode.height / 2)
+        var p6 = cc.v2(p5.x, p5.y - givenNode.height)
+        var p7 = cc.v2(givenNode.x + givenNode.width / 2, givenNode.y + givenNode.height / 2)
+        var p8 = cc.v2(p7.x, p7.y - givenNode.height)
+
+        var line1 = this.helper.rotateSegment(p1,p2,givenNode.position,-givenNode.angle)
+        var line2 = this.helper.rotateSegment(p3,p4,givenNode.position,-givenNode.angle)
+        var line3 = this.helper.rotateSegment(p5,p6,givenNode.position,-givenNode.angle)
+        var line4 = this.helper.rotateSegment(p7,p8,givenNode.position,-givenNode.angle)
+        var obj = {
+            lowerLine: line1, //lower line
+            upperLine: line2, //upper line
+            leftLine: line3, //left line
+            rightLine: line4  //right line
+        }
+        return obj
+    },
+
+    isTwoNodeCross(node1, node2) {
+        var bounders1 = this.getLinesOfOneNode(node1)
+        var bounders2 = this.getLinesOfOneNode(node2)
+        for (var key in bounders1) {
+            var line = bounders1[key]
+            for (var k in bounders2) {
+                var anotherLine = bounders2[k]
+                var dis = this.rayTest(line,anotherLine)
+                if (dis != false) {
+                    return true
+                }
+            }
+        }
+
+        return false
     }
 });
 
