@@ -24,7 +24,9 @@ cc.Class({
         helper: null,
 
         _rayTestLength: 3000,
-        pathWaysNode: cc.Node 
+        pathWaysNode: cc.Node,
+        pathWaysHeight: 10,
+        sliderFrame: cc.SpriteFrame
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -36,7 +38,9 @@ cc.Class({
     },
 
     start () {
-
+        if (this.bulletType == 2) {
+            this.node.getComponent(cc.Sprite).spriteFrame = this.sliderFrame
+        }
     },
     move(direction) {
 
@@ -73,42 +77,107 @@ cc.Class({
         this.node.y = tempY
     },
     getNearestWallInfo(givenDirection) {
-        var result = null
-        var ray = this.helper.makeRay(cc.v2(this.node.x,this.node.y),this._rayTestLength,givenDirection)
-        var walls = this.levelMgr.walls
-        if (this.bulletType == 2) {
-            walls = this.pathWaysNode.children
-        }
-        var disToSelfBounder = null
-        var selfBounderLindes = this.helper.getLinesOfOneNode(this.node)
-        for (var key in selfBounderLindes) {
-            var line = selfBounderLindes[key]
-            var dis = this.helper.rayTest(ray,line)
-            if (dis != false) {
-                disToSelfBounder = dis
-                break
-            }
-        }
-        for(var index in walls) {
-            var wallNode = walls[index]
-            var bounderLines = this.helper.getLinesOfOneNode(wallNode)
-            for (var key in bounderLines) {
-                var line = bounderLines[key]
+        if (this.bulletType == 1) {
+            //normal bullet
+            var result = null
+            var ray = this.helper.makeRay(cc.v2(this.node.x,this.node.y),this._rayTestLength,givenDirection)
+            var walls = this.levelMgr.walls
+            var disToSelfBounder = null
+            var selfBounderLindes = this.helper.getLinesOfOneNode(this.node)
+            for (var key in selfBounderLindes) {
+                var line = selfBounderLindes[key]
                 var dis = this.helper.rayTest(ray,line)
-                if (dis == false) {
-                    continue
+                if (dis != false) {
+                    disToSelfBounder = dis
+                    break
                 }
-                if (result == null || dis < result.dis) {
-                    var targetDis = this.disFromBorder + disToSelfBounder
-                    var suitablePosition = this.helper.getSuitablePoint(cc.v2(this.node.x,this.node.y),dis,targetDis,givenDirection)
-                    result = {
-                        dis: dis,
-                        suitablePosition: suitablePosition
+            }
+            for(var index in walls) {
+                var wallNode = walls[index]
+                var bounderLines = this.helper.getLinesOfOneNode(wallNode)
+                for (var key in bounderLines) {
+                    var line = bounderLines[key]
+                    var dis = this.helper.rayTest(ray,line)
+                    if (dis == false) {
+                        continue
+                    }
+                    if (result == null || dis < result.dis) {
+                        var targetDis = this.disFromBorder + disToSelfBounder
+                        var suitablePosition = this.helper.getSuitablePoint(cc.v2(this.node.x,this.node.y),dis,targetDis,givenDirection)
+                        result = {
+                            dis: dis,
+                            suitablePosition: suitablePosition
+                        }
                     }
                 }
             }
+            return result 
         }
-        return result
+        
+        if (this.bulletType == 2) {
+            if (this.pathWaysNode == null || this.pathWaysNode.children.length == 0) {
+                return {
+                    dis: 0,
+                    suitablePosition: this.node.position
+                }
+            }
+            var selectedPathNode = null
+            for (var index in this.pathWaysNode.children) {
+                var onePath = this.pathWaysNode.children[index]
+                if (this.helper.isTwoNodeCross(this.node,onePath) == false) {
+                    continue
+                }
+
+                if (selectedPathNode == null || this.getMaxDisFromPathNode(onePath,givenDirection) > this.getMaxDisFromPathNode(selectedPathNode,givenDirection)) {
+                    selectedPathNode = onePath
+                }
+            }
+            var ray = this.helper.makeRay(this.node.position,3000,givenDirection)
+            var currentDis = null
+            var lines = this.helper.getLinesOfOneNode(selectedPathNode)
+            for (var key in lines) {
+                var line = lines[key]
+                var dis = this.helper.rayTest(ray,line)
+                if (dis != false) {
+                    currentDis = dis
+                    break
+                }
+            }
+
+            var suitablePosition = this.helper.getSuitablePoint(this.node.position,currentDis,this.pathWaysHeight/2,givenDirection)
+            var dis = cc.v2(suitablePosition.x - this.node.x, suitablePosition.y - this.node.y).mag()
+            return {
+                suitablePosition: suitablePosition,
+                dis: dis
+            }
+        }
+    },
+
+    getMaxDisFromPathNode(givenNode,direction) {
+        var ray1 = this.helper.makeRay(this.node.position,3000,direction)
+        var ray2 = this.helper.makeRay(this.node.position,3000,cc.v2(-direction.x, -direction.y))
+
+        var lines = this.helper.getLinesOfOneNode(givenNode)
+        var self = this
+        var getDis = function(ray) {
+            for (var key in lines) {
+                var line = lines[key]
+                var dis = self.helper.rayTest(ray,line)
+                if (dis != false) {
+                    return dis
+                }
+            }
+        }
+
+        var dis1 = getDis(ray1)
+        var dis2 = getDis(ray2)
+
+        if (dis1 >= dis2) {
+            return dis1
+        }
+        else {
+            return dis2
+        }
     }
  
 });

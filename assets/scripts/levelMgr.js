@@ -67,6 +67,22 @@ cc.Class({
         var wallsNode = cc.find("Canvas/walls")
         this.walls = wallsNode.children
         this.targetsNum = cc.find("Canvas/targets").children.length
+
+        var graphic = cc.find("Canvas/fillNodes").getComponent(cc.Graphics)
+        var startPoint = null
+        var pointNodes = cc.find("Canvas/fillNodes").children
+        for (var index in pointNodes) {
+            var point = pointNodes[index]
+            if (startPoint == null) {
+                graphic.moveTo(point.x, point.y)
+                startPoint = point
+            }
+
+            graphic.lineTo(point.x, point.y)
+        }
+        graphic.close()
+        graphic.stroke()
+        graphic.fill()
     },
 
     // update (dt) {},
@@ -185,23 +201,17 @@ cc.Class({
     resolveShadows(shadows,direction) {
         for (var index in shadows) {
             var oneShadow = shadows[index]
-            for(var i in shadows) {
+            for (var i in shadows) {
                 var anotherShadow = shadows[i]
-                if (anotherShadow == oneShadow) {
+                if (oneShadow == anotherShadow) {
                     continue
                 }
-                var isCross = this.helper.isTwoNodeCross(oneShadow,anotherShadow) 
-                if (isCross == true) {
-                    var tempShadow = null
-                    var staticShadow = null
-                    if (anotherShadow.dis > oneShadow.dis) {
-                        tempShadow = anotherShadow
-                        staticShadow = oneShadow
-                    }
-                    else {
-                        tempShadow = oneShadow
-                        staticShadow = anotherShadow
-                    }
+
+                var testResult = this._selectStaticShadowAndShaodwForResolved(oneShadow,anotherShadow,direction)
+                if (testResult != false) {
+                    var staticShadow = testResult.staticShadow
+                    var tempShadow = testResult.shadowForResolved
+                    
                     var staticBorderLines = this.helper.getLinesOfOneNode(staticShadow)
                     var staticLine = null
                     var ray = this.helper.makeRay(cc.v2(staticShadow.x,staticShadow.y),1000,cc.v2(-direction.x,-direction.y))
@@ -230,9 +240,53 @@ cc.Class({
                     tempShadow.dis = updatedDis
                     return false
                 }
+
             }
         }
+        return true
+    },
+    _selectStaticShadowAndShaodwForResolved(shadow1, shadow2, direction) {
+        var temp = function(s1,s2,d,target,givenType) {
+            var points = target.helper.getPointsOfOneNode(s1.originNode)
+            points["origin"] = cc.v2(s1.originNode.x,s1.originNode.y)
+            for (var index in points) {
+                var ray = target.helper.makeRay(points[index],s1.dis,d)
+                var lines = null
+                if (givenType == 1) {
+                    lines = target.helper.getLinesOfOneNode(s2.originNode)
+                }
+                if (givenType == 2) {
+                    lines = target.helper.getLinesOfOneNode(s2)
+                }
+                for (var key in lines) {
+                    var line = lines[key]
+                    var result = target.helper.rayTest(ray,line)
+                    if (result != false) {
+
+                        return true
+                    }
+                }
+            }
+            return false
+        }
+
+        if (temp(shadow1,shadow2,direction,this,1) == true && temp(shadow1,shadow2,direction,this,2) == true) {
+            return {
+                staticShadow: shadow2,
+                shadowForResolved: shadow1
+            }
+        }
+
+        if (temp(shadow2,shadow1,direction,this,1) == true && temp(shadow2,shadow1,direction,this,2) == true) {
+            return {
+                staticShadow: shadow1,
+                shadowForResolved: shadow2
+            }
+        }
+
+        return false
     }
+
     
 });
 

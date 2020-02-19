@@ -203,6 +203,25 @@ var Helper = cc.Class({
         }
     },
 
+    getPointsOfOneNode(givenNode){
+        var leftUpPoint = cc.v2(givenNode.x - givenNode.width / 2, givenNode.y + givenNode.height / 2)
+        var rightUpPoint = cc.v2(givenNode.x + givenNode.width / 2, leftUpPoint.y)
+        var leftDownPoint = cc.v2(leftUpPoint.x, givenNode.y - givenNode.height / 2)
+        var rightDownPoint = cc.v2(rightUpPoint.x, leftDownPoint.y)
+
+        if (givenNode.angle != null && givenNode.angle != undefined) {
+            leftUpPoint = this.rotateOnePoint(leftUpPoint,cc.v2(givenNode.x,givenNode.y),-givenNode.angle)
+            rightUpPoint = this.rotateOnePoint(rightUpPoint,cc.v2(givenNode.x,givenNode.y),-givenNode.angle)
+            leftDownPoint = this.rotateOnePoint(leftDownPoint,cc.v2(givenNode.x,givenNode.y),-givenNode.angle)
+            rightDownPoint = this.rotateOnePoint(rightDownPoint,cc.v2(givenNode.x,givenNode.y),-givenNode.angle)
+        }
+        return {
+            leftUpPoint: leftUpPoint,
+            leftDownPoint: leftDownPoint,
+            rightUpPoint: rightUpPoint,
+            rightDownPoint: rightDownPoint
+        }
+    }
     
 });
 
