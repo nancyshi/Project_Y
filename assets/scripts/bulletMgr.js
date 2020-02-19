@@ -24,6 +24,7 @@ cc.Class({
         helper: null,
 
         _rayTestLength: 3000,
+        pathWaysNode: cc.Node 
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -75,6 +76,9 @@ cc.Class({
         var result = null
         var ray = this.helper.makeRay(cc.v2(this.node.x,this.node.y),this._rayTestLength,givenDirection)
         var walls = this.levelMgr.walls
+        if (this.bulletType == 2) {
+            walls = this.pathWaysNode.children
+        }
         var disToSelfBounder = null
         var selfBounderLindes = this.helper.getLinesOfOneNode(this.node)
         for (var key in selfBounderLindes) {
@@ -104,7 +108,6 @@ cc.Class({
                 }
             }
         }
-
         return result
     }
  

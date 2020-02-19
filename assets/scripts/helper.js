@@ -70,6 +70,9 @@ var Helper = cc.Class({
     },
     
     getSuitablePoint(p1,currentDis,targetDis,direction) {
+        if (targetDis >= currentDis) {
+            return p1
+        }
         direction.normalizeSelf()
         var currentDisX = currentDis * direction.x
         var currentDisY = currentDis * direction.y

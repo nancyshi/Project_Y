@@ -90,8 +90,6 @@ cc.Class({
             this.directionTryto = direction
         }
         if (direction.equals(this.directionTryto) == false) {
-            cc.log(direction.x, direction.y)
-            cc.log(this.directionTryto.x, this.directionTryto.y)
             this.flag = false
             return
         }
@@ -166,8 +164,9 @@ cc.Class({
         }
 
         //resolve shadows
-        if (this.resolveShadows(shadows,direction) == false) {
-            this.resolveShadows(shadows,direction)
+
+        while(this.resolveShadows(shadows,direction) == false) {
+
         }
 
         for (var index in shadows) {
@@ -193,12 +192,6 @@ cc.Class({
                 }
                 var isCross = this.helper.isTwoNodeCross(oneShadow,anotherShadow) 
                 if (isCross == true) {
-                    // var tempShadow = anotherShadow
-                    // var staticShadow = oneShadow
-                    // if (anotherShadow.dis > oneShadow.dis) {
-                    //     tempShadow = oneShadow
-                    //     staticShadow = anotherShadow
-                    // }
                     var tempShadow = null
                     var staticShadow = null
                     if (anotherShadow.dis > oneShadow.dis) {
