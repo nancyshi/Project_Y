@@ -29,13 +29,15 @@ cc.Class({
         // },
         fatalTolerance: 0.01,
         bullets: null,
-        flag: false
+        flag: false,
+        helper: null
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        
+        var Helper = require("helper")
+        this.helper = new Helper()
     },
 
     start () {
@@ -64,13 +66,20 @@ cc.Class({
     },
 
     checkWhetherSatisfied(givenBulletNode) {
-        var dis = cc.v2(givenBulletNode.x - this.node.x, givenBulletNode.y - this.node.y).mag()
-        if (dis <= this.fatalTolerance) {
-            return true
+        var points = this.helper.getPointsOfOneNode(this.node)
+        var bulletPoints = this.helper.getPointsOfOneNode(givenBulletNode)
+
+        for (var key in points) {
+            var point = points[key]
+            var bulletCorrespondPoint = bulletPoints[key]
+
+            var dis = cc.v2(bulletCorrespondPoint.x - point.x, bulletCorrespondPoint.y - point.y).mag()
+            if (dis > this.fatalTolerance) {
+                return false
+            }
         }
-        else {
-            return false
-        }
+
+        return true
     },
 
     onSatisfy(givenBullet) {

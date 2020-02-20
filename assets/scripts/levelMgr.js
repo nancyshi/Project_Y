@@ -71,6 +71,9 @@ cc.Class({
         var graphic = cc.find("Canvas/fillNodes").getComponent(cc.Graphics)
         var startPoint = null
         var pointNodes = cc.find("Canvas/fillNodes").children
+        if (pointNodes.length == 0) {
+            return
+        }
         for (var index in pointNodes) {
             var point = pointNodes[index]
             if (startPoint == null) {
