@@ -96,11 +96,12 @@ cc.Class({
             .to(0.2,{opacity: 0})
             .call(function(){
                 self.node.destroy()
+                cc.find("Canvas").getComponent("levelMgr").targetsNum -= 1
             })
             .start()
     },
 
     onDestroy() {
-        cc.find("Canvas").getComponent("levelMgr").targetsNum -= 1
+
     }
 });

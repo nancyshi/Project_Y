@@ -45,6 +45,47 @@ cc.Class({
                     this.onSuccess()
                 }
             }
+        },
+
+        linePrefab: cc.Prefab,
+        bulletPrefab: cc.Prefab,
+
+
+        playerData: null,
+        retryButton: cc.Node,
+        heartForRetryCost: {
+            get() {
+                return this._heartForRetryCostwe
+            },
+            set(value){
+                this._heartForRetryCostwe = value
+                this.retryButton.getChildByName("heartCostLabel").getComponent(cc.Label).string = value.toString()
+            } 
+        },
+
+        heart: {
+            get() {
+                return this._heart
+            },
+            set(value) {
+                this._heart = value
+                cc.find("Canvas/uiNode/heartLabel").getComponent(cc.Label).string = value.toString() + " / " + this.maxHeart.toString()
+                if (value < this.heartForRetryCost) {
+                    this.retryButton.getComponent(cc.Button).interactable = false
+                }
+                else {
+                    this.retryButton.getComponent(cc.Button).interactable = true
+                }
+            }
+        },
+
+        maxHeart: {
+            get() {
+                return this._maxHeart
+            },
+            set(value) {
+                this._maxHeart = value
+            }
         }
         
     },
@@ -60,9 +101,15 @@ cc.Class({
         this.node.on("touchstart",this.onTouchStart,this)
         this.node.on("touchmove",this.onTouchMove,this)
         this.node.on("touchend",this.onTouchEnd,this)
-
+        //this.generateWalls()
         var bulletsNode = cc.find("Canvas/bullets")
         this.bullets = bulletsNode.children
+        this.playerData = require("dataMgr").playerData
+
+        this.maxHeart = this.playerData.maxHeart
+        this.heart = this.playerData.heart
+        this.heartForRetryCost = require("levelConfig")[this.playerData.currentLevel.toString()].heartForRetryCost
+        require("networkMgr").delegate = this
 
         var wallsNode = cc.find("Canvas/walls")
         this.walls = wallsNode.children
@@ -288,8 +335,107 @@ cc.Class({
         }
 
         return false
+    },
+
+    generateWalls() {
+        var levelConfig = require("levelConfig")
+        var currentLevel = 1
+
+        var config = levelConfig[currentLevel]
+        var wallsNode = cc.find("Canvas/walls")
+        for (var index in config.wallPathes) {
+            var onePath = config.wallPathes[index]
+
+            var points = onePath.points
+            var realPoints = []
+            for (var i in points) {
+                var realPoint = null
+                if (i == 0) {
+                    realPoint = cc.v2(points[i].x, points[i].y)
+                }
+                else {
+                    var currentPoint = points[i]
+                    realPoint = cc.v2(realPoints[i - 1].x + currentPoint.x, realPoints[i - 1].y + currentPoint.y)
+                }
+                
+                realPoints.push(realPoint)
+            }
+            var lineWidth = onePath.lineWidth
+            var offset = onePath.offset
+            var wallNodes = []
+            var isClosed = onePath.isClosed
+            if (isClosed == true) {
+                var startPoint = realPoints[0]
+                realPoints.push(startPoint)
+            }
+            for (var i in realPoints) {
+                if (i == 0) {
+                    continue
+                }
+                
+                var node = cc.instantiate(this.linePrefab)
+                node.height = lineWidth
+                var directedLine = cc.v2(realPoints[i].x - realPoints[i - 1].x, realPoints[i].y - realPoints[i - 1].y)
+                node.width = directedLine.mag()
+    
+                var degree = directedLine.signAngle(cc.v2(1,0)) / Math.PI * 180
+                node.angle = -degree
+                node.x = realPoints[i].x - directedLine.x / 2
+                node.y = realPoints[i].y - directedLine.y / 2
+                var offsetDirection = directedLine.rotate(Math.PI / 2)
+                offsetDirection.normalizeSelf()
+                node.x += node.height / 2 * offsetDirection.x
+                node.y += node.height / 2 * offsetDirection.y
+
+                node.x += offset.x
+                node.y += offset.y
+                wallNodes.push(node)
+                wallsNode.addChild(node)                
+            }
+        }
+
+        var bulletConfig = config.bullets
+        var bulletsNode = cc.find("Canvas/bullets")
+        for (var index in bulletConfig) {
+            var con = bulletConfig[index]
+            var bullet = cc.instantiate(this.bulletPrefab)
+            bullet.x = con.x
+            bullet.y = con.y
+            bullet.width = bullet.width * con.scale
+            bullet.height = bullet.height * con.scale
+            bulletsNode.addChild(bullet)
+        } 
+    },
+
+
+    onClickRetryButton() {
+        var temp = this.heart - this.heartForRetryCost
+        if (temp < 0) {
+            return
+        }
+        
+        var msgObj = require("networkMgr").makeMessageObj("dataModule","commitMessageTyp")
+        msgObj.message.id = this.playerData.playerId = this.playerData.id
+        msgObj.message.commitBody = {
+            heart: temp
+        }
+        var self = this
+        msgObj.successCallBack = function(xhr) {
+            var response = xhr.responseText
+            response = JSON.parse(response)
+
+            if (response.type == "commitSuccess") {
+                self.heart = temp
+                self.playerData.heart = temp
+                cc.director.loadScene("level001")
+            }
+        }
+        this.retryButton.getComponent(cc.Button).interactable = false
+        require("networkMgr").sendMessageByMsgObj(msgObj)
+    },
+    onAllRetryFailed() {
+        this.retryButton.getComponent(cc.Button).interactable = true
     }
 
-    
 });
 
