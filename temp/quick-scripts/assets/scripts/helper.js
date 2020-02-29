@@ -217,6 +217,100 @@ var Helper = cc.Class({
             rightUpPoint: rightUpPoint,
             rightDownPoint: rightDownPoint
         };
+    },
+    isOneNodeWillCollidWithOneLineInDirection: function isOneNodeWillCollidWithOneLineInDirection(givenNode, givenLine, givenDirection) {
+        var nodePoints = this.getPointsOfOneNode(givenNode);
+        var rays = [];
+        for (var key in nodePoints) {
+            var onePoint = nodePoints[key];
+            var ray = this.makeRay(onePoint, 3000, givenDirection);
+            rays.push(ray);
+        }
+
+        var minX = null;
+        var minY = null;
+        var maxX = null;
+        var maxY = null;
+
+        for (var index in rays) {
+
+            var oneRay = rays[index];
+            var minerX = oneRay.p1.x;
+            var maxerX = oneRay.p2.x;
+            if (minerX > oneRay.p2.x) {
+                minerX = oneRay.p2.x;
+                maxerX = oneRay.p1.x;
+            }
+
+            var minerY = oneRay.p1.y;
+            var maxerY = oneRay.p2.y;
+            if (minerY > oneRay.p2.y) {
+                minerY = oneRay.p2.y;
+                maxerY = oneRay.p1.y;
+            }
+
+            if (minX == null) {
+                minX = minerX;
+                maxX = maxerX;
+            } else {
+                if (minX > minerX) {
+                    minX = minerX;
+                }
+                if (maxX < maxerX) {
+                    maxX = maxerX;
+                }
+            }
+
+            if (minY == null) {
+                minY = minerY;
+                maxY = maxerY;
+            } else {
+                if (minY > minerY) {
+                    minY = minerY;
+                }
+                if (maxY < maxerY) {
+                    maxY = maxerY;
+                }
+            }
+        }
+
+        var lineMinx = givenLine.p1.x;
+        var lineMaxX = givenLine.p2.x;
+        var lineMinY = givenLine.p1.y;
+        var lineMaxY = givenLine.p2.y;
+
+        if (lineMinx > givenLine.p2.x) {
+            lineMinx = givenLine.p2.x;
+            lineMaxX = givenLine.p1.x;
+        }
+
+        if (lineMinY > givenLine.p2.y) {
+            lineMinY = givenLine.p2.y;
+            lineMaxY = givenLine.p1.y;
+        }
+
+        if (minY >= lineMaxY || maxY <= lineMinY || minX >= lineMaxX || maxX <= lineMinx) {
+            return false;
+        }
+
+        var lineDirection = cc.v2(givenLine.p2.x - givenLine.p1.x, givenLine.p2.y - givenLine.p1.y);
+        lineDirection.normalizeSelf();
+
+        var lenthenLineP2 = this.makeRay(givenLine.p2, 3000, lineDirection).p2;
+        var lenthenLineP1 = this.makeRay(givenLine.p1, 3000, cc.v2(-lineDirection.x, -lineDirection.y)).p2;
+        var lenthenLine = {
+            p1: lenthenLineP1,
+            p2: lenthenLineP2
+        };
+
+        var testRay = this.makeRay(cc.v2(givenNode.x, givenNode.y), 3000, givenDirection);
+        var dis = this.rayTest(testRay, lenthenLine);
+
+        if (dis != false) {
+            return dis;
+        } else {
+            return false;
+        }
     }
 });
 

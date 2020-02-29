@@ -78,6 +78,9 @@ cc.Class({
                 if (value < this.heartForRetryCost) {
                     this.retryButton.getComponent(cc.Button).interactable = false;
                 } else {
+                    if (this.isMoved == false) {
+                        return;
+                    }
                     this.retryButton.getComponent(cc.Button).interactable = true;
                 }
             }
@@ -90,7 +93,23 @@ cc.Class({
             set: function set(value) {
                 this._maxHeart = value;
             }
-        }
+        },
+
+        isMoved: {
+            get: function get() {
+                if (this._isMoved == null) {
+                    this._isMoved = false;
+                }
+                return this._isMoved;
+            },
+            set: function set(value) {
+                this._isMoved = value;
+                if (value == true && this.heartForRetryCost <= this.heart) {
+                    this.retryButton.getComponent(cc.Button).interactable = true;
+                }
+            }
+        },
+        level: null
 
     },
 
@@ -99,6 +118,7 @@ cc.Class({
     onLoad: function onLoad() {
         var Helper = require("helper");
         this.helper = new Helper();
+        //this.level = 1
     },
     start: function start() {
         this.node.on("touchstart", this.onTouchStart, this);
@@ -110,8 +130,13 @@ cc.Class({
         this.playerData = require("dataMgr").playerData;
 
         this.maxHeart = this.playerData.maxHeart;
+        if (this.level == this.playerData.currentLevel) {
+            this.heartForRetryCost = require("levelConfig")[this.playerData.currentLevel.toString()].heartForRetryCost;
+        } else {
+            this.heartForRetryCost = 0;
+        }
+
         this.heart = this.playerData.heart;
-        this.heartForRetryCost = require("levelConfig")[this.playerData.currentLevel.toString()].heartForRetryCost;
         require("networkMgr").delegate = this;
 
         var wallsNode = cc.find("Canvas/walls");
@@ -229,13 +254,51 @@ cc.Class({
         for (var index in shadows) {
             var shadowNode = shadows[index];
             var originNode = shadowNode.originNode;
-            originNode.getComponent("bulletMgr").targetPosition = cc.v2(shadowNode.x, shadowNode.y);
-            originNode.getComponent("bulletMgr").movingDirection = direction;
-            originNode.getComponent("bulletMgr").status = 1;
+            if (shadowNode.x == originNode.x && shadowNode.y == originNode.y) {
+                continue;
+            }
+            var bulletMgr = originNode.getComponent("bulletMgr");
+            bulletMgr.targetPosition = cc.v2(shadowNode.x, shadowNode.y);
+            bulletMgr.movingDirection = direction;
+
+            bulletMgr.movingDirection.normalizeSelf();
+            if (bulletMgr.movingTime != null) {
+                var dis = cc.v2(bulletMgr.targetPosition.x - originNode.x, bulletMgr.targetPosition.y - originNode.y).mag();
+                var v = dis / bulletMgr.movingTime;
+
+                bulletMgr.vx = v * bulletMgr.movingDirection.x;
+                bulletMgr.vy = v * bulletMgr.movingDirection.y;
+            } else {
+                bulletMgr.vx = bulletMgr.movingDirection.x * bulletMgr.movingSpeed;
+                bulletMgr.vy = bulletMgr.movingDirection.y * bulletMgr.movingSpeed;
+            }
+            bulletMgr.status = 1;
+            this.isMoved = true;
         }
     },
     onSuccess: function onSuccess() {
-        cc.log("YOU WIN");
+        if (this.level != this.playerData.currentLevel) {
+            cc.director.loadScene("mainScene");
+            return;
+        }
+        var msgObj = require("networkMgr").makeMessageObj("dataModule", "commitMessageTyp");
+        msgObj.message.playerId = this.playerData.id;
+        msgObj.message.commitBody = {
+            currentLevel: this.playerData.currentLevel + 1,
+            physicalPowerCostedFlag: 0
+        };
+        var self = this;
+        msgObj.successCallBack = function (xhr) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response.type == "commitSuccess") {
+                self.playerData.currentLevel += 1;
+                self.playerData.physicalPowerCostedFlag = 0;
+                cc.director.loadScene("mainScene");
+            }
+        };
+
+        require("networkMgr").sendMessageByMsgObj(msgObj);
     },
     resolveShadows: function resolveShadows(shadows, direction) {
         for (var index in shadows) {
@@ -326,7 +389,7 @@ cc.Class({
     },
     generateWalls: function generateWalls() {
         var levelConfig = require("levelConfig");
-        var currentLevel = 1;
+        var currentLevel = this.level;
 
         var config = levelConfig[currentLevel];
         var wallsNode = cc.find("Canvas/walls");
@@ -393,13 +456,18 @@ cc.Class({
         }
     },
     onClickRetryButton: function onClickRetryButton() {
+        var gameMgr = require("gameMgr");
+        if (this.heartForRetryCost == 0) {
+            gameMgr.enterLevelScene(this.level);
+            return;
+        }
         var temp = this.heart - this.heartForRetryCost;
         if (temp < 0) {
             return;
         }
 
         var msgObj = require("networkMgr").makeMessageObj("dataModule", "commitMessageTyp");
-        msgObj.message.id = this.playerData.playerId = this.playerData.id;
+        msgObj.message.playerId = this.playerData.id;
         msgObj.message.commitBody = {
             heart: temp
         };
@@ -411,7 +479,7 @@ cc.Class({
             if (response.type == "commitSuccess") {
                 self.heart = temp;
                 self.playerData.heart = temp;
-                cc.director.loadScene("level001");
+                gameMgr.enterLevelScene(self.level);
             }
         };
         this.retryButton.getComponent(cc.Button).interactable = false;
@@ -419,6 +487,9 @@ cc.Class({
     },
     onAllRetryFailed: function onAllRetryFailed() {
         this.retryButton.getComponent(cc.Button).interactable = true;
+    },
+    onClickBackButton: function onClickBackButton() {
+        cc.director.loadScene("mainScene");
     }
 });
 

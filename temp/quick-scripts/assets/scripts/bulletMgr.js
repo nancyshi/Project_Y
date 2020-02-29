@@ -25,6 +25,9 @@ cc.Class({
         moveSpeed: 500,
         movingDirection: null,
         targetPosition: null,
+        movingTime: 0.3,
+        vx: null,
+        vy: null,
 
         levelMgr: null,
         helper: null,
@@ -57,12 +60,8 @@ cc.Class({
             return;
         }
 
-        this.movingDirection.normalizeSelf();
-        var vx = this.moveSpeed * this.movingDirection.x;
-        var vy = this.moveSpeed * this.movingDirection.y;
-
-        var tempX = this.node.x + vx * dt;
-        var tempY = this.node.y + vy * dt;
+        var tempX = this.node.x + this.vx * dt;
+        var tempY = this.node.y + this.vy * dt;
         if (cc.v2(tempX - this.node.x, tempY - this.node.y).mag() >= cc.v2(this.targetPosition.x - this.node.x, this.targetPosition.y - this.node.y).mag()) {
             tempX = this.targetPosition.x;
             tempY = this.targetPosition.y;
@@ -79,28 +78,21 @@ cc.Class({
     getNearestWallInfo: function getNearestWallInfo(givenDirection) {
         if (this.bulletType == 1) {
             //normal bullet
+
             var result = null;
-            var ray = this.helper.makeRay(cc.v2(this.node.x, this.node.y), this._rayTestLength, givenDirection);
             var walls = this.levelMgr.walls;
-            var disToSelfBounder = null;
-            var selfBounderLindes = this.helper.getLinesOfOneNode(this.node);
-            for (var key in selfBounderLindes) {
-                var line = selfBounderLindes[key];
-                var dis = this.helper.rayTest(ray, line);
-                if (dis != false) {
-                    disToSelfBounder = dis;
-                    break;
-                }
-            }
+            var disToSelfBounder = this.helper.getDisToSelfBorder(this.node, givenDirection);
+
             for (var index in walls) {
                 var wallNode = walls[index];
                 var bounderLines = this.helper.getLinesOfOneNode(wallNode);
                 for (var key in bounderLines) {
                     var line = bounderLines[key];
-                    var dis = this.helper.rayTest(ray, line);
+                    var dis = this.helper.isOneNodeWillCollidWithOneLineInDirection(this.node, line, givenDirection);
                     if (dis == false) {
                         continue;
                     }
+
                     if (result == null || dis < result.dis) {
                         var targetDis = this.disFromBorder + disToSelfBounder;
                         var suitablePosition = this.helper.getSuitablePoint(cc.v2(this.node.x, this.node.y), dis, targetDis, givenDirection);
@@ -144,7 +136,7 @@ cc.Class({
                 }
             }
 
-            var suitablePosition = this.helper.getSuitablePoint(this.node.position, currentDis, this.pathWaysHeight / 2, givenDirection);
+            var suitablePosition = this.helper.getSuitablePoint(this.node.position, currentDis, 0, givenDirection);
             var dis = cc.v2(suitablePosition.x - this.node.x, suitablePosition.y - this.node.y).mag();
             return {
                 suitablePosition: suitablePosition,

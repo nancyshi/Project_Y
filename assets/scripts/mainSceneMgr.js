@@ -62,22 +62,61 @@ cc.Class({
             },
             set(value) {
                 this._physicalPowerForChallengeCost = value
-                cc.find("Canvas/challengeButton/physicalPowerLabel").getComponent(cc.Label).string = value.toString()
-                if (value == 0) {
-                    cc.find("Canvas/commentLabel").getComponent(cc.Label).string = "已挑战过的关卡不会消耗体力"
-                }
-                else if (value > 0 ) {
-                    cc.find("Canvas/commentLabel").getComponent(cc.Label).string = "每天挑战每个新的关卡时会消耗体力"
-                }
-
-                if (value > this.physicalPower) {
-                    cc.find("Canvas/challengeButton").getComponent(cc.Button).interactable = false
+                var physicalPowerLabel = this.challengeButton.getChildByName("physicalPowerLabel")
+                var commentLabel = cc.find("Canvas/commentLabel")
+                var physicalPowerIcon = this.challengeButton.getChildByName("physicalPower")
+                if (value == null) {
+                    physicalPowerIcon.active = false
+                    physicalPowerLabel.active = false
                 }
                 else {
-                    cc.find("Canvas/challengeButton").getComponent(cc.Button).interactable = true
+                    physicalPowerIcon.active = true
+                    physicalPowerLabel.active = true
+
+                    physicalPowerLabel.getComponent(cc.Label).string = value.toString()
+                    if (value <= this.physicalPower) {
+                        this.challengeButton.getComponent(cc.Button).interactable = true
+                        if (value == 0) {
+                            commentLabel.getComponent(cc.Label).string = "已挑战过的关卡不会消耗体力"
+                        }
+                        else {
+                            commentLabel.getComponent(cc.Label).string = "每天挑战每个新的关卡时会消耗体力"
+                        }
+                    }
+                    else {
+                        this.challengeButton.getComponent(cc.Button).interactable = false
+                        commentLabel.getComponent(cc.Label).string = "每天挑战每个新的关卡时会消耗体力"
+                    }
                 }
             }
         },
+
+        heartForChallengeCost: {
+            get() {
+                return this._heartForChallengeCost
+            },
+            set(value) {
+                this._heartForChallengeCost = value
+                var heartLabel = this.challengeButton.getChildByName("heartLabel")
+                var heartIcon = this.challengeButton.getChildByName("heart")
+                if (value == null) {
+                    heartLabel.active = false
+                    heartIcon.active = false
+                }
+                else {
+                    heartLabel.active = true
+                    heartIcon.active = true
+
+                    heartLabel.getComponent(cc.Label).string = value.toString()
+                    if (value <= this.heart) {
+                        this.challengeButton.getComponent(cc.Button).interactable = true
+                    }
+                    else {
+                        this.challengeButton.getComponent(cc.Button).interactable = false
+                    }
+                }
+            }
+        }, 
 
         selectedLevel: {
             get() {
@@ -87,9 +126,15 @@ cc.Class({
                 this._selectedLevel = value
                 if (value != null) {
                     if (value == this.playerData.currentLevel && this.playerData.physicalPowerCostedFlag == 0) {
+                        this.heartForChallengeCost = null
                         this.physicalPowerForChallengeCost = require("levelConfig")[value].physicalPowerCost
                     }
+                    else if (value == this.playerData.currentLevel && this.playerData.physicalPowerCostedFlag == 1) {
+                        this.physicalPowerForChallengeCost = null
+                        this.heartForChallengeCost = require("levelConfig")[value].heartForRetryCost
+                    }
                     else{
+                        this.heartForChallengeCost = null
                         this.physicalPowerForChallengeCost = 0
                     }
                     if (this.levelAresNodes[value] != null) {
@@ -129,6 +174,17 @@ cc.Class({
         },
 
         challengeButton: null,
+        heartLabel: cc.Label,
+        heart: {
+            get() {
+                return this._heart
+            },
+            set(value) {
+                this._heart = value
+                this.heartLabel.string = value.toString() + " / " + this.maxHeart.toString()
+            }
+        },
+        maxHeart: null
 
     },
 
@@ -139,15 +195,15 @@ cc.Class({
         this.lockedLevelColor = cc.color(191,191,191)
         this.unlockedLevelColor = cc.color(102,102,102)
         this.currentLevelColor = cc.color(188,36,36)
-        
+        this.challengeButton = this.node.getChildByName("challengeButton")
         this.playerName = this.playerData.name
         this.maxPhysicalPower = this.playerData.maxPhysicalPower
         this.physicalPower = this.playerData.physicalPower
-
-        this.setupSection(this.playerData.currentSection)
+        this.maxHeart = this.playerData.maxHeart
+        this.heart = this.playerData.heart
         require("networkMgr").delegate = this
+        this.setupSection(this.playerData.currentSection)
 
-        this.challengeButton = this.node.getChildByName("challengeButton")
     },
 
     start () {
@@ -275,41 +331,69 @@ cc.Class({
 
 
     onClickChallengeButton() {
+        var gameMgr = require("gameMgr")
         this.challengeButton.getComponent(cc.Button).interactable = false
         if (this.physicalPowerForChallengeCost == 0) {
-            this.enterLevelScene(this.selectedLevel)
-            return
-        }
-        var temp = this.physicalPower - this.physicalPowerForChallengeCost
-        if(temp < 0) {
+            gameMgr.enterLevelScene(this.selectedLevel)
             return
         }
         
         var msgObj =  require("networkMgr").makeMessageObj("dataModule","commitMessageTyp")
         msgObj.message.playerId = this.playerData.id
-        msgObj.message.commitBody = {
-            physicalPower: temp
+        var temp = null
+        if (this.physicalPowerForChallengeCost != null) {
+            temp = this.physicalPower - this.physicalPowerForChallengeCost
+            if (temp < 0) {
+                return
+            }
+            var flagValue = this.playerData.physicalPowerCostedFlag
+            if(this.selectedLevel == this.playerData.currentLevel && this.playerData.physicalPowerCostedFlag == 0) {
+                flagValue = 1
+            }
+            msgObj.message.commitBody = {
+                physicalPower: temp,
+                physicalPowerCostedFlag: flagValue
+            }
         }
+        
+        if (this.heartForChallengeCost != null) {
+            temp = this.heart - this.heartForChallengeCost
+            if (temp < 0) {
+                return
+            }
+
+            msgObj.message.commitBody = {
+                heart: temp
+            }
+        }
+        
         var self = this
         msgObj.successCallBack = function(xhr) {
             var response = xhr.responseText
             response = JSON.parse(response)
             if (response.type == "commitSuccess") {
-                self.playerData.physicalPower = temp
-                self.physicalPower = temp
+                if(self.physicalPowerForChallengeCost != null) {
+                    self.playerData.physicalPower = temp
+                    self.physicalPower = temp
+                    self.playerData.physicalPowerCostedFlag = flagValue
+                    
+                }
 
-                self.enterLevelScene(self.selectedLevel)
+                if (self.heartForChallengeCost != null) {
+                    self.playerData.heart = temp
+                    self.heart = temp
+                }
+
+                gameMgr.enterLevelScene(self.selectedLevel)
             }
         }
 
         require("networkMgr").sendMessageByMsgObj(msgObj)
     },
 
-    enterLevelScene(givenLevel) {
-        cc.director.loadScene("level001")
-    },
 
     onAllRetryFailed() {
         this.challengeButton.getComponent(cc.Button).interactable = true
     }
+    
 });
