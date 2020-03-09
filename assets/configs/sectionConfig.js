@@ -8,7 +8,7 @@ var sectionConfig = {
     "2": {
         sectionTitle: "第二章",
         sectionDescrip: "挑战",
-        backgroundPath: "bgs/bg_02",
+        backgroundPath: "images/bg_02",
         levels: [11,12,13,14,15,16,17,18,19,20]
     }
 }

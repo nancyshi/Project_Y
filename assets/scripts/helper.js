@@ -11,34 +11,39 @@
 var Helper = cc.Class({
     properties: {},
 
-    segmentsIntr(a, b, c, d){ 
-  
-        // 三角形abc 面积的2倍 
-        var area_abc = (a.x - c.x) * (b.y - c.y) - (a.y - c.y) * (b.x - c.x); 
-         
-        // 三角形abd 面积的2倍 
-        var area_abd = (a.x - d.x) * (b.y - d.y) - (a.y - d.y) * (b.x - d.x); 
-         
-        // 面积符号相同则两点在线段同侧,不相交 (对点在线段上的情况,本例当作不相交处理); 
-        if ( area_abc*area_abd>=0 ) { 
-        return false; 
-        } 
-         
-        // 三角形cda 面积的2倍 
-        var area_cda = (c.x - a.x) * (d.y - a.y) - (c.y - a.y) * (d.x - a.x); 
-        // 三角形cdb 面积的2倍 
-        // 注意: 这里有一个小优化.不需要再用公式计算面积,而是通过已知的三个面积加减得出. 
-        var area_cdb = area_cda + area_abc - area_abd ; 
-        if ( area_cda * area_cdb >= 0 ) { 
-        return false; 
-        } 
-         
-        //计算交点坐标 
-        var t = area_cda / ( area_abd- area_abc ); 
-        var dx= t*(b.x - a.x), 
-        dy= t*(b.y - a.y); 
-        return { x: a.x + dx , y: a.y + dy }; 
-         
+    segmentsIntr(a, b, c, d){  
+        /** 1 解线性方程组, 求线段交点. **/  
+        // 如果分母为0 则平行或共线, 不相交  
+            var denominator = (b.y - a.y)*(d.x - c.x) - (a.x - b.x)*(c.y - d.y);  
+            if (denominator==0) {
+                return false;  
+            }  
+           
+        // 线段所在直线的交点坐标 (x , y)      
+            var x = ( (b.x - a.x) * (d.x - c.x) * (c.y - a.y)   
+                        + (b.y - a.y) * (d.x - c.x) * a.x   
+                        - (d.y - c.y) * (b.x - a.x) * c.x ) / denominator ;  
+            var y = -( (b.y - a.y) * (d.y - c.y) * (c.x - a.x)   
+                        + (b.x - a.x) * (d.y - c.y) * a.y   
+                        - (d.x - c.x) * (b.y - a.y) * c.y ) / denominator;  
+        /** 2 判断交点是否在两条线段上 **/  
+            if (  
+                // 交点在线段1上  
+                this.similarMinus(x, a.x) * this.similarMinus(x, b.x) <= 0 && this.similarMinus(y, a.y) * this.similarMinus(y,b.y) <= 0 
+                // (x - a.x) * (x - b.x) <= 0 && (y - a.y) * (y - b.y) <= 0  
+                // 且交点也在线段2上  
+                && this.similarMinus(x, c.x) * this.similarMinus(x, d.x) <= 0 && this.similarMinus(y,c.y) * this.similarMinus(y,d.y) <= 0
+                //  && (x - c.x) * (x - d.x) <= 0 && (y - c.y) * (y - d.y) <= 0  
+                ){  
+          
+                // 返回交点p  
+                return {  
+                        x :  x,  
+                        y :  y  
+                    }  
+            }  
+            //否则不相交  
+            return false  
     },
 
     rotateSegment(a,b,origin,degree) {
@@ -70,6 +75,7 @@ var Helper = cc.Class({
     },
     
     getSuitablePoint(p1,currentDis,targetDis,direction) {
+        
         if (targetDis >= currentDis) {
             return p1
         }
@@ -192,11 +198,9 @@ var Helper = cc.Class({
     getDisToSelfBorder(givenNode,direction) {
         var ray = this.makeRay(cc.v2(givenNode.x,givenNode.y),1000,direction)
         var borderLines = this.getLinesOfOneNode(givenNode)
-
         for (var key in borderLines) {
             var line = borderLines[key]
             var dis = this.rayTest(ray,line)
-
             if (dis != false) {
                 return dis
             }
@@ -223,12 +227,12 @@ var Helper = cc.Class({
         }
     },
 
-    isOneNodeWillCollidWithOneLineInDirection(givenNode,givenLine,givenDirection) {
+    isOneNodeWillCollidWithOneLineInDirection(givenNode,givenLine,givenDirection, dis= 3000) {
         var nodePoints = this.getPointsOfOneNode(givenNode)
         var rays = []
         for (var key in nodePoints) {
             var onePoint = nodePoints[key]
-            var ray = this.makeRay(onePoint,3000,givenDirection)
+            var ray = this.makeRay(onePoint,dis,givenDirection)
             rays.push(ray)
         }
 
@@ -311,15 +315,48 @@ var Helper = cc.Class({
         }
 
         var testRay = this.makeRay(cc.v2(givenNode.x, givenNode.y),3000,givenDirection)
-        var dis = this.rayTest(testRay,lenthenLine)
+        var distance = this.rayTest(testRay,lenthenLine)
 
-        if (dis != false) {
-            return dis
+        if (distance != false) {
+            return distance
         }
         else {
             return false
         }
 
+    },
+
+    isTwoPositionSimilarEqual(p1, p2) {
+        var dx = p2.x - p1.x
+        var dy = p2.y - p1.y
+        var faultTolerent = 0.01
+        if (-faultTolerent > dx || faultTolerent < dx ) {
+            return false
+        }
+
+        if (-faultTolerent > dy || faultTolerent < dy) {
+            return false
+        }
+
+        return true
+    },
+
+    isTwoValueSimilarEqual(v1, v2) {
+        var d = v2 - v1
+        var faultTolerent = 0.01
+        if (-faultTolerent > d || faultTolerent < d) {
+            return false
+        }
+
+        return true
+    },
+
+    similarMinus(a,b) {
+        var temp = a - b
+        if (-0.001 < temp && temp < 0.001) {
+            temp = 0
+        }
+        return temp
     }
     
 });

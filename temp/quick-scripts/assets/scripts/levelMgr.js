@@ -34,8 +34,8 @@ cc.Class({
         //     }
         // },
         bullets: [],
-        minDis: 100,
-        maxOffsetDegree: 30,
+        minDis: 50,
+        maxOffsetDegree: 45,
         directionTryto: null,
         flag: false,
         helper: null,
@@ -138,7 +138,7 @@ cc.Class({
 
         this.heart = this.playerData.heart;
         require("networkMgr").delegate = this;
-
+        require("dataMgr").delegate = this;
         var wallsNode = cc.find("Canvas/walls");
         this.walls = wallsNode.children;
         this.targetsNum = cc.find("Canvas/targets").children.length;
@@ -254,9 +254,10 @@ cc.Class({
         for (var index in shadows) {
             var shadowNode = shadows[index];
             var originNode = shadowNode.originNode;
-            if (shadowNode.x == originNode.x && shadowNode.y == originNode.y) {
+            if (this.helper.isTwoPositionSimilarEqual(cc.v2(shadowNode.x, shadowNode.y), cc.v2(originNode.x, originNode.y)) == true) {
                 continue;
             }
+
             var bulletMgr = originNode.getComponent("bulletMgr");
             bulletMgr.targetPosition = cc.v2(shadowNode.x, shadowNode.y);
             bulletMgr.movingDirection = direction;
@@ -273,32 +274,57 @@ cc.Class({
                 bulletMgr.vy = bulletMgr.movingDirection.y * bulletMgr.movingSpeed;
             }
             bulletMgr.status = 1;
-            this.isMoved = true;
+            if (this.isMoved != true) {
+                this.isMoved = true;
+            }
         }
     },
     onSuccess: function onSuccess() {
+        this.retryButton.getComponent(cc.Button).interactable = false;
         if (this.level != this.playerData.currentLevel) {
-            cc.director.loadScene("mainScene");
+            // cc.director.loadScene("mainScene")
+            require("gameMgr").animatedToScene("mainScene");
             return;
         }
-        var msgObj = require("networkMgr").makeMessageObj("dataModule", "commitMessageTyp");
-        msgObj.message.playerId = this.playerData.id;
-        msgObj.message.commitBody = {
-            currentLevel: this.playerData.currentLevel + 1,
-            physicalPowerCostedFlag: 0
-        };
+
+        var levels = require("sectionConfig")[this.playerData.currentSection].levels;
+        var index = levels.indexOf(this.playerData.currentLevel);
+        var newLevel = null;
+        var newSection = null;
+        var commitBody = null;
+        if (index < levels.length - 1) {
+            index += 1;
+            newLevel = levels[index];
+        } else {
+            newSection = this.playerData.currentSection + 1;
+            var newLevels = require("sectionConfig")[newSection].levels;
+            newLevel = newLevels[0];
+        }
+
+        if (newSection == null) {
+            commitBody = {
+                currentLevel: newLevel,
+                physicalPowerCostedFlag: 0
+            };
+        } else {
+            commitBody = {
+                currentSection: newSection,
+                currentLevel: newLevel,
+                physicalPowerCostedFlag: 0
+            };
+        }
+
         var self = this;
-        msgObj.successCallBack = function (xhr) {
-            var response = xhr.responseText;
-            response = JSON.parse(response);
-            if (response.type == "commitSuccess") {
-                self.playerData.currentLevel += 1;
-                self.playerData.physicalPowerCostedFlag = 0;
-                cc.director.loadScene("mainScene");
+        var successCallBack = function successCallBack() {
+            if (newSection != null) {
+                self.playerData.currentSection = newSection;
             }
+            self.playerData.currentLevel = newLevel;
+            self.playerData.physicalPowerCostedFlag = 0;
+            require("gameMgr").animatedToScene("mainScene");
         };
 
-        require("networkMgr").sendMessageByMsgObj(msgObj);
+        require("dataMgr").commitPlayerDataToServer(commitBody, successCallBack);
     },
     resolveShadows: function resolveShadows(shadows, direction) {
         for (var index in shadows) {
@@ -347,42 +373,56 @@ cc.Class({
         return true;
     },
     _selectStaticShadowAndShaodwForResolved: function _selectStaticShadowAndShaodwForResolved(shadow1, shadow2, direction) {
-        var temp = function temp(s1, s2, d, target, givenType) {
-            var points = target.helper.getPointsOfOneNode(s1.originNode);
-            points["origin"] = cc.v2(s1.originNode.x, s1.originNode.y);
-            for (var index in points) {
-                var ray = target.helper.makeRay(points[index], s1.dis, d);
-                var lines = null;
-                if (givenType == 1) {
-                    lines = target.helper.getLinesOfOneNode(s2.originNode);
-                }
-                if (givenType == 2) {
-                    lines = target.helper.getLinesOfOneNode(s2);
-                }
-                for (var key in lines) {
-                    var line = lines[key];
-                    var result = target.helper.rayTest(ray, line);
-                    if (result != false) {
 
-                        return true;
-                    }
+        var self = this;
+        var temp = function temp(s1, s2) {
+            var dis = s1.dis;
+            var originCrossFlag = false;
+            var shadowCrossFlag = false;
+
+            var originLines = self.helper.getLinesOfOneNode(s2);
+            for (var key in originLines) {
+                var oneLine = originLines[key];
+                if (self.helper.isOneNodeWillCollidWithOneLineInDirection(s1.originNode, oneLine, direction, dis) != false) {
+                    originCrossFlag = true;
+                    break;
                 }
             }
-            return false;
+
+            if (originCrossFlag == false) {
+                return false;
+            }
+
+            var shadowLines = self.helper.getLinesOfOneNode(s2.originNode);
+            for (var key in shadowLines) {
+                var oneLine = shadowLines[key];
+                if (self.helper.isOneNodeWillCollidWithOneLineInDirection(s1.originNode, oneLine, direction, dis) != false) {
+                    shadowCrossFlag = true;
+                    break;
+                }
+            }
+
+            if (shadowCrossFlag == false) {
+                return false;
+            }
+
+            return true;
         };
 
-        if (temp(shadow1, shadow2, direction, this, 1) == true && temp(shadow1, shadow2, direction, this, 2) == true) {
-            return {
+        if (temp(shadow1, shadow2) == true) {
+            var result = {
                 staticShadow: shadow2,
                 shadowForResolved: shadow1
             };
+            return result;
         }
 
-        if (temp(shadow2, shadow1, direction, this, 1) == true && temp(shadow2, shadow1, direction, this, 2) == true) {
-            return {
+        if (temp(shadow2, shadow1) == true) {
+            var result = {
                 staticShadow: shadow1,
                 shadowForResolved: shadow2
             };
+            return result;
         }
 
         return false;
@@ -461,35 +501,32 @@ cc.Class({
             gameMgr.enterLevelScene(this.level);
             return;
         }
-        var temp = this.heart - this.heartForRetryCost;
+        var temp = this.playerData.heart - this.heartForRetryCost;
         if (temp < 0) {
             return;
         }
 
-        var msgObj = require("networkMgr").makeMessageObj("dataModule", "commitMessageTyp");
-        msgObj.message.playerId = this.playerData.id;
-        msgObj.message.commitBody = {
+        var commitBody = {
             heart: temp
         };
         var self = this;
-        msgObj.successCallBack = function (xhr) {
-            var response = xhr.responseText;
-            response = JSON.parse(response);
-
-            if (response.type == "commitSuccess") {
-                self.heart = temp;
-                self.playerData.heart = temp;
-                gameMgr.enterLevelScene(self.level);
-            }
+        var successCallBack = function successCallBack() {
+            self.playerData.heart = temp;
+            self.heart = temp;
+            gameMgr.enterLevelScene(self.level);
         };
         this.retryButton.getComponent(cc.Button).interactable = false;
-        require("networkMgr").sendMessageByMsgObj(msgObj);
+        require("dataMgr").commitPlayerDataToServer(commitBody, successCallBack);
     },
     onAllRetryFailed: function onAllRetryFailed() {
         this.retryButton.getComponent(cc.Button).interactable = true;
     },
     onClickBackButton: function onClickBackButton() {
-        cc.director.loadScene("mainScene");
+        // cc.director.loadScene("mainScene")
+        require("gameMgr").animatedToScene("mainScene");
+    },
+    onRefresh: function onRefresh() {
+        this.heart = this.playerData.heart;
     }
 });
 

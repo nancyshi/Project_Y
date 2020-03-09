@@ -49,13 +49,34 @@ var GameMgr = cc.Class({
                     break
             }
         var levelName = "level" + levelForName
-
+        var self = this
         cc.director.preloadScene(levelName,null,function(err,res){
             var levelMgr = res.scene.getChildByName("Canvas").getComponent("levelMgr")
             levelMgr.level = givenLevel
-            cc.director.loadScene(levelName)
+            // cc.director.loadScene(levelName)
+            self.animatedToScene(levelName)
         })
     },
+
+    animatedToScene(sceneName) {
+        var currentScene = cc.director.getScene()
+        cc.tween(currentScene.children[0])
+            .to(1,{opacity: 0})
+            .delay(1)
+            .call(function(){
+                cc.director.preloadScene(sceneName,null,function(err,res){
+                    var scene = res.scene
+                    scene.children[0].opacity = 0
+                    cc.director.loadScene(sceneName,function(){
+                        cc.tween(scene.children[0])
+                            .to(0.5,{opacity: 255})
+                            .start()
+                    })
+                })
+            })
+            .start()
+    }
+    
     // update (dt) {},
 });
 

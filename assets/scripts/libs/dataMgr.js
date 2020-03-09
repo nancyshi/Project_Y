@@ -10,7 +10,7 @@
 
 var dataMgr = cc.Class({
     
-
+    extends: cc.Component,
     properties: {
 
         playerData: {
@@ -19,6 +19,8 @@ var dataMgr = cc.Class({
             },
             set(value) {
                 this._playerData = value
+                this.refreshTimer = this.playerData.refreshDelta
+                this.schedule(this.update,1)
                 this.onPlayerDataUpdated()
                 if (this.delegate != null) {
                     this.delegate.onPlayerDataUpdated()
@@ -26,7 +28,28 @@ var dataMgr = cc.Class({
                 //do something else
             }
         },
+        refreshTimer: {
+            get() {
+                return this._refreshTimer
+            },
+            set(value) {
+                this._refreshTimer = value
+                if (value <= 0) {
+                    this.playerData.physicalPower = this.playerData.maxPhysicalPower
+                    this.playerData.heart = this.playerData.maxHeart
+                    if (this.delegate != null) {
+                        this.delegate.onRefresh()
+                    }
+                }
+            }
+        },
         delegate: null
+        
+    },
+    update() {
+        if (this.refreshTimer > 0) {
+            this.refreshTimer -= 1
+        }
         
     },
 
@@ -52,7 +75,7 @@ var dataMgr = cc.Class({
         cc.log("now player data is " + JSON.stringify(this.playerData))
     },
 
-    commitPlayerDataToServer(dataForCommit) {
+    commitPlayerDataToServer(dataForCommit, successCallBack) {
         var networkMgr = require("networkMgr")
         var msgObj = networkMgr.makeMessageObj("dataModule","commitMessageTyp")
         msgObj.message.playerId = this.playerData.id
@@ -61,7 +84,20 @@ var dataMgr = cc.Class({
             return
         }
         
+
         msgObj.message.commitBody = dataForCommit
+        var self = this
+        msgObj.successCallBack = function(xhr) {
+            var response = xhr.responseText
+            response = JSON.parse(response)
+            if (response.type == "commitSuccess") {
+                var delta = response.refreshDelta
+                if (self.refreshTimer <= 0) {
+                    self.refreshTimer = delta
+                }
+                successCallBack()
+            }
+        }
         networkMgr.sendMessageByMsgObj(msgObj)
     }
 });

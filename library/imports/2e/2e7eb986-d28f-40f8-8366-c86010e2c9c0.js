@@ -21,7 +21,7 @@ cc.Class({
 
         bulletType: 1, //1 is normal , 2 is slider bullet
         status: 0, //0 is static, 1 is moving , 2 is reached target
-        disFromBorder: 10,
+        disFromBorder: 5,
         moveSpeed: 500,
         movingDirection: null,
         targetPosition: null,
@@ -35,7 +35,8 @@ cc.Class({
         _rayTestLength: 3000,
         pathWaysNode: cc.Node,
         pathWaysHeight: 10,
-        sliderFrame: cc.SpriteFrame
+        sliderFrame: cc.SpriteFrame,
+        faltalTorence: 0.01
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -92,12 +93,12 @@ cc.Class({
                     if (dis == false) {
                         continue;
                     }
-
-                    if (result == null || dis < result.dis) {
-                        var targetDis = this.disFromBorder + disToSelfBounder;
+                    var targetDis = this.disFromBorder + disToSelfBounder;
+                    if (result == null || dis < result.dis + targetDis) {
                         var suitablePosition = this.helper.getSuitablePoint(cc.v2(this.node.x, this.node.y), dis, targetDis, givenDirection);
+                        var moveDis = cc.v2(suitablePosition.x - this.node.x, suitablePosition.y - this.node.y).mag();
                         result = {
-                            dis: dis,
+                            dis: moveDis,
                             suitablePosition: suitablePosition
                         };
                     }
@@ -124,20 +125,29 @@ cc.Class({
                     selectedPathNode = onePath;
                 }
             }
+            if (this._isPathNodeMoveDirection(selectedPathNode, givenDirection) == false) {
+                return {
+                    dis: 0,
+                    suitablePosition: this.node.position
+                };
+            }
             var ray = this.helper.makeRay(this.node.position, 3000, givenDirection);
             var currentDis = null;
             var lines = this.helper.getLinesOfOneNode(selectedPathNode);
             for (var key in lines) {
                 var line = lines[key];
                 var dis = this.helper.rayTest(ray, line);
-                if (dis != false) {
-                    currentDis = dis;
-                    break;
+                if (dis.toString() != "false") {
+                    if (currentDis == null || dis > currentDis) currentDis = dis;
                 }
             }
 
+            if (currentDis == null) {
+                currentDis = 5;
+            }
             var suitablePosition = this.helper.getSuitablePoint(this.node.position, currentDis, 0, givenDirection);
             var dis = cc.v2(suitablePosition.x - this.node.x, suitablePosition.y - this.node.y).mag();
+
             return {
                 suitablePosition: suitablePosition,
                 dis: dis
@@ -151,13 +161,19 @@ cc.Class({
         var lines = this.helper.getLinesOfOneNode(givenNode);
         var self = this;
         var getDis = function getDis(ray) {
+            var dis = null;
             for (var key in lines) {
                 var line = lines[key];
-                var dis = self.helper.rayTest(ray, line);
-                if (dis != false) {
-                    return dis;
+                var dist = self.helper.rayTest(ray, line);
+                if (dist != false) {
+                    return dist;
                 }
             }
+
+            if (dis == null) {
+                dis = 5;
+            }
+            return dis;
         };
 
         var dis1 = getDis(ray1);
@@ -167,6 +183,27 @@ cc.Class({
             return dis1;
         } else {
             return dis2;
+        }
+    },
+    isPathNodeMoveDirection: function isPathNodeMoveDirection(givenPathNode, givenDirection) {
+        var dis1 = this.getMaxDisFromPathNode(givenPathNode, givenDirection);
+        var verticalDirection = givenDirection.rotate(Math.PI / 2);
+        var dis2 = this.getMaxDisFromPathNode(givenPathNode, verticalDirection);
+        if (dis1 > dis2) {
+            return true;
+        }
+
+        return false;
+    },
+    _isPathNodeMoveDirection: function _isPathNodeMoveDirection(givenPathNode, givenDirection) {
+        givenDirection.normalizeSelf();
+        var angle = -givenPathNode.angle * Math.PI / 180;
+        var rotatedDirection = cc.v2(1, 0).rotate(angle);
+
+        if (givenDirection.equals(rotatedDirection) == true || givenDirection.equals(cc.v2(-rotatedDirection.x, -rotatedDirection.y))) {
+            return true;
+        } else {
+            return false;
         }
     }
 });

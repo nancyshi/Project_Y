@@ -2,9 +2,7 @@
   "title": "Project_Y",
   "packageName": "",
   "startScene": "199f6a42-0ae6-4e8d-8413-28af31226e97",
-  "excludeScenes": [
-    "49e41ae3-542f-4122-bfa6-07f5eaf0984e"
-  ],
+  "excludeScenes": [],
   "includeSDKBox": false,
   "orientation": {
     "landscapeLeft": true,

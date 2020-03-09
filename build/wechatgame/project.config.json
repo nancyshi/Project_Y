@@ -6,6 +6,7 @@
 		"postcss": true,
 		"minified": false,
 		"newFeature": false,
+		"nodeModules": false,
 		"autoAudits": false
 	},
 	"compileType": "game",
