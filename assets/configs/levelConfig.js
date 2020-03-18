@@ -44,6 +44,50 @@ var levelConfig = {
     "11": {
         physicalPowerCost: 3,
         heartForRetryCost: 2
+    },
+    "12": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "13": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "14": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "15": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "16": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "17": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "18": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "19": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "20": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "21": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
+    },
+    "22": {
+        physicalPowerCost: 3,
+        heartForRetryCost: 2
     }
 }
 

@@ -61,7 +61,7 @@ var GameMgr = cc.Class({
     animatedToScene(sceneName) {
         var currentScene = cc.director.getScene()
         cc.tween(currentScene.children[0])
-            .to(1,{opacity: 0})
+            .to(0.5,{opacity: 0})
             .delay(1)
             .call(function(){
                 cc.director.preloadScene(sceneName,null,function(err,res){

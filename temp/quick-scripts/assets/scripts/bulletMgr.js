@@ -121,7 +121,7 @@ cc.Class({
                     continue;
                 }
 
-                if (selectedPathNode == null || this.getMaxDisFromPathNode(onePath, givenDirection) > this.getMaxDisFromPathNode(selectedPathNode, givenDirection)) {
+                if (selectedPathNode == null || this._isPathNodeMoveDirection(onePath, givenDirection) == true) {
                     selectedPathNode = onePath;
                 }
             }
@@ -138,7 +138,9 @@ cc.Class({
                 var line = lines[key];
                 var dis = this.helper.rayTest(ray, line);
                 if (dis.toString() != "false") {
-                    if (currentDis == null || dis > currentDis) currentDis = dis;
+                    if (currentDis == null || dis > currentDis) {
+                        currentDis = dis;
+                    }
                 }
             }
 
@@ -147,7 +149,6 @@ cc.Class({
             }
             var suitablePosition = this.helper.getSuitablePoint(this.node.position, currentDis, 0, givenDirection);
             var dis = cc.v2(suitablePosition.x - this.node.x, suitablePosition.y - this.node.y).mag();
-
             return {
                 suitablePosition: suitablePosition,
                 dis: dis
@@ -199,8 +200,7 @@ cc.Class({
         givenDirection.normalizeSelf();
         var angle = -givenPathNode.angle * Math.PI / 180;
         var rotatedDirection = cc.v2(1, 0).rotate(angle);
-
-        if (givenDirection.equals(rotatedDirection) == true || givenDirection.equals(cc.v2(-rotatedDirection.x, -rotatedDirection.y))) {
+        if (givenDirection.fuzzyEquals(rotatedDirection, 0.001) == true || givenDirection.fuzzyEquals(cc.v2(-rotatedDirection.x, -rotatedDirection.y), 0.001) == true) {
             return true;
         } else {
             return false;

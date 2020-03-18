@@ -8,7 +8,7 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-cc.Class({
+var AdvertisMgr = cc.Class({
     extends: cc.Component,
 
     properties: {
@@ -27,60 +27,23 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        platform: null,
-        videoAd: null,
-        delegate: null
+        videoAd: null
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start () {
-
-    },
-
-    // update (dt) {},
-    born() {
-        this.platform = cc.sys.platform
-        switch(this.platform) {
-            case cc.sys.WECHAT_GAME:
-                this.videoAd = wx.createRewardedVideoAd({adUnitId: "wechatVideioAd"})
-                break
-        }
-        if (this.videoAd == null) {
-            cc.error("CREATE AD FAILED")
-            return
-        }
-
-        this.videoAd.onClose = this.onADClose
-        this.videoAd.onLoad = this.onADLoad
-        this.videoAd.onErro = this.onADErro
-    },
-
-    onADClose(res) {
-        switch(this.platform) {
-            case cc.sys.WECHAT_GAME:
-                if (res.isEnded == true) {
-                    //totaly watched
-                    if (this.delegate != null) {
-                        this.delegate.onVideoADTotalyWatched()
-                    }
-                }
-                else {
-                    //not totaly watched
-                    if (this.delegate != null) {
-                        this.delegate.onVideoADNotTotalyWatched()
-                    }
-                }
-                break
-        }
-    },
-    onADLoad() {
-
-    },
-
-    onADErro(erro) {
-        cc.error(erro.errCode)
-    }
+   
 });
+
+var sharedAdvertisMgr = new AdvertisMgr()
+if(cc.sys.platform == cc.sys.WECHAT_GAME) {
+
+    sharedAdvertisMgr.videoAd = wx.createRewardedVideoAd({adUnitId: "xxxxx"})
+    sharedAdvertisMgr.videoAd.onLoad(function(){
+        console.log("拉取广告成功")
+    })
+    sharedAdvertisMgr.videoAd.onError(function(err){
+        console.log("拉取广告失败")
+        console.log(err)
+        console.log(err.errCode)
+    })
+}
+module.exports = sharedAdvertisMgr

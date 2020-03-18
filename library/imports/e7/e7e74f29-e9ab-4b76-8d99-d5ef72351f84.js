@@ -174,25 +174,22 @@ cc.Class({
         if (this.flag == false) {
             return;
         }
-        var delta = event.getDelta();
-        var direction = this.getPossiableDirection(delta);
-
-        if (direction == -1) {
-            this.flag = false;
-            return;
-        }
-        if (this.directionTryto == null) {
-            this.directionTryto = direction;
-        }
-        if (direction.equals(this.directionTryto) == false) {
-            this.flag = false;
-            return;
-        }
-
         var startLocation = event.getStartLocation();
-        var disFromStart = cc.v2(event.getLocationX() - startLocation.x, event.getLocationY() - startLocation.y).mag();
-        if (disFromStart >= this.minDis) {
-            //valid move
+        var tmpDirection = cc.v2(event.getLocationX() - startLocation.x, event.getLocationY() - startLocation.y);
+        var dis = tmpDirection.mag();
+        if (dis < this.minDis) {
+            return;
+        } else {
+            var direction = this.getPossiableDirection(tmpDirection);
+            if (direction == -1) {
+                this.flag = false;
+                return;
+            }
+
+            if (this.directionTryto == null) {
+                this.directionTryto = direction;
+            }
+
             this.flag = false;
             this.moveBullets(this.directionTryto);
         }
@@ -248,8 +245,14 @@ cc.Class({
         }
 
         //resolve shadows
-
-        while (this.resolveShadows(shadows, direction) == false) {}
+        var maxTryTime = 100;
+        while (this.resolveShadows(shadows, direction) == false) {
+            if (maxTryTime <= 0) {
+                // cc.log("CAN'T FIND A SUITABLE POSITION")
+                break;
+            }
+            maxTryTime -= 1;
+        }
 
         for (var index in shadows) {
             var shadowNode = shadows[index];
@@ -339,7 +342,7 @@ cc.Class({
                 if (testResult != false) {
                     var staticShadow = testResult.staticShadow;
                     var tempShadow = testResult.shadowForResolved;
-
+                    // cc.log("static: " + staticShadow.originNode.name, "temp: " + tempShadow.originNode.name)
                     var staticBorderLines = this.helper.getLinesOfOneNode(staticShadow);
                     var staticLine = null;
                     var ray = this.helper.makeRay(cc.v2(staticShadow.x, staticShadow.y), 1000, cc.v2(-direction.x, -direction.y));

@@ -10,6 +10,12 @@ var sectionConfig = {
         sectionDescrip: "挑战",
         backgroundPath: "images/bg_02",
         levels: [11,12,13,14,15,16,17,18,19,20]
+    },
+    "3": {
+        sectionTitle: "第三章",
+        sectionDescrip: "新生",
+        backgroundPath: "images/bg_01",
+        levels: [21,22,23]
     }
 }
 

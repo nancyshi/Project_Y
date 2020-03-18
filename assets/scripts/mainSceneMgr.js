@@ -38,7 +38,8 @@ cc.Class({
         currentLevelColor: cc.color,
         shareIconFrame: cc.SpriteFrame,
         videoIconFrame: cc.SpriteFrame,
-
+        physicalPowerAddNum: 5,
+        heartAddNum: 5,
         physicalPower: {
             get() {
                 return this._physicalPower
@@ -129,7 +130,11 @@ cc.Class({
                 if (value != null) {
                     if (value == this.playerData.currentLevel && this.playerData.physicalPowerCostedFlag == 0) {
                         this.heartForChallengeCost = null
-                        this.physicalPowerForChallengeCost = require("levelConfig")[value].physicalPowerCost
+                        var temp = require("levelConfig")[value].physicalPowerCost
+                        if (this.playerData.initAdWatchedFlag == 1) {
+                            temp = Math.round(temp / 2)
+                        }
+                        this.physicalPowerForChallengeCost = temp
                     }
                     else if (value == this.playerData.currentLevel && this.playerData.physicalPowerCostedFlag == 1) {
                         this.physicalPowerForChallengeCost = null
@@ -216,9 +221,10 @@ cc.Class({
                 .start()
             welfaryButton.active = true
         }
-
         var welfaryUIBg = cc.find("Canvas/welfaryUI/bg")
         welfaryUIBg.on("touchstart",function(){})
+        var addUIBg = cc.find("Canvas/addUI/bg")
+        addUIBg.on("touchstart",function(){})
         require("networkMgr").delegate = this
         require("dataMgr").delegate = this
         this.setupSection(this.playerData.currentSection)
@@ -421,20 +427,6 @@ cc.Class({
     onClickWelfaryButton() {
         var welfaryUI = cc.find("Canvas/welfaryUI")
         var others = welfaryUI.getChildByName("others")
-        var infoLabel = others.getChildByName("infoLabel")
-        var buttonTextLabel = others.getChildByName("button").getChildByName("buttonTextLabel")
-        var buttonIcon = others.getChildByName("button").getChildByName("buttonIcon")
-        if (this.playerData.initAdWatchedFlag == 0 && this.playerData.adSystemEnabledFlag == 0) {
-            infoLabel.getComponent(cc.Label).string = "推荐给好友，关卡消耗体力永久减半"
-            buttonTextLabel.getComponent(cc.Label).string = "推荐"
-            buttonIcon.getComponent(cc.Sprite).spriteFrame = this.shareIconFrame
-        }
-        
-        if (this.playerData.initAdWatchedFlag == 0 && this.playerData.adSystemEnabledFlag == 1) {
-            infoLabel.getComponent(cc.Label).string = "观看视频广告，关卡消耗体力永久减半"
-            buttonTextLabel.getComponent(cc.Label).string = "观看"
-            buttonIcon.getComponent(cc.Sprite).spriteFrame = this.videoIconFrame
-        }
 
         others.scale = 0
         welfaryUI.active = true
@@ -445,25 +437,28 @@ cc.Class({
     },
 
     onClickWelfaryUIButton() {
-        if (cc.sys.platform = cc.sys.WECHAT_GAME) {
+        if (cc.sys.platform == cc.sys.WECHAT_GAME) {
             if (this.playerData.adSystemEnabledFlag == 0) {
                 var title = "我正在玩这个解迷小游戏，快来一起玩吧"
-                if (cc.sys.platform == cc.sys.WECHAT_GAME) {
-                    
-                    wx.onShareMessageToFriend(function(res) {
-                        if (res.success == true) {
-                            
-                        }
-                        else {
-
-                        }
-                    })
-                    wx.shareAppMessage({
-                        title: title
-                    })
+                var self = this
+                var commitBody = {
+                    initAdWatchedFlag: 1
                 }
+                var successCallBack = function() {
+                    self.playerData.initAdWatchedFlag = 1
+                    self.node.getChildByName("welfaryUI").active = false
+                    self.node.getChildByName("welfaryButton").active = false
+                    self.selectedLevel = self.selectedLevel
+                }
+                require("dataMgr").commitPlayerDataToServer(commitBody,successCallBack)
+                wx.shareAppMessage({
+                    title: title
+                })
             }
+            
         }
+
+        
     },
     onclickWelfaryUICloseButton() {
         var welfaryUI = cc.find("Canvas/welfaryUI")
@@ -475,6 +470,48 @@ cc.Class({
                 others.scale = 1
             })
             .start()
-    }
+    },
     
+    onClickAddButton(event,data) {
+        var text = null
+        if (data == "physicalPower") {
+            text = "观看视频广告，立即获得体力 * " + this.physicalPowerAddNum.toString()
+        }
+        else if (data == "heart") {
+            text = "观看视频广告，立即获得爱心 * " + this.heartAddNum.toString()
+        }
+
+        var addUI = cc.find("Canvas/addUI")
+        var others = addUI.getChildByName("others")
+        var infoLabel = others.getChildByName("infoLabel")
+        infoLabel.getComponent(cc.Label).string = text
+
+        others.scale = 0
+        addUI.active = true
+        cc.tween(others)
+            .to(0.3, {scale: 1})
+            .start()
+    },
+
+    onClickAddUICloseButton() {
+        var addUI = cc.find("Canvas/addUI")
+        var others = addUI.getChildByName("others")
+        cc.tween(others)
+            .to(0.3,{scale: 0})
+            .call(function(){
+                addUI.active = false
+                others.scale = 1
+            })
+            .start()
+
+    },
+
+    onClickAddUIButton() {
+        var advertisMgr = require("advertisMgr")
+        advertisMgr.videoAd.show()
+        .catch(function(errMsg, errCode){
+            console.log("拉取失败")
+            console.log(errMsg,errCode)
+        })
+    }
 });
