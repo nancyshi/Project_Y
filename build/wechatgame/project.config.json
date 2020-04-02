@@ -6,13 +6,25 @@
 		"postcss": true,
 		"minified": false,
 		"newFeature": false,
-		"nodeModules": false,
-		"autoAudits": false
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "game",
 	"libVersion": "game",
 	"appid": "wx5bef670899af8812",
 	"projectname": "Project_Y",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

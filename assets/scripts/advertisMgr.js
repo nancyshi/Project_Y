@@ -27,23 +27,73 @@ var AdvertisMgr = cc.Class({
         //         this._bar = value;
         //     }
         // },
-        videoAd: null
+        videoAd: null,
+        delegate: null,
+
+        wechatAdId: "xxxxx",
     },
 
-   
+    onVideoAdEnd() {
+        if (this.delegate != null && typeof this.delegate.onVideoAdEnd == "function") {
+            this.delegate.onVideoAdEnd()
+        }
+    },
+    onVideoAdNotEnd(defaultNoti = true){
+        if (defaultNoti == true) {
+            var notificationSys = require("notificationMgr")
+            notificationSys.showNoti("看完视频才能获得奖励哦~")
+        }
+        if (this.delegate != null && typeof this.delegate.onVideoAdNotEnd == "function") {
+            this.delegate.onVideoAdNotEnd()
+        }
+    },
+    onVideoAdLoadError(err){
+        console.log("拉取广告失败")
+        if (this.delegate != null && typeof this.delegate.onVideoAdLoadError == "function") {
+            this.delegate.onVideoAdLoadError(err)
+        }
+    },
+    onVideoAdShowError(err) {
+        if (this.delegate != null && typeof this.delegate.onVideoAdShowError == "function") {
+            this.delegate.onVideoAdShowError(err)
+        }
+    },
+    initAds(){
+        if (this.videoAd == null) {
+            if (cc.sys.platform == cc.sys.WECHAT_GAME) {
+                var self = this
+                this.videoAd = wx.createRewardedVideoAd({adUnitId: this.wechatAdId})
+                this.videoAd.onLoad(function(){
+                    console.log("拉取广告成功")
+                })
+                this.videoAd.onError(function(err){
+                    self.onVideoAdLoadError(err)
+                })
+                this.videoAd.onClose(function(res){
+                    if (res && res.isEnded) {
+                        self.onVideoAdEnd()
+                    }
+                    else {
+                        self.onVideoAdNotEnd()
+                    }
+                })
+            }
+        }
+    },
+    showVideoAd() {
+
+        if (cc.sys.platform == cc.sys.WECHAT_GAME) {
+            var self = this
+            this.videoAd.load()
+            .then(function(){
+                self.videoAd.show()
+            })
+            .catch(function(err){
+                self.onVideoAdShowError(err)
+            })
+        }
+    }
 });
 
 var sharedAdvertisMgr = new AdvertisMgr()
-if(cc.sys.platform == cc.sys.WECHAT_GAME) {
-
-    sharedAdvertisMgr.videoAd = wx.createRewardedVideoAd({adUnitId: "xxxxx"})
-    sharedAdvertisMgr.videoAd.onLoad(function(){
-        console.log("拉取广告成功")
-    })
-    sharedAdvertisMgr.videoAd.onError(function(err){
-        console.log("拉取广告失败")
-        console.log(err)
-        console.log(err.errCode)
-    })
-}
 module.exports = sharedAdvertisMgr

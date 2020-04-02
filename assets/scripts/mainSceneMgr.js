@@ -36,28 +36,25 @@ cc.Class({
         lockedLevelColor: cc.color,
         unlockedLevelColor: cc.color,
         currentLevelColor: cc.color,
-        shareIconFrame: cc.SpriteFrame,
-        videoIconFrame: cc.SpriteFrame,
-        physicalPowerAddNum: 5,
-        heartAddNum: 5,
+
         physicalPower: {
             get() {
                 return this._physicalPower
             },
             set(value) {
                 this._physicalPower = value
-                this.node.getChildByName("physicalPowerLabel").getComponent(cc.Label).string = this.playerData.physicalPower.toString() + " / " + this.playerData.maxPhysicalPower.toString()
+                this.node.getChildByName("physicalPowerLabel").getComponent(cc.Label).string = this.playerData.physicalPower.toString()
             }
         },
 
-        maxPhysicalPower: {
-            get() {
-                return this._maxPhysicalPower
-            },
-            set(value) {
-                this._maxPhysicalPower = value
-            }
-        },
+        // maxPhysicalPower: {
+        //     get() {
+        //         return this._maxPhysicalPower
+        //     },
+        //     set(value) {
+        //         this._maxPhysicalPower = value
+        //     }
+        // },
 
         physicalPowerForChallengeCost: {
             get() {
@@ -188,10 +185,10 @@ cc.Class({
             },
             set(value) {
                 this._heart = value
-                this.heartLabel.string = value.toString() + " / " + this.maxHeart.toString()
+                this.heartLabel.string = value.toString()
             }
         },
-        maxHeart: null
+        // maxHeart: null
 
     },
 
@@ -204,42 +201,52 @@ cc.Class({
         this.currentLevelColor = cc.color(188,36,36)
         this.challengeButton = this.node.getChildByName("challengeButton")
         this.playerName = this.playerData.name
-        this.maxPhysicalPower = this.playerData.maxPhysicalPower
+        // this.maxPhysicalPower = this.playerData.maxPhysicalPower
         this.physicalPower = this.playerData.physicalPower
-        this.maxHeart = this.playerData.maxHeart
+        // this.maxHeart = this.playerData.maxHeart
         this.heart = this.playerData.heart
-        if (this.playerData.initAdWatchedFlag == 0 ) {
-            var welfaryButton = cc.find("Canvas/welfaryButton")
-            cc.tween(welfaryButton)
-                .repeatForever(cc.tween()
-                    .to(0.2,{angle: -30})
-                    .to(0.2,{angle: 0})
-                    .to(0.2,{angle: 30})
-                    .to(0.2,{angle: 0})
-                    .delay(2)
-                    )
-                .start()
-            welfaryButton.active = true
-        }
-        var welfaryUIBg = cc.find("Canvas/welfaryUI/bg")
-        welfaryUIBg.on("touchstart",function(){})
-        var addUIBg = cc.find("Canvas/addUI/bg")
-        addUIBg.on("touchstart",function(){})
+       
         require("networkMgr").delegate = this
         require("dataMgr").delegate = this
-        this.setupSection(this.playerData.currentSection)
 
+        var signInButton = this.node.getChildByName("signInButton")
+        signInButton.on("click",function(){
+            require("signInSystem").show()
+        })
+
+        var welfaryButton = this.node.getChildByName("welfaryButton")
+        welfaryButton.on("click",function(){
+            require("welfarySys").show()
+        })
+        require("welfarySys").enterButtonNode = welfaryButton
+        cc.tween(welfaryButton)
+            .repeatForever(
+                cc.tween()
+                    .to(0.3,{angle: -45})
+                    .to(0.3,{angle: 0})
+                    .to(0.3,{angle: 45})
+                    .to(0.3,{angle: 0})
+                    .delay(1)
+            )
+            .start()
+        require("welfarySys").setupUi()
+        
+        var addHeartButton = this.node.getChildByName("addButton_heart")
+        addHeartButton.on("click",function(){
+            require("addHeartSys").show()
+        })
+
+        var addPhysicalPowerButton = this.node.getChildByName("addButton_phy")
+        addPhysicalPowerButton.on("click",function(){
+            require("addPhysicalPowerSys").show()
+        })
+
+        this.setupSection(this.playerData.currentSection)
     },
 
     start () {
 
     },
-
-    // onDestroy() {
-    //     var welfaryUIBg = cc.find("Canvas/welfaryUI/bg")
-    //     welfaryUIBg.off("touchstart",function(){}) 
-    // },
-    // update (dt) {},
 
     setupSection(givenSection, complete = function(){}) {
         this.selectedLevel = null
@@ -424,94 +431,6 @@ cc.Class({
         this.physicalPower = this.playerData.physicalPower
     },
 
-    onClickWelfaryButton() {
-        var welfaryUI = cc.find("Canvas/welfaryUI")
-        var others = welfaryUI.getChildByName("others")
 
-        others.scale = 0
-        welfaryUI.active = true
-        cc.tween(others)
-            .to(0.3, {scale: 1})
-            .start()
-        
-    },
 
-    onClickWelfaryUIButton() {
-        if (cc.sys.platform == cc.sys.WECHAT_GAME) {
-            if (this.playerData.adSystemEnabledFlag == 0) {
-                var title = "我正在玩这个解迷小游戏，快来一起玩吧"
-                var self = this
-                var commitBody = {
-                    initAdWatchedFlag: 1
-                }
-                var successCallBack = function() {
-                    self.playerData.initAdWatchedFlag = 1
-                    self.node.getChildByName("welfaryUI").active = false
-                    self.node.getChildByName("welfaryButton").active = false
-                    self.selectedLevel = self.selectedLevel
-                }
-                require("dataMgr").commitPlayerDataToServer(commitBody,successCallBack)
-                wx.shareAppMessage({
-                    title: title
-                })
-            }
-            
-        }
-
-        
-    },
-    onclickWelfaryUICloseButton() {
-        var welfaryUI = cc.find("Canvas/welfaryUI")
-        var others = welfaryUI.getChildByName("others")
-        cc.tween(others)
-            .to(0.3, {scale: 0})
-            .call(function(){
-                welfaryUI.active = false
-                others.scale = 1
-            })
-            .start()
-    },
-    
-    onClickAddButton(event,data) {
-        var text = null
-        if (data == "physicalPower") {
-            text = "观看视频广告，立即获得体力 * " + this.physicalPowerAddNum.toString()
-        }
-        else if (data == "heart") {
-            text = "观看视频广告，立即获得爱心 * " + this.heartAddNum.toString()
-        }
-
-        var addUI = cc.find("Canvas/addUI")
-        var others = addUI.getChildByName("others")
-        var infoLabel = others.getChildByName("infoLabel")
-        infoLabel.getComponent(cc.Label).string = text
-
-        others.scale = 0
-        addUI.active = true
-        cc.tween(others)
-            .to(0.3, {scale: 1})
-            .start()
-    },
-
-    onClickAddUICloseButton() {
-        var addUI = cc.find("Canvas/addUI")
-        var others = addUI.getChildByName("others")
-        cc.tween(others)
-            .to(0.3,{scale: 0})
-            .call(function(){
-                addUI.active = false
-                others.scale = 1
-            })
-            .start()
-
-    },
-
-    onClickAddUIButton() {
-        var advertisMgr = require("advertisMgr")
-        advertisMgr.videoAd.show()
-        .catch(function(errMsg, errCode){
-            console.log("拉取失败")
-            console.log(errMsg,errCode)
-        })
-    }
 });

@@ -60,6 +60,7 @@ cc.Class({
     },
 
     onPlayerDataUpdated() {
+        require("advertisMgr").initAds()
         cc.find("Canvas/loginInfo/textNode").getComponent(cc.Label).string = "登陆成功！"
         //animation 
         for (var index in this.node.children) {
@@ -77,7 +78,9 @@ cc.Class({
         cc.tween(this.node)
             .delay(this.changeSceneAnimationTime)
             .call(function(){
-                cc.director.loadScene("mainScene")
+                require("resMgr").loadReses(function(){
+                    cc.director.loadScene("mainScene")
+                })
             })
             .start()
     },

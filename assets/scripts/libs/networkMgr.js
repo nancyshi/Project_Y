@@ -127,6 +127,11 @@ var Networkmgr = cc.Class({
                     if (self.delegate != null) {
                         var retryWaitingNode = cc.instantiate(res)
                         retryWaitingNode.name = "retryWaitingNode"
+                        var bg = retryWaitingNode.getChildByName("bg")
+                        var winsize = cc.director.getWinSize()
+                        bg.width = winsize.width
+                        bg.height = winsize.height
+                        bg.on("touchstart",function(){},this)
                         self.retryWaitingNode = retryWaitingNode
                         self.delegate.node.addChild(self.retryWaitingNode)
                     }

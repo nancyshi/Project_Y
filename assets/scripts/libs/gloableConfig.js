@@ -27,7 +27,7 @@ var GloableConfig = cc.Class({
         //         this._bar = value;
         //     }
         // },
-        basicIp: "192.168.0.150",
+        basicIp: "192.168.0.101",
         basicPort: 8888,
         netWorkMessageConfigs: {
             get() {
@@ -55,6 +55,16 @@ var GloableConfig = cc.Class({
                     },
 
 
+                    signInModule: {
+                        suffix: "signIn",
+                        signInMessageType: {
+                            playerId: 100000001,
+                            signType: 1
+                        },
+                        refreshMessageType: {
+                            playerId: 100000001,
+                        }
+                    }
                 }
             }
         }
