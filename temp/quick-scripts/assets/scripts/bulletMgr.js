@@ -19,7 +19,20 @@ cc.Class({
 
     properties: {
 
-        bulletType: 1, //1 is normal , 2 is slider bullet
+        bulletType: {
+            get: function get() {
+                if (this._bulletType == null) {
+                    this._bulletType = 1;
+                }
+                return this._bulletType;
+            },
+            set: function set(value) {
+                this._bulletType = value;
+                if (value == 2) {
+                    this.node.getComponent(cc.Sprite).spriteFrame = this.sliderFrame;
+                }
+            }
+        }, //1 is normal , 2 is slider bullet
         status: 0, //0 is static, 1 is moving , 2 is reached target
         disFromBorder: 5,
         moveSpeed: 500,
@@ -45,12 +58,11 @@ cc.Class({
         this.levelMgr = cc.find("Canvas").getComponent("levelMgr");
         var Helper = require("helper");
         this.helper = new Helper();
+        // if (this.bulletType == 2) {
+        //     this.node.getComponent(cc.Sprite).spriteFrame = this.sliderFrame
+        // }
     },
-    start: function start() {
-        if (this.bulletType == 2) {
-            this.node.getComponent(cc.Sprite).spriteFrame = this.sliderFrame;
-        }
-    },
+    start: function start() {},
     move: function move(direction) {},
     checkWhetherCanMove: function checkWhetherCanMove(direction) {},
     update: function update(dt) {

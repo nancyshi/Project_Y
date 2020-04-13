@@ -5,8 +5,8 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 50,
-      "y": 23,
+      "x": 53,
+      "y": 34,
       "width": 1390,
       "height": 877,
       "layout": {
@@ -103,13 +103,12 @@
         "inspector",
         "cocos-services"
       ]
-    },
-    "window-1585235708521": {}
+    }
   },
   "panels": {
     "preferences": {
-      "x": 415,
-      "y": 177,
+      "x": 343,
+      "y": 133,
       "width": 584,
       "height": 548
     },
@@ -126,8 +125,8 @@
       "height": 548
     },
     "sprite-editor": {
-      "x": 623,
-      "y": 188,
+      "x": 554,
+      "y": 152,
       "width": 500,
       "height": 522
     }

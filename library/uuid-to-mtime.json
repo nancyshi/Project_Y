@@ -455,7 +455,7 @@
     "relativePath": "scenes/levels/level001.fire"
   },
   "2fdf8602-b304-4715-a04b-b7ef795c88cc": {
-    "asset": 1585206318928,
+    "asset": 1586149763154,
     "meta": 1584545062613,
     "relativePath": "prefabs"
   },
@@ -490,12 +490,12 @@
     "relativePath": "prefabs/pathWay.prefab"
   },
   "a80bdc5c-368d-4e3e-a24b-077b7cffd7a2": {
-    "asset": 1584545062606,
+    "asset": 1586510824148,
     "meta": 1584545062605,
     "relativePath": "configs"
   },
   "b6f23097-dd2d-4a84-8b96-9362a33e5504": {
-    "asset": 1584545062644,
+    "asset": 1585638768905,
     "meta": 1584545062642,
     "relativePath": "scripts/libs"
   },
@@ -505,18 +505,18 @@
     "relativePath": "scripts/libs/gestureMgr.js"
   },
   "43168696-5203-4ead-96b4-b6021a4258a7": {
-    "asset": 1584545062638,
+    "asset": 1586510884433,
     "meta": 1584545062619,
     "relativePath": "scenes"
   },
   "a41817d2-9189-4aff-9270-b8b8966ec43d": {
-    "asset": 1585730853835,
-    "meta": 1585730853844,
+    "asset": 1586800722165,
+    "meta": 1586800722173,
     "relativePath": "scenes/mainScene.fire"
   },
   "199f6a42-0ae6-4e8d-8413-28af31226e97": {
-    "asset": 1585648040154,
-    "meta": 1585648040159,
+    "asset": 1586801517673,
+    "meta": 1586801517680,
     "relativePath": "scenes/loginScene.fire"
   },
   "0e6e39dc-0c50-4170-b47b-bb683d97826b": {
@@ -540,7 +540,7 @@
     "relativePath": "images/retry.png"
   },
   "de4a80c2-10a0-4884-9f1d-9849996fb015": {
-    "asset": 1585046376407,
+    "asset": 1586447495017,
     "meta": 1584545062606,
     "relativePath": "images"
   },
@@ -555,7 +555,7 @@
     "relativePath": "images/physicalPower.png"
   },
   "343fed5c-c77c-49cd-88ca-7c8eed015085": {
-    "asset": 1584545062618,
+    "asset": 1585644008493,
     "meta": 1584545062616,
     "relativePath": "resources"
   },
@@ -605,7 +605,7 @@
     "relativePath": "resources/prefabs/retryWaitingNode.prefab"
   },
   "54dea4de-bae5-4072-9847-2e0831964ca0": {
-    "asset": 1584545062618,
+    "asset": 1586501042497,
     "meta": 1584545062618,
     "relativePath": "resources/prefabs"
   },
@@ -714,20 +714,10 @@
     "meta": 1584781212281,
     "relativePath": "images/share.png"
   },
-  "fee2694e-4373-4505-bec5-4763282bcb02": {
-    "asset": 1584545062640,
-    "meta": 1584781212766,
-    "relativePath": "scripts/helper.js"
-  },
   "2d690680-6953-4d14-9dd7-ad59dfdb26fb": {
     "asset": 1585046813880,
     "meta": 1585046813889,
     "relativePath": "scenes/levels/level012.fire"
-  },
-  "2e7eb986-d28f-40f8-8366-c86010e2c9c0": {
-    "asset": 1584545062639,
-    "meta": 1584781212623,
-    "relativePath": "scripts/bulletMgr.js"
   },
   "e4abfe06-ba67-4f6a-8aa8-7832a6ca51e5": {
     "asset": 1585046831230,
@@ -789,16 +779,6 @@
     "meta": 1584781212193,
     "relativePath": "configs/levelConfig.js"
   },
-  "e7e74f29-e9ab-4b76-8d99-d5ef72351f84": {
-    "asset": 1584545062641,
-    "meta": 1584781212896,
-    "relativePath": "scripts/levelMgr.js"
-  },
-  "e39aa81c-ec29-4b73-abf9-4ed31d565441": {
-    "asset": 1584545062640,
-    "meta": 1584781212758,
-    "relativePath": "scripts/gameMgr.js"
-  },
   "658e190e-280f-4823-b10d-7b7cb6f8989f": {
     "asset": 1584545062606,
     "meta": 1584781212194,
@@ -820,7 +800,7 @@
     "relativePath": "images/AchieveIcon.png"
   },
   "2b632432-5555-41e3-bc0a-87cc8e598014": {
-    "asset": 1585033773920,
+    "asset": 1586258286399,
     "meta": 1584936035924,
     "relativePath": "scripts/systems"
   },
@@ -844,109 +824,299 @@
     "meta": 1585046021750,
     "relativePath": "prefabs/rankingUI.prefab"
   },
-  "f2d4d864-856a-4b07-a613-7feda96e032e": {
-    "asset": 1585044901685,
-    "meta": 1585046017082,
-    "relativePath": "scripts/systems/rankingSystem.js"
-  },
   "f276bccf-fcf6-4b34-a430-867d9ffff4ca": {
     "asset": 1585046376406,
     "meta": 1585046376419,
     "relativePath": "images/heart.png"
-  },
-  "26886a99-1b6d-4214-a4a4-808be15121e5": {
-    "asset": 1585213834683,
-    "meta": 1585213835809,
-    "relativePath": "scripts/libs/networkMgr.js"
   },
   "25cd2e93-a67f-446d-9822-62ecbad1a861": {
     "asset": 1585560975505,
     "meta": 1585560975530,
     "relativePath": "images/signIn.png"
   },
-  "94d39c98-5094-4a2c-895a-1bdafb2f938d": {
-    "asset": 1585625446319,
-    "meta": 1585629828736,
-    "relativePath": "scripts/libs/gloableConfig.js"
-  },
-  "02363c4e-7e83-4241-9b3e-f074111fd22b": {
-    "asset": 1584955582396,
-    "meta": 1585644011255,
-    "relativePath": "resources/prefabs/addUI.prefab"
-  },
-  "818e97e5-96a4-4f31-8283-a7982bd971f5": {
-    "asset": 1585648036764,
-    "meta": 1585648036769,
-    "relativePath": "resources/prefabs/ensureNode.prefab"
-  },
   "8b0ac224-3ed1-4849-9d60-c5f0663e8e25": {
     "asset": 1585206325417,
     "meta": 1585644011259,
     "relativePath": "resources/prefabs/notiNode.prefab"
   },
-  "91e8b25a-e3b2-43e9-9920-e03eab3f0601": {
-    "asset": 1585644651200,
-    "meta": 1585644719112,
-    "relativePath": "scripts/loginSceneMgr.js"
-  },
-  "f692ab03-4799-481f-abc8-0effbcae13d3": {
-    "asset": 1585645819049,
-    "meta": 1585645819615,
-    "relativePath": "scripts/libs/resMgr.js"
-  },
-  "10be6bd0-a318-44f6-b91b-5a2261636bbf": {
-    "asset": 1585646930643,
-    "meta": 1585646960802,
-    "relativePath": "scripts/libs/dataMgr.js"
-  },
-  "0aceffd6-a173-46df-b083-bc8be86f24fe": {
-    "asset": 1585647064816,
-    "meta": 1585647120124,
-    "relativePath": "scripts/libs/timerSystemsMgr.js"
-  },
-  "3671a2f7-4b49-4214-be6b-e26f85c46f37": {
-    "asset": 1585649094351,
-    "meta": 1585649098709,
-    "relativePath": "scripts/systems/signInSystem.js"
-  },
   "96611296-5816-4c48-8fb2-a847f8a65d14": {
     "asset": 1585649169766,
     "meta": 1585649171029,
-    "relativePath": "scripts/systems/ensureSystemNodeMgr.js"
+    "relativePath": "scripts/systems/ensureSys_notUse/ensureSystemNodeMgr.js"
   },
   "2cfa2abc-ee3d-406d-a028-9063b10cbacf": {
     "asset": 1585649487367,
     "meta": 1585649599398,
-    "relativePath": "scripts/systems/ensureSystem.js"
-  },
-  "4376150a-85f6-48ad-8601-9a22502ef5e7": {
-    "asset": 1585723928381,
-    "meta": 1585724259711,
-    "relativePath": "scripts/advertisMgr.js"
+    "relativePath": "scripts/systems/ensureSys_notUse/ensureSystem.js"
   },
   "8533ac4e-548d-4e94-920e-385c13f90ce7": {
     "asset": 1585723873558,
     "meta": 1585724259735,
-    "relativePath": "scripts/notificationMgr.js"
+    "relativePath": "scripts/singleInstanceSystems/notificationMgr.js"
   },
-  "2686dc80-311e-4eec-ab07-4f8d0b671ff0": {
-    "asset": 1585729088103,
-    "meta": 1585729111052,
-    "relativePath": "scripts/systems/addHeartSys.js"
+  "1209e5c3-0985-46f0-8970-148693f5dc38": {
+    "asset": 1585811814039,
+    "meta": 1585811814053,
+    "relativePath": "images/mail.png"
   },
-  "0f1aa56d-6737-4b17-ae49-4e928f298fd8": {
-    "asset": 1585730249033,
-    "meta": 1585730250250,
-    "relativePath": "scripts/systems/addPhysicalPowerSys.js"
+  "45826286-b7a8-442e-b167-a3a4124b681d": {
+    "asset": 1586168707247,
+    "meta": 1586168707262,
+    "relativePath": "images/redPoint.png"
+  },
+  "0bc58fd1-c0af-40a4-a19e-a930affc725a": {
+    "asset": 1586252178346,
+    "meta": 1586252178366,
+    "relativePath": "images/mail_unRead.png"
+  },
+  "3c59c23d-711f-44bf-bd29-4bbeb6e8762e": {
+    "asset": 1586252731949,
+    "meta": 1586252731961,
+    "relativePath": "images/mail_readed.png"
+  },
+  "40671e6c-eb72-4319-8cfd-f74bcf6a19c1": {
+    "asset": 1586278645307,
+    "meta": 1586278737292,
+    "relativePath": "images/btn_bg.png"
+  },
+  "4a64f7b2-7d72-476d-937f-451066aab018": {
+    "asset": 1586371265333,
+    "meta": 1586371265772,
+    "relativePath": "configs/mailSysConfig.js"
+  },
+  "93f47106-da8e-4c10-b283-5a544ea857a4": {
+    "asset": 1586447495016,
+    "meta": 1586447518933,
+    "relativePath": "images/btn_bg_gray.png"
+  },
+  "dcd89958-e7d6-41c0-b01e-5de70cda1eef": {
+    "asset": 1586532517666,
+    "meta": 1586532517676,
+    "relativePath": "scenes/levelScene.fire"
+  },
+  "b5555353-2d26-411f-830b-83f5d9775523": {
+    "asset": 1584545062613,
+    "meta": 1586501042501,
+    "relativePath": "resources/prefabs/bullet.prefab"
+  },
+  "83518ed2-141e-4698-a2c3-bd2140c99cd8": {
+    "asset": 1584545062615,
+    "meta": 1586501042501,
+    "relativePath": "resources/prefabs/pathWay.prefab"
+  },
+  "f9a59327-0eec-4f9a-aaa9-d8d77467320e": {
+    "asset": 1584545062616,
+    "meta": 1586501042504,
+    "relativePath": "resources/prefabs/target.prefab"
+  },
+  "105a0610-d243-423f-bb31-6740eef085b6": {
+    "asset": 1584545062616,
+    "meta": 1586501042504,
+    "relativePath": "resources/prefabs/wall.prefab"
+  },
+  "fee2694e-4373-4505-bec5-4763282bcb02": {
+    "asset": 1586504265632,
+    "meta": 1586504309161,
+    "relativePath": "scripts/helper.js"
+  },
+  "6cbb96ee-7eb9-4126-a948-bdfcdf2e5d87": {
+    "asset": 1586510824147,
+    "meta": 1586510829107,
+    "relativePath": "configs/levelSceneConfig.js"
+  },
+  "e39aa81c-ec29-4b73-abf9-4ed31d565441": {
+    "asset": 1586598846765,
+    "meta": 1586598904433,
+    "relativePath": "scripts/singleInstanceSystems/gameMgr.js"
+  },
+  "2f2e2f75-d189-406a-aeec-807591d22962": {
+    "asset": 1586602956403,
+    "meta": 1586602956409,
+    "relativePath": "resources/prefabs/welfaryUI.prefab"
+  },
+  "4376150a-85f6-48ad-8601-9a22502ef5e7": {
+    "asset": 1586602336754,
+    "meta": 1586602953468,
+    "relativePath": "scripts/singleInstanceSystems/advertisMgr.js"
+  },
+  "b76ba9fd-bf20-4023-a1e3-60d264d681c7": {
+    "asset": 1586605024972,
+    "meta": 1586605062950,
+    "relativePath": "scripts/systems/welfarySys/welfarySysMgr.js"
+  },
+  "b52415af-9a59-427a-9a97-7ffa92bb5bbe": {
+    "asset": 1586621025163,
+    "meta": 1586621025168,
+    "relativePath": "resources/prefabs/signInSysUI.prefab"
+  },
+  "51917a4c-f91d-4383-94c5-9b40c31c9de6": {
+    "asset": 1586617656424,
+    "meta": 1586617949112,
+    "relativePath": "configs/signInSysConfig.js"
+  },
+  "0aceffd6-a173-46df-b083-bc8be86f24fe": {
+    "asset": 1586621906537,
+    "meta": 1586621910006,
+    "relativePath": "scripts/libs/timerSystemsMgr.js"
+  },
+  "2e7eb986-d28f-40f8-8366-c86010e2c9c0": {
+    "asset": 1586628197123,
+    "meta": 1586628198228,
+    "relativePath": "scripts/bulletMgr.js"
+  },
+  "e7e74f29-e9ab-4b76-8d99-d5ef72351f84": {
+    "asset": 1586628075431,
+    "meta": 1586628198229,
+    "relativePath": "scripts/levelMgr.js"
+  },
+  "a6895c72-68b4-4e39-92b5-b353472c9788": {
+    "asset": 1586679575573,
+    "meta": 1586679671781,
+    "relativePath": "scripts/systems/signInSys/signInSysMgr.js"
+  },
+  "0fd3880b-f54b-4c9f-88d9-804d2e4807c5": {
+    "asset": 1586680101100,
+    "meta": 1586680101101,
+    "relativePath": "scripts/systems/mailSys"
+  },
+  "21ee0e37-f9dd-41dc-846f-8588ef54bf1e": {
+    "asset": 1586680335650,
+    "meta": 1586680325029,
+    "relativePath": "scripts/systems/ensureSys_notUse"
+  },
+  "1756b5e0-8be1-40e3-a02c-d947cbdb8dbe": {
+    "asset": 1586680478325,
+    "meta": 1586680478325,
+    "relativePath": "scripts/systems/addPropertyNumSys"
+  },
+  "bb0d7c29-9d37-4a8c-a8cf-749ac5adbb53": {
+    "asset": 1586683699202,
+    "meta": 1586683699207,
+    "relativePath": "resources/prefabs/addPropertyNumUI.prefab"
+  },
+  "45f0c2cc-7e96-4435-86c5-f9cac8ed3f4d": {
+    "asset": 1586681202952,
+    "meta": 1586681711139,
+    "relativePath": "configs/addPropertySysConfig.js"
+  },
+  "5666f073-9437-409c-af06-4994bff18d5e": {
+    "asset": 1586684533670,
+    "meta": 1586684534759,
+    "relativePath": "scripts/systems/addPropertyNumSys/addPropertyNumSysMgr.js"
+  },
+  "7ece8d1d-2946-4fa0-9a0f-eade23e852f2": {
+    "asset": 1586684562109,
+    "meta": 1586684562110,
+    "relativePath": "scripts/systems/signInSys"
+  },
+  "18b2cffb-5d56-4a41-8f62-a3bb596356b3": {
+    "asset": 1586684581713,
+    "meta": 1586684581714,
+    "relativePath": "scripts/systems/welfarySys"
+  },
+  "7e427204-1ac4-481e-8145-87c2121c337e": {
+    "asset": 1586167273919,
+    "meta": 1586701409345,
+    "relativePath": "prefabs/selectedTagEffect.prefab"
+  },
+  "aa35fc90-5705-4714-a8bc-d0fa7dc22c96": {
+    "asset": 1586254004067,
+    "meta": 1586701833720,
+    "relativePath": "prefabs/mailSectionNode.prefab"
+  },
+  "94d39c98-5094-4a2c-895a-1bdafb2f938d": {
+    "asset": 1586770826185,
+    "meta": 1586771624680,
+    "relativePath": "scripts/libs/gloableConfig.js"
+  },
+  "4863f282-dcf6-49af-8f40-cf11ee71a9f8": {
+    "asset": 1586795183902,
+    "meta": 1586795183907,
+    "relativePath": "resources/prefabs/mailSysUI.prefab"
+  },
+  "45ed2375-5b9c-49a3-b3b5-bf1cbb89e6e4": {
+    "asset": 1586779117698,
+    "meta": 1586779117703,
+    "relativePath": "prefabs/mailOptionNode.prefab"
+  },
+  "0bc12ca3-70d7-48da-b4ce-7844b5104df9": {
+    "asset": 1586779131727,
+    "meta": 1586779635106,
+    "relativePath": "prefabs/mailNode.prefab"
+  },
+  "16bb9c9e-e940-4079-bba5-d45edc05bc98": {
+    "asset": 1586780619868,
+    "meta": 1586780628100,
+    "relativePath": "scripts/systems/mailSys/mailSysMailMgr.js"
+  },
+  "b8af6c8a-c702-4d2e-9b96-132239b7cfbf": {
+    "asset": 1586793990863,
+    "meta": 1586794023428,
+    "relativePath": "configs/mailConfig.js"
+  },
+  "26886a99-1b6d-4214-a4a4-808be15121e5": {
+    "asset": 1586794394876,
+    "meta": 1586794395860,
+    "relativePath": "scripts/libs/networkMgr.js"
+  },
+  "f15a5438-23a8-46a4-82ad-b5ea4188c6cb": {
+    "asset": 1586796052165,
+    "meta": 1586796054200,
+    "relativePath": "scripts/systems/systemsMgr.js"
+  },
+  "a0a51c99-aac8-4e7c-8007-a5b3d8489094": {
+    "asset": 1586796103691,
+    "meta": 1586796103692,
+    "relativePath": "scripts/singleInstanceSystems"
+  },
+  "70eae257-e9c1-4570-8790-9e2b6abc3cbc": {
+    "asset": 1586797812263,
+    "meta": 1586797812264,
+    "relativePath": "scripts/components"
+  },
+  "ed1204f9-e60e-4ad0-9e77-2e2a7e6a029e": {
+    "asset": 1586799313444,
+    "meta": 1586799313448,
+    "relativePath": "prefabs/redPoint.prefab"
+  },
+  "10be6bd0-a318-44f6-b91b-5a2261636bbf": {
+    "asset": 1586799793231,
+    "meta": 1586799821073,
+    "relativePath": "scripts/libs/dataMgr.js"
+  },
+  "e643b729-b4eb-4cad-8f6b-0eee9908a385": {
+    "asset": 1586800664553,
+    "meta": 1586800664559,
+    "relativePath": "prefabs/mailTagNode.prefab"
+  },
+  "91e8b25a-e3b2-43e9-9920-e03eab3f0601": {
+    "asset": 1586799942353,
+    "meta": 1586799944114,
+    "relativePath": "scripts/loginSceneMgr.js"
+  },
+  "46527f16-776b-4e26-b14a-258831f9beac": {
+    "asset": 1586800566667,
+    "meta": 1586800567706,
+    "relativePath": "scripts/systems/mailSys/mailSysMgr.js"
+  },
+  "0e647fad-c417-4a0b-b47f-8e10de80bc80": {
+    "asset": 1586800908133,
+    "meta": 1586800909189,
+    "relativePath": "scripts/components/redPointMgr.js"
+  },
+  "08ca8f89-7715-4a0b-a36b-9dce6a30f111": {
+    "asset": 1586801042329,
+    "meta": 1586801045688,
+    "relativePath": "scripts/singleInstanceSystems/globalRedPointMgr.js"
   },
   "2d432a01-7573-4b5a-9b5a-c6a54ae07710": {
-    "asset": 1585730705086,
-    "meta": 1585730706302,
+    "asset": 1586801102201,
+    "meta": 1586801104129,
     "relativePath": "scripts/mainSceneMgr.js"
   },
-  "12994092-f8f3-410f-a90a-04be130fb671": {
-    "asset": 1585731491904,
-    "meta": 1585731492380,
-    "relativePath": "scripts/systems/welfarySys.js"
+  "f692ab03-4799-481f-abc8-0effbcae13d3": {
+    "asset": 1586801313561,
+    "meta": 1586801315620,
+    "relativePath": "scripts/libs/resMgr.js"
   }
 }

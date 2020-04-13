@@ -56,9 +56,26 @@ var ResMgr = cc.Class({
 
     loadReses(complet = function(){}) {
         var resObj = {
-            ensureSysPrefab: "prefabs/ensureNode",
-            addSysPrefab: "prefabs/addUI",
-            notiSysPrefab: "prefabs/notiNode"
+            // ensureSysPrefab: "prefabs/ensureNode",
+            // addSysPrefab: "prefabs/addUI",
+            notiSysPrefab: "prefabs/notiNode",
+            // mailSysTagPrefab: "prefabs/mailTagNode",
+            // mailSysMailSectionNodePrefab: "prefabs/mailSectionNode",
+            // mailSysSelectedTagEffectPrefab: "prefabs/selectedTagEffect",
+            // mailUIPrefab: "prefabs/mailUI",
+            // mailOptionPrefab: "prefabs/mailOptionNode",
+            // mailSysMailPrefab: "prefabs/mailNode",
+            // redPointPrefab: "prefabs/redPoint",
+            wallPrefab: "prefabs/wall",
+            bulletPrefab: "prefabs/bullet",
+            targetPrefab: "prefabs/target",
+            pathWayPrefab: "prefabs/pathWay",
+
+
+            welfarySysPrefab: "prefabs/welfaryUI",
+            signInSysPrefab: "prefabs/signInSysUI",
+            addPropertyNumSysPrefab: "prefabs/addPropertyNumUI",
+            mailSysPrefab: "prefabs/mailSysUI"
         }
 
         var len = Object.keys(resObj).length

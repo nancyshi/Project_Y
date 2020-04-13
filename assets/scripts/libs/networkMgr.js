@@ -107,9 +107,12 @@ var Networkmgr = cc.Class({
         }
     },
 
-    sendMessageByMsgObj(msgObj) {
+    sendMessageByMsgObj(msgObj, givenTimeOut = 10000) {
         var url = "http://" + msgObj.ip + ":" + msgObj.port.toString() + "/" + msgObj.suffix
         var xhr = new XMLHttpRequest()
+        if (givenTimeOut + 5000 > 10000) {
+            xhr.timeout = givenTimeOut + 5000
+        }
         var self = this
         xhr.onreadystatechange = function() {
 

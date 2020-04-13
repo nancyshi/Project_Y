@@ -40,8 +40,7 @@ var TimerSystemsMgr = cc.Class({
             set: function set(value) {
                 this._signInSysTimer = value;
                 if (value <= 0) {
-                    var signInSystem = require("signInSystem");
-                    signInSystem.onTimerReach();
+                    this.onTimerReach("signInSys");
                 }
             }
         },
@@ -71,6 +70,32 @@ var TimerSystemsMgr = cc.Class({
     },
     stop: function stop() {
         this.unschedule(this.timerUpdate, this);
+    },
+    onTimerReach: function onTimerReach(givenName) {
+        switch (givenName) {
+            case "signInSys":
+                var self = this;
+                var networkMgr = require("networkMgr");
+                var msgObj = networkMgr.makeMessageObj("signInModule", "refreshMessageType");
+                msgObj.message.playerId = require("dataMgr").playerData.id;
+                msgObj.successCallBack = function (xhr) {
+                    var response = xhr.responseText;
+                    response = JSON.parse(response);
+                    if (response.type == "success") {
+                        var signInRefreshDelta = response.signInRefreshDelta;
+                        require("dataMgr").playerData.signInRefreshDelta = signInRefreshDelta;
+                        self.signInSysTimer = signInRefreshDelta;
+                        require("dataMgr").playerData.signInStatus = 1;
+                        if (require("systemsMgr").signInSys.opendNode != null) {
+                            var signInSysMgr = require("systemsMgr").signInSys.opendNode.getComponent("signInSysMgr");
+                            signInSysMgr.setupUI();
+                        }
+                    }
+                };
+
+                networkMgr.sendMessageByMsgObj(msgObj);
+                break;
+        }
     }
 });
 

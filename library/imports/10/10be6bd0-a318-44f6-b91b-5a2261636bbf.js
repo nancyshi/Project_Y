@@ -4,6 +4,8 @@ cc._RF.push(module, '10be6vQoxhE9rkbWiJhY2u/', 'dataMgr');
 
 "use strict";
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 // Learn cc.Class:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
 //  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
@@ -24,12 +26,61 @@ var dataMgr = cc.Class({
                 return this._playerData;
             },
             set: function set(value) {
-                this._playerData = value;
+                this._playerData = new Proxy(value, this.dataMonitoredProxyHandler);
                 this.onPlayerDataUpdated();
-                if (this.delegate != null) {
-                    this.delegate.onPlayerDataUpdated();
-                }
                 //do something else
+            }
+        },
+
+        dataMonitoredProxyHandler: {
+            get: function get() {
+                if (this._dataMonitoredProxyHandler == null) {
+                    var handler = {
+                        get: function get(target, key) {
+                            if (_typeof(target[key]) === "object") {
+                                return new Proxy(target[key], handler);
+                            }
+                            return target[key];
+                        },
+                        set: function set(target, key, value) {
+                            target[key] = value;
+                            var globalRedPointMgr = require("globalRedPointMgr");
+                            globalRedPointMgr.setupRedPoints();
+                            var systems = require("systemsMgr").systems;
+                            require("systemsMgr").systemsGloableDataMonitored(key, value);
+                            for (var k in systems) {
+                                var oneSys = systems[k];
+                                if (oneSys.opendNode != null) {
+                                    var mgr = oneSys.opendNode.getComponent(oneSys.mgrName);
+                                    if (mgr != null && typeof mgr.dataMonitored === "function") {
+                                        mgr.dataMonitored(key, value);
+                                    }
+                                }
+                            }
+
+                            var currentScene = cc.director.getScene();
+                            var mgrName = null;
+                            switch (currentScene.name) {
+                                case "mainScene":
+                                    mgrName = "mainSceneMgr";
+                                    break;
+                                case "levelScene":
+                                    mgrName = "levelMgr";
+                                    break;
+                            }
+                            if (mgrName != null) {
+                                var mgr = currentScene.getChildByName("Canvas").getComponent(mgrName);
+                                if (mgr != null && typeof mgr.dataMonitored === "function") {
+                                    mgr.dataMonitored(key, value);
+                                }
+                            }
+                            return true;
+                        }
+                    };
+                    this._dataMonitoredProxyHandler = handler;
+                }
+
+                return this._dataMonitoredProxyHandler;
             }
         },
 
@@ -59,6 +110,10 @@ var dataMgr = cc.Class({
         var timerSystemsMgr = require("timerSystemsMgr");
         timerSystemsMgr.initSetup();
         timerSystemsMgr.lunch();
+        if (cc.director.getScene().name == "loginScene") {
+            var loginSceneMgr = cc.director.getScene().getChildByName("Canvas").getComponent("loginSceneMgr");
+            loginSceneMgr.onPlayerDataUpdated();
+        }
     },
     commitPlayerDataToServer: function commitPlayerDataToServer(dataForCommit, successCallBack) {
         var networkMgr = require("networkMgr");

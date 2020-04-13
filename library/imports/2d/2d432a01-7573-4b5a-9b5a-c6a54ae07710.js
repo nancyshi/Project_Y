@@ -196,36 +196,56 @@ cc.Class({
         this.currentLevelColor = cc.color(188, 36, 36);
         this.challengeButton = this.node.getChildByName("challengeButton");
         this.playerName = this.playerData.name;
-        // this.maxPhysicalPower = this.playerData.maxPhysicalPower
         this.physicalPower = this.playerData.physicalPower;
-        // this.maxHeart = this.playerData.maxHeart
         this.heart = this.playerData.heart;
 
         require("networkMgr").delegate = this;
-        require("dataMgr").delegate = this;
 
         var signInButton = this.node.getChildByName("signInButton");
         signInButton.on("click", function () {
-            require("signInSystem").show();
+            require("systemsMgr").showSystem("signInSys");
         });
 
         var welfaryButton = this.node.getChildByName("welfaryButton");
-        welfaryButton.on("click", function () {
-            require("welfarySys").show();
-        });
-        require("welfarySys").enterButtonNode = welfaryButton;
-        cc.tween(welfaryButton).repeatForever(cc.tween().to(0.3, { angle: -45 }).to(0.3, { angle: 0 }).to(0.3, { angle: 45 }).to(0.3, { angle: 0 }).delay(1)).start();
-        require("welfarySys").setupUi();
+        if (require("dataMgr").playerData.initAdWatchedFlag == 1) {
+            welfaryButton.active = false;
+        } else {
+            welfaryButton.on("click", function () {
+                require("systemsMgr").showSystem("welfarySys");
+            });
+            cc.tween(welfaryButton).repeatForever(cc.tween().to(0.3, { angle: -45 }).to(0.3, { angle: 0 }).to(0.3, { angle: 45 }).to(0.3, { angle: 0 }).delay(1)).start();
+        }
 
         var addHeartButton = this.node.getChildByName("addButton_heart");
         addHeartButton.on("click", function () {
-            require("addHeartSys").show();
+            require("systemsMgr").showSystem("addPropertyNumSys", 2);
         });
 
         var addPhysicalPowerButton = this.node.getChildByName("addButton_phy");
         addPhysicalPowerButton.on("click", function () {
-            require("addPhysicalPowerSys").show();
+            require("systemsMgr").showSystem("addPropertyNumSys", 1);
         });
+
+        var mailButton = this.node.getChildByName("mailButton");
+        mailButton.on("click", function () {
+            require("systemsMgr").showSystem("mailSys");
+        });
+        mailButton.getComponent("redPointMgr").redPointShowCondition = function () {
+            var mails = require("dataMgr").playerData.mails;
+            var unReadNum = 0;
+            for (var key in mails) {
+                var oneMail = mails[key];
+                if (oneMail.status == 0) {
+                    unReadNum += 1;
+                }
+            }
+            if (unReadNum > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        mailButton.getComponent("redPointMgr").setupRedPoint();
 
         this.setupSection(this.playerData.currentSection);
     },
@@ -381,13 +401,11 @@ cc.Class({
         var successCallBack = function successCallBack() {
             if (self.physicalPowerForChallengeCost != null) {
                 self.playerData.physicalPower = temp;
-                self.physicalPower = temp;
                 self.playerData.physicalPowerCostedFlag = flagValue;
             }
 
             if (self.heartForChallengeCost != null) {
                 self.playerData.heart = temp;
-                self.heart = temp;
             }
 
             gameMgr.enterLevelScene(self.selectedLevel);
@@ -398,9 +416,12 @@ cc.Class({
     onAllRetryFailed: function onAllRetryFailed() {
         this.challengeButton.getComponent(cc.Button).interactable = true;
     },
-    onRefresh: function onRefresh() {
-        this.heart = this.playerData.heart;
-        this.physicalPower = this.playerData.physicalPower;
+    dataMonitored: function dataMonitored(key, value) {
+        if (key == "physicalPower") {
+            this.physicalPower = value;
+        } else if (key == "heart") {
+            this.heart = value;
+        }
     }
 });
 

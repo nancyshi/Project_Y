@@ -357,7 +357,7 @@ var Helper = cc.Class({
             temp = 0
         }
         return temp
-    }
+    },
     
 });
 

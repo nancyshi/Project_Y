@@ -7,7 +7,7 @@
     "scene": {
       "__id__": 1
     },
-    "asyncLoadAssets": false
+    "asyncLoadAssets": true
   },
   {
     "__type__": "cc.Scene",

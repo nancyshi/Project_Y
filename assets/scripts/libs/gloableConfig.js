@@ -64,6 +64,36 @@ var GloableConfig = cc.Class({
                         refreshMessageType: {
                             playerId: 100000001,
                         }
+                    },
+
+                    mailModule: {
+                        suffix: "mail",
+                        readMailMessageType: {
+                            playerId: 100000001,
+                            mailId: 1001,
+                            requestType: "readMail"
+                        },
+                        sendMailMessageType: {
+                            playerId: 100000001,
+                            mailId: 1001,
+                            tag: "mainLine",
+                            requestType: "sendMail",
+                            delay: 0
+                        },
+                        reachConditionMessageType: {
+                            playerId: 1001,
+                            mailId: 1001,   
+                            tag: "mainLine",
+                            selectedOptionIndex: 0,
+                            requestType: "reachCondition"
+                        }
+                    },
+
+                    helperModule: {
+                        suffix: "helper",
+                        generateLevelConfigFileMessageType: {
+                            data: ""
+                        }
                     }
                 }
             }

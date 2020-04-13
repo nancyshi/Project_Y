@@ -42,7 +42,6 @@ cc.Class({
 
     start () {
         this.dataMgr = require("dataMgr")
-        this.dataMgr.delegate = this
         this.loginMgr = require("loginMgr")
         this.networkMgr = require("networkMgr")
         this.networkMgr.delegate = this

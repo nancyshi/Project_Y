@@ -50,7 +50,6 @@ cc.Class({
         linePrefab: cc.Prefab,
         bulletPrefab: cc.Prefab,
 
-
         playerData: null,
         retryButton: cc.Node,
         heartForRetryCost: {
@@ -105,6 +104,19 @@ cc.Class({
                 }
             }
         },
+        currentStepNum: {
+            get() {
+                if (this._currentStepNum == null) {
+                    this._currentStepNum = 0
+                }
+                return this._currentStepNum
+            },
+            set(value) {
+                this._currentStepNum = value
+                var currentStepNumLabel = this.node.getChildByName("uiNode").getChildByName("currentStepNumLabel")
+                currentStepNumLabel.getComponent(cc.Label).string = "当前步数：" + value.toString()
+            }
+        },
         level: null
         
     },
@@ -115,6 +127,7 @@ cc.Class({
         var Helper = require("helper")
         this.helper = new Helper()
         //this.level = 1
+        this.setupNodesByConfig()
     },
 
     start () {
@@ -136,7 +149,6 @@ cc.Class({
     
         this.heart = this.playerData.heart
         require("networkMgr").delegate = this
-        require("dataMgr").delegate = this
         var wallsNode = cc.find("Canvas/walls")
         this.walls = wallsNode.children
         this.targetsNum = cc.find("Canvas/targets").children.length
@@ -159,6 +171,14 @@ cc.Class({
         graphic.close()
         graphic.stroke()
         graphic.fill()
+
+        var minStepNumLabel = this.node.getChildByName("uiNode").getChildByName("minStepNumLabel")
+        var minStepKey = "minStep_level_" + this.level.toString()
+        var minStepNum = require("dataMgr").playerData.minSteps[minStepKey]
+        if (minStepNum == null || minStepNum == undefined) {
+            minStepNum = "无"
+        }
+        minStepNumLabel.getComponent(cc.Label).string = "最小步数：" + minStepNum.toString()
     },
 
     // update (dt) {},
@@ -263,7 +283,7 @@ cc.Class({
             }
             maxTryTime -= 1
         }
-
+        var willAddStepNum = false
         for (var index in shadows) {
             var shadowNode = shadows[index]
             var originNode = shadowNode.originNode
@@ -291,6 +311,12 @@ cc.Class({
             if (this.isMoved != true) {
                 this.isMoved = true
             }
+            if (willAddStepNum == false) {
+                willAddStepNum = true
+            }
+        }
+        if (willAddStepNum == true) {
+            this.currentStepNum += 1
         }
     },
 
@@ -330,11 +356,19 @@ cc.Class({
                 physicalPowerCostedFlag: 0    
             }
         }
-        
+        var minStepKey = "minStep_level_" + this.level.toString()
+        var minStepNum = require("dataMgr").playerData.minSteps[minStepKey]
+        if (minStepNum == null || minStepNum == undefined || this.currentStepNum < minStepNum) {
+            commitBody.minSteps = {}
+            commitBody.minSteps[minStepKey] = this.currentStepNum
+        }
         var self = this
         var successCallBack = function(){
             if (newSection != null) {
                 self.playerData.currentSection = newSection
+            }
+            if (commitBody.minSteps != null && commitBody.minSteps != undefined) {
+                require("dataMgr").playerData.minSteps[minStepKey] = self.currentStepNum
             }
             self.playerData.currentLevel = newLevel
             self.playerData.physicalPowerCostedFlag = 0
@@ -538,7 +572,7 @@ cc.Class({
         var self = this
         var successCallBack = function() {
             self.playerData.heart = temp
-            self.heart = temp
+            // self.heart = temp
             gameMgr.enterLevelScene(self.level)
         }
         this.retryButton.getComponent(cc.Button).interactable = false
@@ -553,8 +587,112 @@ cc.Class({
         require("gameMgr").animatedToScene("mainScene")
     },
 
-    onRefresh() {
-        this.heart = this.playerData.heart
+    setupNodesByConfig() {
+        var wallPrefab = require("resMgr").reses["wallPrefab"]
+        var bulletPrefab = require("resMgr").reses["bulletPrefab"]
+        var targetPrefab = require("resMgr").reses["targetPrefab"]
+        var pathWayPrefab = require("resMgr").reses["pathWayPrefab"]
+        var levelSceneConfig = require("levelSceneConfig")[this.level]
+
+        this._setupFillNodes(levelSceneConfig)
+        this._setupWalls(levelSceneConfig,wallPrefab)
+        this._setupTargets(levelSceneConfig,targetPrefab)
+        this._setupPathWaysNode(levelSceneConfig,pathWayPrefab)
+        this._setupBullets(levelSceneConfig,bulletPrefab)
+    },
+    _setupNodePropertyByConfig(givenNode, givenConfig) {
+        for (var key in givenConfig) {
+            givenNode[key] = givenConfig[key]
+        }
+    },
+    _setupFillNodes(levelSceneConfig) {
+        var fillNodesConfig = levelSceneConfig.fillNodes
+        var fillNodes = cc.find("Canvas/fillNodes")
+        for(var index in fillNodesConfig) {
+            var oneNodeConfig = fillNodesConfig[index]
+            var oneNode = new cc.Node()
+            this._setupNodePropertyByConfig(oneNode,oneNodeConfig)
+            fillNodes.addChild(oneNode)
+        }
+    },
+
+    _setupWalls(levelSceneConfig,wallPrefab) {
+        var wallsConfig = levelSceneConfig.walls
+        var walls = cc.find("Canvas/walls")
+        for(var index in wallsConfig) {
+            var oneWallConfig = wallsConfig[index]
+            var oneWallNode = cc.instantiate(wallPrefab)
+            this._setupNodePropertyByConfig(oneWallNode,oneWallConfig)
+            walls.addChild(oneWallNode)
+        }
+    },
+
+    _setupTargets(levelSceneConfig, targetPrefab) {
+        var targetsConfig = levelSceneConfig.targets
+        var targets = cc.find("Canvas/targets") 
+        for (var index in targetsConfig) {
+            var oneTargetConfig = targetsConfig[index]
+            var oneTargetNode = cc.instantiate(targetPrefab)
+            this._setupNodePropertyByConfig(oneTargetNode,oneTargetConfig)
+            targets.addChild(oneTargetNode)
+        }
+    },
+    
+    _setupPathWaysNode(levelSceneConfig,pathWayPrefab) {
+        var pathWaysConfig = levelSceneConfig.pathWaysNode
+        var pathWaysNode = cc.find("Canvas/pathWaysNode")
+        for (var index in pathWaysConfig) {
+            var onePathWayConfig = pathWaysConfig[index]
+            var onePathWayNode = new cc.Node(onePathWayConfig.name)
+            for (var index in onePathWayConfig.children){
+                var oneChildConfig = onePathWayConfig.children[index]
+                var oneChildNode = cc.instantiate(pathWayPrefab)
+                this._setupNodePropertyByConfig(oneChildNode,oneChildConfig)
+                onePathWayNode.addChild(oneChildNode)
+            }
+            pathWaysNode.addChild(onePathWayNode)
+        }
+    },
+
+    _setupBullets(levelSceneConfig, bulletPrefab) {
+        var bulletsConfig = levelSceneConfig.bullets
+        var bullets = cc.find("Canvas/bullets")
+        for (var index in bulletsConfig) {
+            var oneBulletConfig = bulletsConfig[index]
+            var oneBulletNode = cc.instantiate(bulletPrefab)
+            
+            var basicConfig = oneBulletConfig.basic
+            //this._setupNodePropertyByConfig(oneBulletNode,basicConfig)
+            var mgrConfig = oneBulletConfig.mgr
+            var bulletMgr = oneBulletNode.getComponent("bulletMgr")
+            bulletMgr.bulletType = mgrConfig.bulletType
+            this._setupNodePropertyByConfig(oneBulletNode,basicConfig)
+            if (bulletMgr.bulletType == 2) {
+                if (mgrConfig.pathWaysNodeName != "" && mgrConfig.pathWaysNodeName != null) {
+                    var pathWaysNodePath = "Canvas/pathWaysNode/" + mgrConfig.pathWaysNodeName
+                    var pathWaysNode = cc.find(pathWaysNodePath)
+                    bulletMgr.pathWaysNode = pathWaysNode
+                }
+            }
+
+            bullets.addChild(oneBulletNode)
+        }
+    },
+
+
+    dataMonitored(key,value) {
+        if (key.indexOf("minStep_level_") != -1) {
+            //typically one key is "minStep_level_1"
+            var levelId = key.slice(14)
+            if (parseInt(levelId) == parseInt(this.level)) {
+                var minStepNumLabel = this.node.getChildByName("uiNode").getChildByName("minStepNumLabel")
+                minStepNumLabel.getComponent(cc.Label).string = "最小步数：" + value.toString()
+            }
+        }
+
+        else if (key == "heart") {
+            this.heart = value
+        }
     }
 
 });

@@ -18,12 +18,61 @@ var dataMgr = cc.Class({
                 return this._playerData
             },
             set(value) {
-                this._playerData = value
+                this._playerData = new Proxy(value,this.dataMonitoredProxyHandler)
                 this.onPlayerDataUpdated()
-                if (this.delegate != null) {
-                    this.delegate.onPlayerDataUpdated()
-                }
                 //do something else
+            }
+        },
+
+        dataMonitoredProxyHandler: {
+            get() {
+                if (this._dataMonitoredProxyHandler == null) {
+                    var handler = {
+                        get(target, key) {
+                            if (typeof target[key] === "object") {
+                                return new Proxy(target[key],handler)
+                            }
+                            return target[key]
+                        },
+                        set(target, key, value) {
+                            target[key] = value
+                            var globalRedPointMgr = require("globalRedPointMgr")
+                            globalRedPointMgr.setupRedPoints()
+                            var systems = require("systemsMgr").systems
+                            require("systemsMgr").systemsGloableDataMonitored(key,value)
+                            for (var k in systems) {
+                                var oneSys = systems[k]
+                                if (oneSys.opendNode != null) {
+                                    var mgr = oneSys.opendNode.getComponent(oneSys.mgrName)
+                                    if (mgr != null && typeof mgr.dataMonitored === "function") {
+                                        mgr.dataMonitored(key,value)
+                                    }
+                                }
+                            }
+
+                            var currentScene = cc.director.getScene()
+                            var mgrName = null
+                            switch(currentScene.name) {
+                                case "mainScene":
+                                    mgrName = "mainSceneMgr"
+                                    break
+                                case "levelScene":
+                                    mgrName = "levelMgr"
+                                    break
+                            }
+                            if (mgrName != null) {
+                                var mgr = currentScene.getChildByName("Canvas").getComponent(mgrName)
+                                if (mgr != null && typeof mgr.dataMonitored === "function") {
+                                    mgr.dataMonitored(key,value)
+                                }
+                            }
+                            return true
+                        }
+                    }
+                    this._dataMonitoredProxyHandler = handler
+                }
+
+                return this._dataMonitoredProxyHandler
             }
         },
         
@@ -54,6 +103,10 @@ var dataMgr = cc.Class({
         var timerSystemsMgr = require("timerSystemsMgr")
         timerSystemsMgr.initSetup()
         timerSystemsMgr.lunch()
+        if (cc.director.getScene().name == "loginScene") {
+            var loginSceneMgr = cc.director.getScene().getChildByName("Canvas").getComponent("loginSceneMgr")
+            loginSceneMgr.onPlayerDataUpdated()
+        }
     },
 
     commitPlayerDataToServer(dataForCommit, successCallBack) {
