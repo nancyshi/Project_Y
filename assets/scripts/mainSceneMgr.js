@@ -261,7 +261,6 @@ cc.Class({
                 return false
             }
         }
-        mailButton.getComponent("redPointMgr").setupRedPoint()
 
         this.setupSection(this.playerData.currentSection)
     },
