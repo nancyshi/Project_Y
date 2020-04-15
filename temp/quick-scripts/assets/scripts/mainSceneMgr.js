@@ -205,6 +205,17 @@ cc.Class({
         signInButton.on("click", function () {
             require("systemsMgr").showSystem("signInSys");
         });
+        signInButton.getComponent("redPointMgr").redPointShowCondition = function () {
+            var signInStatus = require("dataMgr").playerData.signInStatus;
+            switch (signInStatus) {
+                case 1:
+                    return true;
+                case 2:
+                    return true;
+                default:
+                    return false;
+            }
+        };
 
         var welfaryButton = this.node.getChildByName("welfaryButton");
         if (require("dataMgr").playerData.initAdWatchedFlag == 1) {
@@ -245,7 +256,6 @@ cc.Class({
                 return false;
             }
         };
-        mailButton.getComponent("redPointMgr").setupRedPoint();
 
         this.setupSection(this.playerData.currentSection);
     },

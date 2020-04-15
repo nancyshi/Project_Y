@@ -53,7 +53,17 @@ var Networkmgr = cc.Class({
             }
         },
 
-        retryWaitingNode: null
+        retryWaitingNode: null,
+
+        longConnectXhr: {
+            get: function get() {
+                if (this._longConnectXhr == null) {
+                    this._longConnectXhr = new XMLHttpRequest();
+                    //this._longConnectXhr.timeout = 100000000
+                }
+                return this._longConnectXhr;
+            }
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -110,12 +120,17 @@ var Networkmgr = cc.Class({
         }
     },
     sendMessageByMsgObj: function sendMessageByMsgObj(msgObj) {
-        var givenTimeOut = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10000;
+        var useLongConnectXhr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
+        if (useLongConnectXhr == true) {
+            cc.log("start heart beat");
+        }
         var url = "http://" + msgObj.ip + ":" + msgObj.port.toString() + "/" + msgObj.suffix;
-        var xhr = new XMLHttpRequest();
-        if (givenTimeOut + 5000 > 10000) {
-            xhr.timeout = givenTimeOut + 5000;
+        var xhr = null;
+        if (useLongConnectXhr == false) {
+            xhr = new XMLHttpRequest();
+        } else {
+            xhr = this.longConnectXhr;
         }
         var self = this;
         xhr.onreadystatechange = function () {
@@ -163,7 +178,9 @@ var Networkmgr = cc.Class({
                 }
             }
         };
-        xhr.open("POST", url);
+        if (xhr.readyState == 0) {
+            xhr.open("POST", url);
+        }
         xhr.send(msgForSend);
     },
     onAllRetryFailed: function onAllRetryFailed() {
@@ -173,6 +190,36 @@ var Networkmgr = cc.Class({
         if (this.delegate != null) {
             this.delegate.onAllRetryFailed();
         }
+    },
+    startHeartBeat: function startHeartBeat() {
+        var messageObj = this.makeMessageObj("longConnectModule", "heartBeatMessageType");
+        messageObj.message.playerId = require("dataMgr").playerData.id;
+        messageObj.successCallBack = function (xhr) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response.type == "message") {
+                var messages = response.messages;
+                for (var index in messages) {
+                    var oneMessage = messages[index];
+                    if (oneMessage.type == "mailSysSendMail") {
+                        var mailId = oneMessage.mailId;
+                        var timeStamp = oneMessage.timeStamp;
+                        var tag = oneMessage.tag;
+                        var mail = {
+                            "status": 0,
+                            "tag": tag,
+                            "timeStamp": timeStamp,
+                            "selectedOptionIndex": -1
+                        };
+                        require("dataMgr").playerData.mails[mailId] = mail;
+                    }
+                }
+            }
+        };
+        //this.sendMessageByMsgObj(messageObj,true)
+        this.schedule(function () {
+            this.sendMessageByMsgObj(messageObj);
+        }, 10);
     }
 });
 

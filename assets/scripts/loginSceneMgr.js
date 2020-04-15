@@ -78,6 +78,7 @@ cc.Class({
             .delay(this.changeSceneAnimationTime)
             .call(function(){
                 require("resMgr").loadReses(function(){
+                    require("networkMgr").startHeartBeat()
                     cc.director.loadScene("mainScene")
                 })
             })

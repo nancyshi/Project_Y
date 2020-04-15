@@ -160,6 +160,7 @@ var SystemsMgr = cc.Class({
 
 
     mailSysGloableMonitored(key,value) {
+        
         var onReachCondition = function(givenTag,givenMailId) {
             var networkMgr = require("networkMgr")
             var messageObj = networkMgr.makeMessageObj("mailModule","reachConditionMessageType")
@@ -216,26 +217,19 @@ var SystemsMgr = cc.Class({
 
     mailSysGloableSendOneMail(givenMailId,givenTag,complete = function(){},delay = 0) {
         var networkMgr = require("networkMgr")
-            var messageObj = networkMgr.makeMessageObj("mailModule","sendMailMessageType")
-            messageObj.message.playerId = require("dataMgr").playerData.id
-            messageObj.message.mailId = givenMailId
-            messageObj.message.tag = givenTag
-            messageObj.message.delay = delay
-            messageObj.successCallBack = function(xhr) {
-                var response = xhr.responseText
-                response = JSON.parse(response)
-                if (response.type == "success") {
-                    var timeStamp = response.timeStamp
-                    var mail = {
-                        status: 0,
-                        timeStamp: timeStamp,
-                        tag: givenTag
-                    }
-                    require("dataMgr").playerData.mails[givenMailId.toString()] = mail
-                    complete()
-                }
+        var messageObj = networkMgr.makeMessageObj("mailModule","sendMailMessageType")
+        messageObj.message.playerId = require("dataMgr").playerData.id
+        messageObj.message.mailId = givenMailId
+        messageObj.message.tag = givenTag
+        messageObj.message.delay = delay
+        messageObj.successCallBack = function(xhr) {
+            var response = xhr.responseText
+            response = JSON.parse(response)
+            if (response.type == "success") {
+                complete()
             }
-            networkMgr.sendMessageByMsgObj(messageObj,delay * 1000)
+        }
+        networkMgr.sendMessageByMsgObj(messageObj)
     }
     // update (dt) {},
 });

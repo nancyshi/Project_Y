@@ -36,7 +36,16 @@ cc.Class({
         redPointPrefab: cc.Prefab,
         redPoint: null,
         offset: cc.v2(5, 10),
-        redPointShowCondition: null
+        redPointShowCondition: {
+            get: function get() {
+                return this._redPointShowCondition;
+            },
+            set: function set(value) {
+                //init setup
+                this._redPointShowCondition = value;
+                this.setupRedPoint();
+            }
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:

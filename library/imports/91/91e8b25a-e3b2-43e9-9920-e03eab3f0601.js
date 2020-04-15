@@ -72,6 +72,7 @@ cc.Class({
 
         cc.tween(this.node).delay(this.changeSceneAnimationTime).call(function () {
             require("resMgr").loadReses(function () {
+                require("networkMgr").startHeartBeat();
                 cc.director.loadScene("mainScene");
             });
         }).start();

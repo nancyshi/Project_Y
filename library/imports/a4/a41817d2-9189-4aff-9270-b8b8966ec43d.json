@@ -127,10 +127,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 72
+        "__id__": 73
       },
       {
-        "__id__": 73
+        "__id__": 74
       }
     ],
     "_prefab": null,
@@ -3001,7 +3001,6 @@
       "x": 5,
       "y": 10
     },
-    "redPointShowCondition": null,
     "_id": "3b62q0yHRBTZANu9JLgaHu"
   },
   {
@@ -3216,6 +3215,9 @@
       },
       {
         "__id__": 71
+      },
+      {
+        "__id__": 72
       }
     ],
     "_prefab": null,
@@ -3488,6 +3490,25 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "ef1xBDWcNG7awAAizRh0AX"
+  },
+  {
+    "__type__": "0e647+txBdKC7R/jhDegLyA",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 66
+    },
+    "_enabled": true,
+    "redPointPrefab": {
+      "__uuid__": "ed1204f9-e60e-4ad0-9e77-2e2a7e6a029e"
+    },
+    "redPoint": null,
+    "offset": {
+      "__type__": "cc.Vec2",
+      "x": 5,
+      "y": 10
+    },
+    "_id": "bc9UJLEhNCE7kTUDAk7nbI"
   },
   {
     "__type__": "cc.Canvas",

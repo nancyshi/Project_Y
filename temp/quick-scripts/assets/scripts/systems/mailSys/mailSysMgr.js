@@ -166,7 +166,6 @@ cc.Class({
                 this.selectedTag = oneTag;
                 this.selectedTagNode = node;
             }
-            node.getComponent("redPointMgr").setupRedPoint();
         }
     },
     setupMailSection: function setupMailSection() {

@@ -151,6 +151,7 @@ var SystemsMgr = cc.Class({
         this.mailSysGloableMonitored(key, value);
     },
     mailSysGloableMonitored: function mailSysGloableMonitored(key, value) {
+
         var onReachCondition = function onReachCondition(givenTag, givenMailId) {
             var networkMgr = require("networkMgr");
             var messageObj = networkMgr.makeMessageObj("mailModule", "reachConditionMessageType");
@@ -217,17 +218,10 @@ var SystemsMgr = cc.Class({
             var response = xhr.responseText;
             response = JSON.parse(response);
             if (response.type == "success") {
-                var timeStamp = response.timeStamp;
-                var mail = {
-                    status: 0,
-                    timeStamp: timeStamp,
-                    tag: givenTag
-                };
-                require("dataMgr").playerData.mails[givenMailId.toString()] = mail;
                 complete();
             }
         };
-        networkMgr.sendMessageByMsgObj(messageObj, delay * 1000);
+        networkMgr.sendMessageByMsgObj(messageObj);
     }
     // update (dt) {},
 

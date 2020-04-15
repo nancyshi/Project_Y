@@ -98,6 +98,14 @@ var GloableConfig = cc.Class({
                         generateLevelConfigFileMessageType: {
                             data: ""
                         }
+                    },
+
+                    longConnectModule: {
+                        suffix: "longConnect",
+                        heartBeatMessageType: {
+                            playerId: 10001,
+                            requestType: "heartBeat"
+                        }
                     }
                 };
             }
