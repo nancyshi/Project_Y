@@ -219,7 +219,7 @@ var Networkmgr = cc.Class({
         //this.sendMessageByMsgObj(messageObj,true)
         this.schedule(function () {
             this.sendMessageByMsgObj(messageObj);
-        }, 10);
+        }, 60);
     }
 });
 

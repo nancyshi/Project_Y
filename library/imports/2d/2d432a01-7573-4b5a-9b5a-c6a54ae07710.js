@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, '2d432oBdXNLWptaxqVK4HcQ', 'mainSceneMgr');
-// scripts/mainSceneMgr.js
+cc._RF.push(module, '2d432oBdXNLWptaxqVK4HcQ', '_mainSceneMgr');
+// scripts/_mainSceneMgr.js
 
 "use strict";
 

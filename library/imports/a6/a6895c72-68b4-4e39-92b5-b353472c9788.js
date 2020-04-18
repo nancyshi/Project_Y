@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'a6895xyaLROOZK1s1NHLJeI', 'signInSysMgr');
-// scripts/systems/signInSysMgr.js
+// scripts/systems/signInSys/signInSysMgr.js
 
 "use strict";
 
@@ -155,6 +155,7 @@ cc.Class({
 
         require("dataMgr").playerData.physicalPower = physicalPower;
         require("dataMgr").playerData.heart = heart;
+        require("notificationMgr").showNoti("签到成功");
         require("systemsMgr").closeSystem(this.sysName);
     },
 

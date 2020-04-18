@@ -251,6 +251,10 @@ cc.Class({
 
         var mailConditionIndex = require("dataMgr").playerData.mailConditionIndex;
         var index = mailConditionIndex[this.selectedTag];
+        if (index == -1) {
+            this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = "此分支已结束";
+            return;
+        }
         var mailSysConfig = require("mailSysConfig");
         var element = mailSysConfig[this.selectedTag].conditions[index];
 
@@ -260,7 +264,7 @@ cc.Class({
             if (result != false) {
                 var section = result[0];
                 var levelNumOfSection = result[1];
-                var str = "达到 " + section.toString() + " - " + levelNumOfSection.toString();
+                var str = "通关 " + section.toString() + " - " + levelNumOfSection.toString();
                 str = str + " ，会有新的邮件，加油吧少年！";
                 this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = str;
             }

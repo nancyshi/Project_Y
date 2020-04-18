@@ -5,8 +5,8 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 50,
-      "y": 23,
+      "x": 48,
+      "y": 25,
       "width": 1390,
       "height": 877,
       "layout": {
@@ -103,6 +103,32 @@
         "inspector",
         "cocos-services"
       ]
+    },
+    "window-1587112500600": {
+      "main": false,
+      "url": "unpack://static/window.html",
+      "windowType": "dockable",
+      "x": 572,
+      "y": 68,
+      "width": 500,
+      "height": 522,
+      "layout": {
+        "children": [
+          {
+            "active": 0,
+            "children": [
+              "sprite-editor"
+            ],
+            "height": 500,
+            "type": "panel",
+            "width": 500
+          }
+        ],
+        "type": "dock-v"
+      },
+      "panels": [
+        "sprite-editor"
+      ]
     }
   },
   "panels": {
@@ -113,20 +139,20 @@
       "height": 548
     },
     "builder": {
-      "x": 384,
+      "x": 257,
       "y": 23,
       "width": 654,
       "height": 873
     },
     "project-settings": {
-      "x": 728,
-      "y": 330,
+      "x": 244,
+      "y": 133,
       "width": 584,
       "height": 548
     },
     "sprite-editor": {
-      "x": 554,
-      "y": 152,
+      "x": 572,
+      "y": 68,
       "width": 500,
       "height": 522
     }
@@ -134,9 +160,11 @@
   "panelLabelWidth": {
     "inspector": null,
     "builder": null,
-    "preferences": null
+    "preferences": null,
+    "project-settings": null
   },
   "panelLabelWidth.inspector": null,
   "panelLabelWidth.builder": null,
-  "panelLabelWidth.preferences": null
+  "panelLabelWidth.preferences": null,
+  "panelLabelWidth.project-settings": null
 }

@@ -60,6 +60,16 @@ var SystemsMgr = cc.Class({
             }
         },
 
+        selectSectionSys: {
+            get: function get() {
+                if (this._selectSectionSys == null) {
+                    this._selectSectionSys = this.setupSysProperty("selectSectionSysPrefab", "selectSectionSys", "selectSectionUIMgr");
+                    this.systems["selectSectionSys"] = this._selectSectionSys;
+                }
+                return this._selectSectionSys;
+            }
+        },
+
         systems: {
             get: function get() {
                 if (this._systems == null) {
@@ -140,6 +150,8 @@ var SystemsMgr = cc.Class({
                 return this.addPropertyNumSys;
             case "mailSys":
                 return this.mailSys;
+            case "selectSectionSys":
+                return this.selectSectionSys;
             default:
                 cc.log("no such sys");
                 return false;
@@ -162,9 +174,17 @@ var SystemsMgr = cc.Class({
                 var response = xhr.responseText;
                 response = JSON.parse(response);
                 if (response.type == "success") {
-                    require("dataMgr").playerData.mailConditionIndex[givenTag] += 1;
+                    var isEnd = response.isEnd;
+                    if (isEnd == 0) {
+                        require("dataMgr").playerData.mailConditionIndex[givenTag] += 1;
+                    } else {
+                        require("dataMgr").playerData.mailConditionIndex[givenTag] = -1;
+                    }
                     var newMail = response.mail;
                     require("dataMgr").playerData.mails[givenMailId] = newMail;
+                    var notificaitionMgr = require("notificationMgr");
+                    var notiStr = "你收到一封新邮件，快去查看吧";
+                    notificaitionMgr.showNoti(notiStr);
                 }
             };
             networkMgr.sendMessageByMsgObj(messageObj);
@@ -174,13 +194,16 @@ var SystemsMgr = cc.Class({
         for (var index in tags) {
             var oneTag = tags[index];
             var conditionIndex = require("dataMgr").playerData.mailConditionIndex[oneTag];
+            if (conditionIndex == -1) {
+                continue;
+            }
             var element = mailSysConfig[oneTag].conditions[conditionIndex];
             var conditionType = element.conditionType;
             var conditionPara = element.conditionPara;
 
             if (conditionType == 1) {
                 //reach given level id
-                if (key != "currentLevel") {
+                if (key != "preLevel") {
                     continue;
                 }
 
@@ -223,9 +246,25 @@ var SystemsMgr = cc.Class({
         };
         networkMgr.sendMessageByMsgObj(messageObj);
     }
-    // update (dt) {},
+}
 
-});
+// getSectionLevelInfoByLevelId(givenLevelId) {
+//     var result = null
+//     var sectionConfig = require("sectionConfig")
+//     for (var key in sectionConfig) {
+//         var oneConfig = sectionConfig[key]
+//         var levels = oneConfig.levels
+//         for (var index in levels) {
+//             if (givenLevelId == levels[index]) {
+//                 var currentLevel = givenLevelId
+
+//             }
+//         }
+//     }
+//     return result
+// }
+// update (dt) {},
+);
 
 var systemsMgr = new SystemsMgr();
 module.exports = systemsMgr;

@@ -79,7 +79,8 @@ var ResMgr = cc.Class({
             welfarySysPrefab: "prefabs/welfaryUI",
             signInSysPrefab: "prefabs/signInSysUI",
             addPropertyNumSysPrefab: "prefabs/addPropertyNumUI",
-            mailSysPrefab: "prefabs/mailSysUI"
+            mailSysPrefab: "prefabs/mailSysUI",
+            selectSectionSysPrefab: "prefabs/selectSectionUI"
         };
 
         var len = Object.keys(resObj).length;

@@ -362,6 +362,7 @@ cc.Class({
             commitBody.minSteps = {}
             commitBody.minSteps[minStepKey] = this.currentStepNum
         }
+        commitBody.preLevel = this.level
         var self = this
         var successCallBack = function(){
             if (newSection != null) {
@@ -372,6 +373,7 @@ cc.Class({
             }
             self.playerData.currentLevel = newLevel
             self.playerData.physicalPowerCostedFlag = 0
+            self.playerData.preLevel = self.level
             require("gameMgr").animatedToScene("mainScene")
         }
         
