@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/libs/resMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, 'f692asDR5lIH6vIDv+8rhPT', 'resMgr', __filename);
+cc._RF.push(module, 'df3f9Ff+ehEg4/MFicOafGk', 'resMgr', __filename);
 // scripts/libs/resMgr.js
 
 "use strict";
@@ -88,7 +88,6 @@ var ResMgr = cc.Class({
         this.reses = {};
         var self = this;
         for (var key in resObj) {
-
             var temp = function temp(key) {
                 var path = resObj[key];
                 cc.loader.loadRes(path, function (err, res) {

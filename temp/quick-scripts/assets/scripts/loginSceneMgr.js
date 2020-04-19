@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/loginSceneMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '91e8bJa47JD6Zkg4D6rPwYB', 'loginSceneMgr', __filename);
+cc._RF.push(module, '81fbcyHVFlDhqJvCbUik6hX', 'loginSceneMgr', __filename);
 // scripts/loginSceneMgr.js
 
 "use strict";

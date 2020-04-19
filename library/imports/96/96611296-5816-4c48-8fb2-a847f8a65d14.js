@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '96611KWWBZMSI+yqEf4pl0U', 'ensureSystemNodeMgr');
-// scripts/systems/ensureSystemNodeMgr.js
+// scripts/systems/ensureSys_notUse/ensureSystemNodeMgr.js
 
 "use strict";
 

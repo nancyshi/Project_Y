@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/mainScene/mainSceneMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '087aeqBFGdNVKf4lAdrIbR/', 'mainSceneMgr', __filename);
+cc._RF.push(module, 'b1711iV+ldL4qhgqdK5YGYi', 'mainSceneMgr', __filename);
 // scripts/mainScene/mainSceneMgr.js
 
 "use strict";

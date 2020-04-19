@@ -1,6 +1,6 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/singleInstanceSystems/notificationMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '8533axOVI1OlJIOOFwT+Qzn', 'notificationMgr', __filename);
-// scripts/notificationMgr.js
+cc._RF.push(module, '6adf2lw5wdC6oB912oNiN7C', 'notificationMgr', __filename);
+// scripts/singleInstanceSystems/notificationMgr.js
 
 "use strict";
 

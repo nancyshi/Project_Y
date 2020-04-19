@@ -72,7 +72,6 @@ cc.Class({
         for (var key in points) {
             var point = points[key]
             var bulletCorrespondPoint = bulletPoints[key]
-
             var dis = cc.v2(bulletCorrespondPoint.x - point.x, bulletCorrespondPoint.y - point.y).mag()
             if (dis > this.fatalTolerance) {
                 return false

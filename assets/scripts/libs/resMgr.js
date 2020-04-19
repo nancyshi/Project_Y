@@ -84,7 +84,6 @@ var ResMgr = cc.Class({
         this.reses = {}
         var self = this
         for (var key in resObj) {
-            
             var temp = function(key) {
                 var path = resObj[key]
                 cc.loader.loadRes(path, function(err,res){

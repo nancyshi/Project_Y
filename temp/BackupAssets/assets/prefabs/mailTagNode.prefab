@@ -180,7 +180,7 @@
     "_id": ""
   },
   {
-    "__type__": "0e647+txBdKC7R/jhDegLyA",
+    "__type__": "f34142gIJJJ4YCZvHxJkXfT",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -193,10 +193,9 @@
     "redPoint": null,
     "offset": {
       "__type__": "cc.Vec2",
-      "x": 10,
-      "y": 5
+      "x": 5,
+      "y": 10
     },
-    "redPointShowCondition": null,
     "_id": ""
   },
   {

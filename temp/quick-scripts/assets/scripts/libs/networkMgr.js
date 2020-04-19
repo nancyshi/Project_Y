@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/libs/networkMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '26886qZG21CFKSkgIvhUSHl', 'networkMgr', __filename);
+cc._RF.push(module, '06ef571V7VDkpNc4lgVqmds', 'networkMgr', __filename);
 // scripts/libs/networkMgr.js
 
 "use strict";
@@ -125,7 +125,7 @@ var Networkmgr = cc.Class({
         if (useLongConnectXhr == true) {
             cc.log("start heart beat");
         }
-        var url = "http://" + msgObj.ip + ":" + msgObj.port.toString() + "/" + msgObj.suffix;
+        var url = "https://" + msgObj.ip + ":" + msgObj.port.toString() + "/" + msgObj.suffix;
         var xhr = null;
         if (useLongConnectXhr == false) {
             xhr = new XMLHttpRequest();
@@ -144,6 +144,7 @@ var Networkmgr = cc.Class({
         };
         var msgForSend = JSON.stringify(msgObj.message);
         xhr.onerror = function () {
+            cc.log("connect erro");
             if (self.retryingFlag == false) {
                 cc.loader.loadRes("prefabs/retryWaitingNode", function (err, res) {
                     if (self.delegate != null) {
@@ -177,6 +178,9 @@ var Networkmgr = cc.Class({
                     self.retryResult = null;
                 }
             }
+        };
+        xhr.ontimeout = function () {
+            cc.log("time out!!!");
         };
         if (xhr.readyState == 0) {
             xhr.open("POST", url);

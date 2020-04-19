@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'b76ban9vyBAI6HjYNJk1oHH', 'welfarySysMgr');
-// scripts/systems/welfarySysMgr.js
+// scripts/systems/welfarySys/welfarySysMgr.js
 
 "use strict";
 

@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '2cfa2q87j1AbaAokGOxDLrP', 'ensureSystem');
-// scripts/systems/ensureSystem.js
+// scripts/systems/ensureSys_notUse/ensureSystem.js
 
 "use strict";
 

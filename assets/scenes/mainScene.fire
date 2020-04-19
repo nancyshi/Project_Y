@@ -58,7 +58,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "933101d7-083b-4042-9d98-44f39e44805d"
+    "_id": "27151247-0860-4d25-be0a-156031b93f98"
   },
   {
     "__type__": "cc.Node",
@@ -195,7 +195,7 @@
       "array": [
         0,
         0,
-        324.7595264191645,
+        318.69734859267345,
         0,
         0,
         0,
@@ -1470,7 +1470,7 @@
     "_id": "56F9xjeVlF1ptDkd7LXJXO"
   },
   {
-    "__type__": "0e647+txBdKC7R/jhDegLyA",
+    "__type__": "f34142gIJJJ4YCZvHxJkXfT",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1486,7 +1486,7 @@
       "x": 5,
       "y": 10
     },
-    "_id": "eeKJel3+xNL7i6aIlB5C1l"
+    "_id": "ffrpWumVRG7qsetVqexskc"
   },
   {
     "__type__": "cc.Node",
@@ -1693,7 +1693,7 @@
     "_id": "4efMAcp5JEKJTt8JgmjQVh"
   },
   {
-    "__type__": "0e647+txBdKC7R/jhDegLyA",
+    "__type__": "f34142gIJJJ4YCZvHxJkXfT",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1709,7 +1709,7 @@
       "x": 5,
       "y": 10
     },
-    "_id": "fd+oq6IL1KZp09CnSadHxo"
+    "_id": "12ttCaLBNBwo8Qo1v2Fses"
   },
   {
     "__type__": "cc.Node",
@@ -2332,7 +2332,7 @@
     "_id": "5d466MUmRMO4G1loXrnihF"
   },
   {
-    "__type__": "087aeqBFGdNVKf4lAdrIbR/",
+    "__type__": "b1711iV+ldL4qhgqdK5YGYi",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -2349,10 +2349,10 @@
       "__id__": 5
     },
     "levelNodePrefab": {
-      "__uuid__": "366d7a38-d497-43e1-8af8-fc7bbf6340f2"
+      "__uuid__": "cac06a91-734c-4d8c-80c8-15842991660d"
     },
     "levelNodesConnectLinePrefab": {
-      "__uuid__": "6eeedc61-17be-4792-bd0b-3691f65f803f"
+      "__uuid__": "9e30e5e3-3b26-4532-b4af-5761c1899694"
     },
     "selectedSection": null,
     "physicalLabelNode": {
@@ -2381,12 +2381,12 @@
     },
     "levelNodeStartPosition": {
       "__type__": "cc.Vec2",
-      "x": -357.623,
-      "y": -259.801
+      "x": -374.634,
+      "y": -409.756
     },
     "levelNodesHorDis": 200,
     "levelNodesVerDis": 400,
     "levelNodesNumPerLine": 4,
-    "_id": "47D8fHRndKD4YxgftqZtjL"
+    "_id": "60+il1NENFTbma755d99QA"
   }
 ]

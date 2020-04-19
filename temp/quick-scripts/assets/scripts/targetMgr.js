@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/targetMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '25f14lIIdZGX5Bxde5y1xJx', 'targetMgr', __filename);
+cc._RF.push(module, 'dd98dJBJRlHoIaNxxkryLBz', 'targetMgr', __filename);
 // scripts/targetMgr.js
 
 "use strict";
@@ -75,7 +75,6 @@ cc.Class({
         for (var key in points) {
             var point = points[key];
             var bulletCorrespondPoint = bulletPoints[key];
-
             var dis = cc.v2(bulletCorrespondPoint.x - point.x, bulletCorrespondPoint.y - point.y).mag();
             if (dis > this.fatalTolerance) {
                 return false;

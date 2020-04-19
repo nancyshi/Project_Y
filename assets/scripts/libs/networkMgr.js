@@ -121,7 +121,7 @@ var Networkmgr = cc.Class({
         if (useLongConnectXhr == true) {
             cc.log("start heart beat")
         }
-        var url = "http://" + msgObj.ip + ":" + msgObj.port.toString() + "/" + msgObj.suffix
+        var url = "https://" + msgObj.ip + ":" + msgObj.port.toString() + "/" + msgObj.suffix
         var xhr = null
         if (useLongConnectXhr == false) {
             xhr = new XMLHttpRequest()
@@ -141,6 +141,7 @@ var Networkmgr = cc.Class({
         }
         var msgForSend = JSON.stringify(msgObj.message)
         xhr.onerror = function() {
+            cc.log("connect erro")
             if (self.retryingFlag == false) {
                 cc.loader.loadRes("prefabs/retryWaitingNode",function(err,res){
                     if (self.delegate != null) {
@@ -177,6 +178,9 @@ var Networkmgr = cc.Class({
                     self.retryResult = null
                 }
             }
+        }
+        xhr.ontimeout = function(){
+            cc.log("time out!!!")
         }
         if (xhr.readyState == 0) {
             xhr.open("POST",url)

@@ -194,7 +194,6 @@ cc.Class({
             givenNode.x = maxX - rowIndex * this.levelNodesHorDis
         }
         givenNode.y = this.levelNodeStartPosition.y + colIndex * this.levelNodesVerDis
-        
     },
 
     _getMidPointOfTwoPoints(point1,point2) {

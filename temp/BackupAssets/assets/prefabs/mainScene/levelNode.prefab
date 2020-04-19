@@ -189,7 +189,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "366d7a38-d497-43e1-8af8-fc7bbf6340f2"
+      "__uuid__": "cac06a91-734c-4d8c-80c8-15842991660d"
     },
     "fileId": "ccfir7HthK2IzOsQuTV1Rw",
     "sync": false
@@ -296,7 +296,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "366d7a38-d497-43e1-8af8-fc7bbf6340f2"
+      "__uuid__": "cac06a91-734c-4d8c-80c8-15842991660d"
     },
     "fileId": "b0afjZWMRC7bLJgoO7JqlQ",
     "sync": false
@@ -403,7 +403,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "366d7a38-d497-43e1-8af8-fc7bbf6340f2"
+      "__uuid__": "cac06a91-734c-4d8c-80c8-15842991660d"
     },
     "fileId": "22RiZ/yGhOubU8q3+ufD2i",
     "sync": false
@@ -530,12 +530,12 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "ede742/0atA9LUTDwDNbP/H",
+    "_componentId": "a65daQfIs1AIaVJClbi9PqX",
     "handler": "onClick",
     "customEventData": ""
   },
   {
-    "__type__": "ede742/0atA9LUTDwDNbP/H",
+    "__type__": "a65daQfIs1AIaVJClbi9PqX",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -560,8 +560,9 @@
     "delegate": null,
     "level": null,
     "preChanllengeUIPrefab": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
+    "preChanllengeUIOpend": false,
     "_id": ""
   },
   {
@@ -570,7 +571,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "366d7a38-d497-43e1-8af8-fc7bbf6340f2"
+      "__uuid__": "cac06a91-734c-4d8c-80c8-15842991660d"
     },
     "fileId": "9bqiVxmAFAmpfZEof0YwM7",
     "sync": false

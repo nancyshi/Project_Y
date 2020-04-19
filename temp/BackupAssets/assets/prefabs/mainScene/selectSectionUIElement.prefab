@@ -39,7 +39,7 @@
         "__id__": 27
       },
       {
-        "__id__": 28
+        "__id__": 29
       }
     ],
     "_prefab": {
@@ -260,7 +260,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "afkPvlifNPmqCviAGsGXqu",
     "sync": false
@@ -303,7 +303,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "c275ZrudtHtZTA6X+UOzvY",
     "sync": false
@@ -408,7 +408,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "fcxwl1eUtI+IdeXRkbg3CW",
     "sync": false
@@ -515,7 +515,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "513l/tZtpEPbun6zMlYvPj",
     "sync": false
@@ -696,7 +696,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "8dXAn101tNPY+JJAzosXnr",
     "sync": false
@@ -801,7 +801,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "a4iEQ5P/BAUbFMmD4pcwtO",
     "sync": false
@@ -861,7 +861,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "f6FxxFgJdH3aqtEChCR0yg",
     "sync": false
@@ -968,42 +968,10 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "43MxjloQdJAKnRgsXA3bbb",
     "sync": false
-  },
-  {
-    "__type__": "81ee8s9UhpEYoYO45XdmJNk",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "processBarNode": {
-      "__id__": 14
-    },
-    "processLabelNode": {
-      "__id__": 18
-    },
-    "iconNode": {
-      "__id__": 2
-    },
-    "iconLabelNode": {
-      "__id__": 3
-    },
-    "nameLabelNode": {
-      "__id__": 8
-    },
-    "lockedIconSpriteFrame": {
-      "__uuid__": "7a8fd8ee-b883-4cde-8bc6-2c0d684fee13"
-    },
-    "sectionKey": null,
-    "config": null,
-    "mailInfo": null,
-    "selectSectionUINode": null,
-    "_id": ""
   },
   {
     "__type__": "cc.Button",
@@ -1019,7 +987,7 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 29
+        "__id__": 28
       }
     ],
     "_N$interactable": true,
@@ -1085,9 +1053,41 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "81ee8s9UhpEYoYO45XdmJNk",
+    "_componentId": "db60cQ2kgJNgK6qR9e+RnsV",
     "handler": "onClick",
     "customEventData": ""
+  },
+  {
+    "__type__": "db60cQ2kgJNgK6qR9e+RnsV",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "processBarNode": {
+      "__id__": 14
+    },
+    "processLabelNode": {
+      "__id__": 18
+    },
+    "iconNode": {
+      "__id__": 2
+    },
+    "iconLabelNode": {
+      "__id__": 3
+    },
+    "nameLabelNode": {
+      "__id__": 8
+    },
+    "lockedIconSpriteFrame": {
+      "__uuid__": "7a8fd8ee-b883-4cde-8bc6-2c0d684fee13"
+    },
+    "sectionKey": null,
+    "config": null,
+    "mailInfo": null,
+    "selectSectionUINode": null,
+    "_id": ""
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1095,7 +1095,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b7297445-e8c2-4595-b3bb-af8ac8de3252"
+      "__uuid__": "99de78d7-7b22-4dc0-b780-b76b71baa839"
     },
     "fileId": "4eM1ll5UpPh6Z0wKDV4GnL",
     "sync": false

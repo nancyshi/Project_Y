@@ -58,7 +58,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "199f6a42-0ae6-4e8d-8413-28af31226e97"
+    "_id": "49ad0b11-6e9b-429c-988d-a57ac9e246ce"
   },
   {
     "__type__": "cc.Node",
@@ -180,7 +180,7 @@
       "array": [
         0,
         0,
-        324.7595264191645,
+        318.69734859267345,
         0,
         0,
         0,
@@ -742,7 +742,7 @@
     "_id": "5c/N1/OxFG9KtOm6BnsbG2"
   },
   {
-    "__type__": "91e8bJa47JD6Zkg4D6rPwYB",
+    "__type__": "81fbcyHVFlDhqJvCbUik6hX",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -754,6 +754,6 @@
     "networkMgr": null,
     "isLogining": false,
     "changeSceneAnimationTime": 2,
-    "_id": "24CEK8cdlDuqSaWyrWsq/k"
+    "_id": "ce+/WRcsdBpZTGYeoG3Lhe"
   }
 ]

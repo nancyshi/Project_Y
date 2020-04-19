@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '16bb9ye6UBAebul1F7cBbyY', 'mailSysMailMgr');
-// scripts/systems/mailSysMailMgr.js
+// scripts/systems/mailSys/mailSysMailMgr.js
 
 "use strict";
 

@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/systems/systemsMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, 'f15a5Q4I6hGpIKttepBiMbL', 'systemsMgr', __filename);
+cc._RF.push(module, '90768z3BYZIyKcDPXY67Q3P', 'systemsMgr', __filename);
 // scripts/systems/systemsMgr.js
 
 "use strict";

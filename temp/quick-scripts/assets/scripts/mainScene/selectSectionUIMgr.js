@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/mainScene/selectSectionUIMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '47a32tMoKJEEbLo92zqSKn7', 'selectSectionUIMgr', __filename);
+cc._RF.push(module, 'd2250CWPMpIRr7o+jf81yog', 'selectSectionUIMgr', __filename);
 // scripts/mainScene/selectSectionUIMgr.js
 
 "use strict";

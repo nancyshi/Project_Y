@@ -182,7 +182,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "c0rAhJoSlAW4+5S4GWYHDd",
     "sync": false
@@ -385,7 +385,7 @@
         1,
         1,
         1,
-        0
+        1
       ]
     },
     "_eulerAngles": {
@@ -538,7 +538,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "54oZhKJT9FhIaL3n5MNJM0",
     "sync": false
@@ -581,7 +581,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "ecoIvP2xJEsJ2kazICrA9X",
     "sync": false
@@ -686,7 +686,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "ceh//AyeZE97Z2TG5Oj7ks",
     "sync": false
@@ -861,7 +861,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "d3U/eLFSpPt6aaJEKBJCG3",
     "sync": false
@@ -968,7 +968,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "275GxXf3FA97l9N49C/8Ge",
     "sync": false
@@ -1075,7 +1075,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "9e0vKkIGNIQrxwQvWQW0cp",
     "sync": false
@@ -1086,7 +1086,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "b5SU/Y9o5CwaQzuy1gZsJu",
     "sync": false
@@ -1157,7 +1157,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "e3n/5yYRBJN59ORxe0VnXZ",
     "sync": false
@@ -1339,7 +1339,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "efD+LpKdpPx5oQ2Lxl98cH",
     "sync": false
@@ -1446,7 +1446,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "64oG6l6r5A7aW035S+pH4c",
     "sync": false
@@ -1551,7 +1551,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "23J2KzQ+JCTIgwdhJpnn0n",
     "sync": false
@@ -1670,7 +1670,7 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "a81dahyesxJVqMKjdEudSzb",
+    "_componentId": "e5cd7mr4sZJ97Ekm5ipqXJu",
     "handler": "onClick",
     "customEventData": ""
   },
@@ -1680,7 +1680,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "53TbeKWcdPPKGGC+1Q57Mn",
     "sync": false
@@ -1691,13 +1691,13 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "53TqVaNPZOcrDJcycPo04u",
     "sync": false
   },
   {
-    "__type__": "a81dahyesxJVqMKjdEudSzb",
+    "__type__": "e5cd7mr4sZJ97Ekm5ipqXJu",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1725,7 +1725,7 @@
       "__id__": 7
     },
     "mailSectionElementPrefab": {
-      "__uuid__": "9e9e3b83-4bad-49af-90e1-463ff36daf3d"
+      "__uuid__": "b9f15d72-3782-43e2-b841-0a8bdf1e0d83"
     },
     "challengeButtonCostPhySprite": {
       "__uuid__": "8221e185-d3f6-4d8c-8315-c0f58914b8ce"
@@ -1733,6 +1733,7 @@
     "level": null,
     "levelStatus": null,
     "costResult": null,
+    "delegate": null,
     "_id": ""
   },
   {
@@ -1741,7 +1742,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9d95dc5-348f-4c44-b23b-f4afd3e0d28e"
+      "__uuid__": "dffd0e8e-b632-4080-a527-340f0210fed2"
     },
     "fileId": "c3bDcEy6dB0aKuYGaGVASo",
     "sync": false

@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/helper.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, 'fee26lOQ3NFBb7FR2MoK8sC', 'helper', __filename);
+cc._RF.push(module, '08b56AlCIJMzL7NY0hkRsv7', 'helper', __filename);
 // scripts/helper.js
 
 "use strict";

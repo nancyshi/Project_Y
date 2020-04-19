@@ -58,7 +58,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "dcd89958-e7d6-41c0-b01e-5de70cda1eef"
+    "_id": "ffef00ff-2e28-4f3a-8020-65b0987af904"
   },
   {
     "__type__": "cc.Node",
@@ -189,7 +189,7 @@
       "array": [
         0,
         0,
-        324.7595264191645,
+        318.69734859267345,
         0,
         0,
         0,
@@ -1121,7 +1121,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "e7e748p6atLdo2Z1e9yNR+E",
+    "_componentId": "c4014NLpYFEZpXQI03LMFEP",
     "handler": "onClickRetryButton",
     "customEventData": ""
   },
@@ -1735,7 +1735,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "e7e748p6atLdo2Z1e9yNR+E",
+    "_componentId": "c4014NLpYFEZpXQI03LMFEP",
     "handler": "onClickBackButton",
     "customEventData": ""
   },
@@ -1755,30 +1755,6 @@
     "_fitWidth": false,
     "_fitHeight": true,
     "_id": "82l5uMZgxFI4B67v+bbiRF"
-  },
-  {
-    "__type__": "e7e748p6atLdo2Z1e9yNR+E",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "bullets": [],
-    "minDis": 100,
-    "maxOffsetDegree": 30,
-    "directionTryto": null,
-    "flag": false,
-    "helper": null,
-    "walls": [],
-    "linePrefab": null,
-    "bulletPrefab": null,
-    "playerData": null,
-    "retryButton": {
-      "__id__": 12
-    },
-    "level": null,
-    "_id": "b0LQotvltCyK5nugQTtv5o"
   },
   {
     "__type__": "cc.Graphics",
@@ -1812,5 +1788,29 @@
     },
     "_miterLimit": 10,
     "_id": "1c4N6oHw1DRocNaYU9x7tu"
+  },
+  {
+    "__type__": "c4014NLpYFEZpXQI03LMFEP",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "bullets": [],
+    "minDis": 50,
+    "maxOffsetDegree": 45,
+    "directionTryto": null,
+    "flag": false,
+    "helper": null,
+    "walls": [],
+    "linePrefab": null,
+    "bulletPrefab": null,
+    "playerData": null,
+    "retryButton": {
+      "__id__": 12
+    },
+    "level": null,
+    "_id": "d0M7GoaxtFabA9LS4Iw01i"
   }
 ]

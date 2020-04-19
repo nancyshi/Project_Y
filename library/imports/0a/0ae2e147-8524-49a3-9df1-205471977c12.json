@@ -109,16 +109,17 @@
     "_id": ""
   },
   {
-    "__type__": "25f14lIIdZGX5Bxde5y1xJx",
+    "__type__": "dd98dJBJRlHoIaNxxkryLBz",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "fatalTolerance": 10,
+    "fatalTolerance": 0.01,
     "bullets": null,
     "flag": false,
+    "helper": null,
     "_id": ""
   },
   {
@@ -127,7 +128,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "0ae2e147-8524-49a3-9df1-205471977c12"
     },
     "fileId": "8cPs5UBfpAf6XzXUiy8k0N",
     "sync": false

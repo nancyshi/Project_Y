@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/bulletMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '2e7ebmG0o9A+INmyGAQ4snA', 'bulletMgr', __filename);
+cc._RF.push(module, 'eb08bsyH2tHY7xzE8jRRDlt', 'bulletMgr', __filename);
 // scripts/bulletMgr.js
 
 "use strict";

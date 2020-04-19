@@ -19,7 +19,7 @@
     ]
   ],
   "excluded-modules": [],
-  "last-module-event-record-time": 1585219652843,
+  "last-module-event-record-time": 1587197453773,
   "design-resolution-width": 1080,
   "design-resolution-height": 1920,
   "fit-width": false,
@@ -41,5 +41,6 @@
     "live": {
       "enable": false
     }
-  }
+  },
+  "start-scene": "current"
 }
