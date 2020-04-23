@@ -69,7 +69,6 @@ cc.Class({
         cc.tween(this.selectedEffectNode)
             .repeatForever(cc.tween().to(0.5,{opacity:0}).to(0.5,{opacity: 255}))
             .start()
-        this.levelNumLabelNode.getComponent(cc.Label).string = this.level.toString()
         this.setupMailTag()
     },
 

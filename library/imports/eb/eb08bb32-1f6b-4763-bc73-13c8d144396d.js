@@ -19,20 +19,22 @@ cc.Class({
 
     properties: {
 
-        bulletType: {
-            get: function get() {
-                if (this._bulletType == null) {
-                    this._bulletType = 1;
-                }
-                return this._bulletType;
-            },
-            set: function set(value) {
-                this._bulletType = value;
-                if (value == 2) {
-                    this.node.getComponent(cc.Sprite).spriteFrame = this.sliderFrame;
-                }
-            }
-        }, //1 is normal , 2 is slider bullet
+        // bulletType: {
+        //     type: cc.Integer,
+        //     get() {
+        //         // if (this._bulletType == null) {
+        //         //     this._bulletType = 1
+        //         // }
+        //         return this._bulletType
+        //     },
+        //     set(value) {
+        //         this._bulletType = value
+        //         if (value == 2) {
+        //             this.node.getComponent(cc.Sprite).spriteFrame = this.sliderFrame
+        //         }
+        //     }
+        // }, //1 is normal , 2 is slider bullet
+        bulletType: 1,
         status: 0, //0 is static, 1 is moving , 2 is reached target
         disFromBorder: 5,
         moveSpeed: 500,

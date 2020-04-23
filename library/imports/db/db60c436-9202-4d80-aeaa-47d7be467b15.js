@@ -119,6 +119,7 @@ cc.Class({
                 if (parseInt(this.sectionKey) != mainSceneMgr.selectedSection) {
                     mainSceneMgr.selectedSection = parseInt(this.sectionKey);
                     mainSceneMgr.setupSectionPerformance();
+                    mainSceneMgr.playBgm();
                 }
             }
         }

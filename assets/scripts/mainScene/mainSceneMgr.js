@@ -44,7 +44,9 @@ cc.Class({
         levelNodeStartPosition: cc.v2(0,0),
         levelNodesHorDis: 10,
         levelNodesVerDis: 20,
-        levelNodesNumPerLine: 4
+        levelNodesNumPerLine: 4,
+
+        rotaedCopiedRadius: 300
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -52,12 +54,22 @@ cc.Class({
     onLoad () {
         this.setupData()
         this.setupUI()
+        this.playBgm()
+        this.rotaedCopiedRadius = 500
+        //require("gameMgr")._generateLevelSceneConfig()
     },
 
     start () {
 
     },
-
+    playBgm(){
+        var self = this
+        var path = require("sectionConfig")[this.selectedSection].bgmPath
+        cc.loader.loadRes(path,function(err,res){
+            cc.audioEngine.stopAll()
+            cc.audioEngine.play(res)
+        })
+    },
     setupUI() {
         this.heartLabelNode.getComponent(cc.Label).string = require("dataMgr").playerData.heart.toString()
         this.physicalLabelNode.getComponent(cc.Label).string = require("dataMgr").playerData.physicalPower.toString()
@@ -158,6 +170,7 @@ cc.Class({
             var oneLevelNode = cc.instantiate(this.levelNodePrefab)
             var mgr = oneLevelNode.getComponent("levelNodeMgr")
             mgr.level = oneLevel
+            mgr.levelNumLabelNode.getComponent(cc.Label).string = (parseInt(index) + 1).toString()
             mgr.status = this._checkLevelStatus(oneLevel)
             mgr.delegate = this
             this._setupLevelNodePosition(oneLevelNode,index)
@@ -182,18 +195,40 @@ cc.Class({
         }
     },
     _setupLevelNodePosition(givenNode, givenIndex) {
-        
-        var rowIndex = givenIndex % this.levelNodesNumPerLine
-        var colIndex = Math.floor(givenIndex / this.levelNodesNumPerLine)
+        var sectionConfig = require("sectionConfig")[this.selectedSection]
+        var levelNodePositions = sectionConfig.levelNodePositions
+        if (levelNodePositions == null || levelNodePositions.length == 0) {
+            //lined
 
-        var maxX = this.levelNodeStartPosition.x + this.levelNodesHorDis * (this.levelNodesNumPerLine - 1)
-        if (colIndex % 2 == 0) {
-            givenNode.x = this.levelNodeStartPosition.x + rowIndex * this.levelNodesHorDis
+            // var rowIndex = givenIndex % this.levelNodesNumPerLine
+            // var colIndex = Math.floor(givenIndex / this.levelNodesNumPerLine)
+
+            // var maxX = this.levelNodeStartPosition.x + this.levelNodesHorDis * (this.levelNodesNumPerLine - 1)
+            // if (colIndex % 2 == 0) {
+            //     givenNode.x = this.levelNodeStartPosition.x + rowIndex * this.levelNodesHorDis
+            // }
+            // else {
+            //     givenNode.x = maxX - rowIndex * this.levelNodesHorDis
+            // }
+            // givenNode.y = this.levelNodeStartPosition.y + colIndex * this.levelNodesVerDis
+            
+            // var levelNodeStart = this.node.getChildByName("sectionNameLabel").getChildByName("levelNodeStart")
+            // givenNode.x = levelNodeStart.x
+            
+            // givenNode.y = levelNodeStart.y + givenIndex * this.levelNodesVerDis
+
+            //rotated copied
+            var nodesNum = sectionConfig.levels.length
+            var angle = 2 * Math.PI / nodesNum
+            var baseVector = cc.v2(this.rotaedCopiedRadius,0)
+            var v = baseVector.rotate(-givenIndex * angle)
+            givenNode.x = v.x
+            givenNode.y = v.y
         }
         else {
-            givenNode.x = maxX - rowIndex * this.levelNodesHorDis
+            givenNode.x = levelNodePositions[givenIndex].x
+            givenNode.y = levelNodePositions[givenIndex].y
         }
-        givenNode.y = this.levelNodeStartPosition.y + colIndex * this.levelNodesVerDis
     },
 
     _getMidPointOfTwoPoints(point1,point2) {

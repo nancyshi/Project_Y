@@ -27,7 +27,7 @@ var GloableConfig = cc.Class({
         //         this._bar = value;
         //     }
         // },
-        basicIp: "192.168.0.101",
+        basicIp: "192.168.0.103",
         basicPort: 8888,
         netWorkMessageConfigs: {
             get() {

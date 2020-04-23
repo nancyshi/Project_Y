@@ -74,7 +74,7 @@ cc.Class({
             },
             set: function set(value) {
                 this._heart = value;
-                cc.find("Canvas/uiNode/heartLabel").getComponent(cc.Label).string = value.toString() + " / " + this.maxHeart.toString();
+                cc.find("Canvas/uiNode/heartLabel").getComponent(cc.Label).string = value.toString();
                 if (value < this.heartForRetryCost) {
                     this.retryButton.getComponent(cc.Button).interactable = false;
                 } else {
@@ -122,7 +122,8 @@ cc.Class({
                 currentStepNumLabel.getComponent(cc.Label).string = "当前步数：" + value.toString();
             }
         },
-        level: null
+        level: null,
+        soundEffect: null
 
     },
 
@@ -133,6 +134,10 @@ cc.Class({
         this.helper = new Helper();
         //this.level = 1
         this.setupNodesByConfig();
+        var self = this;
+        cc.loader.loadRes("effectSounds/hit", function (err, res) {
+            self.soundEffect = res;
+        });
     },
     start: function start() {
         this.node.on("touchstart", this.onTouchStart, this);
@@ -182,11 +187,19 @@ cc.Class({
             minStepNum = "无";
         }
         minStepNumLabel.getComponent(cc.Label).string = "最小步数：" + minStepNum.toString();
+        this.playBgm();
     },
 
 
     // update (dt) {},
-
+    playBgm: function playBgm() {
+        var levelConfig = require("levelConfig");
+        var bgmPath = levelConfig[this.level].bgmPath;
+        cc.loader.loadRes(bgmPath, function (err, res) {
+            cc.audioEngine.stopAll();
+            cc.audioEngine.play(res);
+        });
+    },
     onTouchStart: function onTouchStart(event) {
         this.directionTryto = null;
         this.flag = true;
@@ -307,15 +320,20 @@ cc.Class({
         }
         if (willAddStepNum == true) {
             this.currentStepNum += 1;
+            if (this.soundEffect != null) {
+                this.scheduleOnce(function () {
+                    cc.audioEngine.play(this.soundEffect);
+                }, 0.3);
+            }
         }
     },
     onSuccess: function onSuccess() {
         this.retryButton.getComponent(cc.Button).interactable = false;
-        if (this.level != this.playerData.currentLevel) {
-            // cc.director.loadScene("mainScene")
-            require("gameMgr").animatedToScene("mainScene");
-            return;
-        }
+        // if (this.level != this.playerData.currentLevel) {
+        //     // cc.director.loadScene("mainScene")
+        //     require("gameMgr").animatedToScene("mainScene")
+        //     return
+        // }
 
         var levels = require("sectionConfig")[this.playerData.currentSection].levels;
         var index = levels.indexOf(this.playerData.currentLevel);
@@ -333,18 +351,22 @@ cc.Class({
 
         if (newSection == null) {
             commitBody = {
-                currentLevel: newLevel,
-                physicalPowerCostedFlag: 0
+                currentLevel: newLevel
             };
         } else {
             commitBody = {
                 currentSection: newSection,
-                currentLevel: newLevel,
-                physicalPowerCostedFlag: 0
+                currentLevel: newLevel
             };
         }
+
+        if (this.level == require("dataMgr").playerData.currentLevel) {
+            commitBody.physicalPowerCostedFlag = 0;
+        }
+
         var minStepKey = "minStep_level_" + this.level.toString();
         var minStepNum = require("dataMgr").playerData.minSteps[minStepKey];
+
         if (minStepNum == null || minStepNum == undefined || this.currentStepNum < minStepNum) {
             commitBody.minSteps = {};
             commitBody.minSteps[minStepKey] = this.currentStepNum;
@@ -640,6 +662,9 @@ cc.Class({
             var mgrConfig = oneBulletConfig.mgr;
             var bulletMgr = oneBulletNode.getComponent("bulletMgr");
             bulletMgr.bulletType = mgrConfig.bulletType;
+            if (mgrConfig.bulletType == 2) {
+                oneBulletNode.getComponent(cc.Sprite).spriteFrame = bulletMgr.sliderFrame;
+            }
             this._setupNodePropertyByConfig(oneBulletNode, basicConfig);
             if (bulletMgr.bulletType == 2) {
                 if (mgrConfig.pathWaysNodeName != "" && mgrConfig.pathWaysNodeName != null) {

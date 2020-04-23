@@ -1,5 +1,5 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/configs/levelSceneConfig.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '6cbb9bufrlBJqlIvfzfLl2H', 'levelSceneConfig', __filename);
+cc._RF.push(module, '32cc930TbVCP6zdMVgYejeo', 'levelSceneConfig', __filename);
 // configs/levelSceneConfig.js
 
 "use strict";
@@ -903,18 +903,6 @@ var levelSceneConfig = {
             }
         }, {
             "basic": {
-                "x": -12.792,
-                "y": 363.095,
-                "width": 100,
-                "height": 100,
-                "angle": 0
-            },
-            "mgr": {
-                "bulletType": 2,
-                "pathWaysNodeName": "pathWay01"
-            }
-        }, {
-            "basic": {
                 "x": 92.208,
                 "y": 153.095,
                 "width": 100,
@@ -924,6 +912,18 @@ var levelSceneConfig = {
             "mgr": {
                 "bulletType": 1,
                 "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": -12.792,
+                "y": 363.095,
+                "width": 100,
+                "height": 100,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 2,
+                "pathWaysNodeName": "pathWay01"
             }
         }]
     },
@@ -1078,7 +1078,7 @@ var levelSceneConfig = {
             "x": -12.792,
             "y": 258.095,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -1394,13 +1394,13 @@ var levelSceneConfig = {
             "x": -96.967,
             "y": 467.284,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 113.033,
             "y": 362.284,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -1435,74 +1435,74 @@ var levelSceneConfig = {
     },
     "7": {
         "fillNodes": [{
-            "x": -170.894,
-            "y": 192.269,
+            "x": -65.714,
+            "y": 86.196,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -170.894,
-            "y": 268.368,
+            "x": -66.567,
+            "y": 192.021,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -114.896,
-            "y": 264.06,
+            "x": -170.685,
+            "y": 190.314,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -114.896,
-            "y": 312.879,
+            "x": -170.685,
+            "y": 259.683,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 109.096,
-            "y": 314.315,
+            "x": -118.658,
+            "y": 259.683,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 110.532,
-            "y": 265.496,
+            "x": -118.016,
+            "y": 313.637,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 166.53,
-            "y": 264.06,
+            "x": 105.507,
+            "y": 313.637,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 166.53,
-            "y": 195.139,
+            "x": 108.719,
+            "y": 260.325,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 61.713,
-            "y": 196.575,
+            "x": 157.534,
+            "y": 260.325,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 60.277,
-            "y": 90.323,
+            "x": 160.103,
+            "y": 192.883,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -60.334,
-            "y": 87.451,
+            "x": 54.764,
+            "y": 191.598,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -60.334,
-            "y": 193.703,
+            "x": 55.406,
+            "y": 87.544,
             "width": 0,
             "height": 0,
             "angle": 0
@@ -1510,87 +1510,87 @@ var levelSceneConfig = {
         "walls": [{
             "x": -169.889,
             "y": 227.311,
-            "width": 60,
+            "width": 57.5,
             "height": 10,
             "angle": 90
         }, {
-            "x": 170.111,
+            "x": 160.111,
             "y": 232.311,
-            "width": 70,
+            "width": 67.5,
             "height": 10,
             "angle": 90
         }, {
-            "x": -142.389,
-            "y": 262.311,
-            "width": 65,
+            "x": -143.639,
+            "y": 261.061,
+            "width": 62.5,
             "height": 10,
             "angle": 0
         }, {
-            "x": 137.611,
-            "y": 262.311,
-            "width": 55,
+            "x": 128.861,
+            "y": 261.061,
+            "width": 52.5,
             "height": 10,
             "angle": 0
         }, {
-            "x": 115.111,
-            "y": 192.311,
-            "width": 120,
-            "height": 10,
-            "angle": 0
-        }, {
-            "x": -117.073,
-            "y": 192.311,
+            "x": 107.611,
+            "y": 193.561,
             "width": 115,
             "height": 10,
             "angle": 0
         }, {
-            "x": 60.111,
-            "y": 144.811,
+            "x": 55.111,
+            "y": 146.061,
             "width": 105,
             "height": 10,
             "angle": 90
         }, {
-            "x": -59.889,
-            "y": 139.811,
+            "x": -64.889,
+            "y": 141.061,
             "width": 115,
             "height": 10,
             "angle": 90
         }, {
-            "x": 5.111,
-            "y": 87.311,
+            "x": -117.389,
+            "y": 193.561,
+            "width": 115,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 0.111,
+            "y": 88.561,
             "width": 120,
             "height": 10,
             "angle": 0
         }, {
-            "x": -4.889,
-            "y": 312.311,
-            "width": 230,
+            "x": -117.389,
+            "y": 282.311,
+            "width": 52.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 107.611,
+            "y": 287.311,
+            "width": 62.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -9.889,
+            "y": 313.561,
+            "width": 225,
             "height": 10,
             "angle": 0
-        }, {
-            "x": -114.889,
-            "y": 284.811,
-            "width": 55,
-            "height": 10,
-            "angle": 90
-        }, {
-            "x": 115.111,
-            "y": 287.311,
-            "width": 60,
-            "height": 10,
-            "angle": 90
         }],
         "targets": [{
-            "x": 0.111,
-            "y": 147.311,
+            "x": -4.889,
+            "y": 148.561,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
-            "x": -134.889,
-            "y": 227.311,
-            "width": 50,
-            "height": 50,
+            "x": -136.389,
+            "y": 227.061,
+            "width": 47.5,
+            "height": 47.5,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -1599,8 +1599,8 @@ var levelSceneConfig = {
         }],
         "bullets": [{
             "basic": {
-                "x": -54.889,
-                "y": 252.311,
+                "x": -57.389,
+                "y": 253.561,
                 "width": 100,
                 "height": 100,
                 "angle": 0
@@ -1611,10 +1611,10 @@ var levelSceneConfig = {
             }
         }, {
             "basic": {
-                "x": 135.111,
-                "y": 227.311,
-                "width": 50,
-                "height": 50,
+                "x": 126.611,
+                "y": 227.061,
+                "width": 47.5,
+                "height": 47.5,
                 "angle": 0
             },
             "mgr": {
@@ -1625,62 +1625,62 @@ var levelSceneConfig = {
     },
     "8": {
         "fillNodes": [{
-            "x": -26.544,
-            "y": -29.607,
+            "x": 26.664,
+            "y": -28.232,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -33.691,
-            "y": 76.571,
+            "x": 25.096,
+            "y": 76.854,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -134.764,
-            "y": 77.592,
+            "x": -133.317,
+            "y": 76.854,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -133.743,
-            "y": 149.058,
+            "x": -131.749,
+            "y": 144.297,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -76.57,
-            "y": 145.995,
+            "x": -76.853,
+            "y": 144.297,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": -76.57,
-            "y": 306.283,
+            "x": -76.853,
+            "y": 302.71,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 148.037,
-            "y": 308.325,
+            "x": 197.626,
+            "y": 302.71,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 151.1,
-            "y": 78.613,
+            "x": 197.626,
+            "y": 79.99,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 91.885,
-            "y": 74.529,
+            "x": 145.867,
+            "y": 76.853,
             "width": 0,
             "height": 0,
             "angle": 0
         }, {
-            "x": 91.885,
-            "y": -26.544,
+            "x": 145.867,
+            "y": -26.665,
             "width": 0,
             "height": 0,
             "angle": 0
@@ -1688,75 +1688,75 @@ var levelSceneConfig = {
         "walls": [{
             "x": -131.128,
             "y": 112.528,
-            "width": 60,
+            "width": 57.5,
             "height": 10,
             "angle": 90
         }, {
-            "x": -103.628,
-            "y": 147.528,
-            "width": 65,
+            "x": -52.378,
+            "y": 78.778,
+            "width": 167.5,
             "height": 10,
             "angle": 0
         }, {
-            "x": -76.128,
-            "y": 232.528,
-            "width": 160,
-            "height": 10,
-            "angle": 90
-        }, {
-            "x": 121.372,
-            "y": 77.528,
-            "width": 55,
+            "x": 172.622,
+            "y": 78.778,
+            "width": 62.5,
             "height": 10,
             "angle": 0
         }, {
-            "x": 148.872,
-            "y": 187.528,
-            "width": 230,
-            "height": 10,
-            "angle": 90
-        }, {
-            "x": 41.372,
-            "y": 307.528,
-            "width": 225,
-            "height": 10,
-            "angle": 0
-        }, {
-            "x": -76.128,
-            "y": 77.528,
-            "width": 120,
-            "height": 10,
-            "angle": 0
-        }, {
-            "x": -21.128,
-            "y": 30.028,
+            "x": 146.372,
+            "y": 31.278,
             "width": 105,
             "height": 10,
             "angle": 90
         }, {
-            "x": 98.872,
-            "y": 25.028,
+            "x": 26.372,
+            "y": 26.278,
             "width": 115,
             "height": 10,
             "angle": 90
         }, {
-            "x": 33.872,
-            "y": -27.472,
+            "x": 91.372,
+            "y": -26.222,
             "width": 120,
             "height": 10,
             "angle": 0
-        }],
-        "targets": [{
-            "x": 38.872,
-            "y": 32.528,
-            "width": 100,
-            "height": 102,
+        }, {
+            "x": -104.878,
+            "y": 146.278,
+            "width": 62.5,
+            "height": 10,
             "angle": 0
         }, {
-            "x": -96.128,
-            "y": 112.528,
-            "width": 50,
-            "height": 50,
+            "x": -78.628,
+            "y": 220.028,
+            "width": 157.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 55.122,
+            "y": 303.778,
+            "width": 277.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 198.872,
+            "y": 196.278,
+            "width": 225,
+            "height": 10,
+            "angle": 90
+        }],
+        "targets": [{
+            "x": 86.372,
+            "y": 33.778,
+            "width": 100,
+            "height": 100,
+            "angle": 0
+        }, {
+            "x": -97.628,
+            "y": 112.278,
+            "width": 47.5,
+            "height": 47.5,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -1765,8 +1765,8 @@ var levelSceneConfig = {
         }],
         "bullets": [{
             "basic": {
-                "x": 88.872,
-                "y": 137.528,
+                "x": 138.872,
+                "y": 138.778,
                 "width": 100,
                 "height": 100,
                 "angle": 0
@@ -1777,10 +1777,10 @@ var levelSceneConfig = {
             }
         }, {
             "basic": {
-                "x": 33.872,
+                "x": 60.122,
                 "y": 217.528,
-                "width": 100,
-                "height": 50,
+                "width": 152.5,
+                "height": 47.5,
                 "angle": 0
             },
             "mgr": {
@@ -1789,10 +1789,10 @@ var levelSceneConfig = {
             }
         }, {
             "basic": {
-                "x": 8.872,
-                "y": 112.528,
-                "width": 50,
-                "height": 50,
+                "x": 60.122,
+                "y": 112.278,
+                "width": 47.5,
+                "height": 47.5,
                 "angle": 0
             },
             "mgr": {
@@ -1952,13 +1952,13 @@ var levelSceneConfig = {
             "x": -177.493,
             "y": 88.088,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 47.507,
             "y": 178.088,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": -167.493,
@@ -2274,13 +2274,13 @@ var levelSceneConfig = {
             "x": -97.787,
             "y": -57.117,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 112.213,
             "y": -162.117,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -2482,13 +2482,13 @@ var levelSceneConfig = {
             "x": -122.283,
             "y": 253.09,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 87.717,
             "y": 358.09,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -2792,7 +2792,7 @@ var levelSceneConfig = {
             "x": 47.637,
             "y": 452.677,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -2825,6 +2825,18 @@ var levelSceneConfig = {
         }],
         "bullets": [{
             "basic": {
+                "x": -267.363,
+                "y": 242.677,
+                "width": 100,
+                "height": 100,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
                 "x": 47.637,
                 "y": 347.677,
                 "width": 100,
@@ -2858,18 +2870,6 @@ var levelSceneConfig = {
             "mgr": {
                 "bulletType": 2,
                 "pathWaysNodeName": "pathWay01"
-            }
-        }, {
-            "basic": {
-                "x": -267.363,
-                "y": 242.677,
-                "width": 100,
-                "height": 100,
-                "angle": 0
-            },
-            "mgr": {
-                "bulletType": 1,
-                "pathWaysNodeName": ""
             }
         }]
     },
@@ -3168,19 +3168,19 @@ var levelSceneConfig = {
             "x": -191.799,
             "y": 467.854,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": -87.068,
             "y": 47.854,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 228.201,
             "y": 47.854,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -3460,13 +3460,13 @@ var levelSceneConfig = {
             "x": 75.201,
             "y": 489.934,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 285.201,
             "y": 69.934,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -3698,13 +3698,13 @@ var levelSceneConfig = {
             "x": -275.69,
             "y": 365.146,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 249.31,
             "y": 260.146,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -4050,19 +4050,19 @@ var levelSceneConfig = {
             "x": -225.496,
             "y": 391.439,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": -15.496,
             "y": 496.439,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 194.504,
             "y": 391.439,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -4348,7 +4348,7 @@ var levelSceneConfig = {
             "x": -301.292,
             "y": 307.346,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -4387,8 +4387,8 @@ var levelSceneConfig = {
             }
         }, {
             "basic": {
-                "x": 118.708,
-                "y": 307.346,
+                "x": -91.292,
+                "y": 202.346,
                 "width": 100,
                 "height": 100,
                 "angle": 0
@@ -4399,15 +4399,15 @@ var levelSceneConfig = {
             }
         }, {
             "basic": {
-                "x": 143.708,
-                "y": 227.346,
-                "width": 50,
-                "height": 50,
+                "x": 149.958,
+                "y": 226.096,
+                "width": 47.5,
+                "height": 47.5,
                 "angle": 0
             },
             "mgr": {
                 "bulletType": 2,
-                "pathWaysNodeName": ""
+                "pathWaysNodeName": "pathWay01"
             }
         }]
     },
@@ -4664,19 +4664,19 @@ var levelSceneConfig = {
             "x": -220.938,
             "y": 363.611,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": -10.938,
             "y": 468.611,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 304.062,
             "y": 153.611,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -5043,19 +5043,19 @@ var levelSceneConfig = {
             "x": -302.312,
             "y": 252.184,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 12.688,
             "y": 462.184,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 222.688,
             "y": 147.184,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -5356,13 +5356,13 @@ var levelSceneConfig = {
             "x": -90.556,
             "y": 476.284,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 224.444,
             "y": 56.284,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -5663,13 +5663,13 @@ var levelSceneConfig = {
             "x": -173.664,
             "y": 214.043,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 141.336,
             "y": 424.043,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -6018,13 +6018,13 @@ var levelSceneConfig = {
             "x": -163.616,
             "y": 468.265,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }, {
             "x": 46.384,
             "y": 468.265,
             "width": 100,
-            "height": 102,
+            "height": 100,
             "angle": 0
         }],
         "pathWaysNode": [{
@@ -6073,7 +6073,7 @@ var levelSceneConfig = {
         }, {
             "basic": {
                 "x": 46.384,
-                "y": 48.265,
+                "y": 46.384,
                 "width": 100,
                 "height": 100,
                 "angle": 0
@@ -6081,6 +6081,948 @@ var levelSceneConfig = {
             "mgr": {
                 "bulletType": 2,
                 "pathWaysNodeName": "pathWay01"
+            }
+        }]
+    },
+    "23": {
+        "fillNodes": [{
+            "x": -95.749,
+            "y": -72.384,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -96.961,
+            "y": 34.268,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -199.977,
+            "y": 33.056,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -201.189,
+            "y": 154.252,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -98.173,
+            "y": 154.252,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -98.173,
+            "y": 193.035,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -146.937,
+            "y": 191.557,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -147.676,
+            "y": 258.792,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -95.957,
+            "y": 258.792,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -93.74,
+            "y": 362.969,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 22.997,
+            "y": 365.186,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 25.952,
+            "y": 294.996,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -26.506,
+            "y": 297.213,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -26.506,
+            "y": 258.793,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 115.352,
+            "y": 258.054,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 114.613,
+            "y": 309.773,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 181.109,
+            "y": 311.251,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 183.326,
+            "y": -2.757,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 235.045,
+            "y": -4.235,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 235.045,
+            "y": -69.253,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }],
+        "walls": [{
+            "x": -199.745,
+            "y": 94.586,
+            "width": 110,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -147.245,
+            "y": 34.586,
+            "width": 115,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -94.745,
+            "y": -12.914,
+            "width": 105,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 235.255,
+            "y": -41.664,
+            "width": 67.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 209.005,
+            "y": -2.914,
+            "width": 62.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 182.755,
+            "y": 154.586,
+            "width": 325,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 65.255,
+            "y": -70.414,
+            "width": 330,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -147.245,
+            "y": 154.586,
+            "width": 115,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -94.745,
+            "y": 173.336,
+            "width": 47.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -115.995,
+            "y": 192.086,
+            "width": 52.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -147.245,
+            "y": 220.836,
+            "width": 67.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -120.995,
+            "y": 259.586,
+            "width": 62.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -94.745,
+            "y": 307.086,
+            "width": 105,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -39.745,
+            "y": 364.586,
+            "width": 120,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 25.255,
+            "y": 335.836,
+            "width": 67.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -0.995,
+            "y": 297.086,
+            "width": 62.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -27.245,
+            "y": 278.336,
+            "width": 47.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 44.005,
+            "y": 259.586,
+            "width": 152.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 115.255,
+            "y": 280.836,
+            "width": 52.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 144.005,
+            "y": 312.086,
+            "width": 67.5,
+            "height": 10,
+            "angle": 0
+        }],
+        "targets": [{
+            "x": -139.745,
+            "y": 94.586,
+            "width": 100,
+            "height": 100,
+            "angle": 0
+        }, {
+            "x": 201.505,
+            "y": -36.664,
+            "width": 47.5,
+            "height": 47.5,
+            "angle": 0
+        }, {
+            "x": 149.005,
+            "y": 278.336,
+            "width": 47.5,
+            "height": 47.5,
+            "angle": 0
+        }],
+        "pathWaysNode": [{
+            "name": "pathWay01",
+            "children": []
+        }],
+        "bullets": [{
+            "basic": {
+                "x": 70.255,
+                "y": 199.586,
+                "width": 100,
+                "height": 100,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": 70.255,
+                "y": 15.836,
+                "width": 100,
+                "height": 47.5,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 2,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": 96.505,
+                "y": 68.336,
+                "width": 47.5,
+                "height": 152.5,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 2,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": 149.005,
+                "y": 225.836,
+                "width": 47.5,
+                "height": 47.5,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": 149.005,
+                "y": 173.336,
+                "width": 47.5,
+                "height": 47.5,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
+            }
+        }]
+    },
+    "24": {
+        "fillNodes": [{
+            "x": -139.743,
+            "y": -2.598,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -139.743,
+            "y": 312.888,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -296.972,
+            "y": 311.86,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -299.027,
+            "y": 380.712,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -246.617,
+            "y": 381.74,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -247.645,
+            "y": 434.15,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 14.404,
+            "y": 433.122,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 17.487,
+            "y": 485.532,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 136.694,
+            "y": 485.532,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 136.694,
+            "y": 433.122,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 190.131,
+            "y": 433.122,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 190.131,
+            "y": 365.298,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 136.694,
+            "y": 364.27,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 138.749,
+            "y": 275.893,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 241.513,
+            "y": 276.921,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 241.513,
+            "y": 156.687,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 135.666,
+            "y": 154.632,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 136.694,
+            "y": 103.25,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 85.312,
+            "y": 103.25,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 85.312,
+            "y": -3.625,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }],
+        "walls": [{
+            "x": -297.079,
+            "y": 348.54,
+            "width": 57.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -218.329,
+            "y": 314.79,
+            "width": 167.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -139.579,
+            "y": 162.29,
+            "width": 315,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -32.079,
+            "y": -0.21,
+            "width": 225,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 85.421,
+            "y": 52.29,
+            "width": 115,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 106.671,
+            "y": 104.79,
+            "width": 52.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 137.921,
+            "y": 131.04,
+            "width": 62.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 185.421,
+            "y": 157.29,
+            "width": 105,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 242.921,
+            "y": 212.29,
+            "width": 120,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 190.421,
+            "y": 277.29,
+            "width": 115,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 137.921,
+            "y": 322.29,
+            "width": 100,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 159.171,
+            "y": 367.29,
+            "width": 52.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 190.421,
+            "y": 396.04,
+            "width": 67.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 164.171,
+            "y": 434.79,
+            "width": 62.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 137.921,
+            "y": 456.04,
+            "width": 52.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 82.921,
+            "y": 487.29,
+            "width": 120,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 17.921,
+            "y": 461.04,
+            "width": 62.5,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -113.329,
+            "y": 434.79,
+            "width": 272.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -270.829,
+            "y": 382.29,
+            "width": 62.5,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -244.579,
+            "y": 403.54,
+            "width": 52.5,
+            "height": 10,
+            "angle": 90
+        }],
+        "targets": [{
+            "x": 182.921,
+            "y": 217.29,
+            "width": 100,
+            "height": 100,
+            "angle": 0
+        }, {
+            "x": 156.921,
+            "y": 401.29,
+            "width": 47.5,
+            "height": 47.5,
+            "angle": 0
+        }, {
+            "x": -53.329,
+            "y": 296.04,
+            "width": 47.5,
+            "height": 47.5,
+            "angle": 0
+        }],
+        "pathWaysNode": [{
+            "name": "pathWay01",
+            "children": []
+        }],
+        "bullets": [{
+            "basic": {
+                "x": 77.921,
+                "y": 164.79,
+                "width": 100,
+                "height": 100,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": -27.079,
+                "y": 164.79,
+                "width": 100,
+                "height": 205,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 2,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": -0.829,
+                "y": 293.54,
+                "width": 47.5,
+                "height": 52.5,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 2,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": 51.421,
+                "y": 453.79,
+                "width": 47.5,
+                "height": 47.5,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": 104.421,
+                "y": 453.79,
+                "width": 47.5,
+                "height": 47.5,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
+            }
+        }]
+    },
+    "25": {
+        "fillNodes": [{
+            "x": -179.903,
+            "y": -34.363,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -179.903,
+            "y": 69.663,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -285.874,
+            "y": 70.635,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -286.846,
+            "y": 186.328,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -183.792,
+            "y": 187.3,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -180.875,
+            "y": 279.66,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -286.846,
+            "y": 279.66,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -284.902,
+            "y": 400.214,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 29.122,
+            "y": 398.27,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 28.15,
+            "y": 505.213,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 148.704,
+            "y": 505.213,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 150.649,
+            "y": 293.272,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 253.703,
+            "y": 295.216,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 255.647,
+            "y": 174.662,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 148.704,
+            "y": 174.662,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": 150.648,
+            "y": 68.691,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -61.293,
+            "y": 67.719,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }, {
+            "x": -60.321,
+            "y": -35.335,
+            "width": 0,
+            "height": 0,
+            "angle": 0
+        }],
+        "walls": [{
+            "x": -285.436,
+            "y": 130.242,
+            "width": 110,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -232.936,
+            "y": 190.242,
+            "width": 115,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 197.064,
+            "y": 295.242,
+            "width": 105,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 254.564,
+            "y": 240.242,
+            "width": 120,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 202.064,
+            "y": 175.242,
+            "width": 115,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 149.564,
+            "y": 127.742,
+            "width": 105,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -60.436,
+            "y": 22.742,
+            "width": 105,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -115.436,
+            "y": -34.758,
+            "width": 120,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -180.436,
+            "y": 17.742,
+            "width": 115,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -232.936,
+            "y": 70.242,
+            "width": 115,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 44.564,
+            "y": 70.242,
+            "width": 220,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -180.436,
+            "y": 235.242,
+            "width": 100,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 29.564,
+            "y": 447.742,
+            "width": 105,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": 84.564,
+            "y": 505.242,
+            "width": 120,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": 149.564,
+            "y": 400.242,
+            "width": 220,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -227.936,
+            "y": 280.242,
+            "width": 105,
+            "height": 10,
+            "angle": 0
+        }, {
+            "x": -285.436,
+            "y": 335.242,
+            "width": 120,
+            "height": 10,
+            "angle": 90
+        }, {
+            "x": -127.936,
+            "y": 400.242,
+            "width": 325,
+            "height": 10,
+            "angle": 0
+        }],
+        "targets": [{
+            "x": -120.436,
+            "y": 25.242,
+            "width": 100,
+            "height": 100,
+            "angle": 0
+        }, {
+            "x": -225.436,
+            "y": 340.242,
+            "width": 100,
+            "height": 100,
+            "angle": 0
+        }],
+        "pathWaysNode": [{
+            "name": "pathWay01",
+            "children": [{
+                "x": 37.064,
+                "y": 235.242,
+                "width": 315,
+                "height": 10,
+                "angle": 0
+            }, {
+                "x": -15.436,
+                "y": 235.242,
+                "width": 210,
+                "height": 10,
+                "angle": 90
+            }]
+        }],
+        "bullets": [{
+            "basic": {
+                "x": -225.436,
+                "y": 130.242,
+                "width": 100,
+                "height": 100,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
+            }
+        }, {
+            "basic": {
+                "x": -15.436,
+                "y": 235.242,
+                "width": 100,
+                "height": 100,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 2,
+                "pathWaysNodeName": "pathWay"
+            }
+        }, {
+            "basic": {
+                "x": 89.564,
+                "y": 445.242,
+                "width": 100,
+                "height": 100,
+                "angle": 0
+            },
+            "mgr": {
+                "bulletType": 1,
+                "pathWaysNodeName": ""
             }
         }]
     }

@@ -1753,7 +1753,7 @@
       "width": 1080,
       "height": 1920
     },
-    "_fitWidth": false,
+    "_fitWidth": true,
     "_fitHeight": true,
     "_id": "82l5uMZgxFI4B67v+bbiRF"
   },
@@ -1812,6 +1812,7 @@
       "__id__": 12
     },
     "level": null,
+    "soundEffect": null,
     "_id": "d0M7GoaxtFabA9LS4Iw01i"
   }
 ]

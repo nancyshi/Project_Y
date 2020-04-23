@@ -28,36 +28,11 @@ var Networkmgr = cc.Class({
         // },
         delegate: null,
 
-        retryDelta: 0.5,
-        retryTime: 3,
-        retryingFlag: false,
-        currentRetryTime: 3,
-
-        retryResult: {
-            get() {
-                return this._retryResult
-            },
-            set(value) {
-                this._retryResult = value
-                if (value == true) {
-                    if (this.retryWaitingNode != null) {
-                        this.retryWaitingNode.destroy()
-                    }
-                }
-            }
-        },
+        retryDelta: 1.5,
+        maxRetryTime: 3,
 
         retryWaitingNode: null,
-
-        longConnectXhr: {
-            get() {
-                if (this._longConnectXhr == null) {
-                    this._longConnectXhr = new XMLHttpRequest()
-                    //this._longConnectXhr.timeout = 100000000
-                }
-                return this._longConnectXhr
-            }
-        }
+        retryAction: null
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -117,21 +92,12 @@ var Networkmgr = cc.Class({
         }
     },
 
-    sendMessageByMsgObj(msgObj, useLongConnectXhr = false) {
-        if (useLongConnectXhr == true) {
-            cc.log("start heart beat")
-        }
+    sendMessageByMsgObj(msgObj) {
         var url = "https://" + msgObj.ip + ":" + msgObj.port.toString() + "/" + msgObj.suffix
         var xhr = null
-        if (useLongConnectXhr == false) {
-            xhr = new XMLHttpRequest()
-        }
-        else {
-            xhr = this.longConnectXhr
-        }
+        xhr = new XMLHttpRequest()
         var self = this
         xhr.onreadystatechange = function() {
-
             if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
                 msgObj.successCallBack(xhr)
                 if (self.retryingFlag == true) {
@@ -140,47 +106,78 @@ var Networkmgr = cc.Class({
             }
         }
         var msgForSend = JSON.stringify(msgObj.message)
-        xhr.onerror = function() {
-            cc.log("connect erro")
-            if (self.retryingFlag == false) {
-                cc.loader.loadRes("prefabs/retryWaitingNode",function(err,res){
-                    if (self.delegate != null) {
-                        var retryWaitingNode = cc.instantiate(res)
-                        retryWaitingNode.name = "retryWaitingNode"
-                        var bg = retryWaitingNode.getChildByName("bg")
-                        var winsize = cc.director.getWinSize()
-                        bg.width = winsize.width
-                        bg.height = winsize.height
-                        bg.on("touchstart",function(){},this)
-                        self.retryWaitingNode = retryWaitingNode
-                        self.delegate.node.addChild(self.retryWaitingNode)
-                    }
-                    self.retryingFlag = true
-                    self.scheduleOnce(function(){
-                        self.currentRetryTime -= 1
-                        xhr.send(msgForSend)
-    
-                    },self.retryDelta)
-                })
-                
-            }
-            if (self.retryingFlag == true) {
-                self.currentRetryTime -= 1
-                xhr.send(msgForSend)
-                if (self.currentRetryTime == 0) {
-                    xhr.onerror = function() {
-                        xhr = null
-                        self.onAllRetryFailed()
-                        
-                    }
-                    self.retryingFlag = false
-                    self.currentRetryTime = self.retryTime
-                    self.retryResult = null
+        xhr.onerror = function(){
+            cc.log("err")
+            if (self.retryAction == null) {
+                self.retryAction = function(){
+                    xhr.send(msgForSend)
+                    xhr.currentRetryTime += 1
                 }
             }
+
+            if (xhr.currentRetryTime == null || xhr.currentRetryTime == undefined) {
+                xhr.currentRetryTime = 0
+            }
+            var retry = function(xhr){
+                cc.log("retry",xhr.currentRetryTime)
+                if (xhr.currentRetryTime > self.maxRetryTime) {
+                    self.retryWaitingNode.destroy()
+                    self.retryWaitingNode.removeFromParent()
+                    self.retryWaitingNode = null
+                    self.retryAction = null
+                    self.unscheduleAllCallbacks()
+
+                    //do something else
+                    var currentScene = cc.director.getScene()
+                    if (currentScene.name == "loginScene") {
+                        var mgr = currentScene.getChildByName("Canvas").getComponent("loginSceneMgr")
+                        mgr.onAllRetryFailed()
+                    }
+                    else {
+                        cc.loader.loadRes("prefabs/backToLoginScene",function(err,res){
+                            var node = cc.instantiate(res)
+                            var bg = node.getChildByName("bg")
+                            bg.width = cc.winSize.width
+                            bg.height = cc.winSize.height
+                            bg.on("touchstart",function(){})
+
+                            var ensureButtonNode = node.getChildByName("others").getChildByName("ensureButton")
+                            ensureButtonNode.on("click",function(){
+                                cc.director.loadScene("loginScene")
+                            })
+
+                            cc.director.getScene().getChildByName("Canvas").addChild(node)
+                        })  
+                    }
+                }
+                else if (xhr.currentRetryTime == 0) {
+                    cc.director.getScene().getChildByName("Canvas").addChild(self.retryWaitingNode)
+                    self.schedule(self.retryAction,self.retryDelta)
+                }
+            
+            }
+            if (self.retryWaitingNode == null) {
+                cc.loader.loadRes("prefabs/retryWaitingNode",function(err,res){
+                    var node = cc.instantiate(res)
+                    var bg = node.getChildByName("bg")
+                    bg.width = cc.winSize.width
+                    bg.height = cc.winSize.height
+                    bg.on("touchstart",function(){})
+
+                    self.retryWaitingNode = node
+                    retry(xhr)
+                })
+            }
+            else {
+                retry(xhr)
+            }
+            
         }
         xhr.ontimeout = function(){
             cc.log("time out!!!")
+        }
+        xhr.onabort = function(){
+            cc.log("abord")
         }
         if (xhr.readyState == 0) {
             xhr.open("POST",url)
@@ -189,12 +186,7 @@ var Networkmgr = cc.Class({
     },
 
     onAllRetryFailed() {
-        if (this.retryWaitingNode != null) {
-            this.retryWaitingNode.destroy()
-        }
-        if (this.delegate != null) {
-            this.delegate.onAllRetryFailed()
-        }
+
     },
 
     startHeartBeat() {
