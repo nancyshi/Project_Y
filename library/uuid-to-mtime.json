@@ -445,7 +445,7 @@
     "relativePath": "model/primitives.fbx"
   },
   "a80bdc5c-368d-4e3e-a24b-077b7cffd7a2": {
-    "asset": 1587571559150,
+    "asset": 1587634069603,
     "meta": 1584545062605,
     "relativePath": "configs"
   },
@@ -453,16 +453,6 @@
     "asset": 1586681202952,
     "meta": 1587202898884,
     "relativePath": "configs/addPropertySysConfig.js"
-  },
-  "b8af6c8a-c702-4d2e-9b96-132239b7cfbf": {
-    "asset": 1586793990863,
-    "meta": 1587202899385,
-    "relativePath": "configs/mailConfig.js"
-  },
-  "4a64f7b2-7d72-476d-937f-451066aab018": {
-    "asset": 1586371265333,
-    "meta": 1587202899391,
-    "relativePath": "configs/mailSysConfig.js"
   },
   "de4a80c2-10a0-4884-9f1d-9849996fb015": {
     "asset": 1587197253548,
@@ -810,8 +800,8 @@
     "relativePath": "resources/prefabs/bullet.prefab"
   },
   "bb0d7c29-9d37-4a8c-a8cf-749ac5adbb53": {
-    "asset": 1587203835384,
-    "meta": 1587203835389,
+    "asset": 1587664960223,
+    "meta": 1587664960229,
     "relativePath": "resources/prefabs/addPropertyNumUI.prefab"
   },
   "8b0ac224-3ed1-4849-9d60-c5f0663e8e25": {
@@ -860,8 +850,8 @@
     "relativePath": "scenes"
   },
   "2f2e2f75-d189-406a-aeec-807591d22962": {
-    "asset": 1587203810482,
-    "meta": 1587203810487,
+    "asset": 1587662117637,
+    "meta": 1587662117642,
     "relativePath": "resources/prefabs/welfaryUI.prefab"
   },
   "b5c4c8a3-036e-4f0a-8bd5-78e8a588a6b2": {
@@ -985,13 +975,13 @@
     "relativePath": "scenes/levels/_level023.fire"
   },
   "49ad0b11-6e9b-429c-988d-a57ac9e246ce": {
-    "asset": 1587635331149,
-    "meta": 1587635331155,
+    "asset": 1587728108906,
+    "meta": 1587728108911,
     "relativePath": "scenes/loginScene.fire"
   },
   "ffef00ff-2e28-4f3a-8020-65b0987af904": {
-    "asset": 1587542492661,
-    "meta": 1587542492667,
+    "asset": 1587643909614,
+    "meta": 1587643909620,
     "relativePath": "scenes/levelScene.fire"
   },
   "92b5dda0-0cc2-473b-b87a-71984a673e18": {
@@ -1059,11 +1049,6 @@
     "meta": 1587199859641,
     "relativePath": "scripts/mainScene"
   },
-  "e5cd79ab-e2c6-49f7-b124-9b98a9a9726e": {
-    "asset": 1587197253561,
-    "meta": 1587202900630,
-    "relativePath": "scripts/mainScene/preChallengeUIMgr.js"
-  },
   "d2250096-3cca-4846-bee8-fa37fcd72a20": {
     "asset": 1587197253563,
     "meta": 1587202900645,
@@ -1094,11 +1079,6 @@
     "meta": 1587202900728,
     "relativePath": "scripts/singleInstanceSystems/globalRedPointMgr.js"
   },
-  "6adf2970-e707-42ea-807d-d76a0d88dec2": {
-    "asset": 1585723873558,
-    "meta": 1587202900729,
-    "relativePath": "scripts/singleInstanceSystems/notificationMgr.js"
-  },
   "e69c970a-76b1-46b9-8edd-30ccf9b5db33": {
     "asset": 1587200034592,
     "meta": 1587199859647,
@@ -1113,11 +1093,6 @@
     "asset": 1586680335650,
     "meta": 1587199859648,
     "relativePath": "scripts/systems/ensureSys_notUse"
-  },
-  "5666f073-9437-409c-af06-4994bff18d5e": {
-    "asset": 1586684533670,
-    "meta": 1587202900758,
-    "relativePath": "scripts/systems/addPropertyNumSys/addPropertyNumSysMgr.js"
   },
   "2cfa2abc-ee3d-406d-a028-9063b10cbacf": {
     "asset": 1585649487367,
@@ -1134,50 +1109,20 @@
     "meta": 1587199859649,
     "relativePath": "scripts/systems/mailSys"
   },
-  "16bb9c9e-e940-4079-bba5-d45edc05bc98": {
-    "asset": 1586780619868,
-    "meta": 1587202900943,
-    "relativePath": "scripts/systems/mailSys/mailSysMailMgr.js"
-  },
   "1685a683-9fe5-45bc-b694-f9ff155d1122": {
     "asset": 1587197253564,
     "meta": 1587199859650,
     "relativePath": "scripts/systems/signInSys"
-  },
-  "a6895c72-68b4-4e39-92b5-b353472c9788": {
-    "asset": 1587197253564,
-    "meta": 1587202901033,
-    "relativePath": "scripts/systems/signInSys/signInSysMgr.js"
-  },
-  "90768cf7-0586-48c8-a703-3d763aed0dcf": {
-    "asset": 1587238389576,
-    "meta": 1587288538588,
-    "relativePath": "scripts/systems/systemsMgr.js"
   },
   "13ccc7c8-6e26-4002-a4c3-fcc980c7e8c6": {
     "asset": 1586684588673,
     "meta": 1587199859651,
     "relativePath": "scripts/systems/welfarySys"
   },
-  "b76ba9fd-bf20-4023-a1e3-60d264d681c7": {
-    "asset": 1586605024972,
-    "meta": 1587202901065,
-    "relativePath": "scripts/systems/welfarySys/welfarySysMgr.js"
-  },
-  "81fbcc87-5459-4386-a26f-09b52293a857": {
-    "asset": 1587203509894,
-    "meta": 1587203547019,
-    "relativePath": "scripts/loginSceneMgr.js"
-  },
   "df3f915f-f9e8-4483-8fcc-16270e69f1a4": {
     "asset": 1587203781828,
     "meta": 1587203783640,
     "relativePath": "scripts/libs/resMgr.js"
-  },
-  "46527f16-776b-4e26-b14a-258831f9beac": {
-    "asset": 1587211404448,
-    "meta": 1587211405082,
-    "relativePath": "scripts/systems/mailSys/mailSysMgr.js"
   },
   "dd98d241-2519-47a0-868d-c7192bc8b073": {
     "asset": 1587238034668,
@@ -1214,20 +1159,10 @@
     "meta": 1587405690296,
     "relativePath": "font"
   },
-  "3051920e-ea62-42c8-8509-f711aaac1016": {
-    "asset": 1587455353246,
-    "meta": 1587455354571,
-    "relativePath": "scripts/libs/gloableConfig.js"
-  },
   "5c04793e-3819-4d02-8423-dddee4e9b991": {
     "asset": 1587543215298,
     "meta": 1587543215303,
     "relativePath": "resources/effectSounds/hit.mp3"
-  },
-  "f25bd307-bcad-4adf-8e5d-384fce20f416": {
-    "asset": 1587544405246,
-    "meta": 1587544405262,
-    "relativePath": "resources/musics/bgm_001.mp3"
   },
   "a65da41f-22cd-4021-a549-0a56e2f4fa97": {
     "asset": 1587546262622,
@@ -1249,34 +1184,129 @@
     "meta": 1587571486407,
     "relativePath": "scenes/levels/level025.fire"
   },
-  "cb3edca7-a1a9-4ffa-8aab-d5ec42ca433c": {
-    "asset": 1587570558200,
-    "meta": 1587570682351,
-    "relativePath": "configs/levelConfig.js"
-  },
-  "658e190e-280f-4823-b10d-7b7cb6f8989f": {
-    "asset": 1587631508943,
-    "meta": 1587631510224,
-    "relativePath": "configs/sectionConfig.js"
-  },
   "32cc9df4-4db5-423f-acdd-3158187a37a8": {
     "asset": 1587634069601,
     "meta": 1587634071639,
     "relativePath": "configs/levelSceneConfig.js"
-  },
-  "b1711895-fa57-4be2-a860-a9d2b9606622": {
-    "asset": 1587634111378,
-    "meta": 1587634114339,
-    "relativePath": "scripts/mainScene/mainSceneMgr.js"
   },
   "eb08bb32-1f6b-4763-bc73-13c8d144396d": {
     "asset": 1587634362450,
     "meta": 1587634452993,
     "relativePath": "scripts/bulletMgr.js"
   },
+  "3051920e-ea62-42c8-8509-f711aaac1016": {
+    "asset": 1587642349391,
+    "meta": 1587642378426,
+    "relativePath": "scripts/libs/gloableConfig.js"
+  },
+  "a3669842-3bd7-4440-baec-ae9e71312784": {
+    "asset": 1587647219616,
+    "meta": 1587647219632,
+    "relativePath": "resources/musics/bgm_003.mp3"
+  },
+  "07ea2ca0-8523-405a-9ebf-53cf1ea70d72": {
+    "asset": 1587647219614,
+    "meta": 1587647219635,
+    "relativePath": "resources/musics/bgm_005.mp3"
+  },
+  "4d68ae72-5e31-4581-9e93-66f0e6545b4c": {
+    "asset": 1587647219617,
+    "meta": 1587647219639,
+    "relativePath": "resources/musics/bgm_002.mp3"
+  },
+  "45a28eb4-c80a-4262-9957-1166c2988c57": {
+    "asset": 1587647219618,
+    "meta": 1587647219643,
+    "relativePath": "resources/musics/bgm_001.mp3"
+  },
+  "e0cd0fce-8d0b-44a9-9f8d-d9c2d40eff7b": {
+    "asset": 1587647219621,
+    "meta": 1587647219648,
+    "relativePath": "resources/musics/bgm_004.mp3"
+  },
+  "658e190e-280f-4823-b10d-7b7cb6f8989f": {
+    "asset": 1587661030906,
+    "meta": 1587661165126,
+    "relativePath": "configs/sectionConfig.js"
+  },
+  "cb3edca7-a1a9-4ffa-8aab-d5ec42ca433c": {
+    "asset": 1587661362151,
+    "meta": 1587661445466,
+    "relativePath": "configs/levelConfig.js"
+  },
+  "b76ba9fd-bf20-4023-a1e3-60d264d681c7": {
+    "asset": 1587662629947,
+    "meta": 1587662634317,
+    "relativePath": "scripts/systems/welfarySys/welfarySysMgr.js"
+  },
+  "a6895c72-68b4-4e39-92b5-b353472c9788": {
+    "asset": 1587663983187,
+    "meta": 1587663986924,
+    "relativePath": "scripts/systems/signInSys/signInSysMgr.js"
+  },
+  "5666f073-9437-409c-af06-4994bff18d5e": {
+    "asset": 1587664849262,
+    "meta": 1587664850901,
+    "relativePath": "scripts/systems/addPropertyNumSys/addPropertyNumSysMgr.js"
+  },
+  "4a64f7b2-7d72-476d-937f-451066aab018": {
+    "asset": 1587714100815,
+    "meta": 1587714238784,
+    "relativePath": "configs/mailSysConfig.js"
+  },
+  "b8af6c8a-c702-4d2e-9b96-132239b7cfbf": {
+    "asset": 1587721656150,
+    "meta": 1587721770404,
+    "relativePath": "configs/mailConfig.js"
+  },
+  "46527f16-776b-4e26-b14a-258831f9beac": {
+    "asset": 1587721915102,
+    "meta": 1587721918124,
+    "relativePath": "scripts/systems/mailSys/mailSysMgr.js"
+  },
+  "16bb9c9e-e940-4079-bba5-d45edc05bc98": {
+    "asset": 1587722458190,
+    "meta": 1587722468727,
+    "relativePath": "scripts/systems/mailSys/mailSysMailMgr.js"
+  },
+  "b1711895-fa57-4be2-a860-a9d2b9606622": {
+    "asset": 1587723877947,
+    "meta": 1587724245157,
+    "relativePath": "scripts/mainScene/mainSceneMgr.js"
+  },
+  "6adf2970-e707-42ea-807d-d76a0d88dec2": {
+    "asset": 1587722748207,
+    "meta": 1587724245239,
+    "relativePath": "scripts/singleInstanceSystems/notificationMgr.js"
+  },
+  "90768cf7-0586-48c8-a703-3d763aed0dcf": {
+    "asset": 1587724195212,
+    "meta": 1587724245240,
+    "relativePath": "scripts/systems/systemsMgr.js"
+  },
+  "e5cd79ab-e2c6-49f7-b124-9b98a9a9726e": {
+    "asset": 1587725625337,
+    "meta": 1587725628268,
+    "relativePath": "scripts/mainScene/preChallengeUIMgr.js"
+  },
   "c401434b-a581-4466-95d0-234dcb30510f": {
-    "asset": 1587634451257,
-    "meta": 1587634452993,
+    "asset": 1587726758712,
+    "meta": 1587726760195,
     "relativePath": "scripts/levelMgr.js"
+  },
+  "4c7b6656-91a3-4e8e-bf9e-ae08eccaab63": {
+    "asset": 1587727718979,
+    "meta": 1587727719010,
+    "relativePath": "images/name_en.png"
+  },
+  "9c22ea4a-dc32-4c86-aa76-7d0ae8d9f632": {
+    "asset": 1587728016783,
+    "meta": 1587728080363,
+    "relativePath": "configs/textConfig.js"
+  },
+  "81fbcc87-5459-4386-a26f-09b52293a857": {
+    "asset": 1587728079225,
+    "meta": 1587728080364,
+    "relativePath": "scripts/loginSceneMgr.js"
   }
 }

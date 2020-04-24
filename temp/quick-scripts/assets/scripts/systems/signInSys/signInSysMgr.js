@@ -56,23 +56,26 @@ cc.Class({
         //2 = common in
         //3 = ad sign in
         var desStr = "";
+        var textConfig = require("textConfig");
         switch (status) {
             case 1:
-                desStr = "每日签到可以获得体力 * " + this.physicalPowerAddNum + ", 金币 * " + this.heartAddNum + ", ";
-                desStr = desStr + "您是否愿意观看视频广告，获得双倍奖励？";
-                this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = "普通签到";
+                desStr = textConfig.getTextByIdAndLanguageType(115) + this.physicalPowerAddNum + textConfig.getTextByIdAndLanguageType(116) + this.heartAddNum + ", ";
+                desStr = desStr + textConfig.getTextByIdAndLanguageType(117);
+                this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(118);
+                this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(113);
                 break;
             case 2:
-                desStr = "您还可以观看视频广告获取体力 * " + ((this.addRateForAd - 1) * this.physicalPowerAddNum).toString();
-                desStr = desStr + ", ";
-                desStr = desStr + "金币 * " + ((this.addRateForAd - 1) * this.heartAddNum).toString();
-                desStr = desStr + "， 是否观看？";
+                desStr = textConfig.getTextByIdAndLanguageType(119) + ((this.addRateForAd - 1) * this.physicalPowerAddNum).toString();
+                desStr = desStr + textConfig.getTextByIdAndLanguageType(116) + ((this.addRateForAd - 1) * this.heartAddNum).toString();
+                desStr = desStr + textConfig.getTextByIdAndLanguageType(120);
+                this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(113);
+                this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(114);
                 break;
             case 3:
-                desStr = "您今天已经签到过啦，明天再来吧~";
+                desStr = textConfig.getTextByIdAndLanguageType(121);
                 this.cancelButtonNode.active = false;
                 this.ensureButtonNode.x = 0;
-                this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = "好的";
+                this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(122);
                 break;
         }
         if (desStr == "") {

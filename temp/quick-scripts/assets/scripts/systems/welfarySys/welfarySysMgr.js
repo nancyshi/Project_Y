@@ -57,9 +57,9 @@ cc.Class({
     setupInitUI: function setupInitUI() {
         var flag = require("dataMgr").playerData.initAdWatchedFlag;
         if (flag == 0) {
-            this.desLabelNode.getComponent(cc.Label).string = "观看视频广告，挑战关卡消耗体力永久减半！您是否愿意观看？";
-            this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = "观看";
-            this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = "取消";
+            this.desLabelNode.getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(112);
+            this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(113);
+            this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(114);
         } else if (flag == 1) {
             this.desLabelNode.getComponent(cc.Label).string = "嗯？ 这个界面不应该出现的，你已经领取过福利啦~";
         }

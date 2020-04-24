@@ -114,7 +114,8 @@ cc.Class({
             set(value) {
                 this._currentStepNum = value
                 var currentStepNumLabel = this.node.getChildByName("uiNode").getChildByName("currentStepNumLabel")
-                currentStepNumLabel.getComponent(cc.Label).string = "当前步数：" + value.toString()
+                //currentStepNumLabel.getComponent(cc.Label).string = "当前步数：" + value.toString()
+                currentStepNumLabel.getComponent(cc.Label).string = require("textConfig").getFormatedString(154,[value.toString()])
             }
         },
         level: null,
@@ -125,6 +126,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        var textConfig = require("textConfig")
         var Helper = require("helper")
         this.helper = new Helper()
         //this.level = 1
@@ -133,6 +135,9 @@ cc.Class({
         cc.loader.loadRes("effectSounds/hit",function(err,res){
             self.soundEffect = res
         })
+
+        this.retryButton.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(152)
+        cc.find("Canvas/uiNode/currentStepNumLabel").getComponent(cc.Label).string = textConfig.getFormatedString(154,[0])
     },
 
     start () {
@@ -181,10 +186,11 @@ cc.Class({
         var minStepKey = "minStep_level_" + this.level.toString()
         var minStepNum = require("dataMgr").playerData.minSteps[minStepKey]
         if (minStepNum == null || minStepNum == undefined) {
-            minStepNum = "无"
+            minStepNum = require("textConfig").getTextByIdAndLanguageType(155)
         }
-        minStepNumLabel.getComponent(cc.Label).string = "最小步数：" + minStepNum.toString()
-        this.playBgm()
+        //minStepNumLabel.getComponent(cc.Label).string = "最小步数：" + minStepNum.toString()
+        minStepNumLabel.getComponent(cc.Label).string = require("textConfig").getFormatedString(153,[minStepNum.toString()])
+        // this.playBgm()
     },
 
     // update (dt) {},
@@ -714,7 +720,8 @@ cc.Class({
             var levelId = key.slice(14)
             if (parseInt(levelId) == parseInt(this.level)) {
                 var minStepNumLabel = this.node.getChildByName("uiNode").getChildByName("minStepNumLabel")
-                minStepNumLabel.getComponent(cc.Label).string = "最小步数：" + value.toString()
+                //minStepNumLabel.getComponent(cc.Label).string = "最小步数：" + value.toString()
+                minStepNumLabel.getComponent(cc.Label).string = require("textConfig").getFormatedString(153,[value.toString()])
             }
         }
 

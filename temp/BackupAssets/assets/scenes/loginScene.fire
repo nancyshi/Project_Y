@@ -738,7 +738,7 @@
       "height": 1920
     },
     "_fitWidth": true,
-    "_fitHeight": true,
+    "_fitHeight": false,
     "_id": "5c/N1/OxFG9KtOm6BnsbG2"
   },
   {
@@ -754,6 +754,9 @@
     "networkMgr": null,
     "isLogining": false,
     "changeSceneAnimationTime": 2,
+    "nameEnSpriteFrame": {
+      "__uuid__": "d8876471-f35a-4b95-9dbb-5d7d8c3f6789"
+    },
     "_id": "ce+/WRcsdBpZTGYeoG3Lhe"
   }
 ]

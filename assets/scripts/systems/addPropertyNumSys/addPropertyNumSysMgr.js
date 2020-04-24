@@ -51,7 +51,8 @@ cc.Class({
     },
 
     setupUI() {
-        var desStr = "您可以观看视频广告，获得"
+        var textConfig = require("textConfig")
+        var desStr = textConfig.getTextByIdAndLanguageType(123)
         var isFirstKey = true
         for (var key in this.addConfig) {
             if (isFirstKey == false) {
@@ -59,16 +60,18 @@ cc.Class({
             }
             switch (key) {
                 case "physicalPower":
-                    desStr += " 体力 * " + this.addConfig[key].toString()
+                    desStr += textConfig.getTextByIdAndLanguageType(124) + this.addConfig[key].toString()
                     break
                 case "heart":
-                    desStr += " 金币 * " + this.addConfig[key].toString()
+                    desStr += textConfig.getTextByIdAndLanguageType(125) + this.addConfig[key].toString()
                     break
             }
             isFirstKey = false
         }
-        desStr += "，是否观看？"
+        desStr += textConfig.getTextByIdAndLanguageType(126)
         this.desLabelNode.getComponent(cc.Label).string = desStr
+        this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(113)
+        this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(114)
     },
 
     onWillOpend(givenAddTypeId) {

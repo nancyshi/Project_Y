@@ -50,6 +50,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        var textConfig = require("textConfig")
         var bg = this.node.getChildByName("bg")
         bg.width = cc.winSize.width
         bg.height = cc.winSize.height
@@ -65,6 +66,8 @@ cc.Class({
             }
             self.node.destroy()     
         },this)
+
+        this.challengeButtonNoe.getChildByName("New Label").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(151)
     },
 
     start () {
@@ -93,9 +96,8 @@ cc.Class({
         //content section
         var levelConfig = require("levelConfig")
         var config = levelConfig[this.level]
-        var desText = config.desText
         var desLabelNode = this.contentSectionNode.getChildByName("desLabel")
-        desLabelNode.getComponent(cc.Label).string = desText
+        desLabelNode.getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(config.desTextId)
         desLabelNode.getComponent(cc.Label)._forceUpdateRenderData()
 
         var seperateLineUpNode = this.contentSectionNode.getChildByName("seperateLineUp")
@@ -108,6 +110,7 @@ cc.Class({
         seperateLineDownNode.y = -contentHeight + seperateLineDownNode.height
 
         //mailSection
+        var textConfig = require("textConfig")
         var result = this._getMailSectionInfo()
         var mailSectionHeight = 0
         for (var index in result) {
@@ -117,10 +120,12 @@ cc.Class({
             
             var textStr = ""
             if (oneConfig.type == 1) {
-                textStr = "通关后会收到 " + oneConfig.tag + " 分支的新邮件"
+                // textStr = "通关后会收到 " + oneConfig.tag + " 分支的新邮件"
+                textStr = textConfig.getFormatedString(149,[oneConfig.tag])
             }
             else if (oneConfig.type == 2) {
-                textStr = "用不多于 " + oneConfig.minStep + " 步通关，会收到 " + oneConfig.tag + " 分支的新邮件"
+                // textStr = "用不多于 " + oneConfig.minStep + " 步通关，会收到 " + oneConfig.tag + " 分支的新邮件"
+                textStr = textConfig.getFormatedString(150,[oneConfig.minStep,oneConfig.tag])
             }
             desLabel.getComponent(cc.Label).string = textStr
             desLabel.getComponent(cc.Label)._forceUpdateRenderData()
@@ -169,6 +174,7 @@ cc.Class({
     _getMailSectionInfo() {
         var mailSysConfig = require("mailSysConfig")
         var result = []
+        var textConfig = require("textConfig")
         for (var tag in mailSysConfig) {
             var oneConfig = mailSysConfig[tag]
             var conditions = oneConfig.conditions
@@ -188,7 +194,8 @@ cc.Class({
                 var oneResult = null
                 if ((conditionType == 1 && conditionPara == this.level) || (conditionType == 2 && conditionPara.levelId == this.level)) {
                     oneResult = {
-                        tag: oneConfig.tagName,
+                        // tag: oneConfig.tagNameTextId,
+                        tag: textConfig.getTextByIdAndLanguageType(oneConfig.tagNameTextId),
                         type: conditionType,
                         status: null,
                         minStep: null

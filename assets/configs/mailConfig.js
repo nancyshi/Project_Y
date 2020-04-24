@@ -10,16 +10,16 @@
 
 var mailConfig = {
     "1001": {
-        title: "你知道么",
-        content: "测试一下中文和英文，you know what?",
+        titleTextId: 133,
+        contentTextId: 134,
         options: [
             {
-                showText: "ok",
+                showTextId: 135,
                 operationType: 1,
                 operationPara: null
             },
             {
-                showText: "test option",
+                showTextId: 136,
                 operationType: 2,
                 operationPara: {
                     mailId: 10001,
@@ -27,34 +27,34 @@ var mailConfig = {
                 }
             },
             {
-                showText: "test option1",
+                showTextId: 137,
                 operationType: 1,
                 operationPara: null
             }
         ]
     },
     "10001": {
-        title: "test 10001",
-        content: "test content of mail 10001",
+        titleTextId: 138,
+        contentTextId: 139,
         options:[]
     },
 
     "1002": {
-        title: "test 1002",
-        content: "test content of mail 1002",
+        titleTextId: 140,
+        contentTextId: 141,
         options: []
     },
 
     "1003": {
-        title: "test 1003",
-        content: "test content of mail 1003",
+        titleTextId: 142,
+        contentTextId: 143,
         options: []
     },
 
 
     "1101": {
-        title: "test 1101",
-        content: "test content of mail 1101",
+        titleTextId: 144,
+        contentTextId: 145,
         options: []
     }
 }

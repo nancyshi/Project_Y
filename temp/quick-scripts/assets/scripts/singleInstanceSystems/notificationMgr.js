@@ -33,7 +33,11 @@ var NotificationMgr = cc.Class({
         //         this._bar = value;
         //     }
         // },
-        lastTime: 3
+        lastTime: 2,
+        moveTime: 0.5,
+        moveDis: 200,
+
+        noties: []
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -49,9 +53,14 @@ var NotificationMgr = cc.Class({
         var currentSceneCanvas = cc.director.getScene().getChildByName("Canvas");
         currentSceneCanvas.addChild(notiNode);
         var self = this;
-        cc.tween(notiNode).delay(self.lastTime).to(0.3, { opacity: 0 }).call(function () {
-            notiNode.removeFromParent();
+        cc.tween(notiNode).by(self.moveTime, { y: self.moveDis }).delay(self.lastTime - self.moveTime)
+        //.to(0.3, {opacity: 0})
+        .call(function () {
+            notiNode.destroy();
         }).start();
+    },
+    pushNoti: function pushNoti(str) {
+        this.noties.push(str);
     }
     // update (dt) {},
 

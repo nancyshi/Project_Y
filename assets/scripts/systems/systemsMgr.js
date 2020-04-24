@@ -172,7 +172,7 @@ var SystemsMgr = cc.Class({
 
 
     mailSysGloableMonitored(key,value) {
-        
+        var textConfig = require("textConfig")
         var onReachCondition = function(givenTag,givenMailId) {
             var networkMgr = require("networkMgr")
             var messageObj = networkMgr.makeMessageObj("mailModule","reachConditionMessageType")
@@ -193,8 +193,8 @@ var SystemsMgr = cc.Class({
                     var newMail = response.mail
                     require("dataMgr").playerData.mails[givenMailId] = newMail
                     var notificaitionMgr = require("notificationMgr")
-                    var notiStr = "你收到一封新邮件，快去查看吧"
-                    notificaitionMgr.showNoti(notiStr)
+                    var notiStr = textConfig.getTextByIdAndLanguageType(148)
+                    notificaitionMgr.pushNoti(notiStr)
                 }
             }
             networkMgr.sendMessageByMsgObj(messageObj)

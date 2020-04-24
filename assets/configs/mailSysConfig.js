@@ -10,7 +10,7 @@
 
 var mailSysConfig = {
     mainLine: {
-        tagName: "主线",
+        tagNameTextId: 127,
         conditions: [
             {
                 conditionType: 1,
@@ -31,7 +31,7 @@ var mailSysConfig = {
     },
 
     branchLine1: {
-        tagName: "【支】测试",
+        tagNameTextId: 128,
         conditions: [
             {
                 conditionType: 2,

@@ -52,7 +52,8 @@ cc.Class({
         levelNodesVerDis: 20,
         levelNodesNumPerLine: 4,
 
-        rotaedCopiedRadius: 300
+        rotaedCopiedRadius: 300,
+        isShowingNoti: false
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -70,7 +71,7 @@ cc.Class({
         var path = require("sectionConfig")[this.selectedSection].bgmPath;
         cc.loader.loadRes(path, function (err, res) {
             cc.audioEngine.stopAll();
-            cc.audioEngine.play(res);
+            cc.audioEngine.play(res, true, 1);
         });
     },
     setupUI: function setupUI() {
@@ -143,14 +144,15 @@ cc.Class({
             cc.log("not selected one section, can not setup section of mainScene mgr");
             return;
         }
+        var textConfig = require("textConfig");
         this.levelNodes.destroyAllChildren();
         this.levelNodes.removeAllChildren();
         this.connectLineNodes.destroyAllChildren();
         this.connectLineNodes.removeAllChildren();
         var sectionConfig = require("sectionConfig");
         var config = sectionConfig[this.selectedSection];
-        var sectionTitle = config.sectionTitle;
-        var sectionDes = config.sectionDescrip;
+        var sectionTitle = textConfig.getTextByIdAndLanguageType(config.sectionTitleTextId);
+        var sectionDes = textConfig.getTextByIdAndLanguageType(config.sectionDescripTextId);
         var showText = sectionTitle + " " + sectionDes;
         this.sectionNameLabelNode.getComponent(cc.Label).string = showText;
 
@@ -287,10 +289,30 @@ cc.Class({
             var oneMgr = this.levelNodes.children[index].getComponent("levelNodeMgr");
             oneMgr.dataMonitored(key, value);
         }
+    },
+    update: function update(dt) {
+        var notificationMgr = require("notificationMgr");
+        var notiArry = notificationMgr.noties;
+        if (notiArry.length > 0 && this.isShowingNoti == false) {
+            this.isShowingNoti = true;
+            var self = this;
+            var temp = function temp() {
+                if (notiArry.length == 0) {
+                    self.isShowingNoti = false;
+                    return;
+                }
+
+                var oneStr = notiArry[0];
+                notificationMgr.showNoti(oneStr);
+                notiArry.splice(0, 1);
+                cc.tween(self.node).delay(0.3).call(function () {
+                    temp();
+                });
+            };
+
+            temp();
+        }
     }
-
-    // update (dt) {},
-
 });
 
 cc._RF.pop();

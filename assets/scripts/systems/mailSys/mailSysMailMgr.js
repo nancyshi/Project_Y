@@ -59,19 +59,22 @@ cc.Class({
     },
 
     setupContentSection() {
+        var textConfig = require("textConfig")
         var mailConfig = require("mailConfig")
         var mail = mailConfig[this.mailId]
         var content = this.node.getChildByName("others").getChildByName("contentSection").getChildByName("view").getChildByName("content")
         var titleLabel = content.getChildByName("titleLabel")
         var contentLabel = content.getChildByName("contentLabel")
 
-        titleLabel.getComponent(cc.Label).string = mail.title
-        contentLabel.getComponent(cc.Label).string = mail.content
-
+        // titleLabel.getComponent(cc.Label).string = mail.title
+        // contentLabel.getComponent(cc.Label).string = mail.content
+        titleLabel.getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(mail.titleTextId)
+        contentLabel.getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(mail.contentTextId)
         content.height = -contentLabel.y + contentLabel.height
     },
 
     setupOptionSection() {
+        var textConfig = require("textConfig")
         var optionSection = this.node.getChildByName("others").getChildByName("optionSection")
         var mailConfig = require("mailConfig")
         var mail = mailConfig[this.mailId]
@@ -82,7 +85,7 @@ cc.Class({
             if (options.length == 0) {
                 var okOptionNode = cc.instantiate(this.mailOptionNodePrefab)
                 var okLabelNode = okOptionNode.getChildByName("label")
-                okLabelNode.getComponent(cc.Label).string = "关闭"
+                okLabelNode.getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(147)
                 var okBgNode = okOptionNode.getChildByName("bg")
                 okOptionNode.width = okBgNode.width
                 okOptionNode.height = okBgNode.height
@@ -103,7 +106,8 @@ cc.Class({
                 var oneOption = options[index]
                 var optionNode = cc.instantiate(this.mailOptionNodePrefab)
                 var labelNode = optionNode.getChildByName("label")
-                labelNode.getComponent(cc.Label).string = oneOption.showText
+                // labelNode.getComponent(cc.Label).string = oneOption.showText
+                labelNode.getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(oneOption.showTextId)
                 
                 var bgNode = optionNode.getChildByName("bg")
                 bgNode.height = labelNode.height
@@ -151,7 +155,8 @@ cc.Class({
 
                 var optionNode = cc.instantiate(this.mailOptionNodePrefab)
                 var labelNode = optionNode.getChildByName("label")
-                labelNode.getComponent(cc.Label).string = selectedOption.showText
+                // labelNode.getComponent(cc.Label).string = selectedOption.showText
+                labelNode.getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(selectedOption.showTextId)
                 
                 labelNode.color = cc.color(255,255,255)
                 var bgNode = optionNode.getChildByName("bg_readed")
@@ -167,7 +172,7 @@ cc.Class({
 
                 var okOptionNode = cc.instantiate(this.mailOptionNodePrefab)
                 var okLabelNode = okOptionNode.getChildByName("label")
-                okLabelNode.getComponent(cc.Label).string = "关闭"
+                okLabelNode.getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(147)
                 var okBgNode = okOptionNode.getChildByName("bg")
                 okOptionNode.width = okBgNode.width
                 okOptionNode.height = okBgNode.height
@@ -183,7 +188,7 @@ cc.Class({
             else {
                 var okOptionNode = cc.instantiate(this.mailOptionNodePrefab)
                 var okLabelNode = okOptionNode.getChildByName("label")
-                okLabelNode.getComponent(cc.Label).string = "关闭"
+                okLabelNode.getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(147)
                 var okBgNode = okOptionNode.getChildByName("bg")
                 okOptionNode.width = okBgNode.width
                 okOptionNode.height = okBgNode.height

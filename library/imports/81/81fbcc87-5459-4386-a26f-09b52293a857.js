@@ -37,13 +37,18 @@ cc.Class({
         loginMgr: null,
         networkMgr: null,
         isLogining: false,
-        changeSceneAnimationTime: 2
+        changeSceneAnimationTime: 2,
+        nameEnSpriteFrame: cc.SpriteFrame
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function onLoad() {
         this.node.on("touchstart", this.onTouchStart, this);
+        var textConfig = require("textConfig");
+        if (textConfig.languageType != 1) {
+            this.node.getChildByName("name").getComponent(cc.Sprite).spriteFrame = this.nameEnSpriteFrame;
+        }
     },
     start: function start() {
         this.dataMgr = require("dataMgr");
@@ -58,7 +63,7 @@ cc.Class({
     },
     onPlayerDataUpdated: function onPlayerDataUpdated() {
         require("advertisMgr").initAds();
-        cc.find("Canvas/loginInfo/textNode").getComponent(cc.Label).string = "登陆成功！";
+        cc.find("Canvas/loginInfo/textNode").getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(157);
         //animation 
         for (var index in this.node.children) {
             var self = this;
@@ -81,7 +86,7 @@ cc.Class({
         this.isLogining = true;
         var retryNode = cc.find("Canvas/retry");
         retryNode.active = false;
-        cc.find("Canvas/loginInfo/textNode").getComponent(cc.Label).string = "登陆中，请稍候";
+        cc.find("Canvas/loginInfo/textNode").getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(156);
 
         var loginType = null;
         var platform = cc.sys.platform;

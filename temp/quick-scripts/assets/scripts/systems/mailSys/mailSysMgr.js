@@ -125,9 +125,11 @@ cc.Class({
     },
     start: function start() {},
     setupTagSection: function setupTagSection() {
+        var textConfig = require("textConfig");
         for (var index in this.tags) {
             var oneTag = this.tags[index];
-            var tagName = require("mailSysConfig")[oneTag].tagName;
+            var tagName = require("mailSysConfig")[oneTag].tagNameTextId;
+            tagName = textConfig.getTextByIdAndLanguageType(tagName);
             var node = cc.instantiate(this.tagSectionPrefab);
             node.getComponent(cc.Label).string = tagName;
             node.getComponent(cc.Label)._forceUpdateRenderData();
@@ -169,11 +171,13 @@ cc.Class({
         }
     },
     setupMailSection: function setupMailSection() {
+        var textConfig = require("textConfig");
         var tagMails = this.mailsByTag[this.selectedTag];
         var mailIdsArry = Object.keys(tagMails);
         this.mailSectionContentNode.destroyAllChildren();
         if (mailIdsArry.length == 0) {
             this.mailSectionEmptyLabelNode.active = true;
+            this.mailSectionEmptyLabelNode.getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(146);
             this.mailSectionContentNode.height = 0;
             return;
         }
@@ -214,8 +218,8 @@ cc.Class({
                 readedIconNode.active = true;
                 titleLabelNode.color = this.mailSectionNodeReadedColor;
             }
-
-            titleLabelNode.getComponent(cc.Label).string = mailConfig[mailId].title;
+            var titleStr = textConfig.getTextByIdAndLanguageType(mailConfig[mailId].titleTextId);
+            titleLabelNode.getComponent(cc.Label).string = titleStr;
             seperateLineNode.y = -titleLabelNode.height;
             node.y = -totalHeight;
             var nodeWidth = titleLabelNode.x + titleLabelNode.width / 2 - (unReadIconNode.x - unReadIconNode.width / 2);
@@ -242,9 +246,10 @@ cc.Class({
         }
     },
     setupNotiSection: function setupNotiSection() {
+        var textConfig = require("textConfig");
         var unReadMailNum = this.unReadedMailNums[this.selectedTag];
         if (unReadMailNum > 0) {
-            var str = "您还有未读邮件，请先查看完哦，心急不是好习惯 -.- ";
+            var str = textConfig.getTextByIdAndLanguageType(129);
             this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = str;
             return;
         }
@@ -252,7 +257,7 @@ cc.Class({
         var mailConditionIndex = require("dataMgr").playerData.mailConditionIndex;
         var index = mailConditionIndex[this.selectedTag];
         if (index == -1) {
-            this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = "此分支已结束";
+            this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(130);
             return;
         }
         var mailSysConfig = require("mailSysConfig");
@@ -264,8 +269,10 @@ cc.Class({
             if (result != false) {
                 var section = result[0];
                 var levelNumOfSection = result[1];
-                var str = "通关 " + section.toString() + " - " + levelNumOfSection.toString();
-                str = str + " ，会有新的邮件，加油吧少年！";
+                // var str  = "通关 " + section.toString() + " - " + levelNumOfSection.toString()
+                // str = str + " ，会有新的邮件，加油吧少年！"
+                // this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = str
+                var str = textConfig.getFormatedString(131, [section.toString(), levelNumOfSection.toString()]);
                 this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = str;
             }
         } else if (element.conditionType == 2) {
@@ -278,8 +285,9 @@ cc.Class({
                 var section = result[0];
                 var level = result[1];
 
-                var str = "在 " + section.toString() + " - " + level.toString();
-                str = str + " 用最多 " + minStepNum + " 步通关，会有新的邮件，加油吧少年！";
+                // var str = "在 " + section.toString() + " - " + level.toString()
+                // str = str + " 用最多 " + minStepNum + " 步通关，会有新的邮件，加油吧少年！"
+                var str = textConfig.getFormatedString(132, [section.toString(), level.toString(), minStepNum.toString()]);
                 this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = str;
             }
         }
