@@ -52,7 +52,8 @@ cc.Class({
         }
 
         this.setupData()
-        this.nameLabelNode.getComponent(cc.Label).string = this.config.sectionDescrip
+        // this.nameLabelNode.getComponent(cc.Label).string = this.config.sectionDescrip
+        this.nameLabelNode.getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(this.config.sectionDescripTextId)
         this.iconLabelNode.getComponent(cc.Label).string = this.sectionKey
 
         if (parseInt(this.sectionKey) > require("dataMgr").playerData.currentSection) {
@@ -106,7 +107,7 @@ cc.Class({
     onClick() {
 
         if (parseInt(this.sectionKey) > require("dataMgr").playerData.currentSection) {
-            require("notificationMgr").showNoti("这个章节还没有解锁哦")
+            require("notificationMgr").showNoti(require("textConfig").getTextByIdAndLanguageType(158))
             return
         }
         else if (parseInt(this.sectionKey) <= require("dataMgr").playerData.currentSection ) {

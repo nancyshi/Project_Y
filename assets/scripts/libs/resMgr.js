@@ -76,7 +76,11 @@ var ResMgr = cc.Class({
             signInSysPrefab: "prefabs/signInSysUI",
             addPropertyNumSysPrefab: "prefabs/addPropertyNumUI",
             mailSysPrefab: "prefabs/mailSysUI",
-            selectSectionSysPrefab: "prefabs/selectSectionUI"
+            selectSectionSysPrefab: "prefabs/selectSectionUI",
+            storySysPrefab: "prefabs/storyNode",
+
+            coverNodePrefab: "prefabs/fullSceneCoverNode",
+            guildNodePrefab: "prefabs/guildNode"
         }
 
         var len = Object.keys(resObj).length

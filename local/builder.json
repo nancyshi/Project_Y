@@ -1,6 +1,6 @@
 {
-  "platform": "fb-instant-games",
-  "actualPlatform": "fb-instant-games",
+  "platform": "ios",
+  "actualPlatform": "ios",
   "template": "link",
   "buildPath": "./build",
   "debug": false,
@@ -13,7 +13,11 @@
   "keystorePassword": "",
   "keystoreAlias": "",
   "keystoreAliasPassword": "",
-  "apiLevel": "",
-  "appABIs": [],
+  "apiLevel": "android-29",
+  "appABIs": [
+    "armeabi-v7a",
+    "arm64-v8a",
+    "x86"
+  ],
   "vsVersion": "auto"
 }

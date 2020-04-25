@@ -29,9 +29,9 @@
   ],
   "includeSDKBox": false,
   "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
     "upsideDown": false
   },
   "webOrientation": "portrait",
@@ -45,7 +45,7 @@
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "packageName": ""
+    "packageName": "com.tdreamstudio.slidingDiamonds"
   },
   "ios": {
     "packageName": ""
@@ -63,5 +63,5 @@
     "scheme": "https",
     "skipRecord": false
   },
-  "appBundle": false
+  "appBundle": true
 }

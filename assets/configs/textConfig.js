@@ -367,6 +367,29 @@ var textConfig = {
         en: "log in success",
         comment: "登陆成功"
     },
+
+    "text_158": {
+        id: 158,
+        zh: "这个章节还没有解锁哦",
+        en: "this section have no been unlocked",
+        comment: ""
+    },
+    "text_159": {
+        id: 159,
+        zh: "在屏幕任何地方向四个方向滑动，让所有方块到达与之相匹配的目标，便可通关",
+        en: "Swipe to any of the 4 directions at any position in the screen, make all diamonds reached matched target , will pass the level ",
+        comment: ""
+    },
+
+    "text_160": {
+        id: 160,
+        zh: "这是第一行\n这是第二行\n这是第三行\n就这样吧先",
+        en: `this is new story line 1
+        and this is new story line 2
+        this is new story line 3
+        ok , just complete first`,
+        comment: "新手剧情测试"
+    },
     getTextByIdAndLanguageType(givenId,givenType = this.languageType) {
         var key = "text_" + givenId.toString()
         var result = this[key]
@@ -428,7 +451,7 @@ var textConfig = {
     }
 }
 
-// if (cc.sys.language == cc.sys.LANGUAGE_CHINESE) {
-//     textConfig.languageType = 1
-// }
+if (cc.sys.language == cc.sys.LANGUAGE_CHINESE) {
+    textConfig.languageType = 1
+}
 module.exports = textConfig

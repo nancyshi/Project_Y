@@ -188,9 +188,12 @@ cc.Class({
         if (minStepNum == null || minStepNum == undefined) {
             minStepNum = require("textConfig").getTextByIdAndLanguageType(155)
         }
-        //minStepNumLabel.getComponent(cc.Label).string = "最小步数：" + minStepNum.toString()
         minStepNumLabel.getComponent(cc.Label).string = require("textConfig").getFormatedString(153,[minStepNum.toString()])
-        // this.playBgm()
+
+        if (require("dataMgr").playerData.isGuilded == 0) {
+            var guildNode = cc.instantiate(require("resMgr").reses["guildNodePrefab"])
+            this.node.addChild(guildNode)
+        } 
     },
 
     // update (dt) {},
@@ -383,7 +386,9 @@ cc.Class({
         if (this.level == require("dataMgr").playerData.currentLevel) {
             commitBody.physicalPowerCostedFlag = 0
         }
-        
+        if (require("dataMgr").playerData.isGuilded == 0) {
+            commitBody.isGuilded = 1
+        }
         var minStepKey = "minStep_level_" + this.level.toString()
         var minStepNum = require("dataMgr").playerData.minSteps[minStepKey]
 

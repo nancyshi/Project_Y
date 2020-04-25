@@ -69,6 +69,15 @@ var SystemsMgr = cc.Class({
                 return this._selectSectionSys;
             }
         },
+        storySys: {
+            get: function get() {
+                if (this._storySys == null) {
+                    this._storySys = this.setupSysProperty("storySysPrefab", "storySys", "storySysMgr");
+                    this.systems["storySys"] = this._storySys;
+                }
+                return this._storySys;
+            }
+        },
 
         systems: {
             get: function get() {
@@ -90,7 +99,9 @@ var SystemsMgr = cc.Class({
     },
     showSystem: function showSystem(givenSysName) {
         var para = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+        var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
 
+        //type 1 = animated open , 2 = direct open
         var givenSys = this.getSysBySysName(givenSysName);
         if (givenSys.opendNode != null) {
             cc.log("this sys has been opend , can't reopen: " + givenSys.name);
@@ -101,6 +112,11 @@ var SystemsMgr = cc.Class({
         var mgr = ui.getComponent(mgrName);
         if (mgr != null && typeof mgr.onWillOpend === "function") {
             mgr.onWillOpend(para);
+        }
+        if (type == 2) {
+            cc.director.getScene().getChildByName("Canvas").addChild(ui);
+            givenSys.opendNode = ui;
+            return;
         }
         var others = ui.getChildByName("others");
         var bg = ui.getChildByName("bg");
@@ -120,24 +136,44 @@ var SystemsMgr = cc.Class({
         }
     },
     closeSystem: function closeSystem(givenSysName) {
+        var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+        //1 = animated close , 2 = direct close, 3 = fade out
         var givenSys = this.getSysBySysName(givenSysName);
         var opendNode = givenSys.opendNode;
         if (opendNode == null) {
             cc.log(givenSys.name + "has not been opend, no need to colse");
             return;
         }
+        if (type == 1) {
+            var others = opendNode.getChildByName("others");
+            if (others != null) {
+                cc.tween(others).to(0.3, { scale: 0 }).call(function () {
+                    opendNode.destroy();
+                    givenSys.opendNode = null;
+                }).start();
+            } else {
+                cc.tween(opendNode).to(0.3, { scale: 0 }).call(function () {
+                    opendNode.destroy();
+                    givenSys.opendNode = null;
+                });
+            }
+        } else if (type == 2) {
+            opendNode.destroy();
+            givenSys.opendNode = null;
+        } else if (type == 3) {
+            var coverNode = require("resMgr").reses["coverNodePrefab"];
+            coverNode = cc.instantiate(coverNode);
+            coverNode.width = opendNode.width;
+            coverNode.height = opendNode.height;
+            coverNode.opacity = 0;
+            coverNode.on("touchstart", function () {});
 
-        var others = opendNode.getChildByName("others");
-        if (others != null) {
-            cc.tween(others).to(0.3, { scale: 0 }).call(function () {
+            opendNode.addChild(coverNode);
+            cc.tween(coverNode).to(0.5, { opacity: 255 }).delay(0.5).call(function () {
                 opendNode.destroy();
                 givenSys.opendNode = null;
             }).start();
-        } else {
-            cc.tween(opendNode).to(0.3, { scale: 0 }).call(function () {
-                opendNode.destroy();
-                givenSys.opendNode = null;
-            });
         }
     },
     getSysBySysName: function getSysBySysName(givenSysName) {
@@ -152,6 +188,8 @@ var SystemsMgr = cc.Class({
                 return this.mailSys;
             case "selectSectionSys":
                 return this.selectSectionSys;
+            case "storySys":
+                return this.storySys;
             default:
                 cc.log("no such sys");
                 return false;

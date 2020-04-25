@@ -46,45 +46,23 @@ var GameMgr = cc.Class({
         })
     },
 
-    _enterLevelScene(givenLevel) {
-        var levelForName = givenLevel
-            switch(levelForName.toString().length){
-                case 1:
-                    levelForName = "00" + levelForName.toString()
-                    break
-                case 2:
-                    levelForName = "0" + levelForName.toString()
-                    break
-            }
-        var levelName = "level" + levelForName
-        var self = this
-        cc.director.preloadScene(levelName,null,function(err,res){
-            var levelMgr = res.scene.getChildByName("Canvas").getComponent("levelMgr")
-            levelMgr.level = givenLevel
-            // cc.director.loadScene(levelName)
-            self.animatedToScene(levelName)
-        })
-    },
-
     animatedToScene(sceneName) {
-        var currentScene = cc.director.getScene()
-        cc.tween(currentScene.children[0])
-            .to(0.5,{opacity: 0})
-            .delay(1)
+        var coverNode = require("resMgr").reses["coverNodePrefab"]
+        coverNode = cc.instantiate(coverNode)
+        coverNode.width = cc.winSize.width
+        coverNode.height = cc.winSize.height
+        coverNode.opacity = 0
+        coverNode.on("touchstart",function(){})
+        cc.director.getScene().getChildByName("Canvas").addChild(coverNode)
+
+        cc.tween(coverNode)
+            .to(0.3, {opacity:255})
+            .delay(0.3)
             .call(function(){
-                cc.director.preloadScene(sceneName,null,function(err,res){
-                    var scene = res.scene
-                    scene.children[0].opacity = 0
-                    cc.director.loadScene(sceneName,function(){
-                        cc.tween(scene.children[0])
-                            .to(0.5,{opacity: 255})
-                            .start()
-                    })
-                })
+                cc.director.loadScene(sceneName)
             })
             .start()
     },
-
 
     
     _generateLevelSceneConfig() {

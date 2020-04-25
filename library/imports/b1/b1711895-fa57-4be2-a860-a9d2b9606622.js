@@ -65,7 +65,10 @@ cc.Class({
         this.rotaedCopiedRadius = 500;
         //require("gameMgr")._generateLevelSceneConfig()
     },
-    start: function start() {},
+    start: function start() {
+        //test story sys
+        //require("systemsMgr").showSystem("storySys",9001,2)
+    },
     playBgm: function playBgm() {
         var self = this;
         var path = require("sectionConfig")[this.selectedSection].bgmPath;

@@ -61,8 +61,8 @@ cc.Class({
     },
 
     start () {
-        
-
+        //test story sys
+        //require("systemsMgr").showSystem("storySys",9001,2)
     },
     playBgm(){
         var self = this
