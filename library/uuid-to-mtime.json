@@ -445,7 +445,7 @@
     "relativePath": "model/primitives.fbx"
   },
   "a80bdc5c-368d-4e3e-a24b-077b7cffd7a2": {
-    "asset": 1587834212905,
+    "asset": 1587888527049,
     "meta": 1584545062605,
     "relativePath": "configs"
   },
@@ -1164,11 +1164,6 @@
     "meta": 1587634452993,
     "relativePath": "scripts/bulletMgr.js"
   },
-  "3051920e-ea62-42c8-8509-f711aaac1016": {
-    "asset": 1587642349391,
-    "meta": 1587642378426,
-    "relativePath": "scripts/libs/gloableConfig.js"
-  },
   "a3669842-3bd7-4440-baec-ae9e71312784": {
     "asset": 1587647219616,
     "meta": 1587647219632,
@@ -1284,16 +1279,6 @@
     "meta": 1587822344176,
     "relativePath": "resources/prefabs/guildNode.prefab"
   },
-  "4abf67f5-d2dc-4262-a82d-321e226c0c99": {
-    "asset": 1587822594468,
-    "meta": 1587822597314,
-    "relativePath": "scripts/guildNodeMgr.js"
-  },
-  "c401434b-a581-4466-95d0-234dcb30510f": {
-    "asset": 1587822772167,
-    "meta": 1587832581099,
-    "relativePath": "scripts/levelMgr.js"
-  },
   "a9d6c8a1-393d-4715-ad1a-7f14550351de": {
     "asset": 1587833532929,
     "meta": 1587833532935,
@@ -1305,8 +1290,8 @@
     "relativePath": "scripts/systems/storySys"
   },
   "b7e912d6-9b87-4e1c-bf65-d3652f7a7f15": {
-    "asset": 1587843395783,
-    "meta": 1587843395791,
+    "asset": 1587893695757,
+    "meta": 1587893695764,
     "relativePath": "resources/prefabs/storyNode.prefab"
   },
   "df3f915f-f9e8-4483-8fcc-16270e69f1a4": {
@@ -1319,24 +1304,39 @@
     "meta": 1587840156770,
     "relativePath": "scripts/systems/systemsMgr.js"
   },
-  "9bd8c0eb-0ab2-4598-ab35-7601ff844810": {
-    "asset": 1587840276137,
-    "meta": 1587840276624,
-    "relativePath": "configs/storyConfig.js"
-  },
-  "e7a64392-eff4-4c2b-bac1-5046c3e01e14": {
-    "asset": 1587843098263,
-    "meta": 1587843195652,
-    "relativePath": "scripts/systems/storySys/storySysMgr.js"
-  },
   "9c22ea4a-dc32-4c86-aa76-7d0ae8d9f632": {
     "asset": 1587843618617,
     "meta": 1587843620476,
     "relativePath": "configs/textConfig.js"
   },
+  "3051920e-ea62-42c8-8509-f711aaac1016": {
+    "asset": 1587889563859,
+    "meta": 1587889565156,
+    "relativePath": "scripts/libs/gloableConfig.js"
+  },
+  "4abf67f5-d2dc-4262-a82d-321e226c0c99": {
+    "asset": 1587891624447,
+    "meta": 1587891629799,
+    "relativePath": "scripts/guildNodeMgr.js"
+  },
+  "c401434b-a581-4466-95d0-234dcb30510f": {
+    "asset": 1587891756203,
+    "meta": 1587891757336,
+    "relativePath": "scripts/levelMgr.js"
+  },
+  "e7a64392-eff4-4c2b-bac1-5046c3e01e14": {
+    "asset": 1587893877165,
+    "meta": 1587893878871,
+    "relativePath": "scripts/systems/storySys/storySysMgr.js"
+  },
+  "9bd8c0eb-0ab2-4598-ab35-7601ff844810": {
+    "asset": 1587894575476,
+    "meta": 1587895723544,
+    "relativePath": "configs/storyConfig.js"
+  },
   "b1711895-fa57-4be2-a860-a9d2b9606622": {
-    "asset": 1587843835235,
-    "meta": 1587843838635,
+    "asset": 1587895773694,
+    "meta": 1587895835961,
     "relativePath": "scripts/mainScene/mainSceneMgr.js"
   }
 }

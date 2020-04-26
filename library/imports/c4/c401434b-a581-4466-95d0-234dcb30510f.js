@@ -197,6 +197,8 @@ cc.Class({
             var guildNode = cc.instantiate(require("resMgr").reses["guildNodePrefab"]);
             this.node.addChild(guildNode);
         }
+        // var guildNode = cc.instantiate(require("resMgr").reses["guildNodePrefab"])
+        // this.node.addChild(guildNode)
     },
 
 
@@ -390,6 +392,9 @@ cc.Class({
             }
             if (commitBody.minSteps != null && commitBody.minSteps != undefined) {
                 require("dataMgr").playerData.minSteps[minStepKey] = self.currentStepNum;
+            }
+            if (commitBody.isGuilded == 1) {
+                require("dataMgr").playerData.isGuilded = 1;
             }
             self.playerData.currentLevel = newLevel;
             self.playerData.physicalPowerCostedFlag = 0;

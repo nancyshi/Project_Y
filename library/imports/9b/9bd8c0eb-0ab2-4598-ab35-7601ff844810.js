@@ -7,7 +7,8 @@ cc._RF.push(module, '9bd8cDrCrJFmKs1dgH/hEgQ', 'storyConfig');
 var storyConfig = {
     "story_9001": {
         id: 9001,
-        textIds: [160, 160]
+        textIds: [160, 160],
+        bgmPath: "musics/bgm_006"
     }
 };
 

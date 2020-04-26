@@ -4,7 +4,8 @@ var storyConfig = {
         textIds: [
             160,
             160
-        ]
+        ],
+        bgmPath: "musics/bgm_006"
     }
 }
 

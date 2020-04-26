@@ -63,7 +63,7 @@ cc.Class({
         var totalHeight = this.header + this.guildBgNode.height + this.sectionDis + this.guildLabelNode.height + this.sectionDis + this.buttonNode.height + this.footer;
         this.uibg.height = totalHeight;
 
-        this.guildBgNode.y = this.uibg.height / 2 - this.footer;
+        this.guildBgNode.y = this.uibg.height / 2 - this.header - this.guildBgNode.height / 2;
         this.guildLabelNode.y = this.guildBgNode.y - this.guildBgNode.height / 2 - this.sectionDis;
         this.buttonNode.y = -this.uibg.height / 2 + this.footer + this.buttonNode.height / 2;
 

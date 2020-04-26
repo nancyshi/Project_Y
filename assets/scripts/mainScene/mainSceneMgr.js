@@ -55,14 +55,17 @@ cc.Class({
     onLoad () {
         this.setupData()
         this.setupUI()
-        this.playBgm()
-        this.rotaedCopiedRadius = 500
         //require("gameMgr")._generateLevelSceneConfig()
     },
 
     start () {
-        //test story sys
+        
         //require("systemsMgr").showSystem("storySys",9001,2)
+        var storyId = require("dataMgr").playerData.storySysId
+        if (storyId != -1) {
+            require("systemsMgr").showSystem("storySys",storyId,2)
+        }
+        this.playBgm()
     },
     playBgm(){
         var self = this

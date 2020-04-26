@@ -63,6 +63,10 @@ cc.Class({
                 }
             }
         },
+        header: 100,
+        footer: 100,
+        sectionDis: 50,
+
         totalHeight: 0,
         totalTextNodeNum: null,
         currentNum: null,
@@ -81,7 +85,7 @@ cc.Class({
         var monitoredNode = this.contentNode.getChildByName("tapMonitoredNode")
         monitoredNode.width = bg.width
         monitoredNode.height = bg.height
-
+        //cc.log(bg.width,bg.height)
         monitoredNode.on("touchstart",function(){
             if (self.status == 2) {
                 self.currentNum += 1
@@ -102,6 +106,16 @@ cc.Class({
                     .to(0.3, {opacity: 255})    
             )
             .start()
+
+        var scrollContainer = this.node.getChildByName("scrollContainer")
+        scrollContainer.y = bg.height / 2 - this.footer
+        this.continueLabelNode.y = -bg.height / 2 + this.footer + this.completeButtonNode.height / 2
+        this.completeButtonNode.y = -bg.height / 2 + this.footer + this.completeButtonNode.height / 2
+
+        var tempHeight = bg.height - this.header - this.footer - this.completeButtonNode.height - this.sectionDis
+        scrollContainer.height = tempHeight
+        scrollContainer.getChildByName("view").height = tempHeight
+        this.contentNode.height = tempHeight
     },
 
     start () {
@@ -133,7 +147,21 @@ cc.Class({
     },
 
     completeStory() {
-        require("systemsMgr").closeSystem("storySys",3)
+        var networkMgr = require("networkMgr")
+        var messageObj = networkMgr.makeMessageObj("storyModule","completeCurrentMessageType")
+        messageObj.message.playerId = require("dataMgr").playerData.id
+        messageObj.successCallBack = function(xhr) {
+            var response = xhr.responseText
+            response = JSON.parse(response)
+            if (response.type == "success") {
+                var storyId = response.storyId
+                require("dataMgr").playerData.storySysId = storyId
+                require("systemsMgr").closeSystem("storySys",3)
+            }
+        }
+        
+        this.completeButtonNode.getComponent(cc.Button).interactable = false
+        networkMgr.sendMessageByMsgObj(messageObj)
     },
 
     _showOneStoryText(str) {
@@ -146,6 +174,7 @@ cc.Class({
         this.totalHeight += node.height + this.disBetweenStoryTextNodes
         if (this.contentNode.height < this.totalHeight) {
             this.contentNode.height = this.totalHeight
+            this.node.getChildByName("scrollContainer").getComponent(cc.ScrollView).vertical = true
         }
         node.opacity = 0
         this.contentNode.addChild(node)

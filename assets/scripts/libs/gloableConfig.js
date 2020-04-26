@@ -27,7 +27,8 @@ var GloableConfig = cc.Class({
         //         this._bar = value;
         //     }
         // },
-        basicIp: "diamonds.tdreamstudio.com",
+        //basicIp: "diamonds.tdreamstudio.com",
+        basicIp: "192.168.0.103",
         basicPort: 8888,
         netWorkMessageConfigs: {
             get() {
@@ -101,6 +102,14 @@ var GloableConfig = cc.Class({
                         heartBeatMessageType: {
                             playerId: 10001,
                             requestType: "heartBeat"
+                        }
+                    },
+
+                    storyModule: {
+                        suffix: "story",
+                        completeCurrentMessageType: {
+                            playerId: 10001,
+                            requestType: "completeCurrent"
                         }
                     }
                 }
