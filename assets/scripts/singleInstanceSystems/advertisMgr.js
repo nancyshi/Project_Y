@@ -78,6 +78,40 @@ var AdvertisMgr = cc.Class({
                     }
                 })
             }
+
+            else if (cc.sys.os == cc.sys.OS_IOS || cc.sys.os == cc.sys.OS_ANDROID) {
+                var self = this
+                cc.log("init")
+                sdkbox.PluginAdMob.setListener({
+                    adViewDidReceiveAd: function(name){
+                        cc.log("receivedAd")
+                    },
+
+                    adViewDidFailToReceiveAdWithError: function(name,msg){
+                        cc.log("didFailToReciveAd ", msg)
+                    },
+
+                    adViewWillPresentScreen: function(name) {
+                        cc.log("willPresentScreen")
+                    },
+
+                    adViewDidDismissScreen: function(name) {
+                        cc.log("didDismissScreen")
+                    },
+
+                    adViewWillDismissScreen: function(name) {
+                        cc.log("willDissmissScreen")
+                    },
+
+                    adViewWillLeaveApplication: function(name) {
+                        cc.log("willLeaveApp")
+                    }
+                })
+
+                sdkbox.PluginAdMob.init()
+
+                this.videoAd = sdkbox.PluginAdMob.cache("rewarded")
+            }
         }
     },
     showVideoAd() {
@@ -92,8 +126,13 @@ var AdvertisMgr = cc.Class({
                 self.onVideoAdShowError(err)
             })
         }
+
+        else if (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS) {
+            sdkbox.PluginAdMob.show("rewarded")
+        }
     }
 });
 
 var sharedAdvertisMgr = new AdvertisMgr()
+sharedAdvertisMgr.initAds()
 module.exports = sharedAdvertisMgr

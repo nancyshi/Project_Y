@@ -7,7 +7,7 @@ android {
     buildToolsVersion PROP_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        applicationId "com.fireball.Project_Y"
+        applicationId "com.tdreamstudio.diamonds"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
         versionCode 1
@@ -137,3 +137,5 @@ dependencies {
     implementation fileTree(dir: "/Applications/CocosCreator.app/Contents/Resources/cocos2d-x/cocos/platform/android/java/libs", include: ['*.jar'])
     implementation project(':libcocos2dx')
 }
+dependencies { compile 'com.google.android.gms:play-services-base:16.1.0' }
+dependencies { compile 'com.google.android.gms:play-services-ads:18.3.0' }

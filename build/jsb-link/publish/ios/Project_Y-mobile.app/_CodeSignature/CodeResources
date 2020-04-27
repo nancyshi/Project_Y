@@ -98,39 +98,39 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		zYQ6CYqfFsJ4RurSlci6GUFapCk=
+		VreXp2tFjQsmsoqTXZQtKsm0amo=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3~ipad.nib/objects-8.0+.nib</key>
 		<data>
-		6zzqD8fBcMREo9D0r4ewD27xZj8=
+		GBjX4JNEqpaxIPP4TII0BkpguN4=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3~ipad.nib/runtime.nib</key>
 		<data>
-		RzM/vgsQSg7B276QdDtefMNnoGk=
+		2MgxMBJvw0KTYhVs26pAZsG3o8s=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3~iphone.nib/objects-8.0+.nib</key>
 		<data>
-		3lw64U+xHgut7xJBCju7Zzu2F6I=
+		zCXhDfGPUotPmSXl1nXV3Um7o7Q=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3~iphone.nib/runtime.nib</key>
 		<data>
-		vGmix3LfwmQoSrUXRtHTZjvV10Q=
+		1U/9JczxlipKV2MexFNp1vMdwtI=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM~ipad.nib/objects-8.0+.nib</key>
 		<data>
-		VM9env9YP8kCizTfScUNALafhOI=
+		i3IMgeNPyUsMy8TQo8ElnReHkdM=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM~ipad.nib/runtime.nib</key>
 		<data>
-		ORLWo1lV++QF0LajVqs4qXoFQTc=
+		J8jOFPefQyGX1p8zyyRt9RPIiQI=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM~iphone.nib/objects-8.0+.nib</key>
 		<data>
-		AnRgf9dB9YreNO7TOkLLABRA/pw=
+		v4+rWB4WL3rUJC4DgtXd1yE++oQ=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM~iphone.nib/runtime.nib</key>
 		<data>
-		bWkUmgWvByd6Gtq+qoU4WGPGPNA=
+		o2ECcPQNGvIpvtI6JI/l7kXxpC4=
 		</data>
 		<key>Base.lproj/LaunchScreen~ipad.storyboardc/Info-8.0+.plist</key>
 		<data>
@@ -154,7 +154,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		CTa41K9WeX0vb765jqDcmM9UcTc=
+		4kSbTlnlmDYRFxDINJX0pTQcYmw=
 		</data>
 		<key>LaunchScreenBackground.png</key>
 		<data>
@@ -170,11 +170,11 @@
 		</data>
 		<key>jsb-adapter/jsb-engine.js</key>
 		<data>
-		rowOHf69WuCs/VvAfveznduEl2Y=
+		LB6DaLDYcEBbW6OU/uSuiec4OBk=
 		</data>
 		<key>main.js</key>
 		<data>
-		XRT1hD94U5pWMfkOA9tFZrhW21Q=
+		qdcirurMJeufrVrLrovhrwy2qcg=
 		</data>
 		<key>project.json</key>
 		<data>
@@ -191,6 +191,10 @@
 		<key>res/import/02/0210c2720.ef9d1.json</key>
 		<data>
 		TnoQk2mbLafFySEo5U79D7IS7QA=
+		</data>
+		<key>res/import/02/0254360d2.508a3.json</key>
+		<data>
+		aDeIRlGHaBsQqcTTVrxVOr30ruM=
 		</data>
 		<key>res/import/02/0272eb281.d4283.json</key>
 		<data>
@@ -220,6 +224,10 @@
 		<data>
 		RhKCRCp2DxFweyR0JXEbIJ8HiBQ=
 		</data>
+		<key>res/import/05/053057278.97380.json</key>
+		<data>
+		+Y5tvq38xyEWbzyNJhIj4W2ziKo=
+		</data>
 		<key>res/import/05/056831ae9.59f84.json</key>
 		<data>
 		QWjNEPy1K9IbgIYv5wf1yxuOYLs=
@@ -239,6 +247,10 @@
 		<key>res/import/06/06c9c1c76.114db.json</key>
 		<data>
 		3+uYhdaA93n5ifTz5l0ACUzFgHs=
+		</data>
+		<key>res/import/07/079876629.e40a3.json</key>
+		<data>
+		ZW2wr7xEQHODjQgs60fHk9vhCsg=
 		</data>
 		<key>res/import/07/07ea2ca0-8523-405a-9ebf-53cf1ea70d72.bfb96.json</key>
 		<data>
@@ -263,10 +275,6 @@
 		<key>res/import/0b/0b1fe816c.cc3a6.json</key>
 		<data>
 		3QJz2mEa73N3kqT1EQpvFFjaNPw=
-		</data>
-		<key>res/import/0b/0b2514a90.04c40.json</key>
-		<data>
-		GEAEiQEyAWYFK8PNKT5upIc3wok=
 		</data>
 		<key>res/import/0b/0b6705df8.2c83f.json</key>
 		<data>
@@ -308,6 +316,10 @@
 		<data>
 		vvneRT4YexfLWJcJ10rK/OJublU=
 		</data>
+		<key>res/import/0f/0f1f685b9.ebc6e.json</key>
+		<data>
+		P/xHNNo8v5Ji9egY0ryh2Tn3AYI=
+		</data>
 		<key>res/import/0f/0f7271070.b879d.json</key>
 		<data>
 		l94MpeiZJsvmUxKGTtsPoAoJ9S4=
@@ -340,10 +352,6 @@
 		<data>
 		khQZ4qwcS4V8D32YsoIGHcHgBls=
 		</data>
-		<key>res/import/60/605aecd8-9202-4dc8-b4c8-d66ce62ffefe.fbabf.json</key>
-		<data>
-		OKrSakfk9zdq/QDiKi3H3hilHJM=
-		</data>
 		<key>res/import/6d/6d91e591-4ce0-465c-809f-610ec95019c6.87124.json</key>
 		<data>
 		yHYIT9ycqEY1FbEOq6zcbc/ZOIg=
@@ -364,9 +372,9 @@
 		<data>
 		J6zJnYedTwce7Gq6vtjqsKTg2jM=
 		</data>
-		<key>res/import/ad/ad1a9f20-ff0a-4f84-9dd2-ad39eddaabcc.65436.json</key>
+		<key>res/import/a9/a9d6c8a1-393d-4715-ad1a-7f14550351de.8bad8.json</key>
 		<data>
-		Tp1czvreKxqCNlEwywQ5XsrqdQM=
+		mT8VLGzUvo3M+wOO3vTGhNJs0zk=
 		</data>
 		<key>res/import/c0/c0040c95-c57f-49cd-9cbc-12316b73d0d4.2c187.json</key>
 		<data>
@@ -488,10 +496,6 @@
 		<data>
 		r6KMkVY168R2gMdy6EHUJuTgAp8=
 		</data>
-		<key>res/raw-assets/77/77952f0e-5711-417a-aaa8-226ec0ecd250.05c78.png</key>
-		<data>
-		IExzikWctjrZRA+OXEVqm22qRTk=
-		</data>
 		<key>res/raw-assets/78/78eb8094-b56c-4185-a969-2eb811bb5b8c.09a81.png</key>
 		<data>
 		rTEwS07309dDd+VKjOGnsOZkM0E=
@@ -544,25 +548,33 @@
 		<data>
 		AObklAhM4cAune1Y3Fuc/jatUxE=
 		</data>
-		<key>res/raw-assets/ea/eae9d7a5-d439-45e8-b0c8-8f93db7e95ed.05c78.png</key>
+		<key>res/raw-assets/ee/ee63d4ae-8ec5-4446-b9a3-9a39fb208a71.65218.png</key>
 		<data>
-		IExzikWctjrZRA+OXEVqm22qRTk=
+		GzYpzLd3qKGigtrYB/Ow6Pk0nJI=
 		</data>
 		<key>res/raw-assets/f9/f9a5e80e-7ad0-49e6-b4a5-cc9da783562e.38859.png</key>
 		<data>
 		8xKdSuSMs6pGiAQ21glMXxOP9ig=
 		</data>
-		<key>src/cocos2d-jsb.96d7b.jsc</key>
+		<key>res/sdkbox_config.json</key>
 		<data>
-		mPUgZSVsHrZwftE16E1w9OUugmc=
+		X2jhLmKHaJEkxMAHr1DY0dz27fI=
 		</data>
-		<key>src/project.003ff.jsc</key>
+		<key>src/cocos2d-jsb.7237d.jsc</key>
 		<data>
-		CQ22XNAgDSSPDcp2DAvD417iLf4=
+		W89BRXwJi5PrnQaFS8A1gLkhc70=
 		</data>
-		<key>src/settings.0b7f9.jsc</key>
+		<key>src/project.de0c3.jsc</key>
 		<data>
-		Rb+QITGpHluxL2KsA3CtXbxHoNk=
+		/gOncnvhnw5orkXe1ueCM4eV1PI=
+		</data>
+		<key>src/project.js.map</key>
+		<data>
+		qeIPnlPLcKsUbrvnMfKLlt0uqSk=
+		</data>
+		<key>src/settings.8266a.jsc</key>
+		<data>
+		+ZHvfDQIU2sQDCL6HrCEx9fT398=
 		</data>
 		<key>zh-Hans.lproj/Localizable.strings</key>
 		<dict>
@@ -833,99 +845,99 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			zYQ6CYqfFsJ4RurSlci6GUFapCk=
+			VreXp2tFjQsmsoqTXZQtKsm0amo=
 			</data>
 			<key>hash2</key>
 			<data>
-			Iqb9X4d9QtNFPQnBSHHUpyA8yWaSRLxJBvru/U/8pyY=
+			lhYodzFl34QekmKN66mO1z3/xKgUiVEJFk6cfxU/qXE=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3~ipad.nib/objects-8.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			6zzqD8fBcMREo9D0r4ewD27xZj8=
+			GBjX4JNEqpaxIPP4TII0BkpguN4=
 			</data>
 			<key>hash2</key>
 			<data>
-			fETgqnoq8sYw8QdnxiIoLyQlYvYEnoGQfKVhPdsRb1c=
+			uEuBfE4n1egNBr1hkjGG7tNEJCQDBxv/cytEnnzyBMc=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3~ipad.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			RzM/vgsQSg7B276QdDtefMNnoGk=
+			2MgxMBJvw0KTYhVs26pAZsG3o8s=
 			</data>
 			<key>hash2</key>
 			<data>
-			EO8TqVdfM9JbmRPJWHuFwiEu4uWzxjZ66g7I/TM0Y54=
+			2DVlqCgqzA+qvkk9LhHYkb5yBdKfN/hxmxiuLqQZadM=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3~iphone.nib/objects-8.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			3lw64U+xHgut7xJBCju7Zzu2F6I=
+			zCXhDfGPUotPmSXl1nXV3Um7o7Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			7XGfBy3vTj6Q0gkMevgh+ZDlwslIhPMOxvN74RZRmDI=
+			F0GxZflWl7+a/Dxh0JNmEDGQn50EO4aQHON0t07RyJo=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3~iphone.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vGmix3LfwmQoSrUXRtHTZjvV10Q=
+			1U/9JczxlipKV2MexFNp1vMdwtI=
 			</data>
 			<key>hash2</key>
 			<data>
-			VKp3PHv8Q7kZ4C0ENpcyrxiqUPrJlDajmmwQMWrKzlY=
+			YLVBrmiVBD2JtWGNWv7D8FdE+EjZckBRLf9VdFKmM7Q=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM~ipad.nib/objects-8.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VM9env9YP8kCizTfScUNALafhOI=
+			i3IMgeNPyUsMy8TQo8ElnReHkdM=
 			</data>
 			<key>hash2</key>
 			<data>
-			ActcWzAKf+GE5QBLr7X/yQEKjadVa2wCohPJyOEhq80=
+			ihMJJLhFLR/VHplvfghmXxDCY6qRNq+I8G2RXWHTvpY=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM~ipad.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ORLWo1lV++QF0LajVqs4qXoFQTc=
+			J8jOFPefQyGX1p8zyyRt9RPIiQI=
 			</data>
 			<key>hash2</key>
 			<data>
-			7/mLJC7cOPiTJ79/uruHK+Ncmeazch/jo4UgqhfoByc=
+			2Ru18Sur2U6loAIi46RzJa4KFvtVJCpeSvnkI6zFwT0=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM~iphone.nib/objects-8.0+.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			AnRgf9dB9YreNO7TOkLLABRA/pw=
+			v4+rWB4WL3rUJC4DgtXd1yE++oQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			YuFbpSGl2M5mzDzwzSbwwt/MXCqzBqUT30D3qz+vzLA=
+			Ok1mhMU7cTU/T8KePjE1msSVoV669BVoJ/07FF42flI=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM~iphone.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			bWkUmgWvByd6Gtq+qoU4WGPGPNA=
+			o2ECcPQNGvIpvtI6JI/l7kXxpC4=
 			</data>
 			<key>hash2</key>
 			<data>
-			KXsVfHeeZK9BRoBO5T0rjG44MT+TkvOO7/R0jbO+INc=
+			RPHMLDjoqcOvVfj86abQdXv/MjlNlRme2yfJcKXz9lU=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen~ipad.storyboardc/Info-8.0+.plist</key>
@@ -1009,22 +1021,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rowOHf69WuCs/VvAfveznduEl2Y=
+			LB6DaLDYcEBbW6OU/uSuiec4OBk=
 			</data>
 			<key>hash2</key>
 			<data>
-			pa4y7pUekGBNkm3vIVGGZFgGsGU8hiquGutN3NCs9kw=
+			yJBYe2vsvA54elumAVQGqP/23ytQesGp2BgAMGySkEE=
 			</data>
 		</dict>
 		<key>main.js</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XRT1hD94U5pWMfkOA9tFZrhW21Q=
+			qdcirurMJeufrVrLrovhrwy2qcg=
 			</data>
 			<key>hash2</key>
 			<data>
-			yYrQdT91sIeL/6V+QsltYNJpPoXo0+UzIK9ZnkM4P2U=
+			x/e7fz6aOuXxRDWU5KrlVzAojGfFq5CBgUv/sNtxmaI=
 			</data>
 		</dict>
 		<key>project.json</key>
@@ -1069,6 +1081,17 @@
 			<key>hash2</key>
 			<data>
 			r+QRaG1TI/3on9eyiG2wGtx2viRsZja5BYXSHzkqtDI=
+			</data>
+		</dict>
+		<key>res/import/02/0254360d2.508a3.json</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			aDeIRlGHaBsQqcTTVrxVOr30ruM=
+			</data>
+			<key>hash2</key>
+			<data>
+			VZSq14jka91hlZsd9nG8sOUoaEdHdgJ8gRkENXwY5jk=
 			</data>
 		</dict>
 		<key>res/import/02/0272eb281.d4283.json</key>
@@ -1148,6 +1171,17 @@
 			S8g16jBmdVWUhmkyXSR4wvDmF5xMS2dEG3g8aPMBb7k=
 			</data>
 		</dict>
+		<key>res/import/05/053057278.97380.json</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			+Y5tvq38xyEWbzyNJhIj4W2ziKo=
+			</data>
+			<key>hash2</key>
+			<data>
+			pr6BNsHZK4sBXoVWcvtp4+OjhbSmtPm8bIdCgjhWZkg=
+			</data>
+		</dict>
 		<key>res/import/05/056831ae9.59f84.json</key>
 		<dict>
 			<key>hash</key>
@@ -1201,6 +1235,17 @@
 			<key>hash2</key>
 			<data>
 			7v3Wp5T60kcwUD02CRrLlSUKFiOVTiWyMJvmdX2Qy8E=
+			</data>
+		</dict>
+		<key>res/import/07/079876629.e40a3.json</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ZW2wr7xEQHODjQgs60fHk9vhCsg=
+			</data>
+			<key>hash2</key>
+			<data>
+			rbd8F9Oug80i0dMZ5x9swIpOvPrqojm3e8059BTxkQA=
 			</data>
 		</dict>
 		<key>res/import/07/07ea2ca0-8523-405a-9ebf-53cf1ea70d72.bfb96.json</key>
@@ -1267,17 +1312,6 @@
 			<key>hash2</key>
 			<data>
 			Bu3GvIvkbNpW9sb8BHet7DAuC6D35Jukjd5WG+GCPO0=
-			</data>
-		</dict>
-		<key>res/import/0b/0b2514a90.04c40.json</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			GEAEiQEyAWYFK8PNKT5upIc3wok=
-			</data>
-			<key>hash2</key>
-			<data>
-			IL9uVWIh8i66FvLR3gOce7sB0kK7hJ3/gqnl7BlxvCc=
 			</data>
 		</dict>
 		<key>res/import/0b/0b6705df8.2c83f.json</key>
@@ -1390,6 +1424,17 @@
 			/kSD6SwtbLnSwicziF+omB2IIS0LCmkJL0NgiAXMmAQ=
 			</data>
 		</dict>
+		<key>res/import/0f/0f1f685b9.ebc6e.json</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			P/xHNNo8v5Ji9egY0ryh2Tn3AYI=
+			</data>
+			<key>hash2</key>
+			<data>
+			QBDAVA1SjlIZ3JDKx0ymGNLag4bBuUrXdNfjgjCUYhw=
+			</data>
+		</dict>
 		<key>res/import/0f/0f7271070.b879d.json</key>
 		<dict>
 			<key>hash</key>
@@ -1478,17 +1523,6 @@
 			LUv+O2ovYhJ9+v9b0XuvFNKS8+BJoIujphjV/o3rBaM=
 			</data>
 		</dict>
-		<key>res/import/60/605aecd8-9202-4dc8-b4c8-d66ce62ffefe.fbabf.json</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			OKrSakfk9zdq/QDiKi3H3hilHJM=
-			</data>
-			<key>hash2</key>
-			<data>
-			oJfjlewz3Us9reSCuhrhEQO4dYa3W7WOsJ6jP4yi3fg=
-			</data>
-		</dict>
 		<key>res/import/6d/6d91e591-4ce0-465c-809f-610ec95019c6.87124.json</key>
 		<dict>
 			<key>hash</key>
@@ -1544,15 +1578,15 @@
 			67lk6S9KoiPSfG8Qea7hivXYTmlZjuyUAJiqAWyj38A=
 			</data>
 		</dict>
-		<key>res/import/ad/ad1a9f20-ff0a-4f84-9dd2-ad39eddaabcc.65436.json</key>
+		<key>res/import/a9/a9d6c8a1-393d-4715-ad1a-7f14550351de.8bad8.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Tp1czvreKxqCNlEwywQ5XsrqdQM=
+			mT8VLGzUvo3M+wOO3vTGhNJs0zk=
 			</data>
 			<key>hash2</key>
 			<data>
-			u72IH0caKS+flfT/KCoNcfPyyhcQaq/I45sR0JpnLRw=
+			nf1t2H/eor/o3ZfhXvEoMSJY6Ama0mnU7naZVZtC3VQ=
 			</data>
 		</dict>
 		<key>res/import/c0/c0040c95-c57f-49cd-9cbc-12316b73d0d4.2c187.json</key>
@@ -1885,17 +1919,6 @@
 			eh4x3qYXDc/YFV/P1QXCXfVjnfgQnqVfzAMQW2k+RhI=
 			</data>
 		</dict>
-		<key>res/raw-assets/77/77952f0e-5711-417a-aaa8-226ec0ecd250.05c78.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			IExzikWctjrZRA+OXEVqm22qRTk=
-			</data>
-			<key>hash2</key>
-			<data>
-			pTv8uSggEaemBmf/Y8cfZ66ASy+bx6CRGvpgrjSi+Uk=
-			</data>
-		</dict>
 		<key>res/raw-assets/78/78eb8094-b56c-4185-a969-2eb811bb5b8c.09a81.png</key>
 		<dict>
 			<key>hash</key>
@@ -2039,15 +2062,15 @@
 			+CLVg6uLmQQPGoaxhw7RcdKGowy9HA1nT64EwtPfopg=
 			</data>
 		</dict>
-		<key>res/raw-assets/ea/eae9d7a5-d439-45e8-b0c8-8f93db7e95ed.05c78.png</key>
+		<key>res/raw-assets/ee/ee63d4ae-8ec5-4446-b9a3-9a39fb208a71.65218.png</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			IExzikWctjrZRA+OXEVqm22qRTk=
+			GzYpzLd3qKGigtrYB/Ow6Pk0nJI=
 			</data>
 			<key>hash2</key>
 			<data>
-			pTv8uSggEaemBmf/Y8cfZ66ASy+bx6CRGvpgrjSi+Uk=
+			+0vv+VXfnRbFS5lTWz73V0x9eUo9ZEwo6C+ZBiPwH18=
 			</data>
 		</dict>
 		<key>res/raw-assets/f9/f9a5e80e-7ad0-49e6-b4a5-cc9da783562e.38859.png</key>
@@ -2061,37 +2084,59 @@
 			0CqLMidkEvn+8fc1+Q1KDyRp/R7LLAknGVwkfTwASZ0=
 			</data>
 		</dict>
-		<key>src/cocos2d-jsb.96d7b.jsc</key>
+		<key>res/sdkbox_config.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			mPUgZSVsHrZwftE16E1w9OUugmc=
+			X2jhLmKHaJEkxMAHr1DY0dz27fI=
 			</data>
 			<key>hash2</key>
 			<data>
-			xwjtW7ANnSRp26yv3Claq2YwZs2CbAOBsdTi1DSUB94=
+			gMbWb0wiz7LaWbxy10Du0GqjXiHq/ly77mFz9SKMHnQ=
 			</data>
 		</dict>
-		<key>src/project.003ff.jsc</key>
+		<key>src/cocos2d-jsb.7237d.jsc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CQ22XNAgDSSPDcp2DAvD417iLf4=
+			W89BRXwJi5PrnQaFS8A1gLkhc70=
 			</data>
 			<key>hash2</key>
 			<data>
-			ckjOF82MZNkh9fDmr/mZ49oWIxnL1NlSSfUaZ6LFnLw=
+			MYNeGALlrZMnmF10E2CD4jsF0LZA5scahL6FTCDsuys=
 			</data>
 		</dict>
-		<key>src/settings.0b7f9.jsc</key>
+		<key>src/project.de0c3.jsc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Rb+QITGpHluxL2KsA3CtXbxHoNk=
+			/gOncnvhnw5orkXe1ueCM4eV1PI=
 			</data>
 			<key>hash2</key>
 			<data>
-			EgeGQfBWQmAI3HnmtRJ47twptYirPq9+HTKPp7tpaTk=
+			kMtwvwXcw7Qp4NdonrXhAISeuaOLnRk1OkSEUcaLRJY=
+			</data>
+		</dict>
+		<key>src/project.js.map</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			qeIPnlPLcKsUbrvnMfKLlt0uqSk=
+			</data>
+			<key>hash2</key>
+			<data>
+			69jOdRDGMdm2AI2wNKJJX68MpQ8ubUUPW5usfPKLt7w=
+			</data>
+		</dict>
+		<key>src/settings.8266a.jsc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			+ZHvfDQIU2sQDCL6HrCEx9fT398=
+			</data>
+			<key>hash2</key>
+			<data>
+			5fOdrC4QLNo9eTg+VdbN1UnMjwj5YphRNav93V8S8jo=
 			</data>
 		</dict>
 		<key>zh-Hans.lproj/Localizable.strings</key>

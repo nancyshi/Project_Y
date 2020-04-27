@@ -960,8 +960,8 @@
     "relativePath": "scenes/levels/_level023.fire"
   },
   "49ad0b11-6e9b-429c-988d-a57ac9e246ce": {
-    "asset": 1587843838649,
-    "meta": 1587843838655,
+    "asset": 1587983692095,
+    "meta": 1587983692102,
     "relativePath": "scenes/loginScene.fire"
   },
   "ffef00ff-2e28-4f3a-8020-65b0987af904": {
@@ -1048,11 +1048,6 @@
     "asset": 1587199859646,
     "meta": 1587199859645,
     "relativePath": "scripts/singleInstanceSystems"
-  },
-  "d2cc9c41-5a94-4dcb-ae40-80b97ffde04e": {
-    "asset": 1586602336754,
-    "meta": 1587202900700,
-    "relativePath": "scripts/singleInstanceSystems/advertisMgr.js"
   },
   "d895a0dd-0858-4134-8ba1-c0474cb4935e": {
     "asset": 1586801042329,
@@ -1309,11 +1304,6 @@
     "meta": 1587843620476,
     "relativePath": "configs/textConfig.js"
   },
-  "3051920e-ea62-42c8-8509-f711aaac1016": {
-    "asset": 1587889563859,
-    "meta": 1587889565156,
-    "relativePath": "scripts/libs/gloableConfig.js"
-  },
   "4abf67f5-d2dc-4262-a82d-321e226c0c99": {
     "asset": 1587891624447,
     "meta": 1587891629799,
@@ -1338,5 +1328,15 @@
     "asset": 1587895773694,
     "meta": 1587895835961,
     "relativePath": "scripts/mainScene/mainSceneMgr.js"
+  },
+  "3051920e-ea62-42c8-8509-f711aaac1016": {
+    "asset": 1587912402104,
+    "meta": 1587912402887,
+    "relativePath": "scripts/libs/gloableConfig.js"
+  },
+  "d2cc9c41-5a94-4dcb-ae40-80b97ffde04e": {
+    "asset": 1587982193948,
+    "meta": 1587982196442,
+    "relativePath": "scripts/singleInstanceSystems/advertisMgr.js"
   }
 }

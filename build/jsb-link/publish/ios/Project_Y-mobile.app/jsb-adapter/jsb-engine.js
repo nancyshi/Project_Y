@@ -443,41 +443,6 @@ cc.js.mixin(cc.Mask.prototype, {
 },{}],11:[function(require,module,exports){
 "use strict";
 
-var proto = cc.MotionStreak.__assembler__.prototype;
-var _init = proto.init;
-var _update = proto.update;
-cc.js.mixin(proto, {
-    init: function init(comp) {
-        _init.call(this, comp);
-
-        this.setUseModel(false);
-        this.ignoreWorldMatrix();
-        this.ignoreOpacityFlag();
-    },
-    update: function update(comp, dt) {
-        comp.node._updateWorldMatrix();
-
-        _update.call(this, comp, dt);
-
-        var _renderData$_flexBuff = this._renderData._flexBuffer,
-            iData = _renderData$_flexBuff.iData,
-            usedVertices = _renderData$_flexBuff.usedVertices;
-
-        var indiceOffset = 0;
-        for (var i = 0, l = usedVertices; i < l; i += 2) {
-            iData[indiceOffset++] = i;
-            iData[indiceOffset++] = i + 2;
-            iData[indiceOffset++] = i + 1;
-            iData[indiceOffset++] = i + 1;
-            iData[indiceOffset++] = i + 2;
-            iData[indiceOffset++] = i + 3;
-        }
-    }
-});
-
-},{}],12:[function(require,module,exports){
-"use strict";
-
 /****************************************************************************
  Copyright (c) 2018 Xiamen Yaji Software Co., Ltd.
 
@@ -515,7 +480,7 @@ Object.assign(cc.Sprite.__assembler__.Mesh.prototype, {
   }
 });
 
-},{}],13:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -555,7 +520,7 @@ Object.assign(cc.Sprite.__assembler__.RadialFilled.prototype, {
   }
 });
 
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -598,7 +563,7 @@ proto.initLocal = function () {
   nativeProto.setLocalData.call(this, this._local);
 };
 
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -642,7 +607,7 @@ proto.initLocal = function () {
   nativeProto.setLocalData.call(this, this._local);
 };
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -715,7 +680,7 @@ Object.assign(cc.Sprite.__assembler__.Tiled.prototype, {
     }
 });
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 "use strict";
 
 (function () {
@@ -728,7 +693,7 @@ Object.assign(cc.Sprite.__assembler__.Tiled.prototype, {
     });
 })();
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 
 (function () {
@@ -753,7 +718,7 @@ Object.assign(cc.Sprite.__assembler__.Tiled.prototype, {
     });
 })();
 
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 "use strict";
 
 (function () {
@@ -776,7 +741,7 @@ Object.assign(cc.Sprite.__assembler__.Tiled.prototype, {
     });
 })();
 
-},{}],20:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 
 (function () {
@@ -790,7 +755,7 @@ Object.assign(cc.Sprite.__assembler__.Tiled.prototype, {
     });
 })();
 
-},{}],21:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 "use strict";
 
 (function () {
@@ -804,7 +769,7 @@ Object.assign(cc.Sprite.__assembler__.Tiled.prototype, {
     });
 })();
 
-},{}],22:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 "use strict";
 
 (function () {
@@ -863,7 +828,7 @@ Object.assign(cc.Sprite.__assembler__.Tiled.prototype, {
     });
 })();
 
-},{}],23:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 /****************************************************************************
@@ -904,7 +869,7 @@ require('./3d/mesh.js');
 require('./3d/bar-filled.js');
 require('./3d/radial-filled.js');
 
-},{"./2d/mesh.js":12,"./2d/radial-filled.js":13,"./2d/simple.js":14,"./2d/sliced.js":15,"./2d/tiled.js":16,"./3d/bar-filled.js":17,"./3d/mesh.js":18,"./3d/radial-filled.js":19,"./3d/simple.js":20,"./3d/sliced.js":21,"./3d/tiled.js":22}],24:[function(require,module,exports){
+},{"./2d/mesh.js":11,"./2d/radial-filled.js":12,"./2d/simple.js":13,"./2d/sliced.js":14,"./2d/tiled.js":15,"./3d/bar-filled.js":16,"./3d/mesh.js":17,"./3d/radial-filled.js":18,"./3d/simple.js":19,"./3d/sliced.js":20,"./3d/tiled.js":21}],23:[function(require,module,exports){
 'use strict';
 
 /****************************************************************************
@@ -976,7 +941,7 @@ if (CC_NATIVERENDERER) {
   });
 }
 
-},{"./assemblers/assembler-2d.js":1,"./assemblers/assembler-3d.js":2,"./assemblers/assembler.js":3,"./assemblers/graphics-assembler.js":4,"./assemblers/label/index.js":8,"./assemblers/mask-assembler.js":9,"./assemblers/mesh-renderer.js":10,"./assemblers/motion-streak.js":11,"./assemblers/sprite/index.js":23,"./jsb-assets-manager.js":25,"./jsb-audio.js":26,"./jsb-custom-properties.js":27,"./jsb-dragonbones.js":28,"./jsb-editbox.js":29,"./jsb-effect.js":30,"./jsb-game.js":31,"./jsb-loader.js":32,"./jsb-particle.js":33,"./jsb-reflection.js":34,"./jsb-skin-mesh.js":35,"./jsb-spine-skeleton.js":36,"./jsb-sys.js":37,"./jsb-tiledmap.js":38,"./jsb-videoplayer.js":39,"./jsb-webview.js":40,"./scene/camera.js":41,"./scene/light.js":42,"./scene/mesh-buffer.js":43,"./scene/node-proxy.js":44,"./scene/node.js":45,"./scene/quad-buffer.js":46,"./scene/render-data.js":47,"./scene/render-flow.js":48}],25:[function(require,module,exports){
+},{"./assemblers/assembler-2d.js":1,"./assemblers/assembler-3d.js":2,"./assemblers/assembler.js":3,"./assemblers/graphics-assembler.js":4,"./assemblers/label/index.js":8,"./assemblers/mask-assembler.js":9,"./assemblers/mesh-renderer.js":10,"./assemblers/motion-streak.js":undefined,"./assemblers/sprite/index.js":22,"./jsb-assets-manager.js":24,"./jsb-audio.js":25,"./jsb-custom-properties.js":26,"./jsb-dragonbones.js":undefined,"./jsb-editbox.js":27,"./jsb-effect.js":28,"./jsb-game.js":29,"./jsb-loader.js":30,"./jsb-particle.js":31,"./jsb-reflection.js":32,"./jsb-skin-mesh.js":33,"./jsb-spine-skeleton.js":34,"./jsb-sys.js":35,"./jsb-tiledmap.js":36,"./jsb-videoplayer.js":37,"./jsb-webview.js":38,"./scene/camera.js":39,"./scene/light.js":40,"./scene/mesh-buffer.js":41,"./scene/node-proxy.js":42,"./scene/node.js":43,"./scene/quad-buffer.js":44,"./scene/render-data.js":45,"./scene/render-flow.js":46}],24:[function(require,module,exports){
 "use strict";
 
 /*
@@ -1039,7 +1004,7 @@ if (jsb.AssetsManager) {
     jsb.EventAssetsManager.ERROR_DECOMPRESS = 10;
 }
 
-},{}],26:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 /****************************************************************************
@@ -1286,7 +1251,7 @@ var handleVolume = function handleVolume(volume) {
     };
 })(cc.Audio.prototype, jsb.AudioEngine);
 
-},{}],27:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1331,651 +1296,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     cc.CustomProperties = NativeCustomProperties;
 })();
 
-},{}],28:[function(require,module,exports){
-"use strict";
-
-/****************************************************************************
- Copyright (c) 2018 Xiamen Yaji Software Co., Ltd.
-
- http://www.cocos.com
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated engine source code (the "Software"), a limited,
-  worldwide, royalty-free, non-assignable, revocable and non-exclusive license
- to use Cocos Creator solely to develop games on your target platforms. You shall
-  not use Cocos Creator software for developing other software or tools that's
-  used for developing games. You are not granted to publish, distribute,
-  sublicense, and/or sell copies of Cocos Creator.
-
- The software or tools in this License Agreement are licensed, not sold.
- Xiamen Yaji Software Co., Ltd. reserves all rights not expressly granted to you.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- ****************************************************************************/
-(function () {
-    if (window.dragonBones === undefined || window.middleware === undefined) return;
-    if (dragonBones.DragonBonesAtlasAsset === undefined) return;
-
-    // dragonbones global time scale.
-    Object.defineProperty(dragonBones, 'timeScale', {
-        get: function get() {
-            return this._timeScale;
-        },
-        set: function set(value) {
-            this._timeScale = value;
-            var factory = this.CCFactory.getInstance();
-            factory.setTimeScale(value);
-        },
-
-        configurable: true
-    });
-
-    jsb.generateGetSet(dragonBones);
-    var _slotColor = cc.color(0, 0, 255, 255);
-    var _boneColor = cc.color(255, 0, 0, 255);
-    var _originColor = cc.color(0, 255, 0, 255);
-
-    ////////////////////////////////////////////////////////////
-    // override dragonBones library by native dragonBones
-    ////////////////////////////////////////////////////////////
-    //--------------------
-    // adapt event name
-    //--------------------
-    dragonBones.EventObject.START = "start";
-    dragonBones.EventObject.LOOP_COMPLETE = "loopComplete";
-    dragonBones.EventObject.COMPLETE = "complete";
-    dragonBones.EventObject.FADE_IN = "fadeIn";
-    dragonBones.EventObject.FADE_IN_COMPLETE = "fadeInComplete";
-    dragonBones.EventObject.FADE_OUT = "fadeOut";
-    dragonBones.EventObject.FADE_OUT_COMPLETE = "fadeOutComplete";
-    dragonBones.EventObject.FRAME_EVENT = "frameEvent";
-    dragonBones.EventObject.SOUND_EVENT = "soundEvent";
-
-    dragonBones.DragonBones = {
-        ANGLE_TO_RADIAN: Math.PI / 180,
-        RADIAN_TO_ANGLE: 180 / Math.PI
-    };
-
-    //-------------------
-    // native factory
-    //-------------------
-
-    var factoryProto = dragonBones.CCFactory.prototype;
-    factoryProto.createArmatureNode = function (comp, armatureName, node) {
-        node = node || new cc.Node();
-        var display = node.getComponent(dragonBones.ArmatureDisplay);
-        if (!display) {
-            display = node.addComponent(dragonBones.ArmatureDisplay);
-        }
-
-        node.name = armatureName;
-
-        display._armatureName = armatureName;
-        display._N$dragonAsset = comp.dragonAsset;
-        display._N$dragonAtlasAsset = comp.dragonAtlasAsset;
-        display._init();
-
-        return display;
-    };
-
-    var _replaceSkin = factoryProto.replaceSkin;
-    factoryProto.replaceSkin = function (armatrue, skinData, isOverride, exclude) {
-        if (isOverride == undefined) isOverride = false;
-        exclude = exclude || [];
-        _replaceSkin.call(this, armatrue, skinData, isOverride, exclude);
-    };
-
-    var _changeSkin = factoryProto.changeSkin;
-    factoryProto.changeSkin = function (armatrue, skinData, exclude) {
-        _changeSkin.call(this, armatrue, skinData, exclude);
-    };
-
-    //-------------------
-    // native animation state
-    //-------------------
-    var animationStateProto = dragonBones.AnimationState.prototype;
-    var _isPlaying = animationStateProto.isPlaying;
-    Object.defineProperty(animationStateProto, 'isPlaying', {
-        get: function get() {
-            return _isPlaying.call(this);
-        }
-    });
-
-    //-------------------
-    // native armature
-    //-------------------
-    var armatureProto = dragonBones.Armature.prototype;
-
-    armatureProto.addEventListener = function (eventType, listener, target) {
-        if (!this.__persistentDisplay__) {
-            this.__persistentDisplay__ = this.getDisplay();
-        }
-        this.__persistentDisplay__.on(eventType, listener, target);
-    };
-
-    armatureProto.removeEventListener = function (eventType, listener, target) {
-        if (!this.__persistentDisplay__) {
-            this.__persistentDisplay__ = this.getDisplay();
-        }
-        this.__persistentDisplay__.off(eventType, listener, target);
-    };
-
-    //--------------------------
-    // native CCArmatureDisplay
-    //--------------------------
-    var nativeArmatureDisplayProto = dragonBones.CCArmatureDisplay.prototype;
-
-    Object.defineProperty(nativeArmatureDisplayProto, "node", {
-        get: function get() {
-            return this;
-        }
-    });
-
-    nativeArmatureDisplayProto.getRootNode = function () {
-        var rootDisplay = this.getRootDisplay();
-        return rootDisplay && rootDisplay._ccNode;
-    };
-
-    nativeArmatureDisplayProto.convertToWorldSpace = function (point) {
-        var newPos = this.convertToRootSpace(point);
-        var ccNode = this.getRootNode();
-        if (!ccNode) return newPos;
-        var finalPos = ccNode.convertToWorldSpace(newPos);
-        return finalPos;
-    };
-
-    nativeArmatureDisplayProto.initEvent = function () {
-        if (this._eventTarget) {
-            return;
-        }
-        this._eventTarget = new cc.EventTarget();
-        this.setDBEventCallback(function (eventObject) {
-            this._eventTarget.emit(eventObject.type, eventObject);
-        });
-    };
-
-    nativeArmatureDisplayProto.on = function (type, listener, target) {
-        this.initEvent();
-        this._eventTarget.on(type, listener, target);
-        this.addDBEventListener(type, listener);
-    };
-
-    nativeArmatureDisplayProto.off = function (type, listener, target) {
-        this.initEvent();
-        this._eventTarget.off(type, listener, target);
-        this.removeDBEventListener(type, listener);
-    };
-
-    nativeArmatureDisplayProto.once = function (type, listener, target) {
-        this.initEvent();
-        this._eventTarget.once(type, listener, target);
-        this.addDBEventListener(type, listener);
-    };
-
-    ////////////////////////////////////////////////////////////
-    // override DragonBonesAtlasAsset
-    ////////////////////////////////////////////////////////////
-    var dbAtlas = dragonBones.DragonBonesAtlasAsset.prototype;
-    var _gTextureIdx = 1;
-    var _textureKeyMap = {};
-    var _textureMap = new WeakMap();
-    var _textureIdx2Name = {};
-
-    dbAtlas.removeRecordTexture = function (texture) {
-        if (!texture) return;
-        delete _textureIdx2Name[texture.url];
-        var index = texture.__textureIndex__;
-        if (index) {
-            var texKey = _textureKeyMap[index];
-            if (texKey && _textureMap.has(texKey)) {
-                _textureMap.delete(texKey);
-                delete _textureKeyMap[index];
-            }
-        }
-    };
-
-    dbAtlas.recordTexture = function () {
-        if (this._texture && this._oldTexture !== this._texture) {
-            this.removeRecordTexture(this._oldTexture);
-            var texKey = _textureKeyMap[_gTextureIdx] = { key: _gTextureIdx };
-            _textureMap.set(texKey, this._texture);
-            this._oldTexture = this._texture;
-            this._texture.__textureIndex__ = _gTextureIdx;
-            _gTextureIdx++;
-        }
-    };
-
-    dbAtlas.getTextureByIndex = function (textureIdx) {
-        var texKey = _textureKeyMap[textureIdx];
-        if (!texKey) return;
-        return _textureMap.get(texKey);
-    };
-
-    dbAtlas.updateTextureAtlasData = function (factory) {
-        var url = this._texture.url;
-        var preAtlasInfo = _textureIdx2Name[url];
-        var index = void 0;
-
-        // If the texture has store the atlas info before,then get native atlas object,and 
-        // update script texture map.
-        if (preAtlasInfo) {
-            index = preAtlasInfo.index;
-            this._textureAtlasData = factory.getTextureAtlasDataByIndex(preAtlasInfo.name, index);
-            var texKey = _textureKeyMap[preAtlasInfo.index];
-            _textureMap.set(texKey, this._texture);
-            this._texture.__textureIndex__ = index;
-            // If script has store the atlas info,but native has no atlas object,then
-            // still new native texture2d object,but no call recordTexture to increase
-            // textureIndex.
-            if (this._textureAtlasData) {
-                return;
-            }
-        } else {
-            this.recordTexture();
-        }
-
-        index = this._texture.__textureIndex__;
-        this.jsbTexture = new middleware.Texture2D();
-        this.jsbTexture.setRealTextureIndex(index);
-        this.jsbTexture.setPixelsWide(this._texture.width);
-        this.jsbTexture.setPixelsHigh(this._texture.height);
-        this._textureAtlasData = factory.parseTextureAtlasData(this.atlasJson, this.jsbTexture, this._uuid);
-        this.jsbTexture.setNativeTexture(this._texture.getImpl());
-
-        _textureIdx2Name[url] = { name: this._textureAtlasData.name, index: index };
-    };
-
-    dbAtlas.init = function (factory) {
-        this._factory = factory;
-
-        // If create by manual, uuid is empty.
-        if (!this._uuid) {
-            var atlasJsonObj = JSON.parse(this.atlasJson);
-            this._uuid = atlasJsonObj.name;
-        }
-
-        if (this._textureAtlasData) {
-            factory.addTextureAtlasData(this._textureAtlasData, this._uuid);
-        } else {
-            this.updateTextureAtlasData(factory);
-        }
-    };
-
-    dbAtlas._clear = function (dontRecordTexture) {
-        if (this._factory) {
-            this._factory.removeTextureAtlasData(this._uuid, true);
-            this._factory.removeDragonBonesDataByUUID(this._uuid, true);
-        }
-        this._textureAtlasData = null;
-        if (!dontRecordTexture) {
-            this.recordTexture();
-        }
-    };
-
-    dbAtlas.destroy = function () {
-        this.removeRecordTexture(this._texture);
-        this._clear(true);
-        cc.Asset.prototype.destroy.call(this);
-    };
-
-    ////////////////////////////////////////////////////////////
-    // override DragonBonesAsset
-    ////////////////////////////////////////////////////////////
-    var dbAsset = dragonBones.DragonBonesAsset.prototype;
-
-    dbAsset.init = function (factory, atlasUUID) {
-        this._factory = factory;
-
-        // If create by manual, uuid is empty.
-        // Only support json format, if remote load dbbin, must set uuid by manual.
-        if (!this._uuid && this.dragonBonesJson) {
-            var rawData = JSON.parse(this.dragonBonesJson);
-            this._uuid = rawData.name;
-        }
-
-        var armatureKey = this._uuid + "#" + atlasUUID;
-        var dragonBonesData = this._factory.getDragonBonesData(armatureKey);
-        if (dragonBonesData) return armatureKey;
-
-        var filePath = null;
-        if (this.dragonBonesJson) {
-            filePath = this.dragonBonesJson;
-        } else {
-            filePath = cc.loader.md5Pipe ? cc.loader.md5Pipe.transformURL(this.nativeUrl) : this.nativeUrl;
-        }
-        this._factory.parseDragonBonesDataByPath(filePath, armatureKey);
-        return armatureKey;
-    };
-
-    var armatureCacheMgr = dragonBones.ArmatureCacheMgr.getInstance();
-    dragonBones.armatureCacheMgr = armatureCacheMgr;
-    dbAsset._clear = function () {
-        if (this._factory) {
-            this._factory.removeDragonBonesDataByUUID(this._uuid, true);
-        }
-        armatureCacheMgr.removeArmatureCache(this._uuid);
-    };
-
-    ////////////////////////////////////////////////////////////
-    // override ArmatureDisplay
-    ////////////////////////////////////////////////////////////
-    dragonBones.ArmatureDisplay._assembler = null;
-    var armatureDisplayProto = dragonBones.ArmatureDisplay.prototype;
-    var renderCompProto = cc.RenderComponent.prototype;
-    var AnimationCacheMode = dragonBones.ArmatureDisplay.AnimationCacheMode;
-
-    Object.defineProperty(armatureDisplayProto, 'armatureName', {
-        get: function get() {
-            return this._armatureName;
-        },
-        set: function set(value) {
-            this._armatureName = value;
-            var animNames = this.getAnimationNames(this._armatureName);
-
-            if (!this.animationName || animNames.indexOf(this.animationName) < 0) {
-                this.animationName = '';
-            }
-
-            if (this._armature) {
-                if (!this.isAnimationCached()) {
-                    this._factory.remove(this._armature);
-                }
-                this._armature.dispose();
-                this._armature = null;
-            }
-            this._nativeDisplay = null;
-
-            this._refresh();
-            if (this._armature && !this.isAnimationCached()) {
-                this._factory.add(this._armature);
-            }
-        },
-
-        visible: false
-    });
-
-    Object.defineProperty(armatureDisplayProto, "premultipliedAlpha", {
-        get: function get() {
-            if (this._premultipliedAlpha === undefined) {
-                return false;
-            }
-            return this._premultipliedAlpha;
-        },
-        set: function set(value) {
-            this._premultipliedAlpha = value;
-            if (this._nativeDisplay) {
-                this._nativeDisplay.setOpacityModifyRGB(this._premultipliedAlpha);
-            }
-        }
-    });
-
-    var _initDebugDraw = armatureDisplayProto._initDebugDraw;
-    armatureDisplayProto._initDebugDraw = function () {
-        _initDebugDraw.call(this);
-        if (this._armature && !this.isAnimationCached()) {
-            this._nativeDisplay.setDebugBonesEnabled(this.debugBones);
-        }
-    };
-
-    var _updateBatch = armatureDisplayProto._updateBatch;
-    armatureDisplayProto._updateBatch = function () {
-        _updateBatch.call(this);
-        if (this._nativeDisplay) {
-            this._nativeDisplay.setBatchEnabled(this.enableBatch);
-        }
-        this._assembler && this._assembler.clearEffect();
-    };
-
-    armatureDisplayProto._clearRenderData = function () {
-        this._nativeDisplay = null;
-    };
-
-    armatureDisplayProto._resetAssembler = function () {
-        this._assembler = new renderer.CustomAssembler();
-        this.node._proxy.setAssembler(this._assembler);
-    };
-
-    var _setMaterial = armatureDisplayProto.setMaterial;
-    armatureDisplayProto.setMaterial = function (index, material) {
-        _setMaterial.call(this, index, material);
-        this._assembler && this._assembler.clearEffect();
-        if (this._nativeDisplay) {
-            var nativeEffect = material.effect._nativeObj;
-            this._nativeDisplay.setEffect(nativeEffect);
-        }
-    };
-
-    armatureDisplayProto._buildArmature = function () {
-        if (!this.dragonAsset || !this.dragonAtlasAsset || !this.armatureName) {
-            this._clearRenderData();
-            return;
-        }
-
-        if (this._nativeDisplay) {
-            this._nativeDisplay.dispose();
-            this._nativeDisplay._comp = null;
-            this._nativeDisplay = null;
-        }
-
-        var atlasUUID = this.dragonAtlasAsset._uuid;
-        this._armatureKey = this.dragonAsset.init(this._factory, atlasUUID);
-
-        if (this.isAnimationCached()) {
-            this._nativeDisplay = new dragonBones.CCArmatureCacheDisplay(this.armatureName, this._armatureKey, atlasUUID, this._cacheMode == AnimationCacheMode.SHARED_CACHE);
-            this._armature = this._nativeDisplay.armature();
-        } else {
-            this._nativeDisplay = this._factory.buildArmatureDisplay(this.armatureName, this._armatureKey, "", atlasUUID);
-            if (!this._nativeDisplay) {
-                this._clearRenderData();
-                return;
-            }
-
-            this._nativeDisplay.setDebugBonesEnabled(this.debugBones);
-            this._armature = this._nativeDisplay.armature();
-            this._armature.animation.timeScale = this.timeScale;
-        }
-
-        // add all event into native display
-        var callbackTable = this._eventTarget._callbackTable;
-        // just use to adapt to native api
-        var emptyHandle = function emptyHandle() {};
-        for (var key in callbackTable) {
-            var list = callbackTable[key];
-            if (!list || !list.callbackInfos || !list.callbackInfos.length) continue;
-            if (this.isAnimationCached()) {
-                this._nativeDisplay.addDBEventListener(key);
-            } else {
-                this._nativeDisplay.addDBEventListener(key, emptyHandle);
-            }
-        }
-
-        this._nativeDisplay._ccNode = this.node;
-        this._nativeDisplay._comp = this;
-        this._nativeDisplay._eventTarget = this._eventTarget;
-
-        this._nativeDisplay.bindNodeProxy(this.node._proxy);
-        this._nativeDisplay.setOpacityModifyRGB(this.premultipliedAlpha);
-        this._nativeDisplay.setBatchEnabled(this.enableBatch);
-        this._nativeDisplay.setColor(this.node.color);
-
-        this._nativeDisplay.setDBEventCallback(function (eventObject) {
-            this._eventTarget.emit(eventObject.type, eventObject);
-        });
-
-        this._activateMaterial();
-
-        if (this.animationName) {
-            this.playAnimation(this.animationName, this.playTimes);
-        }
-    };
-
-    armatureDisplayProto._updateColor = function () {
-        if (this._nativeDisplay) {
-            this._nativeDisplay.setColor(this.node.color);
-        }
-    };
-
-    armatureDisplayProto.playAnimation = function (animName, playTimes) {
-        this.playTimes = playTimes === undefined ? -1 : playTimes;
-        this.animationName = animName;
-
-        if (this._nativeDisplay) {
-            if (this.isAnimationCached()) {
-                return this._nativeDisplay.playAnimation(animName, this.playTimes);
-            } else {
-                if (this._armature) {
-                    return this._armature.animation.play(animName, this.playTimes);
-                }
-            }
-        }
-        return null;
-    };
-
-    armatureDisplayProto.updateAnimationCache = function (animName) {
-        if (!this.isAnimationCached()) return;
-        if (this._nativeDisplay) {
-            if (animName) {
-                this._nativeDisplay.updateAnimationCache(animName);
-            } else {
-                this._nativeDisplay.updateAllAnimationCache();
-            }
-        }
-    };
-
-    armatureDisplayProto.invalidAnimationCache = function () {
-        if (!this.isAnimationCached()) return;
-        if (this._nativeDisplay) {
-            this._nativeDisplay.updateAllAnimationCache();
-        }
-    };
-
-    armatureDisplayProto._prepareToRender = function () {
-        this.markForUpdateRenderData(false);
-        // only when component's onEnable function has been invoke, need to enable render
-        if (this.node && this.node._renderComponent == this) {
-            this.markForRender(true);
-        }
-    };
-
-    armatureDisplayProto.onEnable = function () {
-        renderCompProto.onEnable.call(this);
-        if (this._armature && !this.isAnimationCached()) {
-            this._factory.add(this._armature);
-        }
-        this._activateMaterial();
-    };
-
-    armatureDisplayProto.onDisable = function () {
-        renderCompProto.onDisable.call(this);
-        if (this._armature && !this.isAnimationCached()) {
-            this._factory.remove(this._armature);
-        }
-    };
-
-    var _onLoad = armatureDisplayProto.onLoad;
-    armatureDisplayProto.onLoad = function () {
-        if (_onLoad) {
-            _onLoad.call(this);
-        }
-    };
-
-    armatureDisplayProto.once = function (eventType, listener, target) {
-        if (this._nativeDisplay) {
-            if (this.isAnimationCached()) {
-                this._nativeDisplay.addDBEventListener(eventType);
-            } else {
-                this._nativeDisplay.addDBEventListener(eventType, listener);
-            }
-        }
-        this._eventTarget.once(eventType, listener, target);
-    };
-
-    armatureDisplayProto.addEventListener = function (eventType, listener, target) {
-        if (this._nativeDisplay) {
-            if (this.isAnimationCached()) {
-                this._nativeDisplay.addDBEventListener(eventType);
-            } else {
-                this._nativeDisplay.addDBEventListener(eventType, listener);
-            }
-        }
-        this._eventTarget.on(eventType, listener, target);
-    };
-
-    armatureDisplayProto.removeEventListener = function (eventType, listener, target) {
-        if (this._nativeDisplay) {
-            if (this.isAnimationCached()) {
-                this._nativeDisplay.removeDBEventListener(eventType);
-            } else {
-                this._nativeDisplay.removeDBEventListener(eventType, listener);
-            }
-        }
-        this._eventTarget.off(eventType, listener, target);
-    };
-
-    var _onDestroy = armatureDisplayProto.onDestroy;
-    armatureDisplayProto.onDestroy = function () {
-        _onDestroy.call(this);
-        if (this._nativeDisplay) {
-            this._nativeDisplay.dispose();
-            this._nativeDisplay._comp = null;
-            this._nativeDisplay = null;
-        }
-        this._materialCache = null;
-    };
-
-    armatureDisplayProto.update = function () {
-        var nativeDisplay = this._nativeDisplay;
-        if (!nativeDisplay) return;
-
-        var node = this.node;
-        if (!node) return;
-
-        if (!this.isAnimationCached() && this._debugDraw && this.debugBones) {
-
-            var _nativeDisplay = this._nativeDisplay;
-            this._debugData = this._debugData || _nativeDisplay.getDebugData();
-            if (!this._debugData) return;
-
-            var graphics = this._debugDraw;
-            graphics.clear();
-
-            var debugData = this._debugData;
-            var debugIdx = 0;
-
-            graphics.lineWidth = 5;
-            graphics.strokeColor = _boneColor;
-            graphics.fillColor = _slotColor; // Root bone color is same as slot color.
-
-            var debugBonesLen = debugData[debugIdx++];
-            for (var i = 0; i < debugBonesLen; i += 4) {
-                var bx = debugData[debugIdx++];
-                var by = debugData[debugIdx++];
-                var x = debugData[debugIdx++];
-                var y = debugData[debugIdx++];
-
-                // Bone lengths.
-                graphics.moveTo(bx, by);
-                graphics.lineTo(x, y);
-                graphics.stroke();
-
-                // Bone origins.
-                graphics.circle(bx, by, Math.PI * 2);
-                graphics.fill();
-                if (i === 0) {
-                    graphics.fillColor = _originColor;
-                }
-            }
-        }
-    };
-})();
-
-},{}],29:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 /****************************************************************************
@@ -2166,7 +1487,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
 })();
 
-},{}],30:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2298,7 +1619,7 @@ var NativeEffect = function (_Effect) {
 
 cc.Effect = NativeEffect;
 
-},{}],31:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -2344,7 +1665,7 @@ jsb.onResize = function (size) {
     cc.view.setCanvasSize(window.innerWidth, window.innerHeight);
 };
 
-},{}],32:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
@@ -2577,7 +1898,7 @@ cc.loader.addLoadHandlers({
     'pkm': loadCompressedTex
 });
 
-},{}],33:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -2873,7 +2194,7 @@ cc.loader.addLoadHandlers({
     };
 })();
 
-},{}],34:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -2909,7 +2230,7 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
   jsb.reflection = new JavaScriptObjCBridge();
 }
 
-},{}],35:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 "use strict";
 
 (function () {
@@ -2924,7 +2245,7 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
     });
 })();
 
-},{}],36:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 /****************************************************************************
@@ -3673,7 +2994,7 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
     };
 })();
 
-},{}],37:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
@@ -3729,7 +3050,7 @@ sys.getSafeAreaRect = function () {
   return cc.rect(leftBottom.x, leftBottom.y, rightTop.x - leftBottom.x, rightTop.y - leftBottom.y);
 };
 
-},{}],38:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -3909,7 +3230,7 @@ sys.getSafeAreaRect = function () {
     }, renderer.TiledMapAssembler.prototype);
 })();
 
-},{}],39:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -4321,7 +3642,7 @@ sys.getSafeAreaRect = function () {
     });
 })();
 
-},{}],40:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 /****************************************************************************
@@ -4615,7 +3936,7 @@ sys.getSafeAreaRect = function () {
     };
 })();
 
-},{}],41:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -4652,7 +3973,7 @@ cc.js.mixin(nativeCameraProto, {
   }
 });
 
-},{}],42:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -4689,7 +4010,7 @@ cc.js.mixin(nativeLightProto, {
   }
 });
 
-},{}],43:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -4863,7 +4184,7 @@ cc.js.mixin(nativeLightProto, {
     };
 })();
 
-},{}],44:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -4984,7 +4305,7 @@ cc.js.mixin(renderer.NodeProxy.prototype, {
     }
 });
 
-},{}],45:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /****************************************************************************
  Copyright (c) 2018 Xiamen Yaji Software Co., Ltd.
 
@@ -5048,7 +4369,7 @@ cc.PrivateNode.prototype._posDirty = function (sendEvent) {
     }
 };
 
-},{}],46:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -5107,7 +4428,7 @@ cc.PrivateNode.prototype._posDirty = function (sendEvent) {
     };
 })();
 
-},{}],47:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 "use strict";
 
 var proto = cc.RenderData.prototype;
@@ -5137,7 +4458,7 @@ proto.updateMeshRange = function (verticesCount, indicesCount) {
     this._nativeAssembler.updateIndicesRange(0, 0, indicesCount);
 };
 
-},{}],48:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -5227,4 +4548,4 @@ RenderFlow.register = function (target) {
     target._inRenderList = true;
 };
 
-},{}]},{},[24]);
+},{}]},{},[23]);

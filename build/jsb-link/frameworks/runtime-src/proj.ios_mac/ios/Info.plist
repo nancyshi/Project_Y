@@ -11,7 +11,7 @@
     <key>CFBundleIcons~ipad</key>
     <dict/>
     <key>CFBundleIdentifier</key>
-    <string>com.fireball.Project_Y</string>
+    <string>com.tdreamstudio.diamonds</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -24,6 +24,8 @@
     <string>????</string>
     <key>CFBundleVersion</key>
     <string>1.0</string>
+    <key>GADApplicationIdentifier</key>
+    <string>ca-app-pub-1329374026572143~2708810518</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSAppTransportSecurity</key>
