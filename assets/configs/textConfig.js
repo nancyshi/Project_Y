@@ -390,6 +390,14 @@ var textConfig = {
         ok , just complete first`,
         comment: "新手剧情测试"
     },
+
+    "text_161": {
+        id: 161,
+        zh: "连接服务器失败，请点击重试",
+        en: "failed to connect server, tap to retry",
+        comment: "连接失败"
+    },
+    
     getTextByIdAndLanguageType(givenId,givenType = this.languageType) {
         var key = "text_" + givenId.toString()
         var result = this[key]

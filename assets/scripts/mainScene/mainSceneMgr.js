@@ -66,6 +66,8 @@ cc.Class({
             require("systemsMgr").showSystem("storySys",storyId,2)
         }
         this.playBgm()
+        //test
+        //require("advertisMgr").showActivityNode()
     },
     playBgm(){
         var self = this

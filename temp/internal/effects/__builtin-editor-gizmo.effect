@@ -2,10 +2,9 @@
 // 用于受光照的Gizmo物体渲染，如position,scale的三个坐标轴
 CCEffect %{
   techniques:
-  - stages:
-      - transparent
-    passes:
-      - vert: vs
+  - passes:
+      - stage: transparent
+        vert: vs
         frag: fs
         depthStencilState:
           depthTest: false
@@ -20,7 +19,7 @@ CCEffect %{
         rasterizerState:
           cullMode: none
         properties:
-          diffuseColor: { value: [1, 1, 1, 1], inspector: { type: color } }
+          diffuseColor: { value: [1, 1, 1, 1], editor: { type: color } }
 }%
 
 CCProgram vs %{
@@ -56,13 +55,13 @@ CCProgram vs %{
 CCProgram fs %{
   precision highp float;
   
-  #include <encodings>
+  #include <output>
   #include <rect-area-light>
   #include <cc-global>
 
   uniform DIFFUSE_COLOR {
     vec4 diffuseColor;
-  }
+  };
 
   varying vec3 v_worldNormal;
   varying vec3 v_worldPosition;
@@ -86,6 +85,6 @@ CCProgram fs %{
     points[3] = (v_forward * 3.0 + v_right - up) * 40.0;
     vec3 diffuse = diffuseColor.rgb * (0.2 + LTC_Evaluate(N, V, v_localPosition, mat3(1), points) * 0.8);
 
-    gl_FragColor = LINEAR_TO_OUTPUT_TEXEL(vec4(diffuse, diffuseColor.a));
+    gl_FragColor = CCFragOutput(vec4(diffuse, diffuseColor.a));
   }
 }%

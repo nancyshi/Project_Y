@@ -1,10 +1,9 @@
 
 CCEffect %{
   techniques:
-  - stages:
-      - transparent
-    passes:
-      - vert: gizmo-unlit-vs
+  - passes:
+      - stage: transparent
+        vert: gizmo-unlit-vs
         frag: gizmo-unlit-fs:front
         depthStencilState:
           depthTest: false
@@ -16,7 +15,7 @@ CCEffect %{
         rasterizerState:
           cullMode: none
         properties:
-          diffuseColor: { value: [1, 1, 1, 1], inspector: { type: color } }
+          diffuseColor: { value: [1, 1, 1, 1], editor: { type: color } }
 }%
 
 CCProgram gizmo-unlit-vs %{
@@ -35,13 +34,13 @@ CCProgram gizmo-unlit-vs %{
 CCProgram gizmo-unlit-fs %{
   precision highp float;
   
-  #include <encodings>
+  #include <output>
   
   uniform DIFFUSE_COLOR {
     vec4 diffuseColor;
-  }
+  };
 
   vec4 front() {
-    return LINEAR_TO_OUTPUT_TEXEL(diffuseColor);
+    return CCFragOutput(diffuseColor);
   }
 }%

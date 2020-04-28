@@ -2,10 +2,9 @@
 // 用于BoundingBox的线的渲染，被物体挡住的包围盒的线会带透明度，没被物体挡住的线是实体的。
 CCEffect %{
   techniques:
-  - stages:
-      - transparent
-    passes:
-      - vert: gizmo-line-vs
+  - passes:
+      - stage: transparent
+        vert: gizmo-line-vs
         frag: gizmo-line-fs:front
         depthStencilState:
           depthTest: true
@@ -18,9 +17,9 @@ CCEffect %{
         rasterizerState:
           cullMode: none
         properties:
-          diffuseColor: { value: [1, 1, 1, 1], inspector: { type: color } }
-
-      - vert: gizmo-line-vs
+          diffuseColor: { value: [1, 1, 1, 1], editor: { type: color } }
+      - stage: transparent
+        vert: gizmo-line-vs
         frag: gizmo-line-fs:back
         depthStencilState:
           depthTest: true
@@ -34,7 +33,7 @@ CCEffect %{
         rasterizerState:
           cullMode: none
         properties:
-          diffuseColor: { value: [1, 1, 1, 1], inspector: { type: color } }
+          diffuseColor: { value: [1, 1, 1, 1], editor: { type: color } }
 }%
 
 CCProgram gizmo-line-vs %{
@@ -54,16 +53,16 @@ CCProgram gizmo-line-vs %{
 CCProgram gizmo-line-fs %{
   precision highp float;
   
-  #include <encodings>
+  #include <output>
 
   uniform DIFFUSE_COLOR {
     vec4 diffuseColor;
-  }
+  };
 
   vec4 front() {
-    return LINEAR_TO_OUTPUT_TEXEL(diffuseColor);
+    return CCFragOutput(diffuseColor);
   }
   vec4 back() {
-    return LINEAR_TO_OUTPUT_TEXEL(vec4(diffuseColor.rgb, diffuseColor.a * 0.2));
+    return CCFragOutput(vec4(diffuseColor.rgb, diffuseColor.a * 0.2));
   }
 }%

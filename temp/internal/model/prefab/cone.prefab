@@ -18,7 +18,6 @@
     "_parent": null,
     "_children": [],
     "_active": true,
-    "_level": 1,
     "_components": [
       {
         "__id__": 2
@@ -45,18 +44,6 @@
       "x": 0.5,
       "y": 0.5
     },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_zIndex": 0,
-    "_is3DNode": true,
-    "groupIndex": 0,
-    "_id": "",
-    "_eulerAngles": {
-      "x": -90.00000769819565,
-      "y": 0,
-      "z": 0,
-      "__type__": "cc.Vec3"
-    },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
@@ -64,15 +51,27 @@
         0,
         0,
         0,
+        -0.7071068286895765,
         0,
         0,
-        0,
-        0,
-        100,
-        100,
-        100
+        0.7071067336835153,
+        1,
+        1,
+        1
       ]
-    }
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": -90.00000769819565,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": true,
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": ""
   },
   {
     "__type__": "cc.MeshRenderer",
@@ -82,8 +81,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
     "_materials": [
       {
         "__uuid__": "a5849239-3ad3-41d1-8ab4-ae9fea11f97f"
@@ -94,6 +91,7 @@
     },
     "_receiveShadows": false,
     "_shadowCastingMode": 0,
+    "_enableAutoBatch": false,
     "textures": [],
     "_id": ""
   },
@@ -103,7 +101,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "b5fc2cf2-7942-483d-be1f-bbeadc4714ad"
     },
     "fileId": "71bfK5TRVH64FzEUsiCu4S",
     "sync": false

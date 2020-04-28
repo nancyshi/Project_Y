@@ -92,8 +92,8 @@ cc.Class({
     //advertis delegate
     onVideoAdEnd() {
         var commitBody = {}
-        for (var key in this.config) {
-            var oneAddedPropertyNum = require("dataMgr").playerData[key] + this.config[key]
+        for (var key in this.addConfig) {
+            var oneAddedPropertyNum = require("dataMgr").playerData[key] + this.addConfig[key]
             commitBody[key] = oneAddedPropertyNum
         }
 
@@ -105,6 +105,7 @@ cc.Class({
             }
 
             require("dataMgr").commitPlayerDataToServer(commitBody,successCallBack)
+            require("systemsMgr").closeSystem(this.sysName,2)
         }
     }
     // update (dt) {},

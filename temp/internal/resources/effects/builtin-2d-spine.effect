@@ -69,12 +69,11 @@ in vec4 v_light;
 #endif
 
 #include <alpha-test>
+#include <texture>
 
 void main () {
-  vec4 texColor = texture2D(texture, v_uv0);
-  #if CC_USE_ALPHA_ATLAS_TEXTURE
-      texColor.a *= texture2D(texture, v_uv0 + vec2(0, 0.5)).r;
-  #endif
+  vec4 texColor = vec4(1.0);
+  CCTexture(texture, v_uv0, texColor);
   vec4 finalColor;
 
   #if USE_TINT

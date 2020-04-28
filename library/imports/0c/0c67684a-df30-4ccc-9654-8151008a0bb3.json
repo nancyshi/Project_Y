@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "activity",
+    "texture": "9a25f17b-fd8c-47f1-9b9f-f149ebe00270",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      127,
+      126
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      127,
+      126
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

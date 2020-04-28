@@ -19,7 +19,10 @@
     ]
   ],
   "excluded-modules": [
-    "WebView"
+    "WebView",
+    "3D Physics/cannon.js",
+    "3D Physics/Builtin",
+    "3D Particle"
   ],
   "last-module-event-record-time": 1587809121029,
   "design-resolution-width": 1080,
@@ -43,5 +46,7 @@
     "live": {
       "enable": false
     }
-  }
+  },
+  "start-scene": "current",
+  "migrate-history": []
 }

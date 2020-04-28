@@ -80,7 +80,8 @@ var ResMgr = cc.Class({
             storySysPrefab: "prefabs/storyNode",
 
             coverNodePrefab: "prefabs/fullSceneCoverNode",
-            guildNodePrefab: "prefabs/guildNode"
+            guildNodePrefab: "prefabs/guildNode",
+            activityNodePrefab: "prefabs/activityNode"
         }
 
         var len = Object.keys(resObj).length

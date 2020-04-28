@@ -1,5 +1,5 @@
 {
-  "ver": "2.3.3",
+  "ver": "2.3.4",
   "uuid": "edd215b9-2796-4a05-aaf5-81f96c9281ce",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -7,6 +7,8 @@
   "premultiplyAlpha": false,
   "genMipmaps": false,
   "packable": true,
+  "width": 40,
+  "height": 40,
   "platformSettings": {},
   "subMetas": {
     "default_editbox_bg": {

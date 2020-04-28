@@ -1,5 +1,5 @@
 {
-  "ver": "1.0.14",
+  "ver": "1.0.15",
   "uuid": "954fec8b-cd16-4bb9-a3b7-7719660e7558",
   "scaleFactor": 1,
   "boneCount": 0,
@@ -9,6 +9,7 @@
     "buffer.bin": {
       "ver": "1.0.0",
       "uuid": "a579b610-0aa7-4a8b-b36b-be34cc834dcc",
+      "name": "buffer.bin",
       "subMetas": {}
     },
     "capsule.mesh": {
@@ -17,6 +18,13 @@
       "verts": 1155,
       "tris": 2048,
       "submeshes": 1,
+      "attributes": [
+        [
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0"
+        ]
+      ],
       "minPos": {
         "x": -0.5,
         "y": -1,
@@ -27,6 +35,7 @@
         "y": 1,
         "z": 0.5
       },
+      "name": "capsule.mesh",
       "subMetas": {}
     },
     "plane.mesh": {
@@ -35,6 +44,13 @@
       "verts": 121,
       "tris": 200,
       "submeshes": 1,
+      "attributes": [
+        [
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0"
+        ]
+      ],
       "minPos": {
         "x": -5,
         "y": 0,
@@ -45,14 +61,22 @@
         "y": 0,
         "z": 5
       },
+      "name": "plane.mesh",
       "subMetas": {}
     },
     "cone.mesh": {
       "ver": "1.0.1",
       "uuid": "7a17de6e-227a-46b1-8009-e7157d4d3acf",
       "verts": 129,
-      "tris": 64,
+      "tris": 72,
       "submeshes": 1,
+      "attributes": [
+        [
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0"
+        ]
+      ],
       "minPos": {
         "x": -0.5,
         "y": -0.5,
@@ -63,6 +87,7 @@
         "y": 0.5,
         "z": 0.5
       },
+      "name": "cone.mesh",
       "subMetas": {}
     },
     "torus.mesh": {
@@ -71,6 +96,13 @@
       "verts": 1089,
       "tris": 2048,
       "submeshes": 1,
+      "attributes": [
+        [
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0"
+        ]
+      ],
       "minPos": {
         "x": -0.5,
         "y": -0.0999999940395355,
@@ -81,6 +113,7 @@
         "y": 0.0999999940395355,
         "z": 0.5
       },
+      "name": "torus.mesh",
       "subMetas": {}
     },
     "sphere.mesh": {
@@ -89,6 +122,13 @@
       "verts": 1089,
       "tris": 2048,
       "submeshes": 1,
+      "attributes": [
+        [
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0"
+        ]
+      ],
       "minPos": {
         "x": -0.5,
         "y": -0.5,
@@ -99,6 +139,7 @@
         "y": 0.5,
         "z": 0.5
       },
+      "name": "sphere.mesh",
       "subMetas": {}
     },
     "quad.mesh": {
@@ -107,6 +148,13 @@
       "verts": 4,
       "tris": 2,
       "submeshes": 1,
+      "attributes": [
+        [
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0"
+        ]
+      ],
       "minPos": {
         "x": -0.5,
         "y": -0.5,
@@ -117,6 +165,7 @@
         "y": 0.5,
         "z": 0
       },
+      "name": "quad.mesh",
       "subMetas": {}
     },
     "cylinder.mesh": {
@@ -125,6 +174,13 @@
       "verts": 193,
       "tris": 128,
       "submeshes": 1,
+      "attributes": [
+        [
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0"
+        ]
+      ],
       "minPos": {
         "x": -0.5,
         "y": -1,
@@ -135,6 +191,7 @@
         "y": 1,
         "z": 0.5
       },
+      "name": "cylinder.mesh",
       "subMetas": {}
     },
     "box.mesh": {
@@ -143,6 +200,13 @@
       "verts": 24,
       "tris": 12,
       "submeshes": 1,
+      "attributes": [
+        [
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0"
+        ]
+      ],
       "minPos": {
         "x": -0.5,
         "y": -0.5,
@@ -153,10 +217,11 @@
         "y": 0.5,
         "z": 0.5
       },
+      "name": "box.mesh",
       "subMetas": {}
     },
     "primitives.prefab": {
-      "ver": "1.2.5",
+      "ver": "1.2.7",
       "uuid": "ab2fdde9-10c2-44e4-bfe1-fcfcc1a86aa9",
       "optimizationPolicy": "AUTO",
       "asyncLoadAssets": false,
@@ -270,10 +335,11 @@
           "fileId": "d7118yAG5lKybkFOAh8koPL"
         }
       ],
+      "name": "primitives.prefab",
       "subMetas": {}
     },
     "DefaultMaterial.mtl": {
-      "ver": "1.0.2",
+      "ver": "1.0.3",
       "uuid": "a5849239-3ad3-41d1-8ab4-ae9fea11f97f",
       "dataAsSubAsset": null,
       "name": "DefaultMaterial.mtl",

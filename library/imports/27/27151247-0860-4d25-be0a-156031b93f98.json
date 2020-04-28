@@ -107,6 +107,9 @@
       },
       {
         "__id__": 51
+      },
+      {
+        "__id__": 52
       }
     ],
     "_prefab": null,
@@ -2422,5 +2425,31 @@
     "levelNodesVerDis": 200,
     "levelNodesNumPerLine": 4,
     "_id": "60+il1NENFTbma755d99QA"
+  },
+  {
+    "__type__": "cc.Widget",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "alignMode": 1,
+    "_target": null,
+    "_alignFlags": 45,
+    "_left": 0,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 0,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 0,
+    "_originalHeight": 0
   }
 ]

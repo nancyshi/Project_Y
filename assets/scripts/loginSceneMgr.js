@@ -38,6 +38,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+
         this.node.on("touchstart",this.onTouchStart,this)
         var textConfig = require("textConfig")
         if (textConfig.languageType != 1) {
@@ -46,6 +47,7 @@ cc.Class({
     },
 
     start () {
+
         this.dataMgr = require("dataMgr")
         this.loginMgr = require("loginMgr")
         this.networkMgr = require("networkMgr")
@@ -136,7 +138,7 @@ cc.Class({
     onAllRetryFailed() {
         var loginInfo = cc.find("Canvas/loginInfo")
         var loginInfoLabel = loginInfo.getChildByName("textNode").getComponent(cc.Label)
-        loginInfoLabel.string = "连接服务器失败，请点击重试"
+        loginInfoLabel.string = require("textConfig").getTextByIdAndLanguageType(161)
         loginInfo.active = true
         var retryNode = cc.find("Canvas/retry")
         retryNode.active = true

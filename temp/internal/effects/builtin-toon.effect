@@ -3,7 +3,8 @@
 CCEffect %{
   techniques:
   - passes:
-    - vert: outline-vs:vert
+    - name: outline
+      vert: outline-vs:vert
       frag: outline-fs:frag
       depthStencilState:
         depthTest: true
@@ -13,9 +14,10 @@ CCEffect %{
       properties:
         lineWidth:     { value: 10 }
         depthBias:     { value: 0 }
-        outlineBaseColor:     { value: [0.0, 0.0, 0.0, 1.0], inspector: { type: color } }
+        outlineBaseColor:     { value: [0.0, 0.0, 0.0, 1.0], editor: { type: color } }
         outlineBaseColorMap:  { value: gray }
-    - vert: toon-vs:vert
+    - name: toon
+      vert: toon-vs:vert
       frag: toon-fs:frag
       depthStencilState:
         depthTest: true
@@ -26,15 +28,16 @@ CCEffect %{
         
         baseColorMap:   { value: white }
 
-        specular:       { value: [1.0, 1.0, 1.0, 0.5],  inspector: { type: color } }
+        specular:       { value: [1.0, 1.0, 1.0, 0.5],  editor: { type: color } }
         specularMap:    { value: white }
         specularThreshold: { value: 0.5 }
 
-        emissive:       { value: [0.0, 0.0, 0.0, 1.0],  inspector: { type: color } }
+        emissive:       { value: [0.0, 0.0, 0.0, 1.0],  editor: { type: color } }
+        emissiveMap:    { value: white }
 
-        shadowColor:    { value: [0.0, 0.0, 0.0, 1.0],  inspector: { type: color } }
+        shadowColor:    { value: [0.0, 0.0, 0.0, 1.0],  editor: { type: color } }
         shadowIntensity: { value: 0.5 }
-        highlightColor: { value: [1.0, 1.0, 1.0, 1.0],  inspector: { type: color } }
+        highlightColor: { value: [1.0, 1.0, 1.0, 1.0],  editor: { type: color } }
 
         lightThreshold: { value: 0.5 }
         lightSmoothness: { value: 0.1 }
@@ -81,8 +84,10 @@ CCProgram outline-vs %{
 CCProgram outline-fs %{
   precision highp float;
   #include <cc-global>
-  #include <encodings>
   #include <cc-lights>
+
+  #include <texture>
+  #include <output>
 
   in vec2 v_uv;
 
@@ -104,9 +109,7 @@ CCProgram outline-fs %{
     #endif
 
     #if USE_OUTLINE_BASE_COLOR_MAP
-      vec4 texColor = texture(outlineBaseColorMap, v_uv);
-      texColor = TEXEL_TO_LINEAR(texColor);
-      color *= texColor;
+      CCTexture2D(outlineBaseColorMap, v_uv, color);
     #endif
 
     return vec4(color.rgb, 1.0);
@@ -122,6 +125,7 @@ CCProgram toon-vs %{
   out vec3 v_position;
   out vec2 v_uv;
   out vec3 v_normal;
+  out vec3 v_viewDirection;
   
   #if USE_NORMAL_MAP
     out vec3 v_tangent;
@@ -139,6 +143,7 @@ CCProgram toon-vs %{
     vec4 pos = cc_matWorld * In.position;
     v_position = pos.xyz;
     v_uv = In.uv * tilingOffset.xy + tilingOffset.zw;
+    v_viewDirection = normalize(cc_cameraPos.xyz - v_position);
 
     v_normal = (cc_matWorldIT * vec4(In.normal, 0.0)).xyz;
     #if USE_NORMAL_MAP
@@ -154,10 +159,12 @@ CCProgram toon-fs %{
   precision highp float;
   #include <cc-global>
   #include <shading-toon>
-  #include <encodings>
+  #include <output>
+  #include <texture>
 
   in vec3 v_position;
   in vec2 v_uv;
+  in vec3 v_viewDirection;
 
   in vec3 v_normal;
   #if USE_NORMAL_MAP
@@ -190,14 +197,15 @@ CCProgram toon-fs %{
 
   void surf (out ToonSurface s) {
     #if USE_BASE_COLOR_MAP
-      s.baseColor = TEXEL_TO_LINEAR(texture(baseColorMap, v_uv));
+      s.baseColor = vec4(1.);
+      CCTexture2D(baseColorMap, v_uv, s.baseColor);
     #else
       s.baseColor = highlightColor;    
     #endif
 
     s.normal = normalize(v_normal);
     #if USE_NORMAL_MAP
-      vec3 nmmp = texture(normalMap, v_uv).xyz - vec3(0.5);
+      vec3 nmmp = texture2D(normalMap, v_uv).xyz - vec3(0.5);
       s.normal = normalize(
         nmmp.x * normalize(v_tangent) +
         nmmp.y * normalize(v_bitangent) +
@@ -208,12 +216,12 @@ CCProgram toon-fs %{
 
     s.specular = specular.rgb * specular.a;
     #if USE_SPECULAR_MAP
-      s.specular *= TEXEL_TO_LINEAR(texture(specularMap, v_uv)).rgb;
+      CCTexture2DRGB(specularMap, v_uv, s.specular);
     #endif
 
     s.emissive = emissive.rgb;
     #if USE_EMISSIVE_MAP
-      s.emissive *= TEXEL_TO_LINEAR(texture(emissiveMap, v_uv)).rgb;
+      CCTexture2DRGB(emissiveMap, v_uv, s.emissive);
     #endif
 
     s.lightThreshold = lightThreshold;
@@ -222,12 +230,13 @@ CCProgram toon-fs %{
     s.highlightColor = highlightColor.rgb;
     s.shadowIntensity = shadowIntensity;
     s.specularThreshold = specularThreshold;
+    s.viewDirection = v_viewDirection;
   }
 
   vec4 frag () {
     ToonSurface s; 
     surf(s);
     vec4 color = CCToonShading(s);
-    return LINEAR_TO_OUTPUT_TEXEL(color);
+    return CCFragOutput(color);
   }
 }%

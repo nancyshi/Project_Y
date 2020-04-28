@@ -31,6 +31,70 @@ var AdvertisMgr = cc.Class({
         delegate: null,
 
         wechatAdId: "xxxxx",
+
+        isReady: {
+            get() {
+                return this._isReady
+            },
+            set(value) {
+                this._isReady = value
+                //1 = ok , 2 = loading 3 = erro
+                if (value == 1 && this.showStatus == 1) {
+                    sdkbox.PluginAdMob.show("rewarded")
+                }
+                else if (value == 3 && this.showStatus == 1) {
+                    this.showStatus = 0
+                    this.removeActivityNode()
+                    require("notificationMgr").showNoti("something wrong with ad system , retry later")
+    
+                }
+
+                else if (value == 2 && this.showStatus == 1) {
+                    this.showActivityNode()
+                }
+            }
+        },
+
+        showStatus: {
+            get() {
+                return this._showStatus
+            },
+            set(value) {
+                this._showStatus = value
+                //0 = init 1 = will show 2 = showing
+
+            }
+        },
+
+        activityNode: null,
+
+        isRewardSend: false
+    },
+
+    showActivityNode() {
+        var activityNodePrefab = require("resMgr").reses["activityNodePrefab"]
+        var activityNode = cc.instantiate(activityNodePrefab)
+        var bg = activityNode.getChildByName("bg")
+        bg.width = cc.winSize.width
+        bg.height = cc.winSize.height
+        bg.on("touchstart",function(){})
+
+        var activity = activityNode.getChildByName("activity")
+        cc.tween(activity)
+            .repeatForever(cc.tween()
+                    .by(2,{angle: 360})
+            )
+            .start()
+        this.activityNode = activityNode
+        cc.director.getScene().getChildByName("Canvas").addChild(this.activityNode)
+    },
+
+    removeActivityNode() {
+        if (this.activityNode != null && this.activityNode.parent != null) {
+            this.activityNode.destroy()
+            this.activityNode.removeFromParent()
+            this.activityNode = null
+        }
     },
 
     onVideoAdEnd() {
@@ -81,36 +145,48 @@ var AdvertisMgr = cc.Class({
 
             else if (cc.sys.os == cc.sys.OS_IOS || cc.sys.os == cc.sys.OS_ANDROID) {
                 var self = this
-                cc.log("init")
                 sdkbox.PluginAdMob.setListener({
                     adViewDidReceiveAd: function(name){
-                        cc.log("receivedAd")
+                        self.isReady = 1
                     },
 
                     adViewDidFailToReceiveAdWithError: function(name,msg){
-                        cc.log("didFailToReciveAd ", msg)
+                        self.isReady = 3
+                        self.onVideoAdLoadError(msg)
                     },
 
                     adViewWillPresentScreen: function(name) {
-                        cc.log("willPresentScreen")
+                        self.removeActivityNode()
+                        self.showStatus = 2
+                        self.isRewardSend = false
+                        cc.audioEngine.pauseAll()
                     },
 
                     adViewDidDismissScreen: function(name) {
-                        cc.log("didDismissScreen")
+                        self.showStatus = 0
+                        if (self.isRewardSend == false) {
+                            self.onVideoAdNotEnd(true)
+                        }
+                        self.isReady = 2
+                        sdkbox.PluginAdMob.cache("rewarded")
+                        cc.audioEngine.resumeAll()
                     },
 
                     adViewWillDismissScreen: function(name) {
-                        cc.log("willDissmissScreen")
+                        
                     },
 
                     adViewWillLeaveApplication: function(name) {
-                        cc.log("willLeaveApp")
+                        
+                    },
+                    reward: function(name,currency, amount) {
+                        self.isRewardSend = true
+                        self.onVideoAdEnd()
                     }
                 })
-
+                this.isReady = 2
                 sdkbox.PluginAdMob.init()
-
-                this.videoAd = sdkbox.PluginAdMob.cache("rewarded")
+                sdkbox.PluginAdMob.cache("rewarded")
             }
         }
     },
@@ -128,11 +204,25 @@ var AdvertisMgr = cc.Class({
         }
 
         else if (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS) {
-            sdkbox.PluginAdMob.show("rewarded")
+            this.showStatus = 1
+            cc.log(this.isReady + " : current isready")
+            if (this.isReady == 1) {
+                this.showActivityNode()
+                sdkbox.PluginAdMob.show("rewarded")
+            }
+            else if (this.isReady == 2) {
+                //just wait set event of isReady to 1
+                this.showActivityNode()
+            }
+            else if (this.isReady == 3) {
+                //reload once and then show
+                this.isReady = 2
+                sdkbox.PluginAdMob.cache("rewarded")
+                //wait set event of isReady to 1
+            }
         }
     }
 });
 
 var sharedAdvertisMgr = new AdvertisMgr()
-sharedAdvertisMgr.initAds()
 module.exports = sharedAdvertisMgr

@@ -27,7 +27,7 @@
     "23ceb784-2869-419c-9adc-6506572532a1",
     "1bd7bde7-6dd3-4e01-9b0e-44bad48902bc"
   ],
-  "includeSDKBox": false,
+  "includeSDKBox": true,
   "orientation": {
     "landscapeLeft": false,
     "landscapeRight": false,
