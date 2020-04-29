@@ -175,7 +175,9 @@ cc.Class({
     require("dataMgr").playerData.physicalPower = physicalPower;
     require("dataMgr").playerData.heart = heart;
 
-    require("notificationMgr").showNoti("签到成功");
+    var str = require("textConfig").getTextByIdAndLanguageType(164);
+
+    require("notificationMgr").pushNoti(str);
 
     require("systemsMgr").closeSystem(this.sysName);
   },

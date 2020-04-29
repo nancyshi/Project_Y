@@ -105,7 +105,8 @@ var AdvertisMgr = cc.Class({
     onVideoAdNotEnd(defaultNoti = true){
         if (defaultNoti == true) {
             var notificationSys = require("notificationMgr")
-            notificationSys.showNoti("看完视频才能获得奖励哦~")
+            var str = require("textConfig").getTextByIdAndLanguageType(162)
+            notificationSys.pushNoti(str)
         }
         if (this.delegate != null && typeof this.delegate.onVideoAdNotEnd == "function") {
             this.delegate.onVideoAdNotEnd()
@@ -160,6 +161,10 @@ var AdvertisMgr = cc.Class({
                         self.showStatus = 2
                         self.isRewardSend = false
                         cc.audioEngine.pauseAll()
+                        var mainSceneMgr = cc.director.getScene().getChildByName("Canvas").getComponent("mainSceneMgr")
+                        if (mainSceneMgr != null) {
+                            mainSceneMgr.canShowNoti = false
+                        }
                     },
 
                     adViewDidDismissScreen: function(name) {
@@ -170,6 +175,10 @@ var AdvertisMgr = cc.Class({
                         self.isReady = 2
                         sdkbox.PluginAdMob.cache("rewarded")
                         cc.audioEngine.resumeAll()
+                        var mainSceneMgr = cc.director.getScene().getChildByName("Canvas").getComponent("mainSceneMgr")
+                        if (mainSceneMgr != null) {
+                            mainSceneMgr.canShowNoti = true
+                        }
                     },
 
                     adViewWillDismissScreen: function(name) {
@@ -220,6 +229,11 @@ var AdvertisMgr = cc.Class({
                 sdkbox.PluginAdMob.cache("rewarded")
                 //wait set event of isReady to 1
             }
+        }
+
+        else {
+            var str = require("textConfig").getTextByIdAndLanguageType(166)
+            require("notificationMgr").pushNoti(str)
         }
     }
 });

@@ -92,8 +92,9 @@ var SystemsMgr = cc.Class({
         return givenSysProperty
     },
 
-    showSystem(givenSysName, para = null, type = 1) {
+    showSystem(givenSysName, para = null, type = 1, bgType = 1) {
         //type 1 = animated open , 2 = direct open
+        //bgType 1 = prevent 2 = close
         var givenSys = this.getSysBySysName(givenSysName)
         if (givenSys.opendNode != null) {
             cc.log("this sys has been opend , can't reopen: " + givenSys.name)
@@ -105,17 +106,26 @@ var SystemsMgr = cc.Class({
         if (mgr != null && typeof mgr.onWillOpend === "function") {
             mgr.onWillOpend(para)
         }
-        if (type == 2) {
-            cc.director.getScene().getChildByName("Canvas").addChild(ui)
-            givenSys.opendNode = ui
-            return
-        }
         var others = ui.getChildByName("others")
         var bg = ui.getChildByName("bg")
         if (bg != null) {
             bg.width = cc.winSize.width
             bg.height = cc.winSize.height
-            bg.on("touchstart",function(){})
+            if (bgType == 1) {
+                bg.on("touchstart",function(){})
+            }
+            else if (bgType == 2) {
+                var self = this
+                bg.on("touchstart",function(){
+                    self.closeSystem(givenSysName)
+                })
+            }
+            
+        }
+        if (type == 2) {
+            cc.director.getScene().getChildByName("Canvas").addChild(ui)
+            givenSys.opendNode = ui
+            return
         }
         cc.director.getScene().getChildByName("Canvas").addChild(ui)
         givenSys.opendNode = ui

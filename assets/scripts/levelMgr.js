@@ -196,6 +196,10 @@ cc.Class({
         } 
         // var guildNode = cc.instantiate(require("resMgr").reses["guildNodePrefab"])
         // this.node.addChild(guildNode)
+        // for (var index in this.node.getChildByName("bullets").children) {
+        //     var oneElement = this.node.getChildByName("bullets").children[index]
+        //     cc.log(oneElement.width, oneElement.height)
+        // }
     },
 
     // update (dt) {},
@@ -718,8 +722,9 @@ cc.Class({
                     bulletMgr.pathWaysNode = pathWaysNode
                 }
             }
-
+            cc.log(index,oneBulletNode.width, oneBulletNode.height)
             bullets.addChild(oneBulletNode)
+            cc.log(index,oneBulletNode.width, oneBulletNode.height)
         }
     },
 

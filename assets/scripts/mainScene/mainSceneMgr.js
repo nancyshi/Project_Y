@@ -41,13 +41,15 @@ cc.Class({
         addHeartButtonNode: cc.Node,
         addPhysicalPowerButtonNode: cc.Node,
         selectSectionButtonNode: cc.Node,
+        backToCurrentButtonNode: cc.Node,
         levelNodeStartPosition: cc.v2(0,0),
         levelNodesHorDis: 10,
         levelNodesVerDis: 20,
         levelNodesNumPerLine: 4,
 
         rotaedCopiedRadius: 300,
-        isShowingNoti: false
+        isShowingNoti: false,
+        canShowNoti: true
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -82,7 +84,7 @@ cc.Class({
         this.physicalLabelNode.getComponent(cc.Label).string = require("dataMgr").playerData.physicalPower.toString()
         var systemsMgr = require("systemsMgr")
         this.mailSysButtonNode.on("click",function(){
-            systemsMgr.showSystem("mailSys")
+            systemsMgr.showSystem("mailSys",null,1,2)
         })
         this.mailSysButtonNode.getComponent("redPointMgr").redPointShowCondition = function() {
             var mails = require("dataMgr").playerData.mails
@@ -148,6 +150,19 @@ cc.Class({
             systemsMgr.showSystem("selectSectionSys")
         })
 
+        cc.tween(this.backToCurrentButtonNode)
+            .repeatForever(cc.tween()
+                    .to(1, {opacity: 0})
+                    .to(1, {opacity: 255})
+            )
+            .start()
+        this.backToCurrentButtonNode.getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(167)
+        var self = this
+        this.backToCurrentButtonNode.on("click",function(){
+            self.selectedSection = require("dataMgr").playerData.currentSection
+            self.setupSectionPerformance()
+        })
+        this.backToCurrentButtonNode.y = this.sectionNameLabelNode.y - this.sectionNameLabelNode.height / 2 - 100
         this.setupSectionPerformance()
     },
 
@@ -160,6 +175,12 @@ cc.Class({
             cc.log("not selected one section, can not setup section of mainScene mgr")
             return
         }
+        if (this.selectedSection == require("dataMgr").playerData.currentSection) {
+            this.backToCurrentButtonNode.active = false
+        }
+        else {
+            this.backToCurrentButtonNode.active = true
+        }
         var textConfig = require("textConfig")
         this.levelNodes.destroyAllChildren()
         this.levelNodes.removeAllChildren()
@@ -171,7 +192,9 @@ cc.Class({
         var sectionDes = textConfig.getTextByIdAndLanguageType(config.sectionDescripTextId)
         var showText = sectionTitle + " " + sectionDes
         this.sectionNameLabelNode.getComponent(cc.Label).string = showText
-
+        this.sectionNameLabelNode.getComponent(cc.Label)._forceUpdateRenderData()
+        this.selectSectionButtonNode.y = this.sectionNameLabelNode.y
+        this.selectSectionButtonNode.x = this.sectionNameLabelNode.x - this.sectionNameLabelNode.width / 2 - 100
         var levels = config.levels
         for (var index in levels) {
             var oneLevel = levels[index]
@@ -320,7 +343,7 @@ cc.Class({
     update (dt) {
         var notificationMgr = require("notificationMgr")
         var notiArry = notificationMgr.noties
-        if (notiArry.length > 0 && this.isShowingNoti == false) {
+        if (notiArry.length > 0 && this.isShowingNoti == false && this.canShowNoti == true) {
             this.isShowingNoti = true
             var self = this
             var temp = function() {
@@ -337,6 +360,7 @@ cc.Class({
                     .call(function(){
                         temp()
                     })
+                    .start()
             }
 
             temp()

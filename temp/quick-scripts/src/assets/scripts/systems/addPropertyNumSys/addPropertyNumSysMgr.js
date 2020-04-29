@@ -105,6 +105,10 @@ cc.Class({
         for (var k in commitBody) {
           require("dataMgr").playerData[k] = commitBody[k];
         }
+
+        var str = require("textConfig").getTextByIdAndLanguageType(163);
+
+        require("notificationMgr").pushNoti(str);
       };
 
       require("dataMgr").commitPlayerDataToServer(commitBody, successCallBack);

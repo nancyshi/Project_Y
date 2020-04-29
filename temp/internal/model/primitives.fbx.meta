@@ -1,5 +1,5 @@
 {
-  "ver": "1.0.15",
+  "ver": "1.0.14",
   "uuid": "954fec8b-cd16-4bb9-a3b7-7719660e7558",
   "scaleFactor": 1,
   "boneCount": 0,
@@ -18,13 +18,6 @@
       "verts": 1155,
       "tris": 2048,
       "submeshes": 1,
-      "attributes": [
-        [
-          "NORMAL",
-          "POSITION",
-          "TEXCOORD_0"
-        ]
-      ],
       "minPos": {
         "x": -0.5,
         "y": -1,
@@ -44,13 +37,6 @@
       "verts": 121,
       "tris": 200,
       "submeshes": 1,
-      "attributes": [
-        [
-          "NORMAL",
-          "POSITION",
-          "TEXCOORD_0"
-        ]
-      ],
       "minPos": {
         "x": -5,
         "y": 0,
@@ -68,15 +54,8 @@
       "ver": "1.0.1",
       "uuid": "7a17de6e-227a-46b1-8009-e7157d4d3acf",
       "verts": 129,
-      "tris": 72,
+      "tris": 64,
       "submeshes": 1,
-      "attributes": [
-        [
-          "NORMAL",
-          "POSITION",
-          "TEXCOORD_0"
-        ]
-      ],
       "minPos": {
         "x": -0.5,
         "y": -0.5,
@@ -96,13 +75,6 @@
       "verts": 1089,
       "tris": 2048,
       "submeshes": 1,
-      "attributes": [
-        [
-          "NORMAL",
-          "POSITION",
-          "TEXCOORD_0"
-        ]
-      ],
       "minPos": {
         "x": -0.5,
         "y": -0.0999999940395355,
@@ -122,13 +94,6 @@
       "verts": 1089,
       "tris": 2048,
       "submeshes": 1,
-      "attributes": [
-        [
-          "NORMAL",
-          "POSITION",
-          "TEXCOORD_0"
-        ]
-      ],
       "minPos": {
         "x": -0.5,
         "y": -0.5,
@@ -148,13 +113,6 @@
       "verts": 4,
       "tris": 2,
       "submeshes": 1,
-      "attributes": [
-        [
-          "NORMAL",
-          "POSITION",
-          "TEXCOORD_0"
-        ]
-      ],
       "minPos": {
         "x": -0.5,
         "y": -0.5,
@@ -174,13 +132,6 @@
       "verts": 193,
       "tris": 128,
       "submeshes": 1,
-      "attributes": [
-        [
-          "NORMAL",
-          "POSITION",
-          "TEXCOORD_0"
-        ]
-      ],
       "minPos": {
         "x": -0.5,
         "y": -1,
@@ -200,13 +151,6 @@
       "verts": 24,
       "tris": 12,
       "submeshes": 1,
-      "attributes": [
-        [
-          "NORMAL",
-          "POSITION",
-          "TEXCOORD_0"
-        ]
-      ],
       "minPos": {
         "x": -0.5,
         "y": -0.5,
@@ -221,7 +165,7 @@
       "subMetas": {}
     },
     "primitives.prefab": {
-      "ver": "1.2.7",
+      "ver": "1.2.6",
       "uuid": "ab2fdde9-10c2-44e4-bfe1-fcfcc1a86aa9",
       "optimizationPolicy": "AUTO",
       "asyncLoadAssets": false,

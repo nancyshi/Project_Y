@@ -51,7 +51,7 @@ cc.Class({
 
     this.setupData(); // this.nameLabelNode.getComponent(cc.Label).string = this.config.sectionDescrip
 
-    this.nameLabelNode.getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(this.config.sectionDescripTextId);
+    this.nameLabelNode.getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(this.config.sectionTitleTextId);
     this.iconLabelNode.getComponent(cc.Label).string = this.sectionKey;
 
     if (parseInt(this.sectionKey) > require("dataMgr").playerData.currentSection) {

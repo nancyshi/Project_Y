@@ -49,14 +49,17 @@ cc.Class({
                     case 1:
                         this.continueLabelNode.active = false
                         this.completeButtonNode.active = false
+                        this.node.getChildByName("tapMonitoredNode").active = false
                         break
                     case 2:
                         this.continueLabelNode.active = true
                         this.completeButtonNode.active = false
+                        this.node.getChildByName("tapMonitoredNode").active = true
                         break
                     case 3:
                         this.continueLabelNode.active = false
                         this.completeButtonNode.active = true
+                        this.node.getChildByName("tapMonitoredNode").active = false
                         break
                     default:
                         cc.log("STORYSYSMGR: WRONG STATUS VALUE PROVIDED")
@@ -82,9 +85,10 @@ cc.Class({
         bg.height = cc.winSize.height
         this.node.width = bg.width
         this.node.height = bg.height
-        var monitoredNode = this.contentNode.getChildByName("tapMonitoredNode")
+        var monitoredNode = this.node.getChildByName("tapMonitoredNode")
         monitoredNode.width = bg.width
         monitoredNode.height = bg.height
+
         //cc.log(bg.width,bg.height)
         monitoredNode.on("touchstart",function(){
             if (self.status == 2) {

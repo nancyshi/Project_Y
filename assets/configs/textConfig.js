@@ -397,7 +397,54 @@ var textConfig = {
         en: "failed to connect server, tap to retry",
         comment: "连接失败"
     },
-    
+
+    "text_162": {
+        id: 162,
+        zh: "看完视频才能获得奖励哦",
+        en: "you can only get reward by complete the video ad",
+        comment: "广告模块通用1"
+    },
+
+    "text_163": {
+        id: 163,
+        zh: "增加成功",
+        en: "add success",
+        comment: "通用增加成功"
+    },
+
+    "text_164": {
+        id: 164,
+        zh: "签到成功",
+        en: "sigin in success",
+        comment: ""
+    },
+
+    "text_165": {
+        id: 165,
+        zh: "领取成功",
+        en: "get success",
+        comment: "福利系统"
+    },
+
+    "text_166": {
+        id: 166,
+        zh: "这个平台现在还不支持广告哦",
+        en: "this platform do not support ads just now",
+        comment: "广告系统"
+    },
+    "text_167": {
+        id: 167,
+        zh: "点击回到当前章节",
+        en: "tap to return current section",
+        comment: ""
+    },
+    "text_168": {
+        id: 168,
+        zh: "这个关卡还未开放哦",
+        en: "this level is locked now",
+        comment: ""
+    },
+
     getTextByIdAndLanguageType(givenId,givenType = this.languageType) {
         var key = "text_" + givenId.toString()
         var result = this[key]

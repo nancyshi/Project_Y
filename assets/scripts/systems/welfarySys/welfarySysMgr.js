@@ -74,8 +74,10 @@ cc.Class({
             require("systemsMgr").closeSystem(self.systemName)
             var currentScene = cc.director.getScene()
             if (currentScene.name == "mainScene") {
-                currentScene.getChildByName("Canvas").getChildByName("welfaryButton").active = false
+                currentScene.getChildByName("Canvas").getChildByName("enterButtons").getChildByName("welfaryButton").active = false
             }
+            var str = require("textConfig").getTextByIdAndLanguageType(165)
+            require("notificationMgr").pushNoti(str)
         }
         require("dataMgr").commitPlayerDataToServer(commitBody,successCallBack)
     },

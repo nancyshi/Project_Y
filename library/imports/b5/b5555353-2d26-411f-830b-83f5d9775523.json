@@ -95,7 +95,7 @@
       "__uuid__": "50a3c5ad-d9f0-4a3a-a184-2a03970c3614"
     },
     "_type": 1,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -116,6 +116,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "bulletType": 1,
     "status": 0,
     "disFromBorder": 5,
     "moveSpeed": 500,

@@ -404,8 +404,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 214,
-      "height": 72
+      "width": 278.2,
+      "height": 93.6
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -416,7 +416,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -172.904,
+        -216.134,
         -121.673,
         0,
         0,
@@ -528,6 +528,8 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
+    "_styleFlags": 0,
+    "_underlineHeight": 0,
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -709,8 +711,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 214,
-      "height": 72
+      "width": 278.2,
+      "height": 93.6
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -721,7 +723,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        202.45,
+        231.27,
         -121.673,
         0,
         0,
@@ -833,6 +835,8 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
+    "_styleFlags": 0,
+    "_underlineHeight": 0,
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -1067,6 +1071,8 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
+    "_styleFlags": 0,
+    "_underlineHeight": 0,
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

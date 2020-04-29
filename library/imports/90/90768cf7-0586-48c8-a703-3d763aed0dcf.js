@@ -99,7 +99,9 @@ var SystemsMgr = cc.Class({
   showSystem: function showSystem(givenSysName) {
     var para = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
     var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+    var bgType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
     //type 1 = animated open , 2 = direct open
+    //bgType 1 = prevent 2 = close
     var givenSys = this.getSysBySysName(givenSysName);
 
     if (givenSys.opendNode != null) {
@@ -115,19 +117,27 @@ var SystemsMgr = cc.Class({
       mgr.onWillOpend(para);
     }
 
-    if (type == 2) {
-      cc.director.getScene().getChildByName("Canvas").addChild(ui);
-      givenSys.opendNode = ui;
-      return;
-    }
-
     var others = ui.getChildByName("others");
     var bg = ui.getChildByName("bg");
 
     if (bg != null) {
       bg.width = cc.winSize.width;
       bg.height = cc.winSize.height;
-      bg.on("touchstart", function () {});
+
+      if (bgType == 1) {
+        bg.on("touchstart", function () {});
+      } else if (bgType == 2) {
+        var self = this;
+        bg.on("touchstart", function () {
+          self.closeSystem(givenSysName);
+        });
+      }
+    }
+
+    if (type == 2) {
+      cc.director.getScene().getChildByName("Canvas").addChild(ui);
+      givenSys.opendNode = ui;
+      return;
     }
 
     cc.director.getScene().getChildByName("Canvas").addChild(ui);

@@ -82,6 +82,10 @@ cc.Class({
   start: function start() {},
   onClick: function onClick() {
     if (this.status == 0) {
+      var str = require("textConfig").getTextByIdAndLanguageType(168);
+
+      require("notificationMgr").pushNoti(str);
+
       return;
     }
 
