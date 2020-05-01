@@ -7,7 +7,7 @@ android {
     buildToolsVersion PROP_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        applicationId "com.tdreamstudio.diamonds"
+        applicationId "com.tdreamstudio.slidingDiamonds"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
         versionCode 1
@@ -20,9 +20,9 @@ android {
                     targets 'cocos2djs'
                     arguments 'NDK_TOOLCHAIN_VERSION=clang'
                     
-                    def module_paths = [project.file("/Applications/CocosCreator/Creator/2.3.3/CocosCreator.app/Contents/Resources/cocos2d-x"),
-                                        project.file("/Applications/CocosCreator/Creator/2.3.3/CocosCreator.app/Contents/Resources/cocos2d-x/cocos"),
-                                        project.file("/Applications/CocosCreator/Creator/2.3.3/CocosCreator.app/Contents/Resources/cocos2d-x/external")]
+                    def module_paths = [project.file("/Applications/CocosCreator/Creator/2.3.2/CocosCreator.app/Contents/Resources/cocos2d-x"),
+                                        project.file("/Applications/CocosCreator/Creator/2.3.2/CocosCreator.app/Contents/Resources/cocos2d-x/cocos"),
+                                        project.file("/Applications/CocosCreator/Creator/2.3.2/CocosCreator.app/Contents/Resources/cocos2d-x/external")]
                     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
                     }
@@ -134,8 +134,9 @@ android.applicationVariants.all { variant ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
-    implementation fileTree(dir: "/Applications/CocosCreator/Creator/2.3.3/CocosCreator.app/Contents/Resources/cocos2d-x/cocos/platform/android/java/libs", include: ['*.jar'])
+    implementation fileTree(dir: "/Applications/CocosCreator/Creator/2.3.2/CocosCreator.app/Contents/Resources/cocos2d-x/cocos/platform/android/java/libs", include: ['*.jar'])
     implementation project(':libcocos2dx')
 }
 dependencies { compile 'com.google.android.gms:play-services-base:16.1.0' }
 dependencies { compile 'com.google.android.gms:play-services-ads:18.3.0' }
+dependencies { implementation fileTree(dir: '../libs', include: ['*.jar','*.aar']) }

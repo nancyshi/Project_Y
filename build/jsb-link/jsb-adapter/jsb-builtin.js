@@ -2391,13 +2391,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -2410,14 +2406,12 @@ var Event = require('./Event');
 var DeviceMotionEvent = /*#__PURE__*/function (_Event) {
   _inherits(DeviceMotionEvent, _Event);
 
-  var _super = _createSuper(DeviceMotionEvent);
-
   function DeviceMotionEvent(initArgs) {
     var _this;
 
     _classCallCheck(this, DeviceMotionEvent);
 
-    _this = _super.call(this, 'devicemotion');
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DeviceMotionEvent).call(this, 'devicemotion'));
 
     if (initArgs) {
       _this._acceleration = initArgs.acceleration ? initArgs.acceleration : {
@@ -2496,13 +2490,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -2517,14 +2507,12 @@ var DOMRect = require('./DOMRect');
 var Element = /*#__PURE__*/function (_Node) {
   _inherits(Element, _Node);
 
-  var _super = _createSuper(Element);
-
   function Element() {
     var _this;
 
     _classCallCheck(this, Element);
 
-    _this = _super.call(this);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Element).call(this));
     _this.className = '';
     _this.children = [];
     _this.clientLeft = 0;
@@ -3194,13 +3182,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -3213,12 +3197,10 @@ var EventTarget = require('./EventTarget');
 var FileReader = /*#__PURE__*/function (_EventTarget) {
   _inherits(FileReader, _EventTarget);
 
-  var _super = _createSuper(FileReader);
-
   function FileReader() {
     _classCallCheck(this, FileReader);
 
-    return _super.apply(this, arguments);
+    return _possibleConstructorReturn(this, _getPrototypeOf(FileReader).apply(this, arguments));
   }
 
   _createClass(FileReader, [{
@@ -3310,13 +3292,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -3331,14 +3309,12 @@ var Event = require('./Event');
 var FontFaceSet = /*#__PURE__*/function (_EventTarget) {
   _inherits(FontFaceSet, _EventTarget);
 
-  var _super = _createSuper(FontFaceSet);
-
   function FontFaceSet() {
     var _this;
 
     _classCallCheck(this, FontFaceSet);
 
-    _this = _super.call(this);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FontFaceSet).call(this));
     _this._status = 'loading';
     return _this;
   }
@@ -3412,13 +3388,9 @@ module.exports = FontFaceSet;
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -3480,14 +3452,12 @@ var TextMetrics = /*#__PURE__*/function () {
 var HTMLCanvasElement = /*#__PURE__*/function (_HTMLElement) {
   _inherits(HTMLCanvasElement, _HTMLElement);
 
-  var _super = _createSuper(HTMLCanvasElement);
-
   function HTMLCanvasElement(width, height) {
     var _this;
 
     _classCallCheck(this, HTMLCanvasElement);
 
-    _this = _super.call(this, 'canvas');
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(HTMLCanvasElement).call(this, 'canvas'));
     _this.id = 'glcanvas';
     _this.type = 'canvas';
     _this.top = 0;
@@ -3533,7 +3503,7 @@ var HTMLCanvasElement = /*#__PURE__*/function (_HTMLElement) {
   }, {
     key: "getBoundingClientRect",
     value: function getBoundingClientRect() {
-      return new DOMRect(0, 0, window.innerWidth, window.innerHeight);
+      return new DOMRect(0, 0, this._width / window.devicePixelRatio, this._height / window.devicePixelRatio);
     }
   }, {
     key: "width",
@@ -3570,12 +3540,12 @@ var HTMLCanvasElement = /*#__PURE__*/function (_HTMLElement) {
   }, {
     key: "clientWidth",
     get: function get() {
-      return window.innerWidth;
+      return this._width / window.devicePixelRatio;
     }
   }, {
     key: "clientHeight",
     get: function get() {
-      return window.innerHeight;
+      return this._height / window.devicePixelRatio;
     }
   }, {
     key: "data",
@@ -3679,13 +3649,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -3701,8 +3667,6 @@ var _require = require('./util'),
 var HTMLElement = /*#__PURE__*/function (_Element) {
   _inherits(HTMLElement, _Element);
 
-  var _super = _createSuper(HTMLElement);
-
   function HTMLElement() {
     var _this;
 
@@ -3710,7 +3674,7 @@ var HTMLElement = /*#__PURE__*/function (_Element) {
 
     _classCallCheck(this, HTMLElement);
 
-    _this = _super.call(this);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(HTMLElement).call(this));
     _this.tagName = tagName.toUpperCase();
     _this.className = '';
     _this.children = [];
@@ -3754,13 +3718,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -3777,8 +3737,6 @@ var gl = window.__gl;
 var HTMLImageElement = /*#__PURE__*/function (_HTMLElement) {
   _inherits(HTMLImageElement, _HTMLElement);
 
-  var _super = _createSuper(HTMLImageElement);
-
   function HTMLImageElement(width, height, isCalledFromImage) {
     var _this;
 
@@ -3789,7 +3747,7 @@ var HTMLImageElement = /*#__PURE__*/function (_HTMLElement) {
       return _possibleConstructorReturn(_this);
     }
 
-    _this = _super.call(this, 'img');
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(HTMLImageElement).call(this, 'img'));
     _this.width = width ? width : 0;
     _this.height = height ? height : 0;
     _this._data = null;
@@ -3879,13 +3837,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -3906,14 +3860,12 @@ var HAVE_ENOUGH_DATA = 4;
 var HTMLMediaElement = /*#__PURE__*/function (_HTMLElement) {
   _inherits(HTMLMediaElement, _HTMLElement);
 
-  var _super = _createSuper(HTMLMediaElement);
-
   function HTMLMediaElement(type) {
     var _this;
 
     _classCallCheck(this, HTMLMediaElement);
 
-    _this = _super.call(this, type);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(HTMLMediaElement).call(this, type));
     _this._volume = 1.0;
     _this._duration = 0;
     _this._isEnded = false;
@@ -4002,13 +3954,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -4023,12 +3971,10 @@ var Event = require('./Event');
 var HTMLScriptElement = /*#__PURE__*/function (_HTMLElement) {
   _inherits(HTMLScriptElement, _HTMLElement);
 
-  var _super = _createSuper(HTMLScriptElement);
-
   function HTMLScriptElement(width, height) {
     _classCallCheck(this, HTMLScriptElement);
 
-    return _super.call(this, 'script');
+    return _possibleConstructorReturn(this, _getPrototypeOf(HTMLScriptElement).call(this, 'script'));
   }
 
   _createClass(HTMLScriptElement, [{
@@ -4060,13 +4006,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -4079,12 +4021,10 @@ var HTMLMediaElement = require('./HTMLMediaElement');
 var HTMLVideoElement = /*#__PURE__*/function (_HTMLMediaElement) {
   _inherits(HTMLVideoElement, _HTMLMediaElement);
 
-  var _super = _createSuper(HTMLVideoElement);
-
   function HTMLVideoElement() {
     _classCallCheck(this, HTMLVideoElement);
 
-    return _super.call(this, 'video');
+    return _possibleConstructorReturn(this, _getPrototypeOf(HTMLVideoElement).call(this, 'video'));
   }
 
   _createClass(HTMLVideoElement, [{
@@ -4107,13 +4047,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -4126,12 +4062,10 @@ var HTMLImageElement = require('./HTMLImageElement');
 var Image = /*#__PURE__*/function (_HTMLImageElement) {
   _inherits(Image, _HTMLImageElement);
 
-  var _super = _createSuper(Image);
-
   function Image(width, height) {
     _classCallCheck(this, Image);
 
-    return _super.call(this, width, height, true);
+    return _possibleConstructorReturn(this, _getPrototypeOf(Image).call(this, width, height, true));
   }
 
   return Image;
@@ -4203,13 +4137,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -4246,14 +4176,12 @@ var __capsLockActive = false;
 var KeyboardEvent = /*#__PURE__*/function (_Event) {
   _inherits(KeyboardEvent, _Event);
 
-  var _super = _createSuper(KeyboardEvent);
-
   function KeyboardEvent(type, KeyboardEventInit) {
     var _this;
 
     _classCallCheck(this, KeyboardEvent);
 
-    _this = _super.call(this, type);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(KeyboardEvent).call(this, type));
 
     if (_typeof(KeyboardEventInit) === 'object') {
       _this._altKeyActive = KeyboardEventInit.altKey ? KeyboardEventInit.altKey : false;
@@ -4545,13 +4473,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -4564,14 +4488,12 @@ var Event = require('./Event');
 var MouseEvent = /*#__PURE__*/function (_Event) {
   _inherits(MouseEvent, _Event);
 
-  var _super = _createSuper(MouseEvent);
-
   function MouseEvent(type, initArgs) {
     var _this;
 
     _classCallCheck(this, MouseEvent);
 
-    _this = _super.call(this, type);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MouseEvent).call(this, type));
     _this._button = initArgs.button;
     _this._which = initArgs.which;
     _this._wheelDelta = initArgs.wheelDelta;
@@ -4647,13 +4569,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -4666,14 +4584,12 @@ var EventTarget = require('./EventTarget');
 var Node = /*#__PURE__*/function (_EventTarget) {
   _inherits(Node, _EventTarget);
 
-  var _super = _createSuper(Node);
-
   function Node() {
     var _this;
 
     _classCallCheck(this, Node);
 
-    _this = _super.call(this);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Node).call(this));
     _this.childNodes = [];
     _this.parentNode = window.__canvas;
     return _this;
@@ -4739,13 +4655,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -4758,14 +4670,12 @@ var Event = require('./Event');
 var TouchEvent = /*#__PURE__*/function (_Event) {
   _inherits(TouchEvent, _Event);
 
-  var _super = _createSuper(TouchEvent);
-
   function TouchEvent(type, touchEventInit) {
     var _this;
 
     _classCallCheck(this, TouchEvent);
 
-    _this = _super.call(this, type);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TouchEvent).call(this, type));
     _this.touches = [];
     _this.targetTouches = [];
     _this.changedTouches = [];
@@ -4788,13 +4698,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -4819,14 +4725,12 @@ var FontFaceSet = require('./FontFaceSet');
 var Document = /*#__PURE__*/function (_Node) {
   _inherits(Document, _Node);
 
-  var _super = _createSuper(Document);
-
   function Document() {
     var _this;
 
     _classCallCheck(this, Document);
 
-    _this = _super.call(this);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Document).call(this));
     _this.readyState = 'complete';
     _this.visibilityState = 'visible';
     _this.documentElement = window;
@@ -5120,11 +5024,7 @@ function inject() {
     window.screen.availWidth = window.innerWidth;
     window.screen.availHeight = window.innerHeight;
     window.screen.width = window.innerWidth;
-    window.screen.height = window.innerHeight; // emit resize consistent with web behavior
-
-    var resizeEvent = new Event('resize');
-    resizeEvent._target = window;
-    window.dispatchEvent(resizeEvent);
+    window.screen.height = window.innerHeight;
   };
 
   window.focus = function () {};

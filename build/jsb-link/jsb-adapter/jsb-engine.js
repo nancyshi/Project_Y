@@ -364,13 +364,6 @@ var Assembler = {
   },
   updateColor: function updateColor(comp, color) {
     this._dirtyPtr[0] |= FLAG_VERTICES_OPACITY_CHANGED;
-  },
-  updateIADatas: function updateIADatas(iaIndex, meshIndex) {
-    // When the MeshBuffer is switched, it is necessary to synchronize the iaData of the native assembler.
-    this.updateMeshIndex(iaIndex, meshIndex);
-    var materials = this._renderComp.sharedMaterials;
-    var material = materials[iaIndex] || materials[0];
-    this.updateMaterial(iaIndex, material);
   }
 };
 cc.Assembler.FLAG_VERTICES_OPACITY_CHANGED = FLAG_VERTICES_OPACITY_CHANGED;
@@ -417,16 +410,6 @@ proto.fill = function (graphics) {
 
   var buffer = this._buffer;
   buffer.meshbuffer.used(buffer.vertexStart, buffer.indiceStart);
-};
-
-var _updateIADatas = proto.updateIADatas;
-
-proto.updateIADatas = function (iaIndex, meshIndex) {
-  _updateIADatas.call(this, iaIndex, meshIndex); // Reset vertexStart and indiceStart when buffer is switched.
-
-
-  this._buffer.vertexStart = 0;
-  this._buffer.indiceStart = 0;
 };
 
 },{}],6:[function(require,module,exports){
@@ -2778,33 +2761,13 @@ jsb.onResume = function () {
   cc.game.emit(cc.game.EVENT_SHOW);
 };
 
-function resize(size) {
-  // size should be the css style
+jsb.onResize = function (size) {
+  if (size.width === 0 || size.height === 0) return; // size should be the css style
+
   size.width /= cc.view._devicePixelRatio;
   size.height /= cc.view._devicePixelRatio;
   window.resize(size.width, size.height);
-}
-
-jsb.onResize = function (size) {
-  if (size.width === 0 || size.height === 0) return; // getSafeAreaEdge is asynchronous on iOS, so callback later is required
-
-  if (CC_JSB && cc.sys.os === cc.sys.OS_IOS) {
-    var edges = jsb.Device.getSafeAreaEdge();
-    var hasSafeArea = edges.x > 0 || edges.y > 0 || edges.z > 0 || edges.w > 0;
-
-    if (hasSafeArea) {
-      setTimeout(function () {
-        if (cc.Vec4.strictEquals(edges, jsb.Device.getSafeAreaEdge())) {
-          setTimeout(resize, 200, size);
-        } else {
-          resize(size);
-        }
-      }, 0);
-      return;
-    }
-  }
-
-  resize(size);
+  cc.view.setCanvasSize(window.innerWidth, window.innerHeight);
 };
 
 },{}],34:[function(require,module,exports){
@@ -2843,13 +2806,13 @@ function downloadScript(item, callback) {
   return null;
 }
 
-var mediaDownloader = new jsb.Downloader();
-var mediaUrlMap = {}; // key: url, value: { loadingItem, callback }
+var audioDownloader = new jsb.Downloader();
+var audioUrlMap = {}; // key: url, value: { loadingItem, callback }
 
-mediaDownloader.setOnFileTaskSuccess(function (task) {
-  var _mediaUrlMap$task$req = mediaUrlMap[task.requestURL],
-      item = _mediaUrlMap$task$req.item,
-      callback = _mediaUrlMap$task$req.callback;
+audioDownloader.setOnFileTaskSuccess(function (task) {
+  var _audioUrlMap$task$req = audioUrlMap[task.requestURL],
+      item = _audioUrlMap$task$req.item,
+      callback = _audioUrlMap$task$req.callback;
 
   if (!(item && callback)) {
     return;
@@ -2858,15 +2821,15 @@ mediaDownloader.setOnFileTaskSuccess(function (task) {
   item.url = task.storagePath;
   item.rawUrl = task.storagePath;
   callback(null, item);
-  delete mediaUrlMap[task.requestURL];
+  delete audioUrlMap[task.requestURL];
 });
-mediaDownloader.setOnTaskError(function (task, errorCode, errorCodeInternal, errorStr) {
-  var callback = mediaUrlMap[task.requestURL].callback;
+audioDownloader.setOnTaskError(function (task, errorCode, errorCodeInternal, errorStr) {
+  var callback = audioUrlMap[task.requestURL].callback;
   callback && callback(errorStr, null);
-  delete mediaUrlMap[task.requestURL];
+  delete audioUrlMap[task.requestURL];
 });
 
-function downloadMedia(item, callback) {
+function downloadAudio(item, callback) {
   if (/^http/.test(item.url)) {
     var fileName = jsbUtils.murmurhash2_32_gc(item.url) + cc.path.extname(item.url);
     var storagePath = jsb.fileUtils.getWritablePath() + fileName; // load from local cache
@@ -2875,13 +2838,13 @@ function downloadMedia(item, callback) {
       item.url = storagePath;
       item.rawUrl = storagePath;
       callback && callback(null, item);
-    } // download remote media file
+    } // download remote audio
     else {
-        mediaUrlMap[item.url] = {
+        audioUrlMap[item.url] = {
           item: item,
           callback: callback
         };
-        mediaDownloader.createDownloadFileTask(item.url, storagePath);
+        audioDownloader.createDownloadFileTask(item.url, storagePath);
       } // Don't return anything to use async loading.
 
   } else {
@@ -2997,18 +2960,11 @@ cc.loader.addDownloadHandlers({
   'pvr': downloadImage,
   'pkm': downloadImage,
   // Audio
-  'mp3': downloadMedia,
-  'ogg': downloadMedia,
-  'wav': downloadMedia,
-  'm4a': downloadMedia,
-  // Video
-  'mp4': downloadMedia,
-  'avi': downloadMedia,
-  'mov': downloadMedia,
-  'mpg': downloadMedia,
-  'mpeg': downloadMedia,
-  'rm': downloadMedia,
-  'rmvb': downloadMedia,
+  'mp3': downloadAudio,
+  'ogg': downloadAudio,
+  'wav': downloadAudio,
+  'mp4': downloadAudio,
+  'm4a': downloadAudio,
   // Text
   'txt': downloadText,
   'xml': downloadText,
@@ -3039,6 +2995,7 @@ cc.loader.addLoadHandlers({
   'mp3': loadAudio,
   'ogg': loadAudio,
   'wav': loadAudio,
+  'mp4': loadAudio,
   'm4a': loadAudio,
   // compressed texture
   'pvr': loadCompressedTex,
@@ -5162,8 +5119,6 @@ cc.js.mixin(nativeLightProto, {
   MeshBuffer.checkAndSwitchBuffer = function (vertexCount) {
     if (this.vertexOffset + vertexCount > 65535) {
       this.switchBuffer();
-      if (!this._nativeAssembler) return;
-      this._nativeAssembler.updateIADatas && this._nativeAssembler.updateIADatas(this._arrOffset, this._arrOffset);
     }
   };
 
@@ -5227,13 +5182,7 @@ cc.js.mixin(nativeLightProto, {
     this.byteOffset = 0;
     this.indiceOffset = 0;
     this.vertexOffset = 0;
-    if (!this._nativeAssembler) return;
-
-    for (var i = 0, len = this._vDatas.length; i < len; i++) {
-      this._nativeAssembler.updateVerticesRange(i, 0, 0);
-
-      this._nativeAssembler.updateIndicesRange(i, 0, 0);
-    }
+    this.used(0, 0);
   };
 
   MeshBuffer.destroy = function () {

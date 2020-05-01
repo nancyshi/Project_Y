@@ -17,7 +17,7 @@ USE_ARM_MODE := 1
 # disable module will speed up compile time, and reduce package size
 USE_GFX_RENDERER := 1
 USE_VIDEO := 1
-USE_WEB_VIEW := 1
+USE_WEB_VIEW := 0
 USE_AUDIO := 1
 USE_SOCKET := 1
 USE_SPINE := 1
@@ -49,4 +49,5 @@ endif
 
 # Some Android Simulators don't support SSE instruction, so disable it for x86 arch.
 APP_CPPFLAGS += -U__SSE__
+USE_EDIT_BOX := 1
 APP_PLATFORM := android-9

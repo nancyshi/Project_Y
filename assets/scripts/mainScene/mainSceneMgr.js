@@ -56,12 +56,12 @@ cc.Class({
 
     onLoad () {
         this.setupData()
-        this.setupUI()
+        //this.setupUI()
         //require("gameMgr")._generateLevelSceneConfig()
     },
 
     start () {
-        
+        this.setupUI()
         //require("systemsMgr").showSystem("storySys",9001,2)
         var storyId = require("dataMgr").playerData.storySysId
         if (storyId != -1) {
@@ -80,6 +80,7 @@ cc.Class({
         })
     },
     setupUI() {
+        this.sectionNameLabelNode.getComponent(cc.Widget).updateAlignment()
         this.heartLabelNode.getComponent(cc.Label).string = require("dataMgr").playerData.heart.toString()
         this.physicalLabelNode.getComponent(cc.Label).string = require("dataMgr").playerData.physicalPower.toString()
         var systemsMgr = require("systemsMgr")
@@ -161,6 +162,7 @@ cc.Class({
         this.backToCurrentButtonNode.on("click",function(){
             self.selectedSection = require("dataMgr").playerData.currentSection
             self.setupSectionPerformance()
+            self.playBgm()
         })
         this.backToCurrentButtonNode.y = this.sectionNameLabelNode.y - this.sectionNameLabelNode.height / 2 - 100
         this.setupSectionPerformance()
