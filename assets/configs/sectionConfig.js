@@ -23,15 +23,22 @@ var sectionConfig = {
     "4": {
         sectionTitleTextId: 108,
         sectionDescripTextId: 109,
-        levels: [21,22,23],
+        levels: [16,17,18,19,20],
         bgmPath: "musics/bgm_004",
-        levelNodePositions: [16,17,18,19,20]
-    },
+        levelNodePositions: []
+    },  
     "5": {
         sectionTitleTextId: 110,
         sectionDescripTextId: 111,
         levels: [21,22,23,24,25],
         bgmPath: "musics/bgm_005",
+        levelNodePositions: []
+    },
+    "6": {
+        sectionTitleTextId: 171,
+        sectionDescripTextId: 172,
+        levels: [26,27,28,29,30],
+        bgmPath: "musics/bgm_006",
         levelNodePositions: []
     }
 }

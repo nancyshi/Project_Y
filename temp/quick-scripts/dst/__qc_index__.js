@@ -42,6 +42,7 @@ require('./assets/scripts/mainScene/selectSectionElementMgr');
 require('./assets/scripts/mainScene/selectSectionUIMgr');
 require('./assets/scripts/selectedEffectMgr');
 require('./assets/scripts/singleInstanceSystems/advertisMgr');
+require('./assets/scripts/singleInstanceSystems/bgmMgr');
 require('./assets/scripts/singleInstanceSystems/gameMgr');
 require('./assets/scripts/singleInstanceSystems/globalRedPointMgr');
 require('./assets/scripts/singleInstanceSystems/notificationMgr');

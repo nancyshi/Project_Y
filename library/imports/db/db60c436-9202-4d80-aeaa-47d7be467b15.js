@@ -55,9 +55,9 @@ cc.Class({
     this.iconLabelNode.getComponent(cc.Label).string = this.sectionKey;
 
     if (parseInt(this.sectionKey) > require("dataMgr").playerData.currentSection) {
-      this.iconNode.getComponent(cc.Sprite).spriteFrame = this.lockedIconSpriteFrame;
-      this.nameLabelNode.color = cc.color();
-    }
+      this.iconNode.getComponent(cc.Sprite).spriteFrame = this.lockedIconSpriteFrame; //this.nameLabelNode.color = cc.color()
+    } else {//this.nameLabelNode.color = cc.color()
+      }
 
     this.processLabelNode.getComponent(cc.Label).string = this.mailInfo.sendNum.toString() + " / " + this.mailInfo.totalNum.toString();
     this.processBarNode.getComponent(cc.ProgressBar).progress = this.mailInfo.sendNum / this.mailInfo.totalNum;
@@ -123,7 +123,7 @@ cc.Class({
         if (parseInt(this.sectionKey) != mainSceneMgr.selectedSection) {
           mainSceneMgr.selectedSection = parseInt(this.sectionKey);
           mainSceneMgr.setupSectionPerformance();
-          mainSceneMgr.playBgm();
+          require("bgmMgr").selectedSection = this.sectionKey;
         }
       }
     }

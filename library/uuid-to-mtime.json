@@ -621,7 +621,7 @@
   },
   "67beb82a-7fe4-4186-8e3a-24c6ff826b83": {
     "asset": 1584545062000,
-    "meta": 1588323759537,
+    "meta": 1588436864068,
     "relativePath": "images/target.png"
   },
   "e23bfd8f-1078-4666-98ab-ad182e7ec32c": {
@@ -690,8 +690,8 @@
     "relativePath": "prefabs/mainScene/connectLineNode.prefab"
   },
   "b9f15d72-3782-43e2-b841-0a8bdf1e0d83": {
-    "asset": 1587984425000,
-    "meta": 1588323759574,
+    "asset": 1588442256104,
+    "meta": 1588442256108,
     "relativePath": "prefabs/mainScene/preChallengeMailSectionNode.prefab"
   },
   "cac06a91-734c-4d8c-80c8-15842991660d": {
@@ -945,8 +945,8 @@
     "relativePath": "scenes/levels/_level023.fire"
   },
   "49ad0b11-6e9b-429c-988d-a57ac9e246ce": {
-    "asset": 1588157722000,
-    "meta": 1588323759924,
+    "asset": 1588430519064,
+    "meta": 1588430519072,
     "relativePath": "scenes/loginScene.fire"
   },
   "ffef00ff-2e28-4f3a-8020-65b0987af904": {
@@ -1164,16 +1164,6 @@
     "meta": 1588323759661,
     "relativePath": "resources/musics/bgm_004.mp3"
   },
-  "658e190e-280f-4823-b10d-7b7cb6f8989f": {
-    "asset": 1587661030000,
-    "meta": 1588323759255,
-    "relativePath": "configs/sectionConfig.js"
-  },
-  "cb3edca7-a1a9-4ffa-8aab-d5ec42ca433c": {
-    "asset": 1587661362000,
-    "meta": 1588323758785,
-    "relativePath": "configs/levelConfig.js"
-  },
   "4a64f7b2-7d72-476d-937f-451066aab018": {
     "asset": 1587714100000,
     "meta": 1588323759243,
@@ -1184,11 +1174,6 @@
     "meta": 1588323759235,
     "relativePath": "configs/mailConfig.js"
   },
-  "46527f16-776b-4e26-b14a-258831f9beac": {
-    "asset": 1587721915000,
-    "meta": 1588323760804,
-    "relativePath": "scripts/systems/mailSys/mailSysMgr.js"
-  },
   "16bb9c9e-e940-4079-bba5-d45edc05bc98": {
     "asset": 1587722458000,
     "meta": 1588323760748,
@@ -1198,11 +1183,6 @@
     "asset": 1587722748000,
     "meta": 1588323760668,
     "relativePath": "scripts/singleInstanceSystems/notificationMgr.js"
-  },
-  "e5cd79ab-e2c6-49f7-b124-9b98a9a9726e": {
-    "asset": 1587725625000,
-    "meta": 1588323760555,
-    "relativePath": "scripts/mainScene/preChallengeUIMgr.js"
   },
   "4c7b6656-91a3-4e8e-bf9e-ae08eccaab63": {
     "asset": 1587727718000,
@@ -1339,11 +1319,6 @@
     "meta": 1588323760899,
     "relativePath": "scripts/systems/welfarySys/welfarySysMgr.js"
   },
-  "c401434b-a581-4466-95d0-234dcb30510f": {
-    "asset": 1588070232000,
-    "meta": 1588323760270,
-    "relativePath": "scripts/levelMgr.js"
-  },
   "d2cc9c41-5a94-4dcb-ae40-80b97ffde04e": {
     "asset": 1588070639000,
     "meta": 1588323760629,
@@ -1364,29 +1339,84 @@
     "meta": 1588323759529,
     "relativePath": "images/selectIcon.png"
   },
-  "9c22ea4a-dc32-4c86-aa76-7d0ae8d9f632": {
-    "asset": 1588148386000,
-    "meta": 1588323759373,
-    "relativePath": "configs/textConfig.js"
-  },
   "a65da41f-22cd-4021-a549-0a56e2f4fa97": {
     "asset": 1588148425000,
     "meta": 1588323760464,
     "relativePath": "scripts/mainScene/levelNodeMgr.js"
   },
+  "c401434b-a581-4466-95d0-234dcb30510f": {
+    "asset": 1588324450870,
+    "meta": 1588324452265,
+    "relativePath": "scripts/levelMgr.js"
+  },
+  "e5cd79ab-e2c6-49f7-b124-9b98a9a9726e": {
+    "asset": 1588427332480,
+    "meta": 1588427348735,
+    "relativePath": "scripts/mainScene/preChallengeUIMgr.js"
+  },
+  "46527f16-776b-4e26-b14a-258831f9beac": {
+    "asset": 1588429082013,
+    "meta": 1588429083319,
+    "relativePath": "scripts/systems/mailSys/mailSysMgr.js"
+  },
   "90768cf7-0586-48c8-a703-3d763aed0dcf": {
-    "asset": 1588149466000,
-    "meta": 1588323760887,
+    "asset": 1588429030653,
+    "meta": 1588429083398,
     "relativePath": "scripts/systems/systemsMgr.js"
   },
+  "b4b8c38f-203d-4ff0-b1f1-0168a74d5cd7": {
+    "asset": 1588433012995,
+    "meta": 1588433013010,
+    "relativePath": "scenes/levels/level026.fire"
+  },
+  "c2807ca8-ec35-4e56-9455-5232be1ad537": {
+    "asset": 1588434442694,
+    "meta": 1588434442705,
+    "relativePath": "scenes/levels/level027.fire"
+  },
+  "2f46bfa4-e38f-4255-8bff-1f4fd081a23a": {
+    "asset": 1588435357091,
+    "meta": 1588435357103,
+    "relativePath": "scenes/levels/level028.fire"
+  },
+  "e084544e-0cda-48c4-8434-9c2dae955e92": {
+    "asset": 1588437221503,
+    "meta": 1588437221532,
+    "relativePath": "scenes/levels/level029.fire"
+  },
+  "d57233b1-9396-41b4-9975-e2f5596629b1": {
+    "asset": 1588440185621,
+    "meta": 1588440185630,
+    "relativePath": "scenes/levels/level030.fire"
+  },
+  "658e190e-280f-4823-b10d-7b7cb6f8989f": {
+    "asset": 1588440339867,
+    "meta": 1588440408257,
+    "relativePath": "configs/sectionConfig.js"
+  },
+  "9c22ea4a-dc32-4c86-aa76-7d0ae8d9f632": {
+    "asset": 1588440301550,
+    "meta": 1588440408348,
+    "relativePath": "configs/textConfig.js"
+  },
+  "cb3edca7-a1a9-4ffa-8aab-d5ec42ca433c": {
+    "asset": 1588441968095,
+    "meta": 1588441995991,
+    "relativePath": "configs/levelConfig.js"
+  },
   "db60c436-9202-4d80-aeaa-47d7be467b15": {
-    "asset": 1588153012000,
-    "meta": 1588323760570,
+    "asset": 1588503995328,
+    "meta": 1588504015307,
     "relativePath": "scripts/mainScene/selectSectionElementMgr.js"
   },
+  "85e7a33e-818c-463b-bffa-f35bf032d236": {
+    "asset": 1588504013823,
+    "meta": 1588504015317,
+    "relativePath": "scripts/singleInstanceSystems/bgmMgr.js"
+  },
   "b1711895-fa57-4be2-a860-a9d2b9606622": {
-    "asset": 1588157521000,
-    "meta": 1588323760517,
+    "asset": 1588504059027,
+    "meta": 1588504083411,
     "relativePath": "scripts/mainScene/mainSceneMgr.js"
   }
 }

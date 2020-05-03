@@ -763,11 +763,10 @@ cc.Class({
           var pathWaysNode = cc.find(pathWaysNodePath);
           bulletMgr.pathWaysNode = pathWaysNode;
         }
-      }
+      } //cc.log(index,oneBulletNode.width, oneBulletNode.height)
 
-      cc.log(index, oneBulletNode.width, oneBulletNode.height);
-      bullets.addChild(oneBulletNode);
-      cc.log(index, oneBulletNode.width, oneBulletNode.height);
+
+      bullets.addChild(oneBulletNode); //cc.log(index,oneBulletNode.width, oneBulletNode.height)
     }
   },
   dataMonitored: function dataMonitored(key, value) {

@@ -118,6 +118,7 @@ cc.Class({
         this.closeButtonNode.on("click",function(){
             require("systemsMgr").closeSystem(self.sysName)
         })
+        this.uibg.on("touchstart",function(){})
         this.setupData()
         this.setupUI()
     },

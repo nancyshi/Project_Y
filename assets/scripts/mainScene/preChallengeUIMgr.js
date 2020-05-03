@@ -238,6 +238,10 @@ cc.Class({
             if (flag == 0) {
                 result.type = "physicalPower"
                 result.num = levelConfig[this.level].physicalPowerCost
+                var welfaryFlag = require("dataMgr").playerData.initAdWatchedFlag
+                if (welfaryFlag == 1) {
+                    result.num = Math.round(result.num / 2)
+                }
             }
             else if (flag == 1) {
                 result.type = "heart"
@@ -264,12 +268,12 @@ cc.Class({
             var notificaitionSys = require("notificationMgr")
             var notiStr = ""
             if (this.costResult.type == "heart") {
-                notiStr = "金币不足"
+                notiStr = require("textConfig").getTextByIdAndLanguageType(169)
             }
             else if (this.costResult.type == "physicalPower") {
-                notiStr = "体力不足"
+                notiStr = require("textConfig").getTextByIdAndLanguageType(170)
             }
-            notificaitionSys.showNoti(notiStr)
+            notificaitionSys.pushNoti(notiStr)
             return
         }
         

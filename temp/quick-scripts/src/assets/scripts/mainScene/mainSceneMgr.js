@@ -68,18 +68,7 @@ cc.Class({
       require("systemsMgr").showSystem("storySys", storyId, 2);
     }
 
-    this.playBgm(); //test
-    //require("advertisMgr").showActivityNode()
-  },
-  playBgm: function playBgm() {
-    var self = this;
-
-    var path = require("sectionConfig")[this.selectedSection].bgmPath;
-
-    cc.loader.loadRes(path, function (err, res) {
-      cc.audioEngine.stopAll();
-      cc.audioEngine.play(res, true, 1);
-    });
+    require("bgmMgr").selectedSection = this.selectedSection.toString();
   },
   setupUI: function setupUI() {
     this.sectionNameLabelNode.getComponent(cc.Widget).updateAlignment();

@@ -414,6 +414,30 @@ var textConfig = {
     en: "this level is locked now",
     comment: ""
   },
+  "text_169": {
+    id: 169,
+    zh: "金币不足",
+    en: "not enough gold",
+    comment: "通用金币不足"
+  },
+  "text_170": {
+    id: 170,
+    zh: "体力不足",
+    en: "not enough physical power",
+    comment: "通用体力不足"
+  },
+  "text_171": {
+    id: 171,
+    zh: "第六章",
+    en: "Section 6",
+    comment: "第六章标题"
+  },
+  "text_172": {
+    id: 172,
+    zh: "",
+    en: "",
+    comment: "第六章内容"
+  },
   getTextByIdAndLanguageType: function getTextByIdAndLanguageType(givenId) {
     var givenType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.languageType;
     var key = "text_" + givenId.toString();

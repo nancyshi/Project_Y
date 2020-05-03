@@ -154,6 +154,36 @@ var levelConfig = {
     heartForRetryCost: 2,
     desTextId: 101,
     bgmPath: "musics/bgm_001"
+  },
+  "26": {
+    physicalPowerCost: 3,
+    heartForRetryCost: 2,
+    desTextId: 101,
+    bgmPath: "musics/bgm_001"
+  },
+  "27": {
+    physicalPowerCost: 3,
+    heartForRetryCost: 2,
+    desTextId: 101,
+    bgmPath: "musics/bgm_001"
+  },
+  "28": {
+    physicalPowerCost: 3,
+    heartForRetryCost: 2,
+    desTextId: 101,
+    bgmPath: "musics/bgm_001"
+  },
+  "29": {
+    physicalPowerCost: 3,
+    heartForRetryCost: 2,
+    desTextId: 101,
+    bgmPath: "musics/bgm_001"
+  },
+  "30": {
+    physicalPowerCost: 3,
+    heartForRetryCost: 2,
+    desTextId: 101,
+    bgmPath: "musics/bgm_001"
   }
 };
 module.exports = levelConfig;

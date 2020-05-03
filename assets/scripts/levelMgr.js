@@ -722,9 +722,9 @@ cc.Class({
                     bulletMgr.pathWaysNode = pathWaysNode
                 }
             }
-            cc.log(index,oneBulletNode.width, oneBulletNode.height)
+            //cc.log(index,oneBulletNode.width, oneBulletNode.height)
             bullets.addChild(oneBulletNode)
-            cc.log(index,oneBulletNode.width, oneBulletNode.height)
+            //cc.log(index,oneBulletNode.width, oneBulletNode.height)
         }
     },
 

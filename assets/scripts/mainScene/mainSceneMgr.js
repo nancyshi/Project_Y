@@ -67,18 +67,10 @@ cc.Class({
         if (storyId != -1) {
             require("systemsMgr").showSystem("storySys",storyId,2)
         }
-        this.playBgm()
-        //test
-        //require("advertisMgr").showActivityNode()
+
+        require("bgmMgr").selectedSection = this.selectedSection.toString()
     },
-    playBgm(){
-        var self = this
-        var path = require("sectionConfig")[this.selectedSection].bgmPath
-        cc.loader.loadRes(path,function(err,res){
-            cc.audioEngine.stopAll()
-            cc.audioEngine.play(res,true,1)
-        })
-    },
+    
     setupUI() {
         this.sectionNameLabelNode.getComponent(cc.Widget).updateAlignment()
         this.heartLabelNode.getComponent(cc.Label).string = require("dataMgr").playerData.heart.toString()
