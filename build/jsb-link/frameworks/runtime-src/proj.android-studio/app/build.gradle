@@ -139,4 +139,3 @@ dependencies {
 }
 dependencies { compile 'com.google.android.gms:play-services-base:16.1.0' }
 dependencies { compile 'com.google.android.gms:play-services-ads:18.3.0' }
-dependencies { implementation fileTree(dir: '../libs', include: ['*.jar','*.aar']) }
