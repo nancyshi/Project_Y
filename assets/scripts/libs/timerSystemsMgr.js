@@ -50,20 +50,22 @@ var TimerSystemsMgr = cc.Class({
 
     },
     initSetup(){
-        this.timers.push(this.signInSysTimer)
         this.signInSysTimer = require("dataMgr").playerData.signInRefreshDelta
+        this.timers.push(this.signInSysTimer)
+        //this.signInSysTimer = require("dataMgr").playerData.signInRefreshDelta
     },
     lunch(){
         this.schedule(this.timerUpdate, 1)
     },
 
     timerUpdate() {
-        for (var index in this.timers) {
-            var oneTimer = this.timers[index]
-            if (oneTimer > 0) {
-                oneTimer -= 1
-            }
-        }
+        // for (var index in this.timers) {
+        //     var oneTimer = this.timers[index]
+        //     if (oneTimer > 0) {
+        //         oneTimer -= 1
+        //     }
+        // }
+        this.signInSysTimer -= 1
     },
 
     stop(){

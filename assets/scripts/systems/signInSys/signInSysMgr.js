@@ -66,14 +66,14 @@ cc.Class({
                 this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(114)
                 break
             case 3:
-                desStr = textConfig.getTextByIdAndLanguageType(121)
-                this.cancelButtonNode.active = false
-                this.ensureButtonNode.x = 0
-                var delta = require("dataMgr").playerData.signInRefreshDelta
+                var delta = require("timerSystemsMgr").signInSysTimer
                 var h = Math.floor(delta / 3600)
                 var m = Math.floor(delta % 3600 / 60)
                 var s = h.toString() + "h " + m.toString() + "m " 
-                this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getFormatedString(122,[s])
+                desStr = textConfig.getFormatedString(121,[s])
+                this.cancelButtonNode.active = false
+                this.ensureButtonNode.x = 0
+                this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(122)
                 break
         }
         if (desStr == "") {
@@ -130,7 +130,7 @@ cc.Class({
     signIn(signInType) {
         var networkMgr = require("networkMgr")
         var msgObj = networkMgr.makeMessageObj("signInModule","signInMessageType")
-        msgObj.message.signInType = signInType
+        msgObj.message.signType = signInType
         msgObj.message.playerId = require("dataMgr").playerData.id
         var self = this
         msgObj.successCallBack = function(xhr) {
