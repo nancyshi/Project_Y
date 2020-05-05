@@ -1,28 +1,28 @@
-window.__require = function e(t, i, n) {
-function a(o, s) {
-if (!i[o]) {
-if (!t[o]) {
-var l = o.split("/");
-l = l[l.length - 1];
-if (!t[l]) {
-var g = "function" == typeof __require && __require;
-if (!s && g) return g(l, !0);
-if (h) return h(l, !0);
-throw new Error("Cannot find module '" + o + "'");
+window.__require = function e(t, i, h) {
+function n(g, o) {
+if (!i[g]) {
+if (!t[g]) {
+var s = g.split("/");
+s = s[s.length - 1];
+if (!t[s]) {
+var l = "function" == typeof __require && __require;
+if (!o && l) return l(s, !0);
+if (a) return a(s, !0);
+throw new Error("Cannot find module '" + g + "'");
 }
-o = l;
+g = s;
 }
-var r = i[o] = {
+var d = i[g] = {
 exports: {}
 };
-t[o][0].call(r.exports, function(e) {
-return a(t[o][1][e] || e);
-}, r, r.exports, e, t, i, n);
+t[g][0].call(d.exports, function(e) {
+return n(t[g][1][e] || e);
+}, d, d.exports, e, t, i, h);
 }
-return i[o].exports;
+return i[g].exports;
 }
-for (var h = "function" == typeof __require && __require, o = 0; o < n.length; o++) a(n[o]);
-return a;
+for (var a = "function" == typeof __require && __require, g = 0; g < h.length; g++) n(h[g]);
+return n;
 }({
 _mainSceneMgr: [ function(e, t, i) {
 "use strict";
@@ -54,12 +54,12 @@ return this._physicalPowerForChallengeCost;
 },
 set: function(e) {
 this._physicalPowerForChallengeCost = e;
-var t = this.challengeButton.getChildByName("physicalPowerLabel"), i = cc.find("Canvas/commentLabel"), n = this.challengeButton.getChildByName("physicalPower");
+var t = this.challengeButton.getChildByName("physicalPowerLabel"), i = cc.find("Canvas/commentLabel"), h = this.challengeButton.getChildByName("physicalPower");
 if (null == e) {
-n.active = !1;
+h.active = !1;
 t.active = !1;
 } else {
-n.active = !0;
+h.active = !0;
 t.active = !0;
 t.getComponent(cc.Label).string = e.toString();
 if (e <= this.physicalPower) {
@@ -190,14 +190,14 @@ e("systemsMgr").showSystem("addPropertyNumSys", 2);
 this.node.getChildByName("addButton_phy").on("click", function() {
 e("systemsMgr").showSystem("addPropertyNumSys", 1);
 });
-var n = this.node.getChildByName("mailButton");
-n.on("click", function() {
+var h = this.node.getChildByName("mailButton");
+h.on("click", function() {
 e("systemsMgr").showSystem("mailSys");
 });
-n.getComponent("redPointMgr").redPointShowCondition = function() {
+h.getComponent("redPointMgr").redPointShowCondition = function() {
 var t = e("dataMgr").playerData.mails, i = 0;
-for (var n in t) {
-0 == t[n].status && (i += 1);
+for (var h in t) {
+0 == t[h].status && (i += 1);
 }
 return i > 0;
 };
@@ -207,38 +207,38 @@ start: function() {},
 setupSection: function(t) {
 var i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : function() {};
 this.selectedLevel = null;
-var n = e("sectionConfig")[t];
-this.node.getChildByName("sectionTitleLabel").getComponent(cc.Label).string = n.sectionTitle;
-this.node.getChildByName("sectionDescripLabel").getComponent(cc.Label).string = n.sectionDescrip;
-var a = n.levels;
+var h = e("sectionConfig")[t];
+this.node.getChildByName("sectionTitleLabel").getComponent(cc.Label).string = h.sectionTitle;
+this.node.getChildByName("sectionDescripLabel").getComponent(cc.Label).string = h.sectionDescrip;
+var n = h.levels;
 this.levelAresNodes = {};
-for (var h in a) {
-var o = parseInt(h) + 1;
-1 == (o = o.toString()).length && (o = "0" + o);
-var s = cc.instantiate(this.levelNodePrefab);
-s.getComponent(cc.Label).string = o;
-s.x = h % this.levelsHorNum * (this.levelsHorDis + s.width) + this.levelsStartPosition.x;
-s.y = -Math.floor(h / this.levelsHorNum) * (this.levelsVerDis + s.width) + this.levelsStartPosition.y;
-switch (this.checkLevelStatus(a[h])) {
+for (var a in n) {
+var g = parseInt(a) + 1;
+1 == (g = g.toString()).length && (g = "0" + g);
+var o = cc.instantiate(this.levelNodePrefab);
+o.getComponent(cc.Label).string = g;
+o.x = a % this.levelsHorNum * (this.levelsHorDis + o.width) + this.levelsStartPosition.x;
+o.y = -Math.floor(a / this.levelsHorNum) * (this.levelsVerDis + o.width) + this.levelsStartPosition.y;
+switch (this.checkLevelStatus(n[a])) {
 case 0:
-s.color = this.lockedLevelColor;
+o.color = this.lockedLevelColor;
 break;
 
 case 1:
-s.color = this.unlockedLevelColor;
+o.color = this.unlockedLevelColor;
 break;
 
 case 2:
-s.color = this.currentLevelColor;
+o.color = this.currentLevelColor;
 }
-s.getComponent("levelAreaNodeMgr").delegate = this;
-s.getComponent("levelAreaNodeMgr").level = a[h];
-this.levelAresNodes[a[h]] = s;
-cc.find("Canvas/levelsArea").addChild(s);
+o.getComponent("levelAreaNodeMgr").delegate = this;
+o.getComponent("levelAreaNodeMgr").level = n[a];
+this.levelAresNodes[n[a]] = o;
+cc.find("Canvas/levelsArea").addChild(o);
 }
-var l = n.backgroundPath, g = this;
-cc.loader.loadRes(l, cc.SpriteFrame, function(e, t) {
-g.node.getChildByName("sectionBg").getComponent(cc.Sprite).spriteFrame = t;
+var s = h.backgroundPath, l = this;
+cc.loader.loadRes(s, cc.SpriteFrame, function(e, t) {
+l.node.getChildByName("sectionBg").getComponent(cc.Sprite).spriteFrame = t;
 i();
 });
 t == this.playerData.currentSection && (this.selectedLevel = this.playerData.currentLevel);
@@ -248,16 +248,16 @@ var t = this.playerData.currentSection;
 return e > t ? 0 : e < t ? 1 : e == t ? 2 : void 0;
 },
 checkLevelStatus: function(t) {
-var i = e("sectionConfig"), n = function() {
+var i = e("sectionConfig"), h = function() {
 for (var e in i) {
-var n = i[e].levels;
-for (var a in n) if (t == n[a]) return e;
+var h = i[e].levels;
+for (var n in h) if (t == h[n]) return e;
 }
 return !1;
 }();
-if (0 == n) return !1;
-n = parseInt(n);
-switch (this.checkSectionStatus(n)) {
+if (0 == h) return !1;
+h = parseInt(h);
+switch (this.checkSectionStatus(h)) {
 case 0:
 return 0;
 
@@ -265,12 +265,12 @@ case 1:
 return 1;
 
 case 2:
-var a = this.playerData.currentLevel;
-if (a == t) return 2;
-for (var h in e("sectionConfig")[n].levels) {
-var o = e("sectionConfig")[n].levels[h];
-if (o == t) return 1;
-if (o == a) return 0;
+var n = this.playerData.currentLevel;
+if (n == t) return 2;
+for (var a in e("sectionConfig")[h].levels) {
+var g = e("sectionConfig")[h].levels[a];
+if (g == t) return 1;
+if (g == n) return 0;
 }
 }
 },
@@ -278,30 +278,30 @@ onClickChallengeButton: function() {
 var t = e("gameMgr");
 this.challengeButton.getComponent(cc.Button).interactable = !1;
 if (0 != this.physicalPowerForChallengeCost) {
-var i = null, n = null;
+var i = null, h = null;
 if (null != this.physicalPowerForChallengeCost) {
 if ((i = this.playerData.physicalPower - this.physicalPowerForChallengeCost) < 0) return;
-var a = this.playerData.physicalPowerCostedFlag;
-this.selectedLevel == this.playerData.currentLevel && 0 == this.playerData.physicalPowerCostedFlag && (a = 1);
-n = {
+var n = this.playerData.physicalPowerCostedFlag;
+this.selectedLevel == this.playerData.currentLevel && 0 == this.playerData.physicalPowerCostedFlag && (n = 1);
+h = {
 physicalPower: i,
-physicalPowerCostedFlag: a
+physicalPowerCostedFlag: n
 };
 }
 if (null != this.heartForChallengeCost) {
 if ((i = this.playerData.heart - this.heartForChallengeCost) < 0) return;
-n = {
+h = {
 heart: i
 };
 }
-var h = this;
-e("dataMgr").commitPlayerDataToServer(n, function() {
-if (null != h.physicalPowerForChallengeCost) {
-h.playerData.physicalPower = i;
-h.playerData.physicalPowerCostedFlag = a;
+var a = this;
+e("dataMgr").commitPlayerDataToServer(h, function() {
+if (null != a.physicalPowerForChallengeCost) {
+a.playerData.physicalPower = i;
+a.playerData.physicalPowerCostedFlag = n;
 }
-null != h.heartForChallengeCost && (h.playerData.heart = i);
-t.enterLevelScene(h.selectedLevel);
+null != a.heartForChallengeCost && (a.playerData.heart = i);
+t.enterLevelScene(a.selectedLevel);
 });
 } else t.enterLevelScene(this.selectedLevel);
 },
@@ -344,18 +344,18 @@ t = t[this.addTypeId];
 this.addConfig = t;
 },
 setupUI: function() {
-var t = e("textConfig"), i = t.getTextByIdAndLanguageType(123), n = !0;
-for (var a in this.addConfig) {
-0 == n && (i += "，");
-switch (a) {
+var t = e("textConfig"), i = t.getTextByIdAndLanguageType(123), h = !0;
+for (var n in this.addConfig) {
+0 == h && (i += "，");
+switch (n) {
 case "physicalPower":
-i += t.getTextByIdAndLanguageType(124) + this.addConfig[a].toString();
+i += t.getTextByIdAndLanguageType(124) + this.addConfig[n].toString();
 break;
 
 case "heart":
-i += t.getTextByIdAndLanguageType(125) + this.addConfig[a].toString();
+i += t.getTextByIdAndLanguageType(125) + this.addConfig[n].toString();
 }
-n = !1;
+h = !1;
 }
 i += t.getTextByIdAndLanguageType(126);
 this.desLabelNode.getComponent(cc.Label).string = i;
@@ -376,14 +376,14 @@ e("systemsMgr").closeSystem(this.sysName);
 onVideoAdEnd: function() {
 var t = {};
 for (var i in this.addConfig) {
-var n = e("dataMgr").playerData[i] + this.addConfig[i];
-t[i] = n;
+var h = e("dataMgr").playerData[i] + this.addConfig[i];
+t[i] = h;
 }
 if (Object.keys(t).length > 0) {
 e("dataMgr").commitPlayerDataToServer(t, function() {
 for (var i in t) e("dataMgr").playerData[i] = t[i];
-var n = e("textConfig").getTextByIdAndLanguageType(163);
-e("notificationMgr").pushNoti(n);
+var h = e("textConfig").getTextByIdAndLanguageType(163);
+e("notificationMgr").pushNoti(h);
 });
 e("systemsMgr").closeSystem(this.sysName, 2);
 }
@@ -403,10 +403,10 @@ addPropertySysConfig: [ function(e, t, i) {
 cc._RF.push(t, "45f0cLMfpZENYbF+crI7T9N", "addPropertySysConfig");
 t.exports = {
 1: {
-physicalPower: 10
+physicalPower: 5
 },
 2: {
-heart: 20
+heart: 10
 }
 };
 cc._RF.pop();
@@ -414,7 +414,7 @@ cc._RF.pop();
 advertisMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "d2cc9xBWpRNy65AgLl//eBO", "advertisMgr");
-var n = new (cc.Class({
+var h = new (cc.Class({
 extends: cc.Component,
 properties: {
 videoAd: null,
@@ -445,12 +445,12 @@ activityNode: null,
 isRewardSend: !1
 },
 showActivityNode: function() {
-var t = e("resMgr").reses.activityNodePrefab, i = cc.instantiate(t), n = i.getChildByName("bg");
-n.width = cc.winSize.width;
-n.height = cc.winSize.height;
-n.on("touchstart", function() {});
-var a = i.getChildByName("activity");
-cc.tween(a).repeatForever(cc.tween().by(2, {
+var t = e("resMgr").reses.activityNodePrefab, i = cc.instantiate(t), h = i.getChildByName("bg");
+h.width = cc.winSize.width;
+h.height = cc.winSize.height;
+h.on("touchstart", function() {});
+var n = i.getChildByName("activity");
+cc.tween(n).repeatForever(cc.tween().by(2, {
 angle: 360
 })).start();
 this.activityNode = i;
@@ -524,7 +524,7 @@ null != i && (i.canShowNoti = !0);
 },
 adViewWillDismissScreen: function(e) {},
 adViewWillLeaveApplication: function(e) {},
-reward: function(t, i, n) {
+reward: function(t, i, h) {
 e.isRewardSend = !0;
 e.onVideoAdEnd();
 }
@@ -558,12 +558,42 @@ e("notificationMgr").pushNoti(i);
 }
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {
 notificationMgr: "notificationMgr",
 resMgr: "resMgr",
 textConfig: "textConfig"
+} ],
+bgmMgr: [ function(e, t, i) {
+"use strict";
+cc._RF.push(t, "85e7aM+gYxGO7/681vwMtI2", "bgmMgr");
+var h = new (cc.Class({
+extends: cc.Component,
+properties: {
+selectedSection: {
+get: function() {
+return this._selectedSection;
+},
+set: function(e) {
+e.toString() != this.selectedSection && this.playBgm(e);
+this._selectedSection = e;
+}
+}
+},
+playBgm: function(t) {
+cc.audioEngine.stopAll();
+var i = e("sectionConfig")[t.toString()].bgmPath;
+cc.loader.loadRes(i, function(e, t) {
+cc.audioEngine.play(t, 1, 1);
+});
+},
+start: function() {}
+}))();
+t.exports = h;
+cc._RF.pop();
+}, {
+sectionConfig: "sectionConfig"
 } ],
 bulletMgr: [ function(e, t, i) {
 "use strict";
@@ -616,18 +646,18 @@ this.node.y = i;
 },
 getNearestWallInfo: function(e) {
 if (1 == this.bulletType) {
-var t = null, i = this.levelMgr.walls, n = this.helper.getDisToSelfBorder(this.node, e);
-for (var a in i) {
-var h = i[a], o = this.helper.getLinesOfOneNode(h);
-for (var s in o) {
-var l = o[s];
-if (0 != (x = this.helper.isOneNodeWillCollidWithOneLineInDirection(this.node, l, e))) {
-var g = this.disFromBorder + n;
-if (null == t || x < t.dis + g) {
-var r = this.helper.getSuitablePoint(cc.v2(this.node.x, this.node.y), x, g, e);
+var t = null, i = this.levelMgr.walls, h = this.helper.getDisToSelfBorder(this.node, e);
+for (var n in i) {
+var a = i[n], g = this.helper.getLinesOfOneNode(a);
+for (var o in g) {
+var s = g[o];
+if (0 != (w = this.helper.isOneNodeWillCollidWithOneLineInDirection(this.node, s, e))) {
+var l = this.disFromBorder + h;
+if (null == t || w < t.dis + l) {
+var d = this.helper.getSuitablePoint(cc.v2(this.node.x, this.node.y), w, l, e);
 t = {
-dis: cc.v2(r.x - this.node.x, r.y - this.node.y).mag(),
-suitablePosition: r
+dis: cc.v2(d.x - this.node.x, d.y - this.node.y).mag(),
+suitablePosition: d
 };
 }
 }
@@ -640,48 +670,48 @@ if (null == this.pathWaysNode || 0 == this.pathWaysNode.children.length) return 
 dis: 0,
 suitablePosition: this.node.position
 };
-var d = null;
-for (var a in this.pathWaysNode.children) {
-var c = this.pathWaysNode.children[a];
-0 != this.helper.isTwoNodeCross(this.node, c) && (null != d && 1 != this._isPathNodeMoveDirection(c, e) || (d = c));
+var r = null;
+for (var n in this.pathWaysNode.children) {
+var c = this.pathWaysNode.children[n];
+0 != this.helper.isTwoNodeCross(this.node, c) && (null != r && 1 != this._isPathNodeMoveDirection(c, e) || (r = c));
 }
-if (0 == this._isPathNodeMoveDirection(d, e)) return {
+if (0 == this._isPathNodeMoveDirection(r, e)) return {
 dis: 0,
 suitablePosition: this.node.position
 };
-var y = this.helper.makeRay(this.node.position, 3e3, e), u = null, p = this.helper.getLinesOfOneNode(d);
-for (var s in p) {
-var x;
-l = p[s];
-"false" != (x = this.helper.rayTest(y, l)).toString() && (null == u || x > u) && (u = x);
+var y = this.helper.makeRay(this.node.position, 3e3, e), u = null, x = this.helper.getLinesOfOneNode(r);
+for (var o in x) {
+var w;
+s = x[o];
+"false" != (w = this.helper.rayTest(y, s)).toString() && (null == u || w > u) && (u = w);
 }
 null == u && (u = 5);
 return {
-suitablePosition: r = this.helper.getSuitablePoint(this.node.position, u, 0, e),
-dis: x = cc.v2(r.x - this.node.x, r.y - this.node.y).mag()
+suitablePosition: d = this.helper.getSuitablePoint(this.node.position, u, 0, e),
+dis: w = cc.v2(d.x - this.node.x, d.y - this.node.y).mag()
 };
 }
 },
 getMaxDisFromPathNode: function(e, t) {
-var i = this.helper.makeRay(this.node.position, 3e3, t), n = this.helper.makeRay(this.node.position, 3e3, cc.v2(-t.x, -t.y)), a = this.helper.getLinesOfOneNode(e), h = this, o = function(e) {
+var i = this.helper.makeRay(this.node.position, 3e3, t), h = this.helper.makeRay(this.node.position, 3e3, cc.v2(-t.x, -t.y)), n = this.helper.getLinesOfOneNode(e), a = this, g = function(e) {
 var t = null;
-for (var i in a) {
-var n = a[i], o = h.helper.rayTest(e, n);
-if (0 != o) return o;
+for (var i in n) {
+var h = n[i], g = a.helper.rayTest(e, h);
+if (0 != g) return g;
 }
 null == t && (t = 5);
 return t;
-}, s = o(i), l = o(n);
-return s >= l ? s : l;
+}, o = g(i), s = g(h);
+return o >= s ? o : s;
 },
 isPathNodeMoveDirection: function(e, t) {
-var i = this.getMaxDisFromPathNode(e, t), n = t.rotate(Math.PI / 2);
-return i > this.getMaxDisFromPathNode(e, n);
+var i = this.getMaxDisFromPathNode(e, t), h = t.rotate(Math.PI / 2);
+return i > this.getMaxDisFromPathNode(e, h);
 },
 _isPathNodeMoveDirection: function(e, t) {
 t.normalizeSelf();
-var i = -e.angle * Math.PI / 180, n = cc.v2(1, 0).rotate(i);
-return 1 == t.fuzzyEquals(n, .001) || 1 == t.fuzzyEquals(cc.v2(-n.x, -n.y), .001);
+var i = -e.angle * Math.PI / 180, h = cc.v2(1, 0).rotate(i);
+return 1 == t.fuzzyEquals(h, .001) || 1 == t.fuzzyEquals(cc.v2(-h.x, -h.y), .001);
 }
 });
 cc._RF.pop();
@@ -691,15 +721,15 @@ helper: "helper"
 dataMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "0cd8087H/9I77MXIhlobXJP", "dataMgr");
-function n(e) {
+function h(e) {
 "@babel/helpers - typeof";
-return (n = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+return (h = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
 })(e);
 }
-var a = new (cc.Class({
+var n = new (cc.Class({
 extends: cc.Component,
 properties: {
 playerData: {
@@ -716,31 +746,31 @@ get: function() {
 if (null == this._dataMonitoredProxyHandler) {
 var t = {
 get: function(e, i) {
-return "object" === n(e[i]) ? new Proxy(e[i], t) : e[i];
+return "object" === h(e[i]) ? new Proxy(e[i], t) : e[i];
 },
-set: function(t, i, n) {
-t[i] = n;
+set: function(t, i, h) {
+t[i] = h;
 e("globalRedPointMgr").setupRedPoints();
-var a = e("systemsMgr").systems;
-e("systemsMgr").systemsGloableDataMonitored(i, n);
-for (var h in a) {
-var o = a[h];
-if (null != o.opendNode) {
-null != (g = o.opendNode.getComponent(o.mgrName)) && "function" == typeof g.dataMonitored && g.dataMonitored(i, n);
+var n = e("systemsMgr").systems;
+e("systemsMgr").systemsGloableDataMonitored(i, h);
+for (var a in n) {
+var g = n[a];
+if (null != g.opendNode) {
+null != (l = g.opendNode.getComponent(g.mgrName)) && "function" == typeof l.dataMonitored && l.dataMonitored(i, h);
 }
 }
-var s = cc.director.getScene(), l = null;
-switch (s.name) {
+var o = cc.director.getScene(), s = null;
+switch (o.name) {
 case "mainScene":
-l = "mainSceneMgr";
+s = "mainSceneMgr";
 break;
 
 case "levelScene":
-l = "levelMgr";
+s = "levelMgr";
 }
-if (null != l) {
-var g;
-null != (g = s.getChildByName("Canvas").getComponent(l)) && "function" == typeof g.dataMonitored && g.dataMonitored(i, n);
+if (null != s) {
+var l;
+null != (l = o.getChildByName("Canvas").getComponent(s)) && "function" == typeof l.dataMonitored && l.dataMonitored(i, h);
 }
 return !0;
 }
@@ -753,14 +783,14 @@ return this._dataMonitoredProxyHandler;
 delegate: null
 },
 updatePlayerDataFromServer: function(t) {
-var i = e("networkMgr"), n = i.makeMessageObj("dataModule", "queryMessageType");
-n.message.playerId = t;
-var a = this;
-n.successCallBack = function(e) {
+var i = e("networkMgr"), h = i.makeMessageObj("dataModule", "queryMessageType");
+h.message.playerId = t;
+var n = this;
+h.successCallBack = function(e) {
 var t = e.responseText;
-"success" == (t = JSON.parse(t)).type && (a.playerData = t.playerData);
+"success" == (t = JSON.parse(t)).type && (n.playerData = t.playerData);
 };
-i.sendMessageByMsgObj(n);
+i.sendMessageByMsgObj(h);
 },
 onPlayerDataUpdated: function() {
 cc.log("now player data is " + JSON.stringify(this.playerData));
@@ -772,19 +802,19 @@ cc.director.getScene().getChildByName("Canvas").getComponent("loginSceneMgr").on
 }
 },
 commitPlayerDataToServer: function(t, i) {
-var n = e("networkMgr"), a = n.makeMessageObj("dataModule", "commitMessageTyp");
-a.message.playerId = this.playerData.id;
-if (null != a.message.playerId) {
-a.message.commitBody = t;
-a.successCallBack = function(e) {
+var h = e("networkMgr"), n = h.makeMessageObj("dataModule", "commitMessageTyp");
+n.message.playerId = this.playerData.id;
+if (null != n.message.playerId) {
+n.message.commitBody = t;
+n.successCallBack = function(e) {
 var t = e.responseText;
 "commitSuccess" == (t = JSON.parse(t)).type && i();
 };
-n.sendMessageByMsgObj(a);
+h.sendMessageByMsgObj(n);
 } else cc.log("no player data");
 }
 }))();
-t.exports = a;
+t.exports = n;
 cc._RF.pop();
 }, {
 globalRedPointMgr: "globalRedPointMgr",
@@ -895,7 +925,7 @@ cc._RF.pop();
 ensureSystem: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "2cfa2q87j1AbaAokGOxDLrP", "ensureSystem");
-var n = new (cc.Class({
+var h = new (cc.Class({
 extends: cc.Component,
 properties: {},
 onLoad: function() {},
@@ -905,7 +935,7 @@ var t = e("resMgr").reses.ensureSysPrefab;
 return cc.instantiate(t);
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {
 resMgr: "resMgr"
@@ -913,14 +943,14 @@ resMgr: "resMgr"
 gameMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "29a86GW8otIsI4PtNbaQyRE", "gameMgr");
-var n = new (cc.Class({
+var h = new (cc.Class({
 extends: cc.Component,
 properties: {},
 start: function() {},
 enterLevelScene: function(e) {
 var t = this;
-cc.director.preloadScene("levelScene", null, function(i, n) {
-n.scene.getChildByName("Canvas").getComponent("levelMgr").level = e;
+cc.director.preloadScene("levelScene", null, function(i, h) {
+h.scene.getChildByName("Canvas").getComponent("levelMgr").level = e;
 t.animatedToScene("levelScene");
 });
 },
@@ -938,19 +968,19 @@ cc.director.loadScene(t);
 }).start();
 },
 _generateLevelSceneConfig: function() {
-var t = e("levelConfig"), i = {}, n = 0, a = function(n) {
-if (n == Object.keys(t).length) {
-var a = e("networkMgr"), h = a.makeMessageObj("helperModule", "generateLevelConfigFileMessageType");
-h.message.data = i;
-a.sendMessageByMsgObj(h);
+var t = e("levelConfig"), i = {}, h = 0, n = function(h) {
+if (h == Object.keys(t).length) {
+var n = e("networkMgr"), a = n.makeMessageObj("helperModule", "generateLevelConfigFileMessageType");
+a.message.data = i;
+n.sendMessageByMsgObj(a);
 }
 };
-for (var h in Object.keys(t)) {
-var o = Object.keys(t)[h];
+for (var a in Object.keys(t)) {
+var g = Object.keys(t)[a];
 (function(e, t) {
-cc.director.preloadScene(e, null, function(h, o) {
+cc.director.preloadScene(e, null, function(a, g) {
 cc.log("preload scene: " + e);
-var s = o.scene.children[0], l = {}, g = function(e) {
+var o = g.scene.children[0], s = {}, l = function(e) {
 var t = {};
 t.x = e.x;
 t.y = e.y;
@@ -958,55 +988,55 @@ t.width = e.width;
 t.height = e.height;
 t.angle = e.angle;
 return t;
-}, r = s.getChildByName("fillNodes"), d = [];
+}, d = o.getChildByName("fillNodes"), r = [];
 cc.log("setup fillNodes");
-for (var c in r.children) {
-var y = g(r.children[c]);
-d.push(y);
+for (var c in d.children) {
+var y = l(d.children[c]);
+r.push(y);
 }
-l.fillNodes = d;
-var u = s.getChildByName("walls"), p = [];
+s.fillNodes = r;
+var u = o.getChildByName("walls"), x = [];
 cc.log("setup walls");
 for (var c in u.children) {
-var x = g(u.children[c]);
-p.push(x);
+var w = l(u.children[c]);
+x.push(w);
 }
-l.walls = p;
-var m = s.getChildByName("targets"), w = [];
+s.walls = x;
+var p = o.getChildByName("targets"), m = [];
 cc.log("setup targets");
-for (var c in m.children) {
-var f = g(m.children[c]);
-w.push(f);
+for (var c in p.children) {
+var f = l(p.children[c]);
+m.push(f);
 }
-l.targets = w;
-var v = s.getChildByName("pathWaysNode"), N = [];
+s.targets = m;
+var N = o.getChildByName("pathWaysNode"), v = [];
 cc.log("setup pathWaysNode");
-for (var c in v.children) {
-var C = v.children[c], S = {};
-S.name = C.name;
-S.children = [];
-for (var b in C.children) {
-var M = g(C.children[b]);
-S.children.push(M);
+for (var c in N.children) {
+var C = N.children[c], b = {};
+b.name = C.name;
+b.children = [];
+for (var S in C.children) {
+var M = l(C.children[S]);
+b.children.push(M);
 }
-N.push(S);
+v.push(b);
 }
-l.pathWaysNode = N;
-var T = s.getChildByName("bullets"), B = [];
+s.pathWaysNode = v;
+var T = o.getChildByName("bullets"), P = [];
 cc.log("setup bullets");
 for (var c in T.children) {
-var P = T.children[c], I = {}, _ = g(P);
+var B = T.children[c], I = {}, _ = l(B);
 I.basic = _;
-var L = P.getComponent("bulletMgr"), R = {};
+var L = B.getComponent("bulletMgr"), R = {};
 R.bulletType = L.bulletType;
 R.pathWaysNodeName = "";
 null != L.pathWaysNode && (R.pathWaysNodeName = L.pathWaysNode.name);
 I.mgr = R;
-B.push(I);
+P.push(I);
 }
-l.bullets = B;
-i[t.toString()] = l;
-a(n += 1);
+s.bullets = P;
+i[t.toString()] = s;
+n(h += 1);
 });
 })(function(e) {
 var t = e;
@@ -1019,11 +1049,11 @@ case 2:
 t = "0" + t.toString();
 }
 return "level" + t;
-}(o), o);
+}(g), g);
 }
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {
 levelConfig: "levelConfig",
@@ -1072,16 +1102,16 @@ this.touches.push(t);
 },
 onTouchMove: function(e) {
 if (1 == this.isDragEnable && 1 == this.touches.length) {
-var t = e.getDelta(), i = -1 * t.x, n = -1 * t.y;
+var t = e.getDelta(), i = -1 * t.x, h = -1 * t.y;
 i *= this.dragSpeed;
-n *= this.dragSpeed;
-var a = this.camaraNode.getComponent(cc.Camera), h = cc.find("Canvas"), o = this.camaraNode.x + i, s = this.camaraNode.y + n, l = o + h.width / 2 * (1 / a.zoomRatio), g = o - h.width / 2 * (1 / a.zoomRatio), r = s + h.height / 2 * (1 / a.zoomRatio), d = s - h.height / 2 * (1 / a.zoomRatio);
-l <= this.maxBoundX && g >= this.minBoundX && (this.camaraNode.x = o);
-r <= this.maxBoundY && d >= this.minBoundY && (this.camaraNode.y = s);
+h *= this.dragSpeed;
+var n = this.camaraNode.getComponent(cc.Camera), a = cc.find("Canvas"), g = this.camaraNode.x + i, o = this.camaraNode.y + h, s = g + a.width / 2 * (1 / n.zoomRatio), l = g - a.width / 2 * (1 / n.zoomRatio), d = o + a.height / 2 * (1 / n.zoomRatio), r = o - a.height / 2 * (1 / n.zoomRatio);
+s <= this.maxBoundX && l >= this.minBoundX && (this.camaraNode.x = g);
+d <= this.maxBoundY && r >= this.minBoundY && (this.camaraNode.y = o);
 }
 if (1 == this.isZoomEnable && 2 == this.touches.length) {
-var c = this.touches[0], y = this.touches[1], u = c.getLocation(), p = y.getLocation(), x = this.distanceOfTwoVector(u, p), m = c.getPreviousLocation(), w = y.getPreviousLocation(), f = x - this.distanceOfTwoVector(m, w), v = (a = this.camaraNode.getComponent(cc.Camera)).zoomRatio + this.zoomRatio * f;
-v >= minZoomRatio && v <= maxZoomRatio && (a.zoomRatio = v);
+var c = this.touches[0], y = this.touches[1], u = c.getLocation(), x = y.getLocation(), w = this.distanceOfTwoVector(u, x), p = c.getPreviousLocation(), m = y.getPreviousLocation(), f = w - this.distanceOfTwoVector(p, m), N = (n = this.camaraNode.getComponent(cc.Camera)).zoomRatio + this.zoomRatio * f;
+N >= minZoomRatio && N <= maxZoomRatio && (n.zoomRatio = N);
 }
 },
 onTouchEnd: function(e) {
@@ -1110,7 +1140,7 @@ cc._RF.pop();
 gloableConfig: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "30519IO6mJCyIUJ9xGqrBAW", "gloableConfig");
-var n = new (cc.Class({
+var h = new (cc.Class({
 properties: {
 basicIp: "diamonds.tdreamstudio.com",
 basicPort: 8888,
@@ -1193,13 +1223,13 @@ requestType: "completeCurrent"
 }
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {} ],
 globalRedPointMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "d895aDdCFhBNIuhwEdMtJNe", "globalRedPointMgr");
-var n = cc.Class({
+var h = cc.Class({
 extends: cc.Component,
 properties: {
 currentRedPointMgrs: []
@@ -1215,15 +1245,15 @@ getRedPointMgrs: function() {
 this.currentRedPointMgrs = [];
 var e = this;
 (function t(i) {
-for (var n in i.children) {
-var a = i.children[n], h = a.getComponent("redPointMgr");
-null != h && e.currentRedPointMgrs.push(h);
-t(a);
+for (var h in i.children) {
+var n = i.children[h], a = n.getComponent("redPointMgr");
+null != a && e.currentRedPointMgrs.push(a);
+t(n);
 }
 })(cc.director.getScene().getChildByName("Canvas"));
 }
 });
-t.exports = new n();
+t.exports = new h();
 cc._RF.pop();
 }, {} ],
 guildNodeMgr: [ function(e, t, i) {
@@ -1250,14 +1280,14 @@ i.height = cc.winSize.height;
 i.on("touchstart", function() {});
 this.guildLabelNode.getComponent(cc.Label).string = t.getTextByIdAndLanguageType(159);
 this.guildLabelNode.getComponent(cc.Label)._forceUpdateRenderData();
-var n = this.header + this.guildBgNode.height + this.sectionDis + this.guildLabelNode.height + this.sectionDis + this.buttonNode.height + this.footer;
-this.uibg.height = n;
+var h = this.header + this.guildBgNode.height + this.sectionDis + this.guildLabelNode.height + this.sectionDis + this.buttonNode.height + this.footer;
+this.uibg.height = h;
 this.guildBgNode.y = this.uibg.height / 2 - this.header - this.guildBgNode.height / 2;
 this.guildLabelNode.y = this.guildBgNode.y - this.guildBgNode.height / 2 - this.sectionDis;
 this.buttonNode.y = -this.uibg.height / 2 + this.footer + this.buttonNode.height / 2;
-var a = this;
+var n = this;
 this.buttonNode.on("click", function() {
-a.node.destroy();
+n.node.destroy();
 });
 this.buttonNode.getChildByName("textLabel").getComponent(cc.Label).string = t.getTextByIdAndLanguageType(122);
 }
@@ -1269,179 +1299,179 @@ textConfig: "textConfig"
 helper: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "08b56AlCIJMzL7NY0hkRsv7", "helper");
-var n = cc.Class({
+var h = cc.Class({
 properties: {},
-segmentsIntr: function(e, t, i, n) {
-var a = (t.y - e.y) * (n.x - i.x) - (e.x - t.x) * (i.y - n.y);
-if (0 == a) return !1;
-var h = ((t.x - e.x) * (n.x - i.x) * (i.y - e.y) + (t.y - e.y) * (n.x - i.x) * e.x - (n.y - i.y) * (t.x - e.x) * i.x) / a, o = -((t.y - e.y) * (n.y - i.y) * (i.x - e.x) + (t.x - e.x) * (n.y - i.y) * e.y - (n.x - i.x) * (t.y - e.y) * i.y) / a;
-return this.similarMinus(h, e.x) * this.similarMinus(h, t.x) <= 0 && this.similarMinus(o, e.y) * this.similarMinus(o, t.y) <= 0 && this.similarMinus(h, i.x) * this.similarMinus(h, n.x) <= 0 && this.similarMinus(o, i.y) * this.similarMinus(o, n.y) <= 0 && {
-x: h,
-y: o
+segmentsIntr: function(e, t, i, h) {
+var n = (t.y - e.y) * (h.x - i.x) - (e.x - t.x) * (i.y - h.y);
+if (0 == n) return !1;
+var a = ((t.x - e.x) * (h.x - i.x) * (i.y - e.y) + (t.y - e.y) * (h.x - i.x) * e.x - (h.y - i.y) * (t.x - e.x) * i.x) / n, g = -((t.y - e.y) * (h.y - i.y) * (i.x - e.x) + (t.x - e.x) * (h.y - i.y) * e.y - (h.x - i.x) * (t.y - e.y) * i.y) / n;
+return this.similarMinus(a, e.x) * this.similarMinus(a, t.x) <= 0 && this.similarMinus(g, e.y) * this.similarMinus(g, t.y) <= 0 && this.similarMinus(a, i.x) * this.similarMinus(a, h.x) <= 0 && this.similarMinus(g, i.y) * this.similarMinus(g, h.y) <= 0 && {
+x: a,
+y: g
 };
 },
-rotateSegment: function(e, t, i, n) {
+rotateSegment: function(e, t, i, h) {
 return {
-p1: this.rotateOnePoint(e, i, n),
-p2: this.rotateOnePoint(t, i, n)
+p1: this.rotateOnePoint(e, i, h),
+p2: this.rotateOnePoint(t, i, h)
 };
 },
 rotateOnePoint: function(e, t, i) {
-var n = i * Math.PI / 180, a = cc.v2(e.x - t.x, e.y - t.y).rotate(n);
-return cc.v2(a.x + t.x, a.y + t.y);
+var h = i * Math.PI / 180, n = cc.v2(e.x - t.x, e.y - t.y).rotate(h);
+return cc.v2(n.x + t.x, n.y + t.y);
 },
 rayTest: function(e, t) {
 var i = this.segmentsIntr(e.p1, e.p2, t.p1, t.p2);
 return 0 != i && cc.v2(i.x - e.p1.x, i.y - e.p1.y).mag();
 },
-getSuitablePoint: function(e, t, i, n) {
+getSuitablePoint: function(e, t, i, h) {
 if (i >= t) return e;
-n.normalizeSelf();
-var a = t * n.x, h = t * n.y, o = (t - i) / t, s = e.x + o * a, l = e.y + o * h;
-return cc.v2(s, l);
+h.normalizeSelf();
+var n = t * h.x, a = t * h.y, g = (t - i) / t, o = e.x + g * n, s = e.y + g * a;
+return cc.v2(o, s);
 },
 makeRay: function(e, t, i) {
-var n = {
+var h = {
 p1: e,
 p2: null
 };
 1 != i.mag() && i.normalizeSelf();
-var a = i.x * t, h = i.y * t, o = e.x + a, s = e.y + h;
-n.p2 = cc.v2(o, s);
-return n;
+var n = i.x * t, a = i.y * t, g = e.x + n, o = e.y + a;
+h.p2 = cc.v2(g, o);
+return h;
 },
 getLinesOfOneNode: function(e) {
-var t = e.height / 2, i = cc.v2(e.x - e.width / 2, e.y - t), n = cc.v2(e.x + e.width / 2, e.y - t), a = cc.v2(i.x, i.y + e.height), h = cc.v2(n.x, n.y + e.height), o = cc.v2(e.x - e.width / 2, e.y + e.height / 2), s = cc.v2(o.x, o.y - e.height), l = cc.v2(e.x + e.width / 2, e.y + e.height / 2), g = cc.v2(l.x, l.y - e.height), r = {
+var t = e.height / 2, i = cc.v2(e.x - e.width / 2, e.y - t), h = cc.v2(e.x + e.width / 2, e.y - t), n = cc.v2(i.x, i.y + e.height), a = cc.v2(h.x, h.y + e.height), g = cc.v2(e.x - e.width / 2, e.y + e.height / 2), o = cc.v2(g.x, g.y - e.height), s = cc.v2(e.x + e.width / 2, e.y + e.height / 2), l = cc.v2(s.x, s.y - e.height), d = {
 p1: i,
-p2: n
-}, d = {
-p1: a,
 p2: h
+}, r = {
+p1: n,
+p2: a
 }, c = {
-p1: o,
-p2: s
+p1: g,
+p2: o
 }, y = {
-p1: l,
-p2: g
+p1: s,
+p2: l
 };
 if (null != e.angle && void 0 != e.angle) {
-r = this.rotateSegment(i, n, cc.v2(e.x, e.y), -e.angle);
-d = this.rotateSegment(a, h, cc.v2(e.x, e.y), -e.angle);
-c = this.rotateSegment(o, s, cc.v2(e.x, e.y), -e.angle);
-y = this.rotateSegment(l, g, cc.v2(e.x, e.y), -e.angle);
+d = this.rotateSegment(i, h, cc.v2(e.x, e.y), -e.angle);
+r = this.rotateSegment(n, a, cc.v2(e.x, e.y), -e.angle);
+c = this.rotateSegment(g, o, cc.v2(e.x, e.y), -e.angle);
+y = this.rotateSegment(s, l, cc.v2(e.x, e.y), -e.angle);
 }
 var u = {
-lowerLine: r,
-upperLine: d,
+lowerLine: d,
+upperLine: r,
 leftLine: c,
 rightLine: y
 };
-null != r && null != d && null != c && null != y || cc.error("NOT INVALID LINES");
+null != d && null != r && null != c && null != y || cc.error("NOT INVALID LINES");
 return u;
 },
 isTwoNodeCross: function(e, t) {
-var i = this.getInfoOfOneNode(e), n = this.getInfoOfOneNode(t);
-return !(i.minY > n.maxY || n.minY > i.maxY || i.minX > n.maxX || n.minX > i.maxX);
+var i = this.getInfoOfOneNode(e), h = this.getInfoOfOneNode(t);
+return !(i.minY > h.maxY || h.minY > i.maxY || i.minX > h.maxX || h.minX > i.maxX);
 },
 getInfoOfOneNode: function(e) {
-var t = cc.v2(e.x - e.width / 2, e.y + e.height / 2), i = cc.v2(e.x + e.width / 2, t.y), n = cc.v2(t.x, e.y - e.height / 2), a = cc.v2(i.x, n.y);
+var t = cc.v2(e.x - e.width / 2, e.y + e.height / 2), i = cc.v2(e.x + e.width / 2, t.y), h = cc.v2(t.x, e.y - e.height / 2), n = cc.v2(i.x, h.y);
 if (null != e.angle && void 0 != e.angle) {
 t = this.rotateOnePoint(t, cc.v2(e.x, e.y), -e.angle);
 i = this.rotateOnePoint(i, cc.v2(e.x, e.y), -e.angle);
+h = this.rotateOnePoint(h, cc.v2(e.x, e.y), -e.angle);
 n = this.rotateOnePoint(n, cc.v2(e.x, e.y), -e.angle);
-a = this.rotateOnePoint(a, cc.v2(e.x, e.y), -e.angle);
 }
-var h = t.x, o = a.x, s = n.y, l = i.y, g = [ t, n, i, a ];
-for (var r in g) {
-var d = g[r];
-h > d.x && (h = d.x);
-o < d.x && (o = d.x);
-s > d.y && (s = d.y);
-l < d.y && (l = d.y);
+var a = t.x, g = n.x, o = h.y, s = i.y, l = [ t, h, i, n ];
+for (var d in l) {
+var r = l[d];
+a > r.x && (a = r.x);
+g < r.x && (g = r.x);
+o > r.y && (o = r.y);
+s < r.y && (s = r.y);
 }
 return {
-minX: h,
-minY: s,
-maxX: o,
-maxY: l
+minX: a,
+minY: o,
+maxX: g,
+maxY: s
 };
 },
 getDisToSelfBorder: function(e, t) {
-var i = this.makeRay(cc.v2(e.x, e.y), 1e3, t), n = this.getLinesOfOneNode(e);
-for (var a in n) {
-var h = n[a], o = this.rayTest(i, h);
-if (0 != o) return o;
+var i = this.makeRay(cc.v2(e.x, e.y), 1e3, t), h = this.getLinesOfOneNode(e);
+for (var n in h) {
+var a = h[n], g = this.rayTest(i, a);
+if (0 != g) return g;
 }
 },
 getPointsOfOneNode: function(e) {
-var t = cc.v2(e.x - e.width / 2, e.y + e.height / 2), i = cc.v2(e.x + e.width / 2, t.y), n = cc.v2(t.x, e.y - e.height / 2), a = cc.v2(i.x, n.y);
+var t = cc.v2(e.x - e.width / 2, e.y + e.height / 2), i = cc.v2(e.x + e.width / 2, t.y), h = cc.v2(t.x, e.y - e.height / 2), n = cc.v2(i.x, h.y);
 if (null != e.angle && void 0 != e.angle) {
 t = this.rotateOnePoint(t, cc.v2(e.x, e.y), -e.angle);
 i = this.rotateOnePoint(i, cc.v2(e.x, e.y), -e.angle);
+h = this.rotateOnePoint(h, cc.v2(e.x, e.y), -e.angle);
 n = this.rotateOnePoint(n, cc.v2(e.x, e.y), -e.angle);
-a = this.rotateOnePoint(a, cc.v2(e.x, e.y), -e.angle);
 }
 return {
 leftUpPoint: t,
-leftDownPoint: n,
+leftDownPoint: h,
 rightUpPoint: i,
-rightDownPoint: a
+rightDownPoint: n
 };
 },
 isOneNodeWillCollidWithOneLineInDirection: function(e, t, i) {
-var n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 3e3, a = this.getPointsOfOneNode(e), h = [];
-for (var o in a) {
-var s = a[o], l = this.makeRay(s, n, i);
-h.push(l);
+var h = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 3e3, n = this.getPointsOfOneNode(e), a = [];
+for (var g in n) {
+var o = n[g], s = this.makeRay(o, h, i);
+a.push(s);
 }
-var g = null, r = null, d = null, c = null;
-for (var y in h) {
-var u = h[y], p = u.p1.x, x = u.p2.x;
-if (p > u.p2.x) {
-p = u.p2.x;
-x = u.p1.x;
+var l = null, d = null, r = null, c = null;
+for (var y in a) {
+var u = a[y], x = u.p1.x, w = u.p2.x;
+if (x > u.p2.x) {
+x = u.p2.x;
+w = u.p1.x;
 }
-var m = u.p1.y, w = u.p2.y;
-if (m > u.p2.y) {
-m = u.p2.y;
-w = u.p1.y;
+var p = u.p1.y, m = u.p2.y;
+if (p > u.p2.y) {
+p = u.p2.y;
+m = u.p1.y;
 }
-if (null == g) {
-g = p;
-d = x;
+if (null == l) {
+l = x;
+r = w;
 } else {
-g > p && (g = p);
-d < x && (d = x);
+l > x && (l = x);
+r < w && (r = w);
 }
-if (null == r) {
-r = m;
-c = w;
+if (null == d) {
+d = p;
+c = m;
 } else {
-r > m && (r = m);
-c < w && (c = w);
+d > p && (d = p);
+c < m && (c = m);
 }
 }
-var f = t.p1.x, v = t.p2.x, N = t.p1.y, C = t.p2.y;
+var f = t.p1.x, N = t.p2.x, v = t.p1.y, C = t.p2.y;
 if (f > t.p2.x) {
 f = t.p2.x;
-v = t.p1.x;
+N = t.p1.x;
 }
-if (N > t.p2.y) {
-N = t.p2.y;
+if (v > t.p2.y) {
+v = t.p2.y;
 C = t.p1.y;
 }
-if (r >= C || c <= N || g >= v || d <= f) return !1;
-var S = cc.v2(t.p2.x - t.p1.x, t.p2.y - t.p1.y);
-S.normalizeSelf();
-var b = this.makeRay(t.p2, 3e3, S).p2, M = {
-p1: this.makeRay(t.p1, 3e3, cc.v2(-S.x, -S.y)).p2,
-p2: b
-}, T = this.makeRay(cc.v2(e.x, e.y), 3e3, i), B = this.rayTest(T, M);
-return 0 != B && B;
+if (d >= C || c <= v || l >= N || r <= f) return !1;
+var b = cc.v2(t.p2.x - t.p1.x, t.p2.y - t.p1.y);
+b.normalizeSelf();
+var S = this.makeRay(t.p2, 3e3, b).p2, M = {
+p1: this.makeRay(t.p1, 3e3, cc.v2(-b.x, -b.y)).p2,
+p2: S
+}, T = this.makeRay(cc.v2(e.x, e.y), 3e3, i), P = this.rayTest(T, M);
+return 0 != P && P;
 },
 isTwoPositionSimilarEqual: function(e, t) {
-var i = t.x - e.x, n = t.y - e.y;
-return !(-.01 > i || .01 < i) && !(-.01 > n || .01 < n);
+var i = t.x - e.x, h = t.y - e.y;
+return !(-.01 > i || .01 < i) && !(-.01 > h || .01 < h);
 },
 isTwoValueSimilarEqual: function(e, t) {
 var i = t - e;
@@ -1453,7 +1483,7 @@ var i = e - t;
 return i;
 }
 });
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {} ],
 levelAreaNodeMgr: [ function(e, t, i) {
@@ -1480,151 +1510,181 @@ levelConfig: [ function(e, t, i) {
 cc._RF.push(t, "cb3edynoalP+oqr1exCykM8", "levelConfig");
 t.exports = {
 1: {
-physicalPowerCost: 2,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 2: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 3: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 4: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 5: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 6: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 7: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 8: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 9: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 10: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 11: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 12: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 13: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 14: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 15: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 16: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 17: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 18: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 19: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 20: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 21: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 22: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 23: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 24: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
 },
 25: {
-physicalPowerCost: 3,
+physicalPowerCost: 4,
+heartForRetryCost: 2,
+desTextId: 101,
+bgmPath: "musics/bgm_001"
+},
+26: {
+physicalPowerCost: 4,
+heartForRetryCost: 2,
+desTextId: 101,
+bgmPath: "musics/bgm_001"
+},
+27: {
+physicalPowerCost: 4,
+heartForRetryCost: 2,
+desTextId: 101,
+bgmPath: "musics/bgm_001"
+},
+28: {
+physicalPowerCost: 4,
+heartForRetryCost: 2,
+desTextId: 101,
+bgmPath: "musics/bgm_001"
+},
+29: {
+physicalPowerCost: 4,
+heartForRetryCost: 2,
+desTextId: 101,
+bgmPath: "musics/bgm_001"
+},
+30: {
+physicalPowerCost: 4,
 heartForRetryCost: 2,
 desTextId: 101,
 bgmPath: "musics/bgm_001"
@@ -1715,9 +1775,9 @@ onLoad: function() {
 var t = e("textConfig"), i = e("helper");
 this.helper = new i();
 this.setupNodesByConfig();
-var n = this;
+var h = this;
 cc.loader.loadRes("effectSounds/hit", function(e, t) {
-n.soundEffect = t;
+h.soundEffect = t;
 });
 this.retryButton.getChildByName("textLabel").getComponent(cc.Label).string = t.getTextByIdAndLanguageType(152);
 cc.find("Canvas/uiNode/currentStepNumLabel").getComponent(cc.Label).string = t.getFormatedString(154, [ 0 ]);
@@ -1736,25 +1796,25 @@ e("networkMgr").delegate = this;
 var i = cc.find("Canvas/walls");
 this.walls = i.children;
 this.targetsNum = cc.find("Canvas/targets").children.length;
-var n = cc.find("Canvas/fillNodes").getComponent(cc.Graphics), a = null, h = cc.find("Canvas/fillNodes").children;
-if (0 != h.length) {
-for (var o in h) {
-var s = h[o];
-if (null == a) {
-n.moveTo(s.x, s.y);
-a = s;
+var h = cc.find("Canvas/fillNodes").getComponent(cc.Graphics), n = null, a = cc.find("Canvas/fillNodes").children;
+if (0 != a.length) {
+for (var g in a) {
+var o = a[g];
+if (null == n) {
+h.moveTo(o.x, o.y);
+n = o;
 }
-n.lineTo(s.x, s.y);
+h.lineTo(o.x, o.y);
 }
-n.close();
-n.stroke();
-n.fill();
-var l = this.node.getChildByName("uiNode").getChildByName("minStepNumLabel"), g = "minStep_level_" + this.level.toString(), r = e("dataMgr").playerData.minSteps[g];
-null != r && void 0 != r || (r = e("textConfig").getTextByIdAndLanguageType(155));
-l.getComponent(cc.Label).string = e("textConfig").getFormatedString(153, [ r.toString() ]);
+h.close();
+h.stroke();
+h.fill();
+var s = this.node.getChildByName("uiNode").getChildByName("minStepNumLabel"), l = "minStep_level_" + this.level.toString(), d = e("dataMgr").playerData.minSteps[l];
+null != d && void 0 != d || (d = e("textConfig").getTextByIdAndLanguageType(155));
+s.getComponent(cc.Label).string = e("textConfig").getFormatedString(153, [ d.toString() ]);
 if (0 == e("dataMgr").playerData.isGuilded) {
-var d = cc.instantiate(e("resMgr").reses.guildNodePrefab);
-this.node.addChild(d);
+var r = cc.instantiate(e("resMgr").reses.guildNodePrefab);
+this.node.addChild(r);
 }
 }
 },
@@ -1773,9 +1833,9 @@ onTouchMove: function(e) {
 if (0 != this.flag) {
 var t = e.getStartLocation(), i = cc.v2(e.getLocationX() - t.x, e.getLocationY() - t.y);
 if (!(i.mag() < this.minDis)) {
-var n = this.getPossiableDirection(i);
-if (-1 != n) {
-null == this.directionTryto && (this.directionTryto = n);
+var h = this.getPossiableDirection(i);
+if (-1 != h) {
+null == this.directionTryto && (this.directionTryto = h);
 this.flag = !1;
 this.moveBullets(this.directionTryto);
 } else this.flag = !1;
@@ -1799,39 +1859,39 @@ moveBullets: function(e) {
 for (var t in this.bullets) if (0 != this.bullets[t].getComponent("bulletMgr").status) return;
 var i = [];
 for (var t in this.bullets) {
-var n = this.bullets[t], a = (g = n.getComponent("bulletMgr")).getNearestWallInfo(e), h = {
-x: a.suitablePosition.x,
-y: a.suitablePosition.y,
-width: n.width,
-height: n.height,
-dis: a.dis,
-originNode: n
+var h = this.bullets[t], n = (l = h.getComponent("bulletMgr")).getNearestWallInfo(e), a = {
+x: n.suitablePosition.x,
+y: n.suitablePosition.y,
+width: h.width,
+height: h.height,
+dis: n.dis,
+originNode: h
 };
-i.push(h);
+i.push(a);
 }
-for (var o = 100; 0 == this.resolveShadows(i, e) && !(o <= 0); ) o -= 1;
-var s = !1;
+for (var g = 100; 0 == this.resolveShadows(i, e) && !(g <= 0); ) g -= 1;
+var o = !1;
 for (var t in i) {
-var l = (h = i[t]).originNode;
-if (1 != this.helper.isTwoPositionSimilarEqual(cc.v2(h.x, h.y), cc.v2(l.x, l.y))) {
-var g;
-(g = l.getComponent("bulletMgr")).targetPosition = cc.v2(h.x, h.y);
-g.movingDirection = e;
-g.movingDirection.normalizeSelf();
-if (null != g.movingTime) {
-var r = cc.v2(g.targetPosition.x - l.x, g.targetPosition.y - l.y).mag() / g.movingTime;
-g.vx = r * g.movingDirection.x;
-g.vy = r * g.movingDirection.y;
+var s = (a = i[t]).originNode;
+if (1 != this.helper.isTwoPositionSimilarEqual(cc.v2(a.x, a.y), cc.v2(s.x, s.y))) {
+var l;
+(l = s.getComponent("bulletMgr")).targetPosition = cc.v2(a.x, a.y);
+l.movingDirection = e;
+l.movingDirection.normalizeSelf();
+if (null != l.movingTime) {
+var d = cc.v2(l.targetPosition.x - s.x, l.targetPosition.y - s.y).mag() / l.movingTime;
+l.vx = d * l.movingDirection.x;
+l.vy = d * l.movingDirection.y;
 } else {
-g.vx = g.movingDirection.x * g.movingSpeed;
-g.vy = g.movingDirection.y * g.movingSpeed;
+l.vx = l.movingDirection.x * l.movingSpeed;
+l.vy = l.movingDirection.y * l.movingSpeed;
 }
-g.status = 1;
+l.status = 1;
 1 != this.isMoved && (this.isMoved = !0);
-0 == s && (s = !0);
+0 == o && (o = !0);
 }
 }
-if (1 == s) {
+if (1 == o) {
 this.currentStepNum += 1;
 null != this.soundEffect && this.scheduleOnce(function() {
 cc.audioEngine.play(this.soundEffect);
@@ -1840,62 +1900,62 @@ cc.audioEngine.play(this.soundEffect);
 },
 onSuccess: function() {
 this.retryButton.getComponent(cc.Button).interactable = !1;
-var t = e("sectionConfig")[this.playerData.currentSection].levels, i = t.indexOf(this.playerData.currentLevel), n = null, a = null, h = null;
-if (i < t.length - 1) n = t[i += 1]; else {
-a = this.playerData.currentSection + 1;
-var o = e("sectionConfig")[a].levels;
-n = o[0];
+var t = e("sectionConfig")[this.playerData.currentSection].levels, i = t.indexOf(this.playerData.currentLevel), h = null, n = null, a = null;
+if (i < t.length - 1) h = t[i += 1]; else {
+n = this.playerData.currentSection + 1;
+var g = e("sectionConfig")[n].levels;
+h = g[0];
 }
-h = null == a ? {
-currentLevel: n
+a = null == n ? {
+currentLevel: h
 } : {
-currentSection: a,
-currentLevel: n
+currentSection: n,
+currentLevel: h
 };
-this.level == e("dataMgr").playerData.currentLevel && (h.physicalPowerCostedFlag = 0);
-0 == e("dataMgr").playerData.isGuilded && (h.isGuilded = 1);
-var s = "minStep_level_" + this.level.toString(), l = e("dataMgr").playerData.minSteps[s];
-if (null == l || void 0 == l || this.currentStepNum < l) {
-h.minSteps = {};
-h.minSteps[s] = this.currentStepNum;
+this.level == e("dataMgr").playerData.currentLevel && (a.physicalPowerCostedFlag = 0);
+0 == e("dataMgr").playerData.isGuilded && (a.isGuilded = 1);
+var o = "minStep_level_" + this.level.toString(), s = e("dataMgr").playerData.minSteps[o];
+if (null == s || void 0 == s || this.currentStepNum < s) {
+a.minSteps = {};
+a.minSteps[o] = this.currentStepNum;
 }
-h.preLevel = this.level;
-var g = this;
-e("dataMgr").commitPlayerDataToServer(h, function() {
-null != a && (g.playerData.currentSection = a);
-null != h.minSteps && void 0 != h.minSteps && (e("dataMgr").playerData.minSteps[s] = g.currentStepNum);
-1 == h.isGuilded && (e("dataMgr").playerData.isGuilded = 1);
-g.playerData.currentLevel = n;
-g.playerData.physicalPowerCostedFlag = 0;
-g.playerData.preLevel = g.level;
+a.preLevel = this.level;
+var l = this;
+e("dataMgr").commitPlayerDataToServer(a, function() {
+null != n && (l.playerData.currentSection = n);
+null != a.minSteps && void 0 != a.minSteps && (e("dataMgr").playerData.minSteps[o] = l.currentStepNum);
+1 == a.isGuilded && (e("dataMgr").playerData.isGuilded = 1);
+l.playerData.currentLevel = h;
+l.playerData.physicalPowerCostedFlag = 0;
+l.playerData.preLevel = l.level;
 e("gameMgr").animatedToScene("mainScene");
 });
 },
 resolveShadows: function(e, t) {
 for (var i in e) {
-var n = e[i];
-for (var a in e) {
-var h = e[a];
-if (n != h) {
-var o = this._selectStaticShadowAndShaodwForResolved(n, h, t);
-if (0 != o) {
-var s = o.staticShadow, l = o.shadowForResolved, g = this.helper.getLinesOfOneNode(s), r = null, d = this.helper.makeRay(cc.v2(s.x, s.y), 1e3, cc.v2(-t.x, -t.y));
-for (var c in g) {
-var y = g[c];
-if (0 != this.helper.rayTest(d, y)) {
-r = y;
+var h = e[i];
+for (var n in e) {
+var a = e[n];
+if (h != a) {
+var g = this._selectStaticShadowAndShaodwForResolved(h, a, t);
+if (0 != g) {
+var o = g.staticShadow, s = g.shadowForResolved, l = this.helper.getLinesOfOneNode(o), d = null, r = this.helper.makeRay(cc.v2(o.x, o.y), 1e3, cc.v2(-t.x, -t.y));
+for (var c in l) {
+var y = l[c];
+if (0 != this.helper.rayTest(r, y)) {
+d = y;
 break;
 }
 }
-var u = this.helper.makeRay(r.p2, 1e3, cc.v2(r.p2.x - r.p1.x, r.p2.y - r.p1.y)).p2;
-r = {
-p1: this.helper.makeRay(r.p1, 1e3, cc.v2(r.p1.x - r.p2.x, r.p1.y - r.p2.y)).p2,
+var u = this.helper.makeRay(d.p2, 1e3, cc.v2(d.p2.x - d.p1.x, d.p2.y - d.p1.y)).p2;
+d = {
+p1: this.helper.makeRay(d.p1, 1e3, cc.v2(d.p1.x - d.p2.x, d.p1.y - d.p2.y)).p2,
 p2: u
 };
-var p = this.helper.makeRay(l.originNode.position, 3e3, t), x = this.helper.rayTest(p, r), m = this.helper.getDisToSelfBorder(l.originNode, t) + l.originNode.getComponent("bulletMgr").disFromBorder, w = this.helper.getSuitablePoint(l.originNode.position, x, m, t), f = cc.v2(w.x - l.originNode.x, w.y - l.originNode.y).mag();
-l.x = w.x;
-l.y = w.y;
-l.dis = f;
+var x = this.helper.makeRay(s.originNode.position, 3e3, t), w = this.helper.rayTest(x, d), p = this.helper.getDisToSelfBorder(s.originNode, t) + s.originNode.getComponent("bulletMgr").disFromBorder, m = this.helper.getSuitablePoint(s.originNode.position, w, p, t), f = cc.v2(m.x - s.originNode.x, m.y - s.originNode.y).mag();
+s.x = m.x;
+s.y = m.y;
+s.dis = f;
 return !1;
 }
 }
@@ -1904,33 +1964,33 @@ return !1;
 return !0;
 },
 _selectStaticShadowAndShaodwForResolved: function(e, t, i) {
-var n = this, a = function(e, t) {
-var a = e.dis, h = !1, o = !1, s = n.helper.getLinesOfOneNode(t);
-for (var l in s) {
-var g = s[l];
-if (0 != n.helper.isOneNodeWillCollidWithOneLineInDirection(e.originNode, g, i, a)) {
-h = !0;
+var h = this, n = function(e, t) {
+var n = e.dis, a = !1, g = !1, o = h.helper.getLinesOfOneNode(t);
+for (var s in o) {
+var l = o[s];
+if (0 != h.helper.isOneNodeWillCollidWithOneLineInDirection(e.originNode, l, i, n)) {
+a = !0;
 break;
 }
 }
-if (0 == h) return !1;
-var r = n.helper.getLinesOfOneNode(t.originNode);
-for (var l in r) {
-g = r[l];
-if (0 != n.helper.isOneNodeWillCollidWithOneLineInDirection(e.originNode, g, i, a)) {
-o = !0;
+if (0 == a) return !1;
+var d = h.helper.getLinesOfOneNode(t.originNode);
+for (var s in d) {
+l = d[s];
+if (0 != h.helper.isOneNodeWillCollidWithOneLineInDirection(e.originNode, l, i, n)) {
+g = !0;
 break;
 }
 }
-return 0 != o;
+return 0 != g;
 };
-if (1 == a(e, t)) {
+if (1 == n(e, t)) {
 return {
 staticShadow: t,
 shadowForResolved: e
 };
 }
-if (1 == a(t, e)) {
+if (1 == n(t, e)) {
 return {
 staticShadow: e,
 shadowForResolved: t
@@ -1940,48 +2000,48 @@ return !1;
 },
 generateWalls: function() {
 var t = e("levelConfig")[this.level], i = cc.find("Canvas/walls");
-for (var n in t.wallPathes) {
-var a = t.wallPathes[n], h = a.points, o = [];
-for (var s in h) {
-var l = null;
-if (0 == s) l = cc.v2(h[s].x, h[s].y); else {
-var g = h[s];
-l = cc.v2(o[s - 1].x + g.x, o[s - 1].y + g.y);
+for (var h in t.wallPathes) {
+var n = t.wallPathes[h], a = n.points, g = [];
+for (var o in a) {
+var s = null;
+if (0 == o) s = cc.v2(a[o].x, a[o].y); else {
+var l = a[o];
+s = cc.v2(g[o - 1].x + l.x, g[o - 1].y + l.y);
 }
-o.push(l);
+g.push(s);
 }
-var r = a.lineWidth, d = a.offset, c = [];
-if (1 == a.isClosed) {
-var y = o[0];
-o.push(y);
+var d = n.lineWidth, r = n.offset, c = [];
+if (1 == n.isClosed) {
+var y = g[0];
+g.push(y);
 }
-for (var s in o) if (0 != s) {
+for (var o in g) if (0 != o) {
 var u = cc.instantiate(this.linePrefab);
-u.height = r;
-var p = cc.v2(o[s].x - o[s - 1].x, o[s].y - o[s - 1].y);
-u.width = p.mag();
-var x = p.signAngle(cc.v2(1, 0)) / Math.PI * 180;
-u.angle = -x;
-u.x = o[s].x - p.x / 2;
-u.y = o[s].y - p.y / 2;
-var m = p.rotate(Math.PI / 2);
-m.normalizeSelf();
-u.x += u.height / 2 * m.x;
-u.y += u.height / 2 * m.y;
-u.x += d.x;
-u.y += d.y;
+u.height = d;
+var x = cc.v2(g[o].x - g[o - 1].x, g[o].y - g[o - 1].y);
+u.width = x.mag();
+var w = x.signAngle(cc.v2(1, 0)) / Math.PI * 180;
+u.angle = -w;
+u.x = g[o].x - x.x / 2;
+u.y = g[o].y - x.y / 2;
+var p = x.rotate(Math.PI / 2);
+p.normalizeSelf();
+u.x += u.height / 2 * p.x;
+u.y += u.height / 2 * p.y;
+u.x += r.x;
+u.y += r.y;
 c.push(u);
 i.addChild(u);
 }
 }
-var w = t.bullets, f = cc.find("Canvas/bullets");
-for (var n in w) {
-var v = w[n], N = cc.instantiate(this.bulletPrefab);
-N.x = v.x;
-N.y = v.y;
-N.width = N.width * v.scale;
-N.height = N.height * v.scale;
-f.addChild(N);
+var m = t.bullets, f = cc.find("Canvas/bullets");
+for (var h in m) {
+var N = m[h], v = cc.instantiate(this.bulletPrefab);
+v.x = N.x;
+v.y = N.y;
+v.width = v.width * N.scale;
+v.height = v.height * N.scale;
+f.addChild(v);
 }
 },
 onClickRetryButton: function() {
@@ -1989,13 +2049,13 @@ var t = e("gameMgr");
 if (0 != this.heartForRetryCost) {
 var i = this.playerData.heart - this.heartForRetryCost;
 if (!(i < 0)) {
-var n = {
+var h = {
 heart: i
-}, a = this;
+}, n = this;
 this.retryButton.getComponent(cc.Button).interactable = !1;
-e("dataMgr").commitPlayerDataToServer(n, function() {
-a.playerData.heart = i;
-t.enterLevelScene(a.level);
+e("dataMgr").commitPlayerDataToServer(h, function() {
+n.playerData.heart = i;
+t.enterLevelScene(n.level);
 });
 }
 } else t.enterLevelScene(this.level);
@@ -2007,72 +2067,70 @@ onClickBackButton: function() {
 e("gameMgr").animatedToScene("mainScene");
 },
 setupNodesByConfig: function() {
-var t = e("resMgr").reses.wallPrefab, i = e("resMgr").reses.bulletPrefab, n = e("resMgr").reses.targetPrefab, a = e("resMgr").reses.pathWayPrefab, h = e("levelSceneConfig")[this.level];
-this._setupFillNodes(h);
-this._setupWalls(h, t);
-this._setupTargets(h, n);
-this._setupPathWaysNode(h, a);
-this._setupBullets(h, i);
+var t = e("resMgr").reses.wallPrefab, i = e("resMgr").reses.bulletPrefab, h = e("resMgr").reses.targetPrefab, n = e("resMgr").reses.pathWayPrefab, a = e("levelSceneConfig")[this.level];
+this._setupFillNodes(a);
+this._setupWalls(a, t);
+this._setupTargets(a, h);
+this._setupPathWaysNode(a, n);
+this._setupBullets(a, i);
 },
 _setupNodePropertyByConfig: function(e, t) {
 for (var i in t) e[i] = t[i];
 },
 _setupFillNodes: function(e) {
 var t = e.fillNodes, i = cc.find("Canvas/fillNodes");
-for (var n in t) {
-var a = t[n], h = new cc.Node();
-this._setupNodePropertyByConfig(h, a);
-i.addChild(h);
+for (var h in t) {
+var n = t[h], a = new cc.Node();
+this._setupNodePropertyByConfig(a, n);
+i.addChild(a);
 }
 },
 _setupWalls: function(e, t) {
-var i = e.walls, n = cc.find("Canvas/walls");
-for (var a in i) {
-var h = i[a], o = cc.instantiate(t);
-this._setupNodePropertyByConfig(o, h);
-n.addChild(o);
+var i = e.walls, h = cc.find("Canvas/walls");
+for (var n in i) {
+var a = i[n], g = cc.instantiate(t);
+this._setupNodePropertyByConfig(g, a);
+h.addChild(g);
 }
 },
 _setupTargets: function(e, t) {
-var i = e.targets, n = cc.find("Canvas/targets");
-for (var a in i) {
-var h = i[a], o = cc.instantiate(t);
-this._setupNodePropertyByConfig(o, h);
-n.addChild(o);
+var i = e.targets, h = cc.find("Canvas/targets");
+for (var n in i) {
+var a = i[n], g = cc.instantiate(t);
+this._setupNodePropertyByConfig(g, a);
+h.addChild(g);
 }
 },
 _setupPathWaysNode: function(e, t) {
-var i = e.pathWaysNode, n = cc.find("Canvas/pathWaysNode");
-for (var a in i) {
-var h = i[a], o = new cc.Node(h.name);
-for (var a in h.children) {
-var s = h.children[a], l = cc.instantiate(t);
-this._setupNodePropertyByConfig(l, s);
-o.addChild(l);
+var i = e.pathWaysNode, h = cc.find("Canvas/pathWaysNode");
+for (var n in i) {
+var a = i[n], g = new cc.Node(a.name);
+for (var n in a.children) {
+var o = a.children[n], s = cc.instantiate(t);
+this._setupNodePropertyByConfig(s, o);
+g.addChild(s);
 }
-n.addChild(o);
+h.addChild(g);
 }
 },
 _setupBullets: function(e, t) {
-var i = e.bullets, n = cc.find("Canvas/bullets");
-for (var a in i) {
-var h = i[a], o = cc.instantiate(t), s = h.basic, l = h.mgr, g = o.getComponent("bulletMgr");
-g.bulletType = l.bulletType;
-2 == l.bulletType && (o.getComponent(cc.Sprite).spriteFrame = g.sliderFrame);
-this._setupNodePropertyByConfig(o, s);
-if (2 == g.bulletType && "" != l.pathWaysNodeName && null != l.pathWaysNodeName) {
-var r = "Canvas/pathWaysNode/" + l.pathWaysNodeName, d = cc.find(r);
-g.pathWaysNode = d;
+var i = e.bullets, h = cc.find("Canvas/bullets");
+for (var n in i) {
+var a = i[n], g = cc.instantiate(t), o = a.basic, s = a.mgr, l = g.getComponent("bulletMgr");
+l.bulletType = s.bulletType;
+2 == s.bulletType && (g.getComponent(cc.Sprite).spriteFrame = l.sliderFrame);
+this._setupNodePropertyByConfig(g, o);
+if (2 == l.bulletType && "" != s.pathWaysNodeName && null != s.pathWaysNodeName) {
+var d = "Canvas/pathWaysNode/" + s.pathWaysNodeName, r = cc.find(d);
+l.pathWaysNode = r;
 }
-cc.log(a, o.width, o.height);
-n.addChild(o);
-cc.log(a, o.width, o.height);
+h.addChild(g);
 }
 },
 dataMonitored: function(t, i) {
 if (-1 != t.indexOf("minStep_level_")) {
-var n = t.slice(14);
-if (parseInt(n) == parseInt(this.level)) {
+var h = t.slice(14);
+if (parseInt(h) == parseInt(this.level)) {
 this.node.getChildByName("uiNode").getChildByName("minStepNumLabel").getComponent(cc.Label).string = e("textConfig").getFormatedString(153, [ i.toString() ]);
 }
 } else "heart" == t && (this.heart = i);
@@ -2131,7 +2189,6 @@ opacity: 0
 }).to(.5, {
 opacity: 255
 })).start();
-this.setupMailTag();
 },
 start: function() {},
 onClick: function() {
@@ -2159,44 +2216,40 @@ var t = e[1], i = e[0];
 }
 },
 _checkLevelMailTagStatus: function() {
-var t = e("mailSysConfig"), i = !1, n = !1;
-for (var a in t) {
-var h = t[a].conditions;
-for (var o in h) {
-var s = h[o], l = s.conditionType, g = s.conditionPara;
-if (1 == l) {
-if (g == this.level) {
+var t = e("mailSysConfig"), i = !1, h = !1;
+for (var n in t) {
+var a = t[n].conditions;
+for (var g in a) {
+var o = a[g], s = o.conditionType, l = o.conditionPara;
+if (1 == s) {
+if (l == this.level) {
 i = !0;
-var r = e("dataMgr").playerData.mailConditionIndex[a];
-2 == this.level && cc.log(o, r);
-(o < r || -1 == r) && (n = !0);
-return [ i, n ];
+var d = e("dataMgr").playerData.mailConditionIndex[n];
+2 == this.level && cc.log(g, d);
+(g < d || -1 == d) && (h = !0);
+return [ i, h ];
 }
-} else if (2 == l) {
-g.levelId == this.level && (i = !0);
-(o < (r = e("dataMgr").playerData.mailConditionIndex[a]) || -1 == r) && (n = !0);
-return [ i, n ];
+} else if (2 == s) {
+l.levelId == this.level && (i = !0);
+(g < (d = e("dataMgr").playerData.mailConditionIndex[n]) || -1 == d) && (h = !0);
+return [ i, h ];
 }
 }
 }
 return !1;
 },
-dataMonitored: function(t, i) {
-var n = e("mailConfig");
--1 != Object.keys(n).indexOf(t) && this.setupMailTag();
-}
+dataMonitored: function(e, t) {}
 });
 cc._RF.pop();
 }, {
 dataMgr: "dataMgr",
-mailConfig: "mailConfig",
 mailSysConfig: "mailSysConfig",
 notificationMgr: "notificationMgr",
 textConfig: "textConfig"
 } ],
 levelSceneConfig: [ function(e, t, i) {
 "use strict";
-cc._RF.push(t, "32cc930TbVCP6zdMVgYejeo", "levelSceneConfig");
+cc._RF.push(t, "d386cxk985M6LAkfFP1bktI", "levelSceneConfig");
 t.exports = {
 1: {
 fillNodes: [ {
@@ -6600,7 +6653,7 @@ angle: 0
 },
 mgr: {
 bulletType: 2,
-pathWaysNodeName: "pathWay01"
+pathWaysNodeName: ""
 }
 } ]
 },
@@ -9203,7 +9256,7 @@ angle: 0
 },
 mgr: {
 bulletType: 2,
-pathWaysNodeName: "pathWay"
+pathWaysNodeName: "pathWay01"
 }
 }, {
 basic: {
@@ -9218,6 +9271,1748 @@ bulletType: 1,
 pathWaysNodeName: ""
 }
 } ]
+},
+26: {
+fillNodes: [ {
+x: 5.36,
+y: 3.063,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -98.779,
+y: 5.36,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -100.31,
+y: 213.638,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -189.135,
+y: 215.935,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -188.369,
+y: 110.264,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -310.886,
+y: 108.733,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -310.886,
+y: 213.638,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -414.259,
+y: 214.404,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -413.493,
+y: 437.997,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -293.274,
+y: 437.231,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -292.508,
+y: 336.92,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -98.779,
+y: 332.326,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -98.013,
+y: 545.199,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 126.346,
+y: 544.433,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 126.346,
+y: 423.448,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 19.144,
+y: 424.214,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 22.206,
+y: 333.858,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 126.346,
+y: 335.389,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 127.112,
+y: 124.813,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 320.076,
+y: 123.282,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 320.842,
+y: 228.953,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 441.827,
+y: 228.187,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 442.593,
+y: 4.594,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 335.391,
+y: 2.297,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 337.688,
+y: -100.311,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 215.171,
+y: -103.374,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 215.937,
+y: 1.531,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 124.815,
+y: 3.828,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 127.878,
+y: -102.608,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 6.127,
+y: -101.842,
+width: 0,
+height: 0,
+angle: 0
+} ],
+walls: [ {
+x: -413.356,
+y: 325.812,
+width: 215,
+height: 10,
+angle: 90
+}, {
+x: -358.356,
+y: 438.312,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: -293.356,
+y: 385.812,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: -195.856,
+y: 333.312,
+width: 205,
+height: 10,
+angle: 0
+}, {
+x: -98.356,
+y: 433.312,
+width: 210,
+height: 10,
+angle: 90
+}, {
+x: 9.144,
+y: 543.312,
+width: 225,
+height: 10,
+angle: 0
+}, {
+x: 126.644,
+y: 488.312,
+width: 120,
+height: 10,
+angle: 90
+}, {
+x: 74.144,
+y: 423.312,
+width: 115,
+height: 10,
+angle: 0
+}, {
+x: 21.644,
+y: 378.312,
+width: 100,
+height: 10,
+angle: 90
+}, {
+x: 69.144,
+y: 333.312,
+width: 105,
+height: 10,
+angle: 0
+}, {
+x: 126.644,
+y: 228.312,
+width: 220,
+height: 10,
+angle: 90
+}, {
+x: 224.144,
+y: 123.312,
+width: 205,
+height: 10,
+angle: 0
+}, {
+x: 321.644,
+y: 170.812,
+width: 105,
+height: 10,
+angle: 90
+}, {
+x: 376.644,
+y: 228.312,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: 441.644,
+y: 120.812,
+width: 225,
+height: 10,
+angle: 90
+}, {
+x: 389.144,
+y: 3.312,
+width: 115,
+height: 10,
+angle: 0
+}, {
+x: 336.644,
+y: -44.188,
+width: 105,
+height: 10,
+angle: 90
+}, {
+x: 281.644,
+y: -101.688,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: 216.644,
+y: -49.188,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: 171.644,
+y: 3.312,
+width: 100,
+height: 10,
+angle: 0
+}, {
+x: 126.644,
+y: -44.188,
+width: 105,
+height: 10,
+angle: 90
+}, {
+x: 71.644,
+y: -101.688,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: 6.644,
+y: -49.188,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: -40.856,
+y: 3.312,
+width: 105,
+height: 10,
+angle: 0
+}, {
+x: -98.356,
+y: 108.312,
+width: 220,
+height: 10,
+angle: 90
+}, {
+x: -143.356,
+y: 213.312,
+width: 100,
+height: 10,
+angle: 0
+}, {
+x: -188.356,
+y: 165.812,
+width: 105,
+height: 10,
+angle: 90
+}, {
+x: -243.356,
+y: 108.312,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: -308.356,
+y: 160.812,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: -360.856,
+y: 213.312,
+width: 115,
+height: 10,
+angle: 0
+} ],
+targets: [ {
+x: -353.356,
+y: 378.312,
+width: 100,
+height: 100,
+angle: 0
+}, {
+x: 66.644,
+y: 483.312,
+width: 100,
+height: 100,
+angle: 0
+}, {
+x: 276.644,
+y: -41.688,
+width: 100,
+height: 100,
+angle: 0
+}, {
+x: -248.356,
+y: 168.312,
+width: 100,
+height: 100,
+angle: 0
+} ],
+pathWaysNode: [ {
+name: "pathWay01",
+children: [ {
+x: 66.644,
+y: 63.312,
+width: 210,
+height: 10,
+angle: 0
+} ]
+} ],
+bullets: [ {
+basic: {
+x: 381.644,
+y: 63.312,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: -143.356,
+y: 273.312,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: -38.356,
+y: 273.312,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: 171.644,
+y: 63.312,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 2,
+pathWaysNodeName: "pathWay01"
+}
+}, {
+basic: {
+x: -38.356,
+y: 378.312,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+} ]
+},
+27: {
+fillNodes: [ {
+x: -40.19,
+y: -57.625,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -40.965,
+y: 47.046,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -251.858,
+y: 48.597,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -251.858,
+y: 153.268,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -355.754,
+y: 152.493,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -358.855,
+y: 272.671,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -147.186,
+y: 272.671,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -143.217,
+y: 485.032,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 64.848,
+y: 481.445,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 63.951,
+y: 588.168,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 287.262,
+y: 589.962,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 292.643,
+y: 470.684,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 184.127,
+y: 468.89,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 185.023,
+y: 380.104,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 289.952,
+y: 378.31,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 291.746,
+y: 275.175,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 393.985,
+y: 275.175,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 394.882,
+y: 155,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 78.301,
+y: 152.31,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 80.751,
+y: -59.623,
+width: 0,
+height: 0,
+angle: 0
+} ],
+walls: [ {
+x: -354.816,
+y: 213.235,
+width: 110,
+height: 10,
+angle: 90
+}, {
+x: -249.816,
+y: 273.235,
+width: 220,
+height: 10,
+angle: 0
+}, {
+x: -144.816,
+y: 373.235,
+width: 210,
+height: 10,
+angle: 90
+}, {
+x: -39.816,
+y: 483.235,
+width: 220,
+height: 10,
+angle: 0
+}, {
+x: 65.184,
+y: 530.735,
+width: 105,
+height: 10,
+angle: 90
+}, {
+x: 172.684,
+y: 588.235,
+width: 225,
+height: 10,
+angle: 0
+}, {
+x: 290.184,
+y: 533.235,
+width: 120,
+height: 10,
+angle: 90
+}, {
+x: 237.684,
+y: 468.235,
+width: 115,
+height: 10,
+angle: 0
+}, {
+x: 185.184,
+y: 423.235,
+width: 100,
+height: 10,
+angle: 90
+}, {
+x: 232.684,
+y: 378.235,
+width: 105,
+height: 10,
+angle: 0
+}, {
+x: 290.184,
+y: 325.735,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: 337.684,
+y: 273.235,
+width: 105,
+height: 10,
+angle: 0
+}, {
+x: 395.184,
+y: 218.235,
+width: 120,
+height: 10,
+angle: 90
+}, {
+x: 237.684,
+y: 153.235,
+width: 325,
+height: 10,
+angle: 0
+}, {
+x: 80.184,
+y: 53.235,
+width: 210,
+height: 10,
+angle: 90
+}, {
+x: 25.184,
+y: -56.765,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: -39.816,
+y: -4.265,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: -139.816,
+y: 48.235,
+width: 210,
+height: 10,
+angle: 0
+}, {
+x: -249.816,
+y: 100.735,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: -302.316,
+y: 153.235,
+width: 115,
+height: 10,
+angle: 0
+} ],
+targets: [ {
+x: 230.184,
+y: 318.235,
+width: 100,
+height: 100,
+angle: 0
+} ],
+pathWaysNode: [ {
+name: "pathWay01",
+children: [ {
+x: 72.684,
+y: 213.235,
+width: 105,
+height: 10,
+angle: 0
+}, {
+x: 20.184,
+y: 160.735,
+width: 105,
+height: 10,
+angle: 90
+} ]
+} ],
+bullets: [ {
+basic: {
+x: 230.184,
+y: 528.235,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: 20.184,
+y: 318.235,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 2,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: 125.184,
+y: 213.235,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 2,
+pathWaysNodeName: "pathWay01"
+}
+} ]
+},
+28: {
+fillNodes: [ {
+x: -151.339,
+y: -119.458,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -154.339,
+y: -15.962,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -257.835,
+y: -14.462,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -257.835,
+y: 104.033,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -152.839,
+y: 102.533,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -154.339,
+y: 525.516,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -34.344,
+y: 522.517,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -31.344,
+y: 422.021,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 177.148,
+y: 419.021,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 178.648,
+y: 212.029,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 282.144,
+y: 210.529,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 285.144,
+y: 92.034,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 177.148,
+y: 90.534,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 178.648,
+y: -120.958,
+width: 0,
+height: 0,
+angle: 0
+} ],
+walls: [ {
+x: -256.977,
+y: 44.24,
+width: 110,
+height: 10,
+angle: 90
+}, {
+x: -151.977,
+y: -68.26,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: -204.477,
+y: -15.76,
+width: 115,
+height: 10,
+angle: 0
+}, {
+x: -204.477,
+y: 104.24,
+width: 115,
+height: 10,
+angle: 0
+}, {
+x: -96.977,
+y: 524.24,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: -31.977,
+y: 471.74,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: 68.023,
+y: 419.24,
+width: 210,
+height: 10,
+angle: 0
+}, {
+x: 178.023,
+y: 314.24,
+width: 220,
+height: 10,
+angle: 90
+}, {
+x: 225.523,
+y: 209.24,
+width: 105,
+height: 10,
+angle: 0
+}, {
+x: 283.023,
+y: 154.24,
+width: 120,
+height: 10,
+angle: 90
+}, {
+x: 230.523,
+y: 89.24,
+width: 115,
+height: 10,
+angle: 0
+}, {
+x: 178.023,
+y: -10.76,
+width: 210,
+height: 10,
+angle: 90
+}, {
+x: 18.023,
+y: -120.76,
+width: 330,
+height: 10,
+angle: 0
+}, {
+x: -151.977,
+y: 309.24,
+width: 420,
+height: 10,
+angle: 90
+} ],
+targets: [ {
+x: -91.977,
+y: 464.24,
+width: 100,
+height: 100,
+angle: 0
+}, {
+x: 223.023,
+y: 149.24,
+width: 100,
+height: 100,
+angle: 0
+}, {
+x: -196.977,
+y: 44.24,
+width: 100,
+height: 100,
+angle: 0
+} ],
+pathWaysNode: [ {
+name: "pathWay01",
+children: []
+} ],
+bullets: [ {
+basic: {
+x: -91.977,
+y: 359.24,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: -91.977,
+y: 44.24,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: 118.023,
+y: 44.24,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: 12.798,
+y: 149.24,
+width: 100,
+height: 310,
+angle: 0
+},
+mgr: {
+bulletType: 2,
+pathWaysNodeName: ""
+}
+} ]
+},
+29: {
+fillNodes: [ {
+x: 15.577,
+y: 159.364,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 16.775,
+y: 263.61,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -73.092,
+y: 267.205,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -73.092,
+y: 214.483,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -140.193,
+y: 215.681,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -141.391,
+y: 264.808,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -244.439,
+y: 267.205,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -248.034,
+y: 334.306,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -196.51,
+y: 331.909,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -196.51,
+y: 384.631,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -124.616,
+y: 384.631,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -124.616,
+y: 335.504,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -39.542,
+y: 331.909,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -35.947,
+y: 440.948,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 134.202,
+y: 438.552,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 134.202,
+y: 385.83,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 186.924,
+y: 388.226,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 189.321,
+y: 336.702,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 239.646,
+y: 335.504,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 243.241,
+y: 266.007,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 189.321,
+y: 264.808,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 191.717,
+y: 215.681,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 137.797,
+y: 212.086,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 137.797,
+y: 164.157,
+width: 0,
+height: 0,
+angle: 0
+} ],
+walls: [ {
+x: -246.509,
+y: 298.953,
+width: 57.5,
+height: 10,
+angle: 90
+}, {
+x: -220.259,
+y: 332.703,
+width: 62.5,
+height: 10,
+angle: 0
+}, {
+x: -194.009,
+y: 353.953,
+width: 52.5,
+height: 10,
+angle: 90
+}, {
+x: -165.259,
+y: 385.203,
+width: 67.5,
+height: 10,
+angle: 0
+}, {
+x: -126.509,
+y: 358.953,
+width: 62.5,
+height: 10,
+angle: 90
+}, {
+x: -81.509,
+y: 332.703,
+width: 100,
+height: 10,
+angle: 0
+}, {
+x: -36.509,
+y: 380.203,
+width: 105,
+height: 10,
+angle: 90
+}, {
+x: 44.741,
+y: 437.703,
+width: 172.5,
+height: 10,
+angle: 0
+}, {
+x: 135.991,
+y: 411.453,
+width: 62.5,
+height: 10,
+angle: 90
+}, {
+x: 157.241,
+y: 385.203,
+width: 52.5,
+height: 10,
+angle: 0
+}, {
+x: 188.491,
+y: 358.953,
+width: 62.5,
+height: 10,
+angle: 90
+}, {
+x: 209.741,
+y: 332.703,
+width: 52.5,
+height: 10,
+angle: 0
+}, {
+x: 240.991,
+y: 303.953,
+width: 67.5,
+height: 10,
+angle: 90
+}, {
+x: 214.741,
+y: 265.203,
+width: 62.5,
+height: 10,
+angle: 0
+}, {
+x: 188.491,
+y: 243.953,
+width: 52.5,
+height: 10,
+angle: 90
+}, {
+x: 162.241,
+y: 212.703,
+width: 62.5,
+height: 10,
+angle: 0
+}, {
+x: 135.991,
+y: 191.453,
+width: 52.5,
+height: 10,
+angle: 90
+}, {
+x: 80.991,
+y: 160.203,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: 15.991,
+y: 212.703,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: -29.009,
+y: 265.203,
+width: 100,
+height: 10,
+angle: 0
+}, {
+x: -74.009,
+y: 243.953,
+width: 52.5,
+height: 10,
+angle: 90
+}, {
+x: -102.759,
+y: 212.703,
+width: 67.5,
+height: 10,
+angle: 0
+}, {
+x: -141.509,
+y: 238.953,
+width: 62.5,
+height: 10,
+angle: 90
+}, {
+x: -194.009,
+y: 265.203,
+width: 115,
+height: 10,
+angle: 0
+} ],
+targets: [ {
+x: 75.991,
+y: 220.203,
+width: 100,
+height: 100,
+angle: 0
+}, {
+x: -160.259,
+y: 351.453,
+width: 47.5,
+height: 47.5,
+angle: 0
+}, {
+x: -107.759,
+y: 246.453,
+width: 47.5,
+height: 47.5,
+angle: 0
+}, {
+x: 207.241,
+y: 298.953,
+width: 47.5,
+height: 47.5,
+angle: 0
+} ],
+pathWaysNode: [ {
+name: "pathWay01",
+children: []
+} ],
+bullets: [ {
+basic: {
+x: 75.991,
+y: 272.703,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: 102.241,
+y: 403.953,
+width: 47.5,
+height: 47.5,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: 154.741,
+y: 246.453,
+width: 47.5,
+height: 47.5,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: 49.741,
+y: 193.953,
+width: 47.5,
+height: 47.5,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+} ]
+},
+30: {
+fillNodes: [ {
+x: -57.928,
+y: -54.618,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -61.238,
+y: 47.997,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -148.958,
+y: 47.997,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -150.613,
+y: 0,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -321.087,
+y: -3.31,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -322.742,
+y: 62.893,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -271.434,
+y: 62.893,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: -271.434,
+y: 483.285,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 203.576,
+y: 486.595,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 201.921,
+y: 590.866,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 322.742,
+y: 589.211,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 324.397,
+y: 484.941,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 375.705,
+y: 484.941,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 377.36,
+y: 418.738,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 322.742,
+y: 417.082,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 324.397,
+y: 364.12,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 269.779,
+y: 364.12,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 268.124,
+y: 312.812,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 203.576,
+y: 311.157,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 201.921,
+y: 362.465,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 8.276,
+y: 362.465,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 8.276,
+y: 221.783,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 57.929,
+y: 220.128,
+width: 0,
+height: 0,
+angle: 0
+}, {
+x: 62.894,
+y: -54.616,
+width: 0,
+height: 0,
+angle: 0
+} ],
+walls: [ {
+x: -321.38,
+y: 30.098,
+width: 57.5,
+height: 10,
+angle: 90
+}, {
+x: -295.13,
+y: 63.848,
+width: 62.5,
+height: 10,
+angle: 0
+}, {
+x: -268.88,
+y: 268.848,
+width: 420,
+height: 10,
+angle: 90
+}, {
+x: -32.63,
+y: 483.848,
+width: 482.5,
+height: 10,
+angle: 0
+}, {
+x: 203.62,
+y: 531.348,
+width: 105,
+height: 10,
+angle: 90
+}, {
+x: 258.62,
+y: 588.848,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: 323.62,
+y: 536.348,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: 344.87,
+y: 483.848,
+width: 52.5,
+height: 10,
+angle: 0
+}, {
+x: 376.12,
+y: 455.098,
+width: 67.5,
+height: 10,
+angle: 90
+}, {
+x: 349.87,
+y: 416.348,
+width: 62.5,
+height: 10,
+angle: 0
+}, {
+x: 323.62,
+y: 395.098,
+width: 52.5,
+height: 10,
+angle: 90
+}, {
+x: 297.37,
+y: 363.848,
+width: 62.5,
+height: 10,
+angle: 0
+}, {
+x: 271.12,
+y: 342.598,
+width: 52.5,
+height: 10,
+angle: 90
+}, {
+x: 203.62,
+y: 337.598,
+width: 62.5,
+height: 10,
+angle: 90
+}, {
+x: 106.12,
+y: 363.848,
+width: 205,
+height: 10,
+angle: 0
+}, {
+x: 8.62,
+y: 292.598,
+width: 152.5,
+height: 10,
+angle: 90
+}, {
+x: 29.87,
+y: 221.348,
+width: 52.5,
+height: 10,
+angle: 0
+}, {
+x: 61.12,
+y: 87.598,
+width: 277.5,
+height: 10,
+angle: 90
+}, {
+x: 6.12,
+y: -56.152,
+width: 120,
+height: 10,
+angle: 0
+}, {
+x: -58.88,
+y: -3.652,
+width: 115,
+height: 10,
+angle: 90
+}, {
+x: -103.88,
+y: 48.848,
+width: 100,
+height: 10,
+angle: 0
+}, {
+x: -148.88,
+y: 27.598,
+width: 52.5,
+height: 10,
+angle: 90
+}, {
+x: -235.13,
+y: -3.652,
+width: 182.5,
+height: 10,
+angle: 0
+}, {
+x: 242.37,
+y: 311.348,
+width: 67.5,
+height: 10,
+angle: 0
+} ],
+targets: [ {
+x: 263.62,
+y: 528.848,
+width: 100,
+height: 100,
+angle: 0
+}, {
+x: -287.63,
+y: 30.098,
+width: 47.5,
+height: 47.5,
+angle: 0
+}, {
+x: 237.37,
+y: 345.098,
+width: 47.5,
+height: 47.5,
+angle: 0
+} ],
+pathWaysNode: [ {
+name: "pathWay01",
+children: []
+} ],
+bullets: [ {
+basic: {
+x: 1.12,
+y: 3.848,
+width: 100,
+height: 100,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: -103.88,
+y: 266.348,
+width: 100,
+height: 205,
+angle: 0
+},
+mgr: {
+bulletType: 2,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: -130.13,
+y: 450.098,
+width: 47.5,
+height: 47.5,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+}, {
+basic: {
+x: -182.63,
+y: 450.098,
+width: 47.5,
+height: 47.5,
+angle: 0
+},
+mgr: {
+bulletType: 1,
+pathWaysNodeName: ""
+}
+} ]
 }
 };
 cc._RF.pop();
@@ -9225,7 +11020,7 @@ cc._RF.pop();
 loginMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "d733bkMuPVAjJrq/tbVsVhw", "loginMgr");
-var n = new (cc.Class({
+var h = new (cc.Class({
 properties: {
 playerId: {
 get: function() {
@@ -9263,61 +11058,61 @@ return ("x" == e ? t : 3 & t | 8).toString(16);
 return t += e.toString();
 },
 _setPlayerIdFromServer: function(t) {
-var i = e("networkMgr"), n = i.makeMessageObj("loginModule", "loginMessageType");
-n.message.codeType = t;
-var a = !1;
+var i = e("networkMgr"), h = i.makeMessageObj("loginModule", "loginMessageType");
+h.message.codeType = t;
+var n = !1;
 switch (t) {
 case this.LoginType.ACCOUNT:
 break;
 
 case this.LoginType.WE_CHAT_GAME:
-a = !0;
-var h = this;
+n = !0;
+var a = this;
 wx.login({
 success: function(e) {
 var t = e.code;
 if (null != t) {
-n.message.code = t;
-n.successCallBack = function(e) {
+h.message.code = t;
+h.successCallBack = function(e) {
 var t = e.responseText;
 if ("login_success" == (t = JSON.parse(t)).type) {
 var i = t.playerId;
-h.playerId = i;
+a.playerId = i;
 } else t.type;
 };
-i.sendMessageByMsgObj(n);
+i.sendMessageByMsgObj(h);
 }
 }
 });
 break;
 
 case this.LoginType.DEVICE_ID:
-var o = cc.sys.localStorage.getItem("deviceId");
-if (null == o) {
-var s = this._genarateUUID();
-cc.sys.localStorage.setItem("deviceId", s);
-o = s;
+var g = cc.sys.localStorage.getItem("deviceId");
+if (null == g) {
+var o = this._genarateUUID();
+cc.sys.localStorage.setItem("deviceId", o);
+g = o;
 }
-n.message.code = o;
+h.message.code = g;
 break;
 
 default:
 cc.log("Login type erro: now it's " + t);
 }
-if (1 != a) {
-h = this;
-n.successCallBack = function(e) {
+if (1 != n) {
+a = this;
+h.successCallBack = function(e) {
 var t = e.responseText;
 if ("login_success" == (t = JSON.parse(t)).type) {
 var i = t.playerId;
-h.playerId = i;
+a.playerId = i;
 } else t.type;
 };
-i.sendMessageByMsgObj(n);
+i.sendMessageByMsgObj(h);
 }
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {
 dataMgr: "dataMgr",
@@ -9367,7 +11162,6 @@ opacity: 0
 }
 cc.tween(this.node).delay(this.changeSceneAnimationTime).call(function() {
 e("resMgr").loadReses(function() {
-e("networkMgr").startHeartBeat();
 cc.director.loadScene("mainScene");
 });
 }).start();
@@ -9527,84 +11321,84 @@ close: function() {
 this.node.destroy();
 },
 setupContentSection: function() {
-var t = e("textConfig"), i = e("mailConfig")[this.mailId], n = this.node.getChildByName("others").getChildByName("contentSection").getChildByName("view").getChildByName("content"), a = n.getChildByName("titleLabel"), h = n.getChildByName("contentLabel");
-a.getComponent(cc.Label).string = t.getTextByIdAndLanguageType(i.titleTextId);
-h.getComponent(cc.Label).string = t.getTextByIdAndLanguageType(i.contentTextId);
-n.height = -h.y + h.height;
+var t = e("textConfig"), i = e("mailConfig")[this.mailId], h = this.node.getChildByName("others").getChildByName("contentSection").getChildByName("view").getChildByName("content"), n = h.getChildByName("titleLabel"), a = h.getChildByName("contentLabel");
+n.getComponent(cc.Label).string = t.getTextByIdAndLanguageType(i.titleTextId);
+a.getComponent(cc.Label).string = t.getTextByIdAndLanguageType(i.contentTextId);
+h.height = -a.y + a.height;
 },
 setupOptionSection: function() {
-var t = e("textConfig"), i = this.node.getChildByName("others").getChildByName("optionSection"), n = e("mailConfig")[this.mailId], a = n.options;
-if (0 == (n = e("dataMgr").playerData.mails[this.mailId]).status) {
-if (0 == a.length) {
+var t = e("textConfig"), i = this.node.getChildByName("others").getChildByName("optionSection"), h = e("mailConfig")[this.mailId], n = h.options;
+if (0 == (h = e("dataMgr").playerData.mails[this.mailId]).status) {
+if (0 == n.length) {
 (y = cc.instantiate(this.mailOptionNodePrefab)).getChildByName("label").getComponent(cc.Label).string = t.getTextByIdAndLanguageType(147);
-var h = y.getChildByName("bg");
-y.width = h.width;
-y.height = h.height;
+var a = y.getChildByName("bg");
+y.width = a.width;
+y.height = a.height;
 i.height += y.height;
-var o = this;
+var g = this;
 y.on("click", function() {
-o.relatedMailSysMgr.setOneMailReaded(o.mailId, -1, function() {
-o.close();
-}, o.relatedMailSectionNode);
+g.relatedMailSysMgr.setOneMailReaded(g.mailId, -1, function() {
+g.close();
+}, g.relatedMailSectionNode);
 });
 y.y = -(i.height - y.height);
 i.addChild(y);
 return;
 }
-for (var s in a) {
-var l = a[s];
-(r = (g = cc.instantiate(this.mailOptionNodePrefab)).getChildByName("label")).getComponent(cc.Label).string = t.getTextByIdAndLanguageType(l.showTextId);
-(d = g.getChildByName("bg")).height = r.height;
-g.width = d.width;
-g.height = d.height;
-i.height += 0 == s ? g.height : g.height + this.disOfOptionNodes;
-g.y = -(i.height - g.height);
-o = this;
-(function(t, i, a, h) {
+for (var o in n) {
+var s = n[o];
+(d = (l = cc.instantiate(this.mailOptionNodePrefab)).getChildByName("label")).getComponent(cc.Label).string = t.getTextByIdAndLanguageType(s.showTextId);
+(r = l.getChildByName("bg")).height = d.height;
+l.width = r.width;
+l.height = r.height;
+i.height += 0 == o ? l.height : l.height + this.disOfOptionNodes;
+l.y = -(i.height - l.height);
+g = this;
+(function(t, i, n, a) {
 t.on("click", function() {
-o.relatedMailSysMgr.setOneMailReaded(o.mailId, h, function() {
-if (1 == i) o.close(); else if (2 == i) {
-e("systemsMgr").mailSysGloableSendOneMail(a.mailId, n.tag, function() {}, a.delay);
-o.close();
+g.relatedMailSysMgr.setOneMailReaded(g.mailId, a, function() {
+if (1 == i) g.close(); else if (2 == i) {
+e("systemsMgr").mailSysGloableSendOneMail(n.mailId, h.tag, function() {}, n.delay);
+g.close();
 }
-}, o.relatedMailSectionNode);
+}, g.relatedMailSectionNode);
 });
-})(g, l.operationType, l.operationPara, s);
-i.addChild(g);
+})(l, s.operationType, s.operationPara, o);
+i.addChild(l);
 }
-} else if (1 == n.status) if (-1 != n.selectedOptionIndex) {
-var g, r, d, c = a[n.selectedOptionIndex];
-(r = (g = cc.instantiate(this.mailOptionNodePrefab)).getChildByName("label")).getComponent(cc.Label).string = t.getTextByIdAndLanguageType(c.showTextId);
-r.color = cc.color(255, 255, 255);
-(d = g.getChildByName("bg_readed")).active = !0;
-d.height = r.height;
-g.width = d.width;
-g.height = d.height;
-i.height += g.height;
-g.getComponent(cc.Button).interactable = !1;
-g.y = -(i.height - g.height);
-i.addChild(g);
+} else if (1 == h.status) if (-1 != h.selectedOptionIndex) {
+var l, d, r, c = n[h.selectedOptionIndex];
+(d = (l = cc.instantiate(this.mailOptionNodePrefab)).getChildByName("label")).getComponent(cc.Label).string = t.getTextByIdAndLanguageType(c.showTextId);
+d.color = cc.color(255, 255, 255);
+(r = l.getChildByName("bg_readed")).active = !0;
+r.height = d.height;
+l.width = r.width;
+l.height = r.height;
+i.height += l.height;
+l.getComponent(cc.Button).interactable = !1;
+l.y = -(i.height - l.height);
+i.addChild(l);
 (y = cc.instantiate(this.mailOptionNodePrefab)).getChildByName("label").getComponent(cc.Label).string = t.getTextByIdAndLanguageType(147);
-h = y.getChildByName("bg");
-y.width = h.width;
-y.height = h.height;
+a = y.getChildByName("bg");
+y.width = a.width;
+y.height = a.height;
 i.height += y.height + this.disOfOptionNodes;
-o = this;
+g = this;
 y.on("click", function() {
-o.close();
+g.close();
 });
 y.y = -(i.height - y.height);
 i.addChild(y);
 } else {
 var y;
 (y = cc.instantiate(this.mailOptionNodePrefab)).getChildByName("label").getComponent(cc.Label).string = t.getTextByIdAndLanguageType(147);
-h = y.getChildByName("bg");
-y.width = h.width;
-y.height = h.height;
+a = y.getChildByName("bg");
+y.width = a.width;
+y.height = a.height;
 i.height += y.height;
-o = this;
+g = this;
 y.on("click", function() {
-o.close();
+g.close();
 });
 y.y = -(i.height - y.height);
 i.addChild(y);
@@ -9708,6 +11502,7 @@ var t = this;
 this.closeButtonNode.on("click", function() {
 e("systemsMgr").closeSystem(t.sysName);
 });
+this.uibg.on("touchstart", function() {});
 this.setupData();
 this.setupUI();
 },
@@ -9715,72 +11510,72 @@ start: function() {},
 setupTagSection: function() {
 var t = e("textConfig");
 for (var i in this.tags) {
-var n = this.tags[i], a = e("mailSysConfig")[n].tagNameTextId;
-a = t.getTextByIdAndLanguageType(a);
-var h = cc.instantiate(this.tagSectionPrefab);
-h.getComponent(cc.Label).string = a;
-h.getComponent(cc.Label)._forceUpdateRenderData();
-var o = this;
+var h = this.tags[i], n = e("mailSysConfig")[h].tagNameTextId;
+n = t.getTextByIdAndLanguageType(n);
+var a = cc.instantiate(this.tagSectionPrefab);
+a.getComponent(cc.Label).string = n;
+a.getComponent(cc.Label)._forceUpdateRenderData();
+var g = this;
 (function(t, i) {
 t.on("click", function() {
-o.selectedTag != i && (o.selectedTag = i);
-o.selectedTagNode != t && (o.selectedTagNode = t);
+g.selectedTag != i && (g.selectedTag = i);
+g.selectedTagNode != t && (g.selectedTagNode = t);
 });
 t.getComponent("redPointMgr").redPointShowCondition = function() {
-var t = e("dataMgr").playerData.mails, n = 0;
-for (var a in t) {
-var h = t[a];
-h.tag == i && 0 == h.status && (n += 1);
+var t = e("dataMgr").playerData.mails, h = 0;
+for (var n in t) {
+var a = t[n];
+a.tag == i && 0 == a.status && (h += 1);
 }
-return n > 0;
+return h > 0;
 };
-})(h, n);
-h.y = this.tagSectionStartY - i * this.tagSectionDis;
-h.name = n;
-this.tagSection.addChild(h, 1);
+})(a, h);
+a.y = this.tagSectionStartY - i * this.tagSectionDis;
+a.name = h;
+this.tagSection.addChild(a, 1);
 if (0 == i) {
-this.selectedTag = n;
-this.selectedTagNode = h;
+this.selectedTag = h;
+this.selectedTagNode = a;
 }
 }
 },
 setupMailSection: function() {
-var t = e("textConfig"), i = this.mailsByTag[this.selectedTag], n = Object.keys(i);
+var t = e("textConfig"), i = this.mailsByTag[this.selectedTag], h = Object.keys(i);
 this.mailSectionContentNode.destroyAllChildren();
-if (0 != n.length) {
+if (0 != h.length) {
 this.mailSectionEmptyLabelNode.active = !1;
-var a = this;
-n = n.sort(function(e, t) {
-var i = a.mailsByTag[a.selectedTag][e], n = a.mailsByTag[a.selectedTag][t];
-return 0 == i.status && 1 == n.status ? -1 : 1 == i.status && 0 == n.status ? 1 : i.timeStamp < n.timeStamp ? 1 : -1;
+var n = this;
+h = h.sort(function(e, t) {
+var i = n.mailsByTag[n.selectedTag][e], h = n.mailsByTag[n.selectedTag][t];
+return 0 == i.status && 1 == h.status ? -1 : 1 == i.status && 0 == h.status ? 1 : i.timeStamp < h.timeStamp ? 1 : -1;
 });
-var h = e("mailConfig"), o = 0;
-for (var s in n) {
-var l = n[s], g = e("dataMgr").playerData.mails[l], r = cc.instantiate(this.mailSectionPrefab), d = r.getChildByName("icon_unread"), c = r.getChildByName("icon_readed"), y = r.getChildByName("titleLabel"), u = r.getChildByName("seperateLine");
-if (1 == g.status) {
-d.active = !1;
+var a = e("mailConfig"), g = 0;
+for (var o in h) {
+var s = h[o], l = e("dataMgr").playerData.mails[s], d = cc.instantiate(this.mailSectionPrefab), r = d.getChildByName("icon_unread"), c = d.getChildByName("icon_readed"), y = d.getChildByName("titleLabel"), u = d.getChildByName("seperateLine");
+if (1 == l.status) {
+r.active = !1;
 c.active = !0;
 y.color = this.mailSectionNodeReadedColor;
 }
-var p = t.getTextByIdAndLanguageType(h[l].titleTextId);
-y.getComponent(cc.Label).string = p;
+var x = t.getTextByIdAndLanguageType(a[s].titleTextId);
+y.getComponent(cc.Label).string = x;
 u.y = -y.height;
-r.y = -o;
-var x = y.x + y.width / 2 - (d.x - d.width / 2), m = y.height;
-r.width = x;
-r.height = m;
-r.name = l.toString();
-o = o + y.height + 2;
-s != n.length - 1 && (o += this.mailSectionNodeDis);
-a = this;
+d.y = -g;
+var w = y.x + y.width / 2 - (r.x - r.width / 2), p = y.height;
+d.width = w;
+d.height = p;
+d.name = s.toString();
+g = g + y.height + 2;
+o != h.length - 1 && (g += this.mailSectionNodeDis);
+n = this;
 (function(e, t) {
 e.on("click", function() {
-a.openOneMail(t, e);
+n.openOneMail(t, e);
 });
-})(r, l);
-this.mailSectionContentNode.addChild(r);
+})(d, s);
+this.mailSectionContentNode.addChild(d);
 }
-o > this.mailSectionContentNode.height && (this.mailSectionContentNode.height = o);
+g > this.mailSectionContentNode.height && (this.mailSectionContentNode.height = g);
 } else {
 this.mailSectionEmptyLabelNode.active = !0;
 this.mailSectionEmptyLabelNode.getComponent(cc.Label).string = t.getTextByIdAndLanguageType(146);
@@ -9793,20 +11588,20 @@ if (this.unReadedMailNums[this.selectedTag] > 0) {
 var i = t.getTextByIdAndLanguageType(129);
 this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = i;
 } else {
-var n = e("dataMgr").playerData.mailConditionIndex[this.selectedTag];
-if (-1 != n) {
-var a = e("mailSysConfig")[this.selectedTag].conditions[n];
-if (1 == a.conditionType) {
-var h = a.conditionPara;
-if (0 != (l = this._getSectionAndLevelNumOfSection(h))) {
-var o = l[0], s = l[1];
-i = t.getFormatedString(131, [ o.toString(), s.toString() ]);
+var h = e("dataMgr").playerData.mailConditionIndex[this.selectedTag];
+if (-1 != h) {
+var n = e("mailSysConfig")[this.selectedTag].conditions[h];
+if (1 == n.conditionType) {
+var a = n.conditionPara;
+if (0 != (s = this._getSectionAndLevelNumOfSection(a))) {
+var g = s[0], o = s[1];
+i = t.getFormatedString(131, [ g.toString(), o.toString() ]);
 this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = i;
 }
-} else if (2 == a.conditionType) {
-var l, g = a.conditionPara.levelId, r = a.conditionPara.minStepNum;
-if (0 != (l = this._getSectionAndLevelNumOfSection(g))) {
-o = l[0], h = l[1], i = t.getFormatedString(132, [ o.toString(), h.toString(), r.toString() ]);
+} else if (2 == n.conditionType) {
+var s, l = n.conditionPara.levelId, d = n.conditionPara.minStepNum;
+if (0 != (s = this._getSectionAndLevelNumOfSection(l))) {
+g = s[0], a = s[1], i = t.getFormatedString(132, [ g.toString(), a.toString(), d.toString() ]);
 this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = i;
 }
 }
@@ -9815,9 +11610,9 @@ this.notiSection.getChildByName("notiLabel").getComponent(cc.Label).string = i;
 },
 _getSectionAndLevelNumOfSection: function(t) {
 var i = e("sectionConfig");
-for (var n in i) {
-var a = i[n].levels.indexOf(t);
-if (-1 != a) return [ n, a + 1 ];
+for (var h in i) {
+var n = i[h].levels.indexOf(t);
+if (-1 != n) return [ h, n + 1 ];
 }
 return !1;
 },
@@ -9825,14 +11620,14 @@ setupData: function() {
 var t = e("dataMgr").playerData.mails;
 this.tags = Object.keys(e("mailSysConfig"));
 for (var i in this.tags) {
-var n = this.tags[i];
-this.mailsByTag[n] = {};
-this.unReadedMailNums[n] = 0;
-for (var a in t) {
-var h = t[a];
-if (h.tag == n) {
-this.mailsByTag[n][a] = h;
-0 == h.stauts && (this.unReadedMailNums[n] += 1);
+var h = this.tags[i];
+this.mailsByTag[h] = {};
+this.unReadedMailNums[h] = 0;
+for (var n in t) {
+var a = t[n];
+if (a.tag == h) {
+this.mailsByTag[h][n] = a;
+0 == a.stauts && (this.unReadedMailNums[h] += 1);
 }
 }
 }
@@ -9849,39 +11644,39 @@ this.setupNotiSection();
 }
 },
 openOneMail: function(e, t) {
-var i = cc.instantiate(this.opendMailPrefab), n = i.getComponent("mailSysMailMgr");
-n.mailId = e;
-n.relatedMailSectionNode = t;
-n.relatedMailSysMgr = this;
+var i = cc.instantiate(this.opendMailPrefab), h = i.getComponent("mailSysMailMgr");
+h.mailId = e;
+h.relatedMailSectionNode = t;
+h.relatedMailSysMgr = this;
 this.node.addChild(i);
 },
 setOneMailReaded: function(t, i) {
-var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : function() {}, a = arguments.length > 3 ? arguments[3] : void 0, h = e("dataMgr").playerData.mails[t];
-if (1 != h.status) {
-var o = e("networkMgr"), s = o.makeMessageObj("mailModule", "readMailMessageType");
-s.message.playerId = e("dataMgr").playerData.id;
-s.message.mailId = t;
-s.message.selectedOptionIndex = i;
-var l = this;
-s.successCallBack = function(e) {
+var h = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : function() {}, n = arguments.length > 3 ? arguments[3] : void 0, a = e("dataMgr").playerData.mails[t];
+if (1 != a.status) {
+var g = e("networkMgr"), o = g.makeMessageObj("mailModule", "readMailMessageType");
+o.message.playerId = e("dataMgr").playerData.id;
+o.message.mailId = t;
+o.message.selectedOptionIndex = i;
+var s = this;
+o.successCallBack = function(e) {
 var t = e.responseText;
 if ("success" == (t = JSON.parse(t)).type) {
-h.status = 1;
-h.selectedOptionIndex = i;
-a.getChildByName("icon_readed").active = !0;
-a.getChildByName("icon_unread").active = !1;
-a.getChildByName("titleLabel").color = l.mailSectionNodeReadedColor;
-l.unReadedMailNums[h.tag] -= 1;
-l.setupNotiSection();
-n();
+a.status = 1;
+a.selectedOptionIndex = i;
+n.getChildByName("icon_readed").active = !0;
+n.getChildByName("icon_unread").active = !1;
+n.getChildByName("titleLabel").color = s.mailSectionNodeReadedColor;
+s.unReadedMailNums[a.tag] -= 1;
+s.setupNotiSection();
+h();
 }
 };
-o.sendMessageByMsgObj(s);
+g.sendMessageByMsgObj(o);
 } else cc.log("this mail is already readed");
 },
 dataMonitored: function(t, i) {
-var n = e("mailConfig");
-if (-1 != Object.keys(n).indexOf(t)) {
+var h = e("mailConfig");
+if (-1 != Object.keys(h).indexOf(t)) {
 this.setupData();
 this._insertOneMail(t, i);
 }
@@ -9931,32 +11726,13 @@ this.setupData();
 },
 start: function() {
 this.setupUI();
-var t = e("dataMgr").playerData.storySysId;
--1 != t && e("systemsMgr").showSystem("storySys", t, 2);
-this.playBgm();
-},
-playBgm: function() {
-var t = e("sectionConfig")[this.selectedSection].bgmPath;
-cc.loader.loadRes(t, function(e, t) {
-cc.audioEngine.stopAll();
-cc.audioEngine.play(t, !0, 1);
-});
+e("bgmMgr").selectedSection = this.selectedSection.toString();
 },
 setupUI: function() {
 this.sectionNameLabelNode.getComponent(cc.Widget).updateAlignment();
 this.heartLabelNode.getComponent(cc.Label).string = e("dataMgr").playerData.heart.toString();
 this.physicalLabelNode.getComponent(cc.Label).string = e("dataMgr").playerData.physicalPower.toString();
 var t = e("systemsMgr");
-this.mailSysButtonNode.on("click", function() {
-t.showSystem("mailSys", null, 1, 2);
-});
-this.mailSysButtonNode.getComponent("redPointMgr").redPointShowCondition = function() {
-var t = e("dataMgr").playerData.mails, i = 0;
-for (var n in t) {
-0 == t[n].status && (i += 1);
-}
-return i > 0;
-};
 this.signInSysButtonNode.on("click", function() {
 t.showSystem("signInSys");
 });
@@ -10019,47 +11795,47 @@ this.levelNodes.destroyAllChildren();
 this.levelNodes.removeAllChildren();
 this.connectLineNodes.destroyAllChildren();
 this.connectLineNodes.removeAllChildren();
-var i = e("sectionConfig")[this.selectedSection], n = t.getTextByIdAndLanguageType(i.sectionTitleTextId) + " " + t.getTextByIdAndLanguageType(i.sectionDescripTextId);
-this.sectionNameLabelNode.getComponent(cc.Label).string = n;
+var i = e("sectionConfig")[this.selectedSection], h = t.getTextByIdAndLanguageType(i.sectionTitleTextId) + " " + t.getTextByIdAndLanguageType(i.sectionDescripTextId);
+this.sectionNameLabelNode.getComponent(cc.Label).string = h;
 this.sectionNameLabelNode.getComponent(cc.Label)._forceUpdateRenderData();
 this.selectSectionButtonNode.y = this.sectionNameLabelNode.y;
 this.selectSectionButtonNode.x = this.sectionNameLabelNode.x - this.sectionNameLabelNode.width / 2 - 100;
-var a = i.levels;
-for (var h in a) {
-var o = a[h], s = cc.instantiate(this.levelNodePrefab), l = s.getComponent("levelNodeMgr");
-l.level = o;
-l.levelNumLabelNode.getComponent(cc.Label).string = (parseInt(h) + 1).toString();
-l.status = this._checkLevelStatus(o);
-l.delegate = this;
-this._setupLevelNodePosition(s, h);
-this.levelNodes.addChild(s);
+var n = i.levels;
+for (var a in n) {
+var g = n[a], o = cc.instantiate(this.levelNodePrefab), s = o.getComponent("levelNodeMgr");
+s.level = g;
+s.levelNumLabelNode.getComponent(cc.Label).string = (parseInt(a) + 1).toString();
+s.status = this._checkLevelStatus(g);
+s.delegate = this;
+this._setupLevelNodePosition(o, a);
+this.levelNodes.addChild(o);
 }
-for (var h in this.levelNodes.children) if (0 != h) {
-var g = this.levelNodes.children[h], r = this.levelNodes.children[h - 1], d = cc.instantiate(this.levelNodesConnectLinePrefab), c = cc.v2(r.x - g.x, r.y - g.y);
-d.width = c.mag();
+for (var a in this.levelNodes.children) if (0 != a) {
+var l = this.levelNodes.children[a], d = this.levelNodes.children[a - 1], r = cc.instantiate(this.levelNodesConnectLinePrefab), c = cc.v2(d.x - l.x, d.y - l.y);
+r.width = c.mag();
 var y = c.signAngle(cc.v2(1, 0)) / Math.PI * 180;
-d.angle = -y;
-var u = this._getMidPointOfTwoPoints(g.position, r.position);
-d.x = u.x;
-d.y = u.y;
-this.connectLineNodes.addChild(d);
+r.angle = -y;
+var u = this._getMidPointOfTwoPoints(l.position, d.position);
+r.x = u.x;
+r.y = u.y;
+this.connectLineNodes.addChild(r);
 }
 } else cc.log("not selected one section, can not setup section of mainScene mgr");
 },
 _setupLevelNodePosition: function(t, i) {
-var n = e("sectionConfig")[this.selectedSection], a = n.levelNodePositions;
-if (null == a || 0 == a.length) {
-var h = n.levels.length, o = 2 * Math.PI / h, s = cc.v2(this.rotaedCopiedRadius, 0).rotate(-i * o);
-t.x = s.x;
-t.y = s.y;
+var h = e("sectionConfig")[this.selectedSection], n = h.levelNodePositions;
+if (null == n || 0 == n.length) {
+var a = h.levels.length, g = 2 * Math.PI / a, o = cc.v2(this.rotaedCopiedRadius, 0).rotate(-i * g);
+t.x = o.x;
+t.y = o.y;
 } else {
-t.x = a[i].x;
-t.y = a[i].y;
+t.x = n[i].x;
+t.y = n[i].y;
 }
 },
 _getMidPointOfTwoPoints: function(e, t) {
-var i = cc.v2(t.x - e.x, t.y - e.y), n = e.x + i.x / 2, a = e.y + i.y / 2;
-return cc.v2(n, a);
+var i = cc.v2(t.x - e.x, t.y - e.y), h = e.x + i.x / 2, n = e.y + i.y / 2;
+return cc.v2(h, n);
 },
 _checkSectionStatus: function(t) {
 var i = e("dataMgr").playerData.currentSection;
@@ -10077,16 +11853,16 @@ case 1:
 return 1;
 
 case 2:
-var n = e("dataMgr").playerData.currentLevel;
-if (n == t) return 2;
-var a = e("sectionConfig")[i].levels;
-return a.indexOf(t) > a.indexOf(n) ? 0 : 1;
+var h = e("dataMgr").playerData.currentLevel;
+if (h == t) return 2;
+var n = e("sectionConfig")[i].levels;
+return n.indexOf(t) > n.indexOf(h) ? 0 : 1;
 }
 },
 _getSectionKeyByLevel: function(t) {
-var i = parseInt(t), n = e("sectionConfig");
-for (var a in n) {
-if (-1 != n[a].levels.indexOf(i)) return a;
+var i = parseInt(t), h = e("sectionConfig");
+for (var n in h) {
+if (-1 != h[n].levels.indexOf(i)) return n;
 }
 return !1;
 },
@@ -10097,25 +11873,26 @@ this.levelNodes.children[i].getComponent("levelNodeMgr").dataMonitored(e, t);
 }
 },
 update: function(t) {
-var i = e("notificationMgr"), n = i.noties;
-if (n.length > 0 && 0 == this.isShowingNoti && 1 == this.canShowNoti) {
+var i = e("notificationMgr"), h = i.noties;
+if (h.length > 0 && 0 == this.isShowingNoti && 1 == this.canShowNoti) {
 this.isShowingNoti = !0;
-var a = this;
+var n = this;
 (function e() {
-if (0 != n.length) {
-var t = n[0];
+if (0 != h.length) {
+var t = h[0];
 i.showNoti(t);
-n.splice(0, 1);
-cc.tween(a.node).delay(.3).call(function() {
+h.splice(0, 1);
+cc.tween(n.node).delay(.3).call(function() {
 e();
 }).start();
-} else a.isShowingNoti = !1;
+} else n.isShowingNoti = !1;
 })();
 }
 }
 });
 cc._RF.pop();
 }, {
+bgmMgr: "bgmMgr",
 dataMgr: "dataMgr",
 notificationMgr: "notificationMgr",
 sectionConfig: "sectionConfig",
@@ -10125,7 +11902,7 @@ textConfig: "textConfig"
 networkMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "06ef571V7VDkpNc4lgVqmds", "networkMgr");
-var n = new (cc.Class({
+var h = new (cc.Class({
 extends: cc.Component,
 properties: {
 delegate: null,
@@ -10135,26 +11912,26 @@ retryWaitingNode: null,
 retryAction: null
 },
 start: function() {},
-sendMessage: function(e, t, i, n, a) {
-var h = new XMLHttpRequest();
-h.onreadystatechange = function() {
-4 == h.readyState && h.status >= 200 && h.status < 400 && a(h);
+sendMessage: function(e, t, i, h, n) {
+var a = new XMLHttpRequest();
+a.onreadystatechange = function() {
+4 == a.readyState && a.status >= 200 && a.status < 400 && n(a);
 };
-var o = "http://" + i + ":" + t.toString() + "/" + n.toString();
-h.open("POST", o);
-h.send(e);
+var g = "http://" + i + ":" + t.toString() + "/" + h.toString();
+a.open("POST", g);
+a.send(e);
 },
 makeMessageObj: function(t, i) {
-var n = e("gloableConfig"), a = n.netWorkMessageConfigs[t];
-if (null != a) {
-var h = n.basicIp, o = n.basicPort;
-null != a.ip && (h = a.ip);
-null != a.port && (o = a.port);
+var h = e("gloableConfig"), n = h.netWorkMessageConfigs[t];
+if (null != n) {
+var a = h.basicIp, g = h.basicPort;
+null != n.ip && (a = n.ip);
+null != n.port && (g = n.port);
 return {
-ip: h,
-port: o,
-suffix: a.suffix,
-message: a[i],
+ip: a,
+port: g,
+suffix: n.suffix,
+message: n[i],
 successCallBack: function(e) {}
 };
 }
@@ -10162,53 +11939,53 @@ cc.error("no such module name of " + t);
 return null;
 },
 sendMessageByMsgObj: function(e) {
-var t = "https://" + e.ip + ":" + e.port.toString() + "/" + e.suffix, i = null, n = this;
+var t = "https://" + e.ip + ":" + e.port.toString() + "/" + e.suffix, i = null, h = this;
 (i = new XMLHttpRequest()).onreadystatechange = function() {
 if (4 == i.readyState && i.status >= 200 && i.status < 400) {
 e.successCallBack(i);
-1 == n.retryingFlag && (n.retryResult = !0);
+1 == h.retryingFlag && (h.retryResult = !0);
 }
 };
-var a = JSON.stringify(e.message);
+var n = JSON.stringify(e.message);
 i.onerror = function() {
 cc.log("err");
-null == n.retryAction && (n.retryAction = function() {
-i.send(a);
+null == h.retryAction && (h.retryAction = function() {
+i.send(n);
 i.currentRetryTime += 1;
 });
 null != i.currentRetryTime && void 0 != i.currentRetryTime || (i.currentRetryTime = 0);
 var e = function(e) {
 cc.log("retry", e.currentRetryTime);
-if (e.currentRetryTime > n.maxRetryTime) {
-n.retryWaitingNode.destroy();
-n.retryWaitingNode.removeFromParent();
-n.retryWaitingNode = null;
-n.retryAction = null;
-n.unscheduleAllCallbacks();
+if (e.currentRetryTime > h.maxRetryTime) {
+h.retryWaitingNode.destroy();
+h.retryWaitingNode.removeFromParent();
+h.retryWaitingNode = null;
+h.retryAction = null;
+h.unscheduleAllCallbacks();
 var t = cc.director.getScene();
 if ("loginScene" == t.name) {
 t.getChildByName("Canvas").getComponent("loginSceneMgr").onAllRetryFailed();
 } else cc.loader.loadRes("prefabs/backToLoginScene", function(e, t) {
-var i = cc.instantiate(t), n = i.getChildByName("bg");
-n.width = cc.winSize.width;
-n.height = cc.winSize.height;
-n.on("touchstart", function() {});
+var i = cc.instantiate(t), h = i.getChildByName("bg");
+h.width = cc.winSize.width;
+h.height = cc.winSize.height;
+h.on("touchstart", function() {});
 i.getChildByName("others").getChildByName("ensureButton").on("click", function() {
 cc.director.loadScene("loginScene");
 });
 cc.director.getScene().getChildByName("Canvas").addChild(i);
 });
 } else if (0 == e.currentRetryTime) {
-cc.director.getScene().getChildByName("Canvas").addChild(n.retryWaitingNode);
-n.schedule(n.retryAction, n.retryDelta);
+cc.director.getScene().getChildByName("Canvas").addChild(h.retryWaitingNode);
+h.schedule(h.retryAction, h.retryDelta);
 }
 };
-null == n.retryWaitingNode ? cc.loader.loadRes("prefabs/retryWaitingNode", function(t, a) {
-var h = cc.instantiate(a), o = h.getChildByName("bg");
-o.width = cc.winSize.width;
-o.height = cc.winSize.height;
-o.on("touchstart", function() {});
-n.retryWaitingNode = h;
+null == h.retryWaitingNode ? cc.loader.loadRes("prefabs/retryWaitingNode", function(t, n) {
+var a = cc.instantiate(n), g = a.getChildByName("bg");
+g.width = cc.winSize.width;
+g.height = cc.winSize.height;
+g.on("touchstart", function() {});
+h.retryWaitingNode = a;
 e(i);
 }) : e(i);
 };
@@ -10219,7 +11996,7 @@ i.onabort = function() {
 cc.log("abord");
 };
 0 == i.readyState && i.open("POST", t);
-i.send(a);
+i.send(n);
 },
 onAllRetryFailed: function() {},
 startHeartBeat: function() {
@@ -10228,17 +12005,17 @@ t.message.playerId = e("dataMgr").playerData.id;
 t.successCallBack = function(t) {
 var i = t.responseText;
 if ("message" == (i = JSON.parse(i)).type) {
-var n = i.messages;
-for (var a in n) {
-var h = n[a];
-if ("mailSysSendMail" == h.type) {
-var o = h.mailId, s = h.timeStamp, l = {
+var h = i.messages;
+for (var n in h) {
+var a = h[n];
+if ("mailSysSendMail" == a.type) {
+var g = a.mailId, o = a.timeStamp, s = {
 status: 0,
-tag: h.tag,
-timeStamp: s,
+tag: a.tag,
+timeStamp: o,
 selectedOptionIndex: -1
 };
-e("dataMgr").playerData.mails[o] = l;
+e("dataMgr").playerData.mails[g] = s;
 }
 }
 }
@@ -10248,7 +12025,7 @@ this.sendMessageByMsgObj(t);
 }, 60);
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {
 dataMgr: "dataMgr",
@@ -10257,7 +12034,7 @@ gloableConfig: "gloableConfig"
 notificationMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "6adf2lw5wdC6oB912oNiN7C", "notificationMgr");
-var n = new (cc.Class({
+var h = new (cc.Class({
 extends: cc.Component,
 properties: {
 lastTime: 2,
@@ -10267,20 +12044,20 @@ noties: []
 },
 start: function() {},
 showNoti: function(t) {
-var i = e("resMgr").reses.notiSysPrefab, n = cc.instantiate(i);
-n.getChildByName("label").getComponent(cc.Label).string = t;
-cc.director.getScene().getChildByName("Canvas").addChild(n);
-cc.tween(n).by(this.moveTime, {
+var i = e("resMgr").reses.notiSysPrefab, h = cc.instantiate(i);
+h.getChildByName("label").getComponent(cc.Label).string = t;
+cc.director.getScene().getChildByName("Canvas").addChild(h);
+cc.tween(h).by(this.moveTime, {
 y: this.moveDis
 }).delay(this.lastTime - this.moveTime).call(function() {
-n.destroy();
+h.destroy();
 }).start();
 },
 pushNoti: function(e) {
 this.noties.push(e);
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {
 resMgr: "resMgr"
@@ -10313,10 +12090,10 @@ var t = e("textConfig"), i = this.node.getChildByName("bg");
 i.width = cc.winSize.width;
 i.height = cc.winSize.height;
 i.on("touchstart", function() {}, this);
-var n = this;
+var h = this;
 this.closeButtonNode.on("click", function() {
-null != n.delegate ? n.delegate.preChanllengeUIOpend = !1 : cc.log("delegate is null");
-n.node.destroy();
+null != h.delegate ? h.delegate.preChanllengeUIOpend = !1 : cc.log("delegate is null");
+h.node.destroy();
 }, this);
 this.challengeButtonNoe.getChildByName("New Label").getComponent(cc.Label).string = t.getTextByIdAndLanguageType(151);
 },
@@ -10334,33 +12111,21 @@ this._setupUIPosition();
 _setupUIContent: function() {
 var t = this.getSectionAndIndexOfLevel();
 this.titleLabelNode.getComponent(cc.Label).string = t[0].toString() + " - " + t[1];
-var i = e("levelConfig")[this.level], n = this.contentSectionNode.getChildByName("desLabel");
-n.getComponent(cc.Label).string = e("textConfig").getTextByIdAndLanguageType(i.desTextId);
-n.getComponent(cc.Label)._forceUpdateRenderData();
-var a = this.contentSectionNode.getChildByName("seperateLineUp"), h = this.contentSectionNode.getChildByName("seperateLineDown"), o = n.height + 2 * this.contentSpace + a.height + h.height;
-this.contentSectionNode.height = o;
-a.y = 0;
-n.y = a.y - a.height - this.contentSpace;
-h.y = -o + h.height;
-var s = e("textConfig"), l = (t = this._getMailSectionInfo(), 0);
-for (var g in t) {
-var r = t[g], d = cc.instantiate(this.mailSectionElementPrefab), c = d.getChildByName("desLabel"), y = "";
-1 == r.type ? y = s.getFormatedString(149, [ r.tag ]) : 2 == r.type && (y = s.getFormatedString(150, [ r.minStep, r.tag ]));
-c.getComponent(cc.Label).string = y;
-c.getComponent(cc.Label)._forceUpdateRenderData();
-var u = d.getChildByName("completeIcon");
-1 == r.status && (u.active = !0);
-c.height > u.height ? d.height = c.height : d.height = u.height;
-d.y = l;
-l += d.height;
-g != t.length - 1 && (l += this.mailSectionElementDis);
-this.mailSectionNode.addChild(d);
-}
-this.mailSectionNode.height = l;
-var p = this._getCostInfoOfChallenge();
-"physicalPower" == p.type && (this.challengeButtonNoe.getChildByName("costIcon").getComponent(cc.Sprite).spriteFrame = this.challengeButtonCostPhySprite);
-this.challengeButtonNoe.getChildByName("costLabel").getComponent(cc.Label).string = p.num.toString();
-this.costResult = p;
+e("levelConfig")[this.level];
+var i = this.contentSectionNode.getChildByName("desLabel");
+i.getComponent(cc.Label).string = this.titleLabelNode.getComponent(cc.Label).string;
+i.getComponent(cc.Label)._forceUpdateRenderData();
+var h = this.contentSectionNode.getChildByName("seperateLineUp"), n = this.contentSectionNode.getChildByName("seperateLineDown"), a = i.height + 2 * this.contentSpace + h.height + n.height;
+this.contentSectionNode.height = a;
+h.y = 0;
+i.y = h.y - h.height - this.contentSpace;
+n.y = -a + n.height;
+e("textConfig"), t = this._getMailSectionInfo();
+this.mailSectionNode.height = 0;
+var g = this._getCostInfoOfChallenge();
+"physicalPower" == g.type && (this.challengeButtonNoe.getChildByName("costIcon").getComponent(cc.Sprite).spriteFrame = this.challengeButtonCostPhySprite);
+this.challengeButtonNoe.getChildByName("costLabel").getComponent(cc.Label).string = g.num.toString();
+this.costResult = g;
 },
 _setupUIPosition: function() {
 var e = this.footerDis + this.titleLabelNode.height + this.sectionDis + this.contentSectionNode.height + this.sectionDis + this.mailSectionNode.height + this.sectionDis + this.challengeButtonNoe.height + this.footerDis, t = this.node.getChildByName("others").getChildByName("uiBg");
@@ -10371,20 +12136,20 @@ this.mailSectionNode.y = this.contentSectionNode.y - this.contentSectionNode.hei
 this.challengeButtonNoe.y = this.mailSectionNode.y - this.mailSectionNode.height - this.sectionDis - this.challengeButtonNoe.height / 2;
 },
 _getMailSectionInfo: function() {
-var t = e("mailSysConfig"), i = [], n = e("textConfig");
-for (var a in t) {
-var h = t[a], o = h.conditions, s = e("dataMgr").playerData.mailConditionIndex[a];
-for (var l in o) {
-var g = o[l], r = g.conditionType, d = g.conditionPara, c = null;
-(1 == r && d == this.level || 2 == r && d.levelId == this.level) && (c = {
-tag: n.getTextByIdAndLanguageType(h.tagNameTextId),
-type: r,
+var t = e("mailSysConfig"), i = [], h = e("textConfig");
+for (var n in t) {
+var a = t[n], g = a.conditions, o = e("dataMgr").playerData.mailConditionIndex[n];
+for (var s in g) {
+var l = g[s], d = l.conditionType, r = l.conditionPara, c = null;
+(1 == d && r == this.level || 2 == d && r.levelId == this.level) && (c = {
+tag: h.getTextByIdAndLanguageType(a.tagNameTextId),
+type: d,
 status: null,
 minStep: null
 });
 if (null != c) {
-c.status = l < s;
-2 == r && (c.minStep = d.minStepNum);
+c.status = s < o;
+2 == d && (c.minStep = r.minStepNum);
 i.push(c);
 break;
 }
@@ -10401,11 +12166,12 @@ if (1 == this.levelStatus) {
 t.type = "heart";
 t.num = i[this.level].heartForRetryCost;
 } else if (2 == this.levelStatus) {
-var n = e("dataMgr").playerData.physicalPowerCostedFlag;
-if (0 == n) {
+var h = e("dataMgr").playerData.physicalPowerCostedFlag;
+if (0 == h) {
 t.type = "physicalPower";
 t.num = i[this.level].physicalPowerCost;
-} else if (1 == n) {
+1 == e("dataMgr").playerData.initAdWatchedFlag && (t.num = Math.round(t.num / 2));
+} else if (1 == h) {
 t.type = "heart";
 t.num = i[this.level].heartForRetryCost;
 }
@@ -10417,26 +12183,26 @@ if (null != this.costResult && 0 != this.costResult.num) {
 var t = null;
 "heart" == this.costResult.type ? t = e("dataMgr").playerData.heart - this.costResult.num : "physicalPower" == this.costResult.type && (t = e("dataMgr").playerData.physicalPower - this.costResult.num);
 if (null == t || t < 0) {
-var i = e("notificationMgr"), n = "";
-"heart" == this.costResult.type ? n = "金币不足" : "physicalPower" == this.costResult.type && (n = "体力不足");
-i.showNoti(n);
+var i = e("notificationMgr"), h = "";
+"heart" == this.costResult.type ? h = e("textConfig").getTextByIdAndLanguageType(169) : "physicalPower" == this.costResult.type && (h = e("textConfig").getTextByIdAndLanguageType(170));
+i.pushNoti(h);
 } else {
-var a = e("networkMgr"), h = a.makeMessageObj("dataModule", "commitMessageTyp");
-h.message.playerId = e("dataMgr").playerData.id;
-var o = null;
-"heart" == this.costResult.type ? o = {
+var n = e("networkMgr"), a = n.makeMessageObj("dataModule", "commitMessageTyp");
+a.message.playerId = e("dataMgr").playerData.id;
+var g = null;
+"heart" == this.costResult.type ? g = {
 heart: e("dataMgr").playerData.heart - this.costResult.num
-} : "physicalPower" == this.costResult.type && (o = {
+} : "physicalPower" == this.costResult.type && (g = {
 physicalPower: e("dataMgr").playerData.physicalPower - this.costResult.num
 });
-h.message.commitBody = o;
-var s = this;
-h.successCallBack = function() {
-"heart" == s.costResult.type ? e("dataMgr").playerData.heart = o.heart : "physicalPower" == s.costResult.type && (e("dataMgr").playerData.physicalPower = o.physicalPower);
-e("gameMgr").enterLevelScene(s.level);
+a.message.commitBody = g;
+var o = this;
+a.successCallBack = function() {
+"heart" == o.costResult.type ? e("dataMgr").playerData.heart = g.heart : "physicalPower" == o.costResult.type && (e("dataMgr").playerData.physicalPower = g.physicalPower);
+e("gameMgr").enterLevelScene(o.level);
 };
 this.challengeButtonNoe.getComponent(cc.Button).interactable = !1;
-a.sendMessageByMsgObj(h);
+n.sendMessageByMsgObj(a);
 }
 }
 }
@@ -10480,9 +12246,9 @@ if (null == this.redPoint) {
 var e = cc.instantiate(this.redPointPrefab), t = function(e) {
 var t = (1 - e.anchorX) * e.width, i = (1 - e.anchorY) * e.height;
 return cc.v2(t, i);
-}, i = t(this.node).x + this.offset.x, n = t(this.node).y + this.offset.y;
+}, i = t(this.node).x + this.offset.x, h = t(this.node).y + this.offset.y;
 e.x = i;
-e.y = n;
+e.y = h;
 this.redPoint = e;
 this.node.addChild(e);
 }
@@ -10493,9 +12259,9 @@ if (null == this.redPoint) {
 var e = cc.instantiate(this.redPointPrefab), t = function(e) {
 var t = (1 - e.anchorX) * e.width, i = (1 - e.anchorY) * e.height;
 return cc.v2(t, i);
-}, i = t(this.node).x + this.offset.x, n = t(this.node).y + this.offset.y;
+}, i = t(this.node).x + this.offset.x, h = t(this.node).y + this.offset.y;
 e.x = i;
-e.y = n;
+e.y = h;
 this.redPoint = e;
 this.node.addChild(e);
 }
@@ -10507,7 +12273,7 @@ cc._RF.pop();
 resMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "df3f9Ff+ehEg4/MFicOafGk", "resMgr");
-var n = new (cc.Class({
+var h = new (cc.Class({
 extends: cc.Component,
 properties: {
 reses: null,
@@ -10534,22 +12300,22 @@ activityNodePrefab: "prefabs/activityNode"
 }, i = Object.keys(t).length;
 this.resNum = i;
 this.reses = {};
-var n = this;
-for (var a in t) {
+var h = this;
+for (var n in t) {
 (function(i) {
-var a = t[i];
-cc.loader.loadRes(a, function(t, a) {
-if (a) {
-n.reses[i] = a;
-n.loadedResNum += 1;
-n.loadedResNum == n.resNum && e();
+var n = t[i];
+cc.loader.loadRes(n, function(t, n) {
+if (n) {
+h.reses[i] = n;
+h.loadedResNum += 1;
+h.loadedResNum == h.resNum && e();
 } else console.log("LOAD RES ERRO OF " + i + " :" + t);
 });
-})(a);
+})(n);
 }
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {} ],
 sectionConfig: [ function(e, t, i) {
@@ -10580,15 +12346,22 @@ levelNodePositions: []
 4: {
 sectionTitleTextId: 108,
 sectionDescripTextId: 109,
-levels: [ 21, 22, 23 ],
+levels: [ 16, 17, 18, 19, 20 ],
 bgmPath: "musics/bgm_004",
-levelNodePositions: [ 16, 17, 18, 19, 20 ]
+levelNodePositions: []
 },
 5: {
 sectionTitleTextId: 110,
 sectionDescripTextId: 111,
 levels: [ 21, 22, 23, 24, 25 ],
 bgmPath: "musics/bgm_005",
+levelNodePositions: []
+},
+6: {
+sectionTitleTextId: 171,
+sectionDescripTextId: 172,
+levels: [ 26, 27, 28, 29, 30 ],
+bgmPath: "musics/bgm_006",
 levelNodePositions: []
 }
 };
@@ -10617,10 +12390,7 @@ if (null != this.sectionKey) {
 this.setupData();
 this.nameLabelNode.getComponent(cc.Label).string = e("textConfig").getTextByIdAndLanguageType(this.config.sectionTitleTextId);
 this.iconLabelNode.getComponent(cc.Label).string = this.sectionKey;
-if (parseInt(this.sectionKey) > e("dataMgr").playerData.currentSection) {
-this.iconNode.getComponent(cc.Sprite).spriteFrame = this.lockedIconSpriteFrame;
-this.nameLabelNode.color = cc.color();
-}
+parseInt(this.sectionKey) > e("dataMgr").playerData.currentSection && (this.iconNode.getComponent(cc.Sprite).spriteFrame = this.lockedIconSpriteFrame);
 this.processLabelNode.getComponent(cc.Label).string = this.mailInfo.sendNum.toString() + " / " + this.mailInfo.totalNum.toString();
 this.processBarNode.getComponent(cc.ProgressBar).progress = this.mailInfo.sendNum / this.mailInfo.totalNum;
 }
@@ -10628,27 +12398,27 @@ this.processBarNode.getComponent(cc.ProgressBar).progress = this.mailInfo.sendNu
 setupData: function() {
 var t = e("sectionConfig");
 this.config = t[this.sectionKey];
-var i = [], n = this.config.levels, a = e("mailSysConfig");
-for (var h in a) {
-var o = a[h].conditions;
-for (var s in o) {
-var l = o[s], g = l.conditionType, r = l.conditionPara;
-1 == g && -1 != n.indexOf(r) ? i.push(l.mailId) : 2 == g && -1 != n.indexOf(r.levelId) && i.push(l.mailId);
+var i = [], h = this.config.levels, n = e("mailSysConfig");
+for (var a in n) {
+var g = n[a].conditions;
+for (var o in g) {
+var s = g[o], l = s.conditionType, d = s.conditionPara;
+1 == l && -1 != h.indexOf(d) ? i.push(s.mailId) : 2 == l && -1 != h.indexOf(d.levelId) && i.push(s.mailId);
 }
 }
-var d = i.length, c = 0;
-if (d > 0) {
+var r = i.length, c = 0;
+if (r > 0) {
 var y = Object.keys(e("dataMgr").playerData.mails);
-for (var s in i) {
-var u = i[s];
+for (var o in i) {
+var u = i[o];
 -1 != y.indexOf(u.toString()) && (c += 1);
 }
 }
-var p = {
-totalNum: d,
+var x = {
+totalNum: r,
 sendNum: c
 };
-this.mailInfo = p;
+this.mailInfo = x;
 },
 onClick: function() {
 if (parseInt(this.sectionKey) > e("dataMgr").playerData.currentSection) e("notificationMgr").showNoti(e("textConfig").getTextByIdAndLanguageType(158)); else {
@@ -10657,7 +12427,7 @@ var t = cc.director.getScene().getChildByName("Canvas").getComponent("mainSceneM
 if (null == t) cc.log("现在不是主界面，无法选择章节，这种情况应该不会出现的才对！"); else if (parseInt(this.sectionKey) != t.selectedSection) {
 t.selectedSection = parseInt(this.sectionKey);
 t.setupSectionPerformance();
-t.playBgm();
+e("bgmMgr").selectedSection = this.sectionKey;
 }
 }
 e("systemsMgr").closeSystem("selectSectionSys");
@@ -10666,6 +12436,7 @@ e("systemsMgr").closeSystem("selectSectionSys");
 });
 cc._RF.pop();
 }, {
+bgmMgr: "bgmMgr",
 dataMgr: "dataMgr",
 mailSysConfig: "mailSysConfig",
 notificationMgr: "notificationMgr",
@@ -10699,14 +12470,14 @@ this.closeButtonNode.on("click", function() {
 e("systemsMgr").closeSystem("selectSectionSys");
 });
 var t = e("sectionConfig"), i = 0;
-for (var n in t) {
-var a = cc.instantiate(this.elementPrefab), h = a.getComponent("selectSectionElementMgr");
-h.sectionKey = n;
-h.selectSectionUINode = this.node;
-a.y = i;
-i += a.height;
+for (var h in t) {
+var n = cc.instantiate(this.elementPrefab), a = n.getComponent("selectSectionElementMgr");
+a.sectionKey = h;
+a.selectSectionUINode = this.node;
+n.y = i;
+i += n.height;
 i += this.elementDis;
-this.containerContentNode.addChild(a);
+this.containerContentNode.addChild(n);
 }
 this.containerContentNode.height < i && (this.containerContentNode.height = i);
 }
@@ -10739,7 +12510,7 @@ signInSysConfig: [ function(e, t, i) {
 cc._RF.push(t, "51917pM+R1Dg5TFm0DDHJ3m", "signInSysConfig");
 t.exports = {
 physicalPowerAddNum: 10,
-heartAddNum: 20,
+heartAddNum: 10,
 addRateForAd: 2
 };
 cc._RF.pop();
@@ -10763,27 +12534,28 @@ this.setupData();
 this.setupUI();
 },
 setupUI: function() {
-var t = e("dataMgr").playerData.signInStatus, i = "", n = e("textConfig");
+var t = e("dataMgr").playerData.signInStatus, i = "", h = e("textConfig");
 switch (t) {
 case 1:
-i = n.getTextByIdAndLanguageType(115) + this.physicalPowerAddNum + n.getTextByIdAndLanguageType(116) + this.heartAddNum + ", ";
-i += n.getTextByIdAndLanguageType(117);
-this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = n.getTextByIdAndLanguageType(118);
-this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = n.getTextByIdAndLanguageType(113);
+i = h.getTextByIdAndLanguageType(115) + this.physicalPowerAddNum + h.getTextByIdAndLanguageType(116) + this.heartAddNum + ", ";
+i += h.getTextByIdAndLanguageType(117);
+this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = h.getTextByIdAndLanguageType(118);
+this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = h.getTextByIdAndLanguageType(113);
 break;
 
 case 2:
-i = (i = n.getTextByIdAndLanguageType(119) + ((this.addRateForAd - 1) * this.physicalPowerAddNum).toString()) + n.getTextByIdAndLanguageType(116) + ((this.addRateForAd - 1) * this.heartAddNum).toString();
-i += n.getTextByIdAndLanguageType(120);
-this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = n.getTextByIdAndLanguageType(113);
-this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = n.getTextByIdAndLanguageType(114);
+i = (i = h.getTextByIdAndLanguageType(119) + ((this.addRateForAd - 1) * this.physicalPowerAddNum).toString()) + h.getTextByIdAndLanguageType(116) + ((this.addRateForAd - 1) * this.heartAddNum).toString();
+i += h.getTextByIdAndLanguageType(120);
+this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = h.getTextByIdAndLanguageType(113);
+this.cancelButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = h.getTextByIdAndLanguageType(114);
 break;
 
 case 3:
-i = n.getTextByIdAndLanguageType(121);
+i = h.getTextByIdAndLanguageType(121);
 this.cancelButtonNode.active = !1;
 this.ensureButtonNode.x = 0;
-this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = n.getTextByIdAndLanguageType(122);
+var n = e("dataMgr").playerData.signInRefreshDelta, a = Math.floor(n / 3600), g = Math.floor(n % 3600 / 60), o = a.toString() + "h " + g.toString() + "m ";
+this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = h.getFormatedString(122, [ o ]);
 }
 "" != i ? this.desLabelNode.getComponent(cc.Label).string = i : cc.log("wrong signIn status");
 },
@@ -10821,20 +12593,20 @@ cc.log("some wrong thing happen from onClickCancelButton");
 }
 },
 signIn: function(t) {
-var i = e("networkMgr"), n = i.makeMessageObj("signInModule", "signInMessageType");
-n.message.signInType = t;
-n.message.playerId = e("dataMgr").playerData.id;
-var a = this;
-n.successCallBack = function(e) {
+var i = e("networkMgr"), h = i.makeMessageObj("signInModule", "signInMessageType");
+h.message.signInType = t;
+h.message.playerId = e("dataMgr").playerData.id;
+var n = this;
+h.successCallBack = function(e) {
 var i = e.responseText;
 if ("success" == (i = JSON.parse(i)).type) {
-var n = i.physicalPower, h = i.heart;
-a.onSignInSuccess(t, n, h);
+var h = i.physicalPower, a = i.heart;
+n.onSignInSuccess(t, h, a);
 }
 };
-i.sendMessageByMsgObj(n);
+i.sendMessageByMsgObj(h);
 },
-onSignInSuccess: function(t, i, n) {
+onSignInSuccess: function(t, i, h) {
 switch (t) {
 case 1:
 e("dataMgr").playerData.signInStatus = 2;
@@ -10845,9 +12617,9 @@ case 3:
 e("dataMgr").playerData.signInStatus = 3;
 }
 e("dataMgr").playerData.physicalPower = i;
-e("dataMgr").playerData.heart = n;
-var a = e("textConfig").getTextByIdAndLanguageType(164);
-e("notificationMgr").pushNoti(a);
+e("dataMgr").playerData.heart = h;
+var n = e("textConfig").getTextByIdAndLanguageType(164);
+e("notificationMgr").pushNoti(n);
 e("systemsMgr").closeSystem(this.sysName);
 },
 onVideoAdEnd: function() {
@@ -10941,10 +12713,10 @@ i.width = cc.winSize.width;
 i.height = cc.winSize.height;
 this.node.width = i.width;
 this.node.height = i.height;
-var n = this.node.getChildByName("tapMonitoredNode");
-n.width = i.width;
-n.height = i.height;
-n.on("touchstart", function() {
+var h = this.node.getChildByName("tapMonitoredNode");
+h.width = i.width;
+h.height = i.height;
+h.on("touchstart", function() {
 if (2 == t.status) {
 t.currentNum += 1;
 var i = e("textConfig").getTextByIdAndLanguageType(t.textIds[t.currentNum - 1]);
@@ -10960,14 +12732,14 @@ opacity: 0
 }).to(.3, {
 opacity: 255
 })).start();
-var a = this.node.getChildByName("scrollContainer");
-a.y = i.height / 2 - this.footer;
+var n = this.node.getChildByName("scrollContainer");
+n.y = i.height / 2 - this.footer;
 this.continueLabelNode.y = -i.height / 2 + this.footer + this.completeButtonNode.height / 2;
 this.completeButtonNode.y = -i.height / 2 + this.footer + this.completeButtonNode.height / 2;
-var h = i.height - this.header - this.footer - this.completeButtonNode.height - this.sectionDis;
-a.height = h;
-a.getChildByName("view").height = h;
-this.contentNode.height = h;
+var a = i.height - this.header - this.footer - this.completeButtonNode.height - this.sectionDis;
+n.height = a;
+n.getChildByName("view").height = a;
+this.contentNode.height = a;
 },
 start: function() {
 this.showStory();
@@ -10978,9 +12750,9 @@ var t = e("storyConfig")["story_" + this.storyId.toString()].textIds;
 this.textIds = t;
 this.totalTextNodeNum = t.length;
 this.currentNum = 1;
-var i = e("textConfig").getTextByIdAndLanguageType(t[0]), n = this;
-cc.tween(this.node).delay(n.startDelayTime).call(function() {
-n._showOneStoryText(i);
+var i = e("textConfig").getTextByIdAndLanguageType(t[0]), h = this;
+cc.tween(this.node).delay(h.startDelayTime).call(function() {
+h._showOneStoryText(i);
 }).start();
 } else cc.log("NO STORY ID PROVIDED");
 },
@@ -10990,8 +12762,8 @@ i.message.playerId = e("dataMgr").playerData.id;
 i.successCallBack = function(t) {
 var i = t.responseText;
 if ("success" == (i = JSON.parse(i)).type) {
-var n = i.storyId;
-e("dataMgr").playerData.storySysId = n;
+var h = i.storyId;
+e("dataMgr").playerData.storySysId = h;
 e("systemsMgr").closeSystem("storySys", 3);
 }
 };
@@ -11033,7 +12805,7 @@ textConfig: "textConfig"
 systemsMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "90768z3BYZIyKcDPXY67Q3P", "systemsMgr");
-var n = new (cc.Class({
+var h = new (cc.Class({
 extends: cc.Component,
 properties: {
 welfarySys: {
@@ -11097,84 +12869,84 @@ return this._systems;
 }
 }
 },
-setupSysProperty: function(t, i, n) {
-var a = {};
-a.uiPrefab = e("resMgr").reses[t];
-a.opendNode = null;
-a.name = i;
-a.mgrName = n;
-return a;
+setupSysProperty: function(t, i, h) {
+var n = {};
+n.uiPrefab = e("resMgr").reses[t];
+n.opendNode = null;
+n.name = i;
+n.mgrName = h;
+return n;
 },
 showSystem: function(e) {
-var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null, i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 1, n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 1, a = this.getSysBySysName(e);
-if (null == a.opendNode) {
-var h = cc.instantiate(a.uiPrefab), o = this.systems[a.name].mgrName, s = h.getComponent(o);
-null != s && "function" == typeof s.onWillOpend && s.onWillOpend(t);
-var l = h.getChildByName("others"), g = h.getChildByName("bg");
-if (null != g) {
-g.width = cc.winSize.width;
-g.height = cc.winSize.height;
-if (1 == n) g.on("touchstart", function() {}); else if (2 == n) {
-var r = this;
-g.on("touchstart", function() {
-r.closeSystem(e);
+var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null, i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 1, h = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 1, n = this.getSysBySysName(e);
+if (null == n.opendNode) {
+var a = cc.instantiate(n.uiPrefab), g = this.systems[n.name].mgrName, o = a.getComponent(g);
+null != o && "function" == typeof o.onWillOpend && o.onWillOpend(t);
+var s = a.getChildByName("others"), l = a.getChildByName("bg");
+if (null != l) {
+l.width = cc.winSize.width;
+l.height = cc.winSize.height;
+if (1 == h) l.on("touchstart", function() {}); else if (2 == h) {
+var d = this;
+l.on("touchstart", function() {
+d.closeSystem(e);
 });
 }
 }
 if (2 != i) {
-cc.director.getScene().getChildByName("Canvas").addChild(h);
-a.opendNode = h;
-if (null != l) {
-l.scale = 0;
-cc.tween(l).to(.3, {
+cc.director.getScene().getChildByName("Canvas").addChild(a);
+n.opendNode = a;
+if (null != s) {
+s.scale = 0;
+cc.tween(s).to(.3, {
 scale: 1
 }).start();
 } else {
-h.scale = 0;
-cc.tween(h).to(.3, {
+a.scale = 0;
+cc.tween(a).to(.3, {
 scale: 1
 }).start();
 }
 } else {
-cc.director.getScene().getChildByName("Canvas").addChild(h);
-a.opendNode = h;
+cc.director.getScene().getChildByName("Canvas").addChild(a);
+n.opendNode = a;
 }
-} else cc.log("this sys has been opend , can't reopen: " + a.name);
+} else cc.log("this sys has been opend , can't reopen: " + n.name);
 },
 closeSystem: function(t) {
-var i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 1, n = this.getSysBySysName(t), a = n.opendNode;
-if (null != a) {
+var i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 1, h = this.getSysBySysName(t), n = h.opendNode;
+if (null != n) {
 if (1 == i) {
-var h = a.getChildByName("others");
-null != h ? cc.tween(h).to(.3, {
+var a = n.getChildByName("others");
+null != a ? cc.tween(a).to(.3, {
 scale: 0
 }).call(function() {
-a.destroy();
-n.opendNode = null;
-}).start() : cc.tween(a).to(.3, {
+n.destroy();
+h.opendNode = null;
+}).start() : cc.tween(n).to(.3, {
 scale: 0
 }).call(function() {
-a.destroy();
-n.opendNode = null;
+n.destroy();
+h.opendNode = null;
 });
 } else if (2 == i) {
-a.destroy();
-n.opendNode = null;
+n.destroy();
+h.opendNode = null;
 } else if (3 == i) {
-var o = e("resMgr").reses.coverNodePrefab;
-(o = cc.instantiate(o)).width = a.width;
-o.height = a.height;
-o.opacity = 0;
-o.on("touchstart", function() {});
-a.addChild(o);
-cc.tween(o).to(.5, {
+var g = e("resMgr").reses.coverNodePrefab;
+(g = cc.instantiate(g)).width = n.width;
+g.height = n.height;
+g.opacity = 0;
+g.on("touchstart", function() {});
+n.addChild(g);
+cc.tween(g).to(.5, {
 opacity: 255
 }).delay(.5).call(function() {
-a.destroy();
-n.opendNode = null;
+n.destroy();
+h.opendNode = null;
 }).start();
 }
-} else cc.log(n.name + "has not been opend, no need to colse");
+} else cc.log(h.name + "has not been opend, no need to colse");
 },
 getSysBySysName: function(e) {
 switch (e) {
@@ -11201,60 +12973,58 @@ cc.log("no such sys");
 return !1;
 }
 },
-systemsGloableDataMonitored: function(e, t) {
-this.mailSysGloableMonitored(e, t);
-},
+systemsGloableDataMonitored: function(e, t) {},
 mailSysGloableMonitored: function(t, i) {
-var n = e("textConfig"), a = function(t, i) {
-var a = e("networkMgr"), h = a.makeMessageObj("mailModule", "reachConditionMessageType");
-h.message.playerId = e("dataMgr").playerData.id;
-h.message.tag = t;
-h.message.mailId = i;
-h.successCallBack = function(a) {
-var h = a.responseText;
-if ("success" == (h = JSON.parse(h)).type) {
-0 == h.isEnd ? e("dataMgr").playerData.mailConditionIndex[t] += 1 : e("dataMgr").playerData.mailConditionIndex[t] = -1;
-var o = h.mail;
-e("dataMgr").playerData.mails[i] = o;
-var s = e("notificationMgr"), l = n.getTextByIdAndLanguageType(148);
-s.pushNoti(l);
+var h = e("textConfig"), n = function(t, i) {
+var n = e("networkMgr"), a = n.makeMessageObj("mailModule", "reachConditionMessageType");
+a.message.playerId = e("dataMgr").playerData.id;
+a.message.tag = t;
+a.message.mailId = i;
+a.successCallBack = function(n) {
+var a = n.responseText;
+if ("success" == (a = JSON.parse(a)).type) {
+0 == a.isEnd ? e("dataMgr").playerData.mailConditionIndex[t] += 1 : e("dataMgr").playerData.mailConditionIndex[t] = -1;
+var g = a.mail;
+e("dataMgr").playerData.mails[i] = g;
+var o = e("notificationMgr"), s = h.getTextByIdAndLanguageType(148);
+o.pushNoti(s);
 }
 };
-a.sendMessageByMsgObj(h);
-}, h = e("mailSysConfig"), o = Object.keys(h);
-for (var s in o) {
-var l = o[s], g = e("dataMgr").playerData.mailConditionIndex[l];
-if (-1 != g) {
-var r = h[l].conditions[g], d = r.conditionType, c = r.conditionPara;
-if (1 == d) {
+n.sendMessageByMsgObj(a);
+}, a = e("mailSysConfig"), g = Object.keys(a);
+for (var o in g) {
+var s = g[o], l = e("dataMgr").playerData.mailConditionIndex[s];
+if (-1 != l) {
+var d = a[s].conditions[l], r = d.conditionType, c = d.conditionPara;
+if (1 == r) {
 if ("preLevel" != t) continue;
 if (i == c) {
-a(l, r.mailId);
+n(s, d.mailId);
 }
-} else if (2 == d) {
+} else if (2 == r) {
 if (-1 == t.indexOf("minStep_level_")) continue;
 var y = t.slice(14);
 if (parseInt(y) == c.levelId && i <= c.minStepNum) {
-a(l, r.mailId);
+n(s, d.mailId);
 }
 }
 }
 }
 },
 mailSysGloableSendOneMail: function(t, i) {
-var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : function() {}, a = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0, h = e("networkMgr"), o = h.makeMessageObj("mailModule", "sendMailMessageType");
-o.message.playerId = e("dataMgr").playerData.id;
-o.message.mailId = t;
-o.message.tag = i;
-o.message.delay = a;
-o.successCallBack = function(e) {
+var h = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : function() {}, n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0, a = e("networkMgr"), g = a.makeMessageObj("mailModule", "sendMailMessageType");
+g.message.playerId = e("dataMgr").playerData.id;
+g.message.mailId = t;
+g.message.tag = i;
+g.message.delay = n;
+g.successCallBack = function(e) {
 var t = e.responseText;
-"success" == (t = JSON.parse(t)).type && n();
+"success" == (t = JSON.parse(t)).type && h();
 };
-h.sendMessageByMsgObj(o);
+a.sendMessageByMsgObj(g);
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {
 dataMgr: "dataMgr",
@@ -11284,8 +13054,8 @@ this.bullets = cc.find("Canvas").getComponent("levelMgr").bullets;
 },
 update: function(e) {
 if (1 != this.flag) for (var t in this.bullets) {
-var i = this.bullets[t], n = i.getComponent("bulletMgr");
-if (1 == n.bulletType && (0 == n.status && 1 == this.checkWhetherSatisfied(i))) {
+var i = this.bullets[t], h = i.getComponent("bulletMgr");
+if (1 == h.bulletType && (0 == h.status && 1 == this.checkWhetherSatisfied(i))) {
 this.onSatisfy(i);
 break;
 }
@@ -11293,9 +13063,9 @@ break;
 },
 checkWhetherSatisfied: function(e) {
 var t = this.helper.getPointsOfOneNode(this.node), i = this.helper.getPointsOfOneNode(e);
-for (var n in t) {
-var a = t[n], h = i[n];
-if (cc.v2(h.x - a.x, h.y - a.y).mag() > this.fatalTolerance) return !1;
+for (var h in t) {
+var n = t[h], a = i[h];
+if (cc.v2(a.x - n.x, a.y - n.y).mag() > this.fatalTolerance) return !1;
 }
 return !0;
 },
@@ -11324,6 +13094,14 @@ helper: "helper"
 textConfig: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "9c22epK3DJMhqp2fQro2fYy", "textConfig");
+function h(e) {
+"@babel/helpers - typeof";
+return (h = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+return typeof e;
+} : function(e) {
+return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
+})(e);
+}
 var n = {
 languageType: 0,
 text_101: {
@@ -11448,8 +13226,8 @@ comment: "签到系统"
 },
 text_121: {
 id: 121,
-zh: "您今天已经签到过啦，明天再来吧~",
-en: "you have been signed in today, come again tomorrow please ~",
+zh: "您今天已经签到过啦，明天再来吧~ 每日 05: 00 am (UTC 8) 刷新 ，当前距离刷新 %s",
+en: "you have been signed in today, come again tomorrow please ~ it will refresh every 05:00 am (UTC 8), it will refresh in %s",
 comment: "签到系统"
 },
 text_122: {
@@ -11734,29 +13512,60 @@ zh: "这个关卡还未开放哦",
 en: "this level is locked now",
 comment: ""
 },
+text_169: {
+id: 169,
+zh: "金币不足",
+en: "not enough gold",
+comment: "通用金币不足"
+},
+text_170: {
+id: 170,
+zh: "体力不足",
+en: "not enough physical power",
+comment: "通用体力不足"
+},
+text_171: {
+id: 171,
+zh: "第六章",
+en: "Section 6",
+comment: "第六章标题"
+},
+text_172: {
+id: 172,
+zh: "",
+en: "",
+comment: "第六章内容"
+},
+text_173: {
+id: 173,
+zh: [ "" ],
+en: "",
+comment: "初始剧情"
+},
 getTextByIdAndLanguageType: function(e) {
-var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.languageType, i = this["text_" + e.toString()];
-return 1 == t ? i.zh : i.en;
+var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.languageType, i = this["text_" + e.toString()], n = null;
+"object" == h(n = 1 == t ? i.zh : i.en) && (n = n.join("\n"));
+return n;
 },
 getFormatedString: function(e) {
-var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [], i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : this.languageType, n = this["text_" + e.toString()], a = null;
-a = 1 == i ? n.zh : n.en;
-var h = [];
-for (var o in a) {
-var s = a[o], l = null;
-if (o < a.length - 1) {
-l = a[parseInt(o) + 1];
+var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [], i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : this.languageType, h = this["text_" + e.toString()], n = null;
+n = 1 == i ? h.zh : h.en;
+var a = [];
+for (var g in n) {
+var o = n[g], s = null;
+if (g < n.length - 1) {
+s = n[parseInt(g) + 1];
 }
-"%" == s && "s" == l && h.push(o);
+"%" == o && "s" == s && a.push(g);
 }
-if (h.length == t.length) {
-for (var o in t) {
-var g = t[o].toString();
-a = a.replace("%s", g);
+if (a.length == t.length) {
+for (var g in t) {
+var l = t[g].toString();
+n = n.replace("%s", l);
 }
-return a;
+return n;
 }
-cc.log("para length not match of indexes length, indexes: " + h.length + " paras: " + t.length);
+cc.log("para length not match of indexes length, indexes: " + a.length + " paras: " + t.length);
 }
 };
 cc.sys.language == cc.sys.LANGUAGE_CHINESE && (n.languageType = 1);
@@ -11766,7 +13575,7 @@ cc._RF.pop();
 timerSystemsMgr: [ function(e, t, i) {
 "use strict";
 cc._RF.push(t, "db2d5jDzvdBm400iKuIvXTH", "timerSystemsMgr");
-var n = new (cc.Class({
+var h = new (cc.Class({
 extends: cc.Component,
 properties: {
 signInSysTimer: {
@@ -11800,25 +13609,25 @@ this.unschedule(this.timerUpdate, this);
 onTimerReach: function(t) {
 switch (t) {
 case "signInSys":
-var i = this, n = e("networkMgr"), a = n.makeMessageObj("signInModule", "refreshMessageType");
-a.message.playerId = e("dataMgr").playerData.id;
-a.successCallBack = function(t) {
-var n = t.responseText;
-if ("success" == (n = JSON.parse(n)).type) {
-var a = n.signInRefreshDelta;
-e("dataMgr").playerData.signInRefreshDelta = a;
-i.signInSysTimer = a;
+var i = this, h = e("networkMgr"), n = h.makeMessageObj("signInModule", "refreshMessageType");
+n.message.playerId = e("dataMgr").playerData.id;
+n.successCallBack = function(t) {
+var h = t.responseText;
+if ("success" == (h = JSON.parse(h)).type) {
+var n = h.signInRefreshDelta;
+e("dataMgr").playerData.signInRefreshDelta = n;
+i.signInSysTimer = n;
 e("dataMgr").playerData.signInStatus = 1;
 if (null != e("systemsMgr").signInSys.opendNode) {
 e("systemsMgr").signInSys.opendNode.getComponent("signInSysMgr").setupUI();
 }
 }
 };
-n.sendMessageByMsgObj(a);
+h.sendMessageByMsgObj(n);
 }
 }
 }))();
-t.exports = n;
+t.exports = h;
 cc._RF.pop();
 }, {
 dataMgr: "dataMgr",
@@ -11870,8 +13679,8 @@ e("dataMgr").playerData.initAdWatchedFlag = 1;
 e("systemsMgr").closeSystem(t.systemName);
 var i = cc.director.getScene();
 "mainScene" == i.name && (i.getChildByName("Canvas").getChildByName("enterButtons").getChildByName("welfaryButton").active = !1);
-var n = e("textConfig").getTextByIdAndLanguageType(165);
-e("notificationMgr").pushNoti(n);
+var h = e("textConfig").getTextByIdAndLanguageType(165);
+e("notificationMgr").pushNoti(h);
 });
 }
 });
@@ -11883,5 +13692,5 @@ notificationMgr: "notificationMgr",
 systemsMgr: "systemsMgr",
 textConfig: "textConfig"
 } ]
-}, {}, [ "addPropertySysConfig", "levelConfig", "levelSceneConfig", "mailConfig", "mailSysConfig", "sectionConfig", "signInSysConfig", "storyConfig", "textConfig", "use_reversed_rotateTo", "_mainSceneMgr", "bulletMgr", "redPointMgr", "guildNodeMgr", "helper", "levelAreaNodeMgr", "levelMgr", "dataMgr", "gestureMgr", "gloableConfig", "loginMgr", "networkMgr", "resMgr", "timerSystemsMgr", "loginSceneMgr", "levelNodeMgr", "mainSceneMgr", "preChallengeUIMgr", "selectSectionElementMgr", "selectSectionUIMgr", "selectedEffectMgr", "advertisMgr", "gameMgr", "globalRedPointMgr", "notificationMgr", "addPropertyNumSysMgr", "ensureSystem", "ensureSystemNodeMgr", "mailSysMailMgr", "mailSysMgr", "signInSysMgr", "storySysMgr", "systemsMgr", "welfarySysMgr", "targetMgr" ]);
+}, {}, [ "addPropertySysConfig", "levelConfig", "levelSceneConfig", "mailConfig", "mailSysConfig", "sectionConfig", "signInSysConfig", "storyConfig", "textConfig", "use_reversed_rotateTo", "_mainSceneMgr", "bulletMgr", "redPointMgr", "guildNodeMgr", "helper", "levelAreaNodeMgr", "levelMgr", "dataMgr", "gestureMgr", "gloableConfig", "loginMgr", "networkMgr", "resMgr", "timerSystemsMgr", "loginSceneMgr", "levelNodeMgr", "mainSceneMgr", "preChallengeUIMgr", "selectSectionElementMgr", "selectSectionUIMgr", "selectedEffectMgr", "advertisMgr", "bgmMgr", "gameMgr", "globalRedPointMgr", "notificationMgr", "addPropertyNumSysMgr", "ensureSystem", "ensureSystemNodeMgr", "mailSysMailMgr", "mailSysMgr", "signInSysMgr", "storySysMgr", "systemsMgr", "welfarySysMgr", "targetMgr" ]);
 //# sourceMappingURL=project.js.map

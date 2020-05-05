@@ -69,7 +69,7 @@ cc.Class({
         cc.tween(this.selectedEffectNode)
             .repeatForever(cc.tween().to(0.5,{opacity:0}).to(0.5,{opacity: 255}))
             .start()
-        this.setupMailTag()
+        //this.setupMailTag()
     },
 
     start () {
@@ -157,11 +157,11 @@ cc.Class({
     },
 
     dataMonitored(key,value) {
-        var mailConfig = require("mailConfig")
-        var mailIds = Object.keys(mailConfig)
-        if (mailIds.indexOf(key) != -1) {
-            this.setupMailTag()
-        }
+        // var mailConfig = require("mailConfig")
+        // var mailIds = Object.keys(mailConfig)
+        // if (mailIds.indexOf(key) != -1) {
+        //     this.setupMailTag()
+        // }
     }
     // update (dt) {},
 });

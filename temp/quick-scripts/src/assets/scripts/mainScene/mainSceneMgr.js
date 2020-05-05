@@ -61,12 +61,10 @@ cc.Class({
   },
   start: function start() {
     this.setupUI(); //require("systemsMgr").showSystem("storySys",9001,2)
-
-    var storyId = require("dataMgr").playerData.storySysId;
-
-    if (storyId != -1) {
-      require("systemsMgr").showSystem("storySys", storyId, 2);
-    }
+    // var storyId = require("dataMgr").playerData.storySysId
+    // if (storyId != -1) {
+    //     require("systemsMgr").showSystem("storySys",storyId,2)
+    // }
 
     require("bgmMgr").selectedSection = this.selectedSection.toString();
   },
@@ -75,31 +73,26 @@ cc.Class({
     this.heartLabelNode.getComponent(cc.Label).string = require("dataMgr").playerData.heart.toString();
     this.physicalLabelNode.getComponent(cc.Label).string = require("dataMgr").playerData.physicalPower.toString();
 
-    var systemsMgr = require("systemsMgr");
+    var systemsMgr = require("systemsMgr"); // this.mailSysButtonNode.on("click",function(){
+    //     systemsMgr.showSystem("mailSys",null,1,2)
+    // })
+    // this.mailSysButtonNode.getComponent("redPointMgr").redPointShowCondition = function() {
+    //     var mails = require("dataMgr").playerData.mails
+    //     var unReadNum = 0
+    //     for (var key in mails) {
+    //         var oneMail = mails[key]
+    //         if (oneMail.status == 0) {
+    //             unReadNum += 1
+    //         }
+    //     }
+    //     if (unReadNum > 0) {
+    //         return true
+    //     }
+    //     else {
+    //         return false
+    //     }
+    // }
 
-    this.mailSysButtonNode.on("click", function () {
-      systemsMgr.showSystem("mailSys", null, 1, 2);
-    });
-
-    this.mailSysButtonNode.getComponent("redPointMgr").redPointShowCondition = function () {
-      var mails = require("dataMgr").playerData.mails;
-
-      var unReadNum = 0;
-
-      for (var key in mails) {
-        var oneMail = mails[key];
-
-        if (oneMail.status == 0) {
-          unReadNum += 1;
-        }
-      }
-
-      if (unReadNum > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    };
 
     this.signInSysButtonNode.on("click", function () {
       systemsMgr.showSystem("signInSys");

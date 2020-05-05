@@ -229,10 +229,9 @@ var SystemsMgr = cc.Class({
         return false;
     }
   },
-  systemsGloableDataMonitored: function systemsGloableDataMonitored(key, value) {
-    //mailSys
+  systemsGloableDataMonitored: function systemsGloableDataMonitored(key, value) {//mailSys
     //monitored whether reach mail condition
-    this.mailSysGloableMonitored(key, value);
+    //this.mailSysGloableMonitored(key,value)
   },
   mailSysGloableMonitored: function mailSysGloableMonitored(key, value) {
     var textConfig = require("textConfig");

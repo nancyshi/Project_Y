@@ -47,7 +47,7 @@ var BgmMgr = cc.Class({
     var path = require("sectionConfig")[section.toString()].bgmPath;
 
     cc.loader.loadRes(path, function (err, res) {
-      cc.audioEngine.play(res);
+      cc.audioEngine.play(res, 1, 1);
     });
   },
   // LIFE-CYCLE CALLBACKS:

@@ -1,10 +1,10 @@
 var addPropertySysConfig = {
     //key is addTypeId
     "1": {
-        physicalPower: 10
+        physicalPower: 5
     },
     "2": {
-        heart: 20
+        heart: 10
     }
 }
 

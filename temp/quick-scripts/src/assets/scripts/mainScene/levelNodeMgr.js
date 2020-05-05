@@ -76,8 +76,7 @@ cc.Class({
       opacity: 0
     }).to(0.5, {
       opacity: 255
-    })).start();
-    this.setupMailTag();
+    })).start(); //this.setupMailTag()
   },
   start: function start() {},
   onClick: function onClick() {
@@ -168,15 +167,12 @@ cc.Class({
 
     return false;
   },
-  dataMonitored: function dataMonitored(key, value) {
-    var mailConfig = require("mailConfig");
-
-    var mailIds = Object.keys(mailConfig);
-
-    if (mailIds.indexOf(key) != -1) {
-      this.setupMailTag();
-    }
-  } // update (dt) {},
+  dataMonitored: function dataMonitored(key, value) {} // var mailConfig = require("mailConfig")
+  // var mailIds = Object.keys(mailConfig)
+  // if (mailIds.indexOf(key) != -1) {
+  //     this.setupMailTag()
+  // }
+  // update (dt) {},
 
 });
 

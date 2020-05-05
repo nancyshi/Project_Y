@@ -1,6 +1,6 @@
 {
-  "platform": "android",
-  "actualPlatform": "android",
+  "platform": "ios",
+  "actualPlatform": "ios",
   "template": "link",
   "buildPath": "./build",
   "debug": false,
@@ -13,7 +13,7 @@
   "keystorePassword": "",
   "keystoreAlias": "",
   "keystoreAliasPassword": "",
-  "apiLevel": "android-29",
+  "apiLevel": "",
   "appABIs": [
     "armeabi-v7a",
     "arm64-v8a",

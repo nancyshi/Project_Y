@@ -94,8 +94,9 @@ cc.Class({
     var levelConfig = require("levelConfig");
 
     var config = levelConfig[this.level];
-    var desLabelNode = this.contentSectionNode.getChildByName("desLabel");
-    desLabelNode.getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(config.desTextId);
+    var desLabelNode = this.contentSectionNode.getChildByName("desLabel"); //desLabelNode.getComponent(cc.Label).string = require("textConfig").getTextByIdAndLanguageType(config.desTextId)
+
+    desLabelNode.getComponent(cc.Label).string = this.titleLabelNode.getComponent(cc.Label).string;
 
     desLabelNode.getComponent(cc.Label)._forceUpdateRenderData();
 
@@ -111,47 +112,38 @@ cc.Class({
 
     var result = this._getMailSectionInfo();
 
-    var mailSectionHeight = 0;
-
-    for (var index in result) {
-      var oneConfig = result[index];
-      var node = cc.instantiate(this.mailSectionElementPrefab);
-      var desLabel = node.getChildByName("desLabel");
-      var textStr = "";
-
-      if (oneConfig.type == 1) {
-        // textStr = "通关后会收到 " + oneConfig.tag + " 分支的新邮件"
-        textStr = textConfig.getFormatedString(149, [oneConfig.tag]);
-      } else if (oneConfig.type == 2) {
-        // textStr = "用不多于 " + oneConfig.minStep + " 步通关，会收到 " + oneConfig.tag + " 分支的新邮件"
-        textStr = textConfig.getFormatedString(150, [oneConfig.minStep, oneConfig.tag]);
-      }
-
-      desLabel.getComponent(cc.Label).string = textStr;
-
-      desLabel.getComponent(cc.Label)._forceUpdateRenderData();
-
-      var completeIcon = node.getChildByName("completeIcon");
-
-      if (oneConfig.status == true) {
-        completeIcon.active = true;
-      }
-
-      if (desLabel.height > completeIcon.height) {
-        node.height = desLabel.height;
-      } else {
-        node.height = completeIcon.height;
-      }
-
-      node.y = mailSectionHeight;
-      mailSectionHeight += node.height;
-
-      if (index != result.length - 1) {
-        mailSectionHeight += this.mailSectionElementDis;
-      }
-
-      this.mailSectionNode.addChild(node);
-    }
+    var mailSectionHeight = 0; // for (var index in result) {
+    //     var oneConfig = result[index]
+    //     var node = cc.instantiate(this.mailSectionElementPrefab)
+    //     var desLabel = node.getChildByName("desLabel")
+    //     var textStr = ""
+    //     if (oneConfig.type == 1) {
+    //         // textStr = "通关后会收到 " + oneConfig.tag + " 分支的新邮件"
+    //         textStr = textConfig.getFormatedString(149,[oneConfig.tag])
+    //     }
+    //     else if (oneConfig.type == 2) {
+    //         // textStr = "用不多于 " + oneConfig.minStep + " 步通关，会收到 " + oneConfig.tag + " 分支的新邮件"
+    //         textStr = textConfig.getFormatedString(150,[oneConfig.minStep,oneConfig.tag])
+    //     }
+    //     desLabel.getComponent(cc.Label).string = textStr
+    //     desLabel.getComponent(cc.Label)._forceUpdateRenderData()
+    //     var completeIcon = node.getChildByName("completeIcon")
+    //     if (oneConfig.status == true) {
+    //         completeIcon.active = true
+    //     }
+    //     if (desLabel.height > completeIcon.height) {
+    //         node.height = desLabel.height
+    //     }
+    //     else {
+    //         node.height = completeIcon.height
+    //     }
+    //     node.y = mailSectionHeight
+    //     mailSectionHeight += node.height
+    //     if (index != result.length - 1) {
+    //         mailSectionHeight += this.mailSectionElementDis
+    //     }
+    //     this.mailSectionNode.addChild(node)
+    // }
 
     this.mailSectionNode.height = mailSectionHeight; //challengeButton
 

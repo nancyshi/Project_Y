@@ -6,7 +6,7 @@ cc._RF.push(module, '51917pM+R1Dg5TFm0DDHJ3m', 'signInSysConfig');
 
 var signInSysConfig = {
   physicalPowerAddNum: 10,
-  heartAddNum: 20,
+  heartAddNum: 10,
   addRateForAd: 2
 };
 module.exports = signInSysConfig;

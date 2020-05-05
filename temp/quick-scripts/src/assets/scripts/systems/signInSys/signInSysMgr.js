@@ -75,7 +75,13 @@ cc.Class({
         desStr = textConfig.getTextByIdAndLanguageType(121);
         this.cancelButtonNode.active = false;
         this.ensureButtonNode.x = 0;
-        this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(122);
+
+        var delta = require("dataMgr").playerData.signInRefreshDelta;
+
+        var h = Math.floor(delta / 3600);
+        var m = Math.floor(delta % 3600 / 60);
+        var s = h.toString() + "h " + m.toString() + "m ";
+        this.ensureButtonNode.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getFormatedString(122, [s]);
         break;
     }
 

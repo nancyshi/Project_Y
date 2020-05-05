@@ -124,8 +124,8 @@ var textConfig = {
     },
     "text_121": {
         id: 121,
-        zh: "您今天已经签到过啦，明天再来吧~",
-        en: "you have been signed in today, come again tomorrow please ~",
+        zh: "您今天已经签到过啦，明天再来吧~ 每日 05: 00 am (UTC 8) 刷新 ，当前距离刷新 %s",
+        en: "you have been signed in today, come again tomorrow please ~ it will refresh every 05:00 am (UTC 8), it will refresh in %s",
         comment: "签到系统"
     },
 
@@ -471,16 +471,30 @@ var textConfig = {
         en: "",
         comment: "第六章内容"
     },
+
+    "text_173" : {
+        id: 173,
+        zh: [
+            ""
+        ],
+        en: "",
+        comment: "初始剧情"
+    },
     getTextByIdAndLanguageType(givenId,givenType = this.languageType) {
         var key = "text_" + givenId.toString()
         var result = this[key]
+        var temp = null
         if (givenType == 1) {
-            //cn
-            return result.zh
+            
+            temp = result.zh
         }
         else {
-            return result.en
+            temp = result.en
         }
+        if (typeof temp == "object") {
+            temp = temp.join("\n")
+        }
+        return temp
     },
 
     getFormatedString(givenId, paras = [],givenType = this.languageType) {

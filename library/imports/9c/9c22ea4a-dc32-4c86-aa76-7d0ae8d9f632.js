@@ -4,6 +4,8 @@ cc._RF.push(module, '9c22epK3DJMhqp2fQro2fYy', 'textConfig');
 
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 var textConfig = {
   languageType: 0,
   "text_101": {
@@ -128,8 +130,8 @@ var textConfig = {
   },
   "text_121": {
     id: 121,
-    zh: "您今天已经签到过啦，明天再来吧~",
-    en: "you have been signed in today, come again tomorrow please ~",
+    zh: "您今天已经签到过啦，明天再来吧~ 每日 05: 00 am (UTC 8) 刷新 ，当前距离刷新 %s",
+    en: "you have been signed in today, come again tomorrow please ~ it will refresh every 05:00 am (UTC 8), it will refresh in %s",
     comment: "签到系统"
   },
   "text_122": {
@@ -438,17 +440,29 @@ var textConfig = {
     en: "",
     comment: "第六章内容"
   },
+  "text_173": {
+    id: 173,
+    zh: [""],
+    en: "",
+    comment: "初始剧情"
+  },
   getTextByIdAndLanguageType: function getTextByIdAndLanguageType(givenId) {
     var givenType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.languageType;
     var key = "text_" + givenId.toString();
     var result = this[key];
+    var temp = null;
 
     if (givenType == 1) {
-      //cn
-      return result.zh;
+      temp = result.zh;
     } else {
-      return result.en;
+      temp = result.en;
     }
+
+    if (_typeof(temp) == "object") {
+      temp = temp.join("\n");
+    }
+
+    return temp;
   },
   getFormatedString: function getFormatedString(givenId) {
     var paras = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];

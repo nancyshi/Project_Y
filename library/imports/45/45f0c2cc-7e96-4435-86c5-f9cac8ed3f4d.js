@@ -7,10 +7,10 @@ cc._RF.push(module, '45f0cLMfpZENYbF+crI7T9N', 'addPropertySysConfig');
 var addPropertySysConfig = {
   //key is addTypeId
   "1": {
-    physicalPower: 10
+    physicalPower: 5
   },
   "2": {
-    heart: 20
+    heart: 10
   }
 };
 module.exports = addPropertySysConfig;

@@ -221,7 +221,7 @@ var SystemsMgr = cc.Class({
     systemsGloableDataMonitored(key,value) {
         //mailSys
             //monitored whether reach mail condition
-        this.mailSysGloableMonitored(key,value)
+        //this.mailSysGloableMonitored(key,value)
     },
 
 

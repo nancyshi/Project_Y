@@ -31,7 +31,7 @@ var GloableConfig = cc.Class({
     //     }
     // },
     basicIp: "diamonds.tdreamstudio.com",
-    //basicIp: "192.168.0.103",
+    //basicIp: "192.168.0.150",
     basicPort: 8888,
     netWorkMessageConfigs: {
       get: function get() {
