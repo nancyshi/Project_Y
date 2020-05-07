@@ -40,12 +40,15 @@ var AdvertisMgr = cc.Class({
                 this._isReady = value
                 //1 = ok , 2 = loading 3 = erro
                 if (value == 1 && this.showStatus == 1) {
+                    //this.showActivityNode()
                     sdkbox.PluginAdMob.show("rewarded")
+                    this.stopWaitting()
                 }
                 else if (value == 3 && this.showStatus == 1) {
                     this.showStatus = 0
                     this.removeActivityNode()
-                    require("notificationMgr").showNoti("something wrong with ad system , retry later")
+                    var str = require("textConfig").getTextByIdAndLanguageType(175)
+                    require("notificationMgr").showNoti(str)
     
                 }
 
@@ -68,10 +71,31 @@ var AdvertisMgr = cc.Class({
 
         activityNode: null,
 
-        isRewardSend: false
+        isRewardSend: false,
+
+        waittingTimer: {
+            get() {
+                return this._waittingTimer
+            },
+            set(value) {
+                this._waittingTimer = value
+                if ( typeof value == "number" && value <= 0) {
+                    this.stopWaitting()
+                    this.showStatus = 0
+                    var str = require("textConfig").getTextByIdAndLanguageType(176)
+                    require("notificationMgr").showNoti(str)
+                    this.removeActivityNode()
+                }
+            }
+        },
+
+        maxWaittingTime: 10
     },
 
     showActivityNode() {
+        if (this.activityNode != null) {
+            return
+        }
         var activityNodePrefab = require("resMgr").reses["activityNodePrefab"]
         var activityNode = cc.instantiate(activityNodePrefab)
         var bg = activityNode.getChildByName("bg")
@@ -214,7 +238,7 @@ var AdvertisMgr = cc.Class({
 
         else if (cc.sys.os == cc.sys.OS_ANDROID || cc.sys.os == cc.sys.OS_IOS) {
             this.showStatus = 1
-            cc.log(this.isReady + " : current isready")
+            // cc.log(this.isReady + " : current isready")
             if (this.isReady == 1) {
                 this.showActivityNode()
                 sdkbox.PluginAdMob.show("rewarded")
@@ -222,6 +246,7 @@ var AdvertisMgr = cc.Class({
             else if (this.isReady == 2) {
                 //just wait set event of isReady to 1
                 this.showActivityNode()
+                this.startWaitting()
             }
             else if (this.isReady == 3) {
                 //reload once and then show
@@ -235,8 +260,26 @@ var AdvertisMgr = cc.Class({
             var str = require("textConfig").getTextByIdAndLanguageType(166)
             require("notificationMgr").pushNoti(str)
         }
+    },
+
+    startWaitting() {
+        this.waittingTimer = this.maxWaittingTime
+        this.schedule(this.waittingUpdate,1)
+    },
+
+    stopWaitting() {
+        this.waittingTimer = null
+        this.unschedule(this.waittingUpdate)
+    },
+
+    waittingUpdate() {
+        if (this.waittingTimer >0) {
+            this.waittingTimer -= 1
+        }
     }
+    
 });
 
 var sharedAdvertisMgr = new AdvertisMgr()
+sharedAdvertisMgr.maxWaittingTime = 15
 module.exports = sharedAdvertisMgr

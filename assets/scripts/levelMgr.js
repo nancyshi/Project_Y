@@ -70,7 +70,7 @@ cc.Class({
                 this._heart = value
                 cc.find("Canvas/uiNode/heartLabel").getComponent(cc.Label).string = value.toString()
                 if (value < this.heartForRetryCost) {
-                    this.retryButton.getComponent(cc.Button).interactable = false
+                    //this.retryButton.getComponent(cc.Button).interactable = false
                 }
                 else {
                     if (this.isMoved == false) {
@@ -99,7 +99,7 @@ cc.Class({
             },
             set(value) {
                 this._isMoved = value
-                if (value == true && this.heartForRetryCost <= this.heart) {
+                if (value == true) {
                     this.retryButton.getComponent(cc.Button).interactable = true
                 }
             }
@@ -138,6 +138,10 @@ cc.Class({
 
         this.retryButton.getChildByName("textLabel").getComponent(cc.Label).string = textConfig.getTextByIdAndLanguageType(152)
         cc.find("Canvas/uiNode/currentStepNumLabel").getComponent(cc.Label).string = textConfig.getFormatedString(154,[0])
+        var addButtonNode = cc.find("Canvas/uiNode/addButton")
+        addButtonNode.on("click",function(){
+            require("systemsMgr").showSystem("addPropertyNumSys",2)
+        })
     },
 
     start () {
@@ -608,6 +612,8 @@ cc.Class({
         }
         var temp = this.playerData.heart - this.heartForRetryCost
         if (temp < 0) {
+            var str = require("textConfig").getTextByIdAndLanguageType(174)
+            require("notificationMgr").showNoti(str)
             return
         }
 

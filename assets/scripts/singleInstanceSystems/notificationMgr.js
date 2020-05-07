@@ -47,6 +47,10 @@ var NotificationMgr = cc.Class({
         var notiNode = cc.instantiate(notiPrefab)
         var label = notiNode.getChildByName("label")
         label.getComponent(cc.Label).string = str
+        label.getComponent(cc.Label)._forceUpdateRenderData()
+        
+        var bg = notiNode.getChildByName("infoBg")
+        bg.height = label.height + 5
         var currentSceneCanvas = cc.director.getScene().getChildByName("Canvas")
         currentSceneCanvas.addChild(notiNode)
         var self = this

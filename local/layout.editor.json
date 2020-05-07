@@ -7,7 +7,7 @@
       "windowType": "dockable",
       "x": 347,
       "y": 40,
-      "width": 1716,
+      "width": 1982,
       "height": 1309,
       "layout": {
         "children": [
@@ -103,8 +103,7 @@
         "inspector",
         "cocos-services"
       ]
-    },
-    "window-1588689648054": {}
+    }
   },
   "panels": {
     "builder": {
@@ -120,8 +119,8 @@
       "height": 548
     },
     "sprite-editor": {
-      "x": 279,
-      "y": 105,
+      "x": 889,
+      "y": 167,
       "width": 500,
       "height": 522
     },

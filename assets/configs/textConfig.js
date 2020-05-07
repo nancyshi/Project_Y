@@ -480,6 +480,24 @@ var textConfig = {
         en: "",
         comment: "初始剧情"
     },
+    "text_174": {
+        id: 174,
+        zh: "金币不足，您可以点击左上角 + 按钮增加金币",
+        en: "not enough gold , please click the + button at left top cornor to increase",
+        comment: ""
+    },
+    "text_175": {
+        id: 175,
+        zh: "出错了... 请稍后重试",
+        en: "something wrong with ad system , retry later",
+        comment: "广告系统错误提示"
+    },
+    "text_176": {
+        id: 176,
+        zh: "广告加载过慢，请稍后重试",
+        en: "the loading speed is too slow , pleae retry later",
+        comment: "广告加载过慢"
+    },
     getTextByIdAndLanguageType(givenId,givenType = this.languageType) {
         var key = "text_" + givenId.toString()
         var result = this[key]
